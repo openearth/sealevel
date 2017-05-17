@@ -1,8 +1,19 @@
-# AVISO data is not maintained anymore
-merged.nc:
+# Note that AVISO data is not maintained anymore, possibly the delayed monthly grids
+# download all files
+# unzip
+# convert time to record dimension
+# concatenate record dimensions
+# cleanup converted files
+# cleanup year files
+dt_global_allsat_msla_h_merged.nc:
 	wget -c -N -nd --recursive --accept '*.nc*' ftp://ftp.aviso.altimetry.fr/global/delayed-time/grids/climatology/monthly_mean/
-	gunzip *.nc.gz
-	for f in $(find . -name 'dt_upd_*.nc' -exec basename {} \;); do ncecat -v Grid_0001 $f record_$f; done
+	gunzip -f -k *.nc.gz
+	for f in `find . -name 'dt_global_*.nc' -exec basename {} \;`; do \
+		ncks --mk_rec_dmn time $$f unlimited_$$f; \
+	done
+	ncrcat unlimited_*.nc dt_global_merged_msla_h_merged.nc
+	rm unlimited_*.nc
+	rm dt_global_allsat_msla_h_y*	
 
 
 # The new approach is to use the data from nasa
