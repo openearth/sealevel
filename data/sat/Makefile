@@ -1,6 +1,6 @@
 # AVISO data is not maintained anymore
 merged.nc:
-	wget -c -nd --recursive --accept '*.nc*' ftp://ftp.aviso.altimetry.fr/global/delayed-time/grids/climatology/monthly_mean/
+	wget -c -N -nd --recursive --accept '*.nc*' ftp://ftp.aviso.altimetry.fr/global/delayed-time/grids/climatology/monthly_mean/
 	gunzip *.nc.gz
 	for f in $(find . -name 'dt_upd_*.nc' -exec basename {} \;); do ncecat -v Grid_0001 $f record_$f; done
 
