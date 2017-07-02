@@ -1,0 +1,7 @@
+{
+    "CatalogusFilter": {
+        "Eenheden": true,
+        "Grootheden": true,
+        "Hoedanigheden": true
+    }
+}
