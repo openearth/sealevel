@@ -128,7 +128,8 @@ target/
 
 # IPython Notebook
 .ipynb_checkpoints
-
+# manual file
+notebooks/result.tiff
 # pyenv
 .python-version
 
