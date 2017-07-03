@@ -11,7 +11,7 @@
           <v-list-item v-else v-bind:key="item.title">
             <v-list-tile avatar>
               <v-list-tile-avatar>
-                <v-icon fa dark>{{ item.avatar }}</v-icon>
+                <v-icon fa>{{ item.avatar }}</v-icon>
               </v-list-tile-avatar>
               <v-list-tile-content>
                 <v-list-tile-title v-html="item.title"/>

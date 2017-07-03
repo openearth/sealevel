@@ -1,4 +1,3 @@
 <template>
 </template>
-<script>
-</script>
+<script src="./v-map.js"></script>
