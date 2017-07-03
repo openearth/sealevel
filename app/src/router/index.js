@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Hello from '@/components/Hello';
+import VMain from '@/components/VMain';
+import VMap from '@/components/VMap';
+import VStation from '@/components/VStation';
 
 Vue.use(Router);
 
@@ -8,8 +10,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name: 'Main',
+      component: VMain
+    },
+    {
+      path: '/stations/:id',
+      component: VStation
     }
   ]
 });
