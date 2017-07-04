@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+import pathlib
+
+import pandas
+
+for name in ['ocean_mass', 'greenland_mass', 'antarctica_mass']:
+    path = next(pathlib.Path('.').glob(name + '*.txt'))
+    df = pandas.read_csv(
+        path,
+        comment='H',                # HDR
+        names=('year', 'mass', 'std'),
+        sep='\s+'
+    )
+    df.to_json(name + '.json', orient='records')
