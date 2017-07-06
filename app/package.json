@@ -1,6 +1,6 @@
 {
   "name": "slr-monitor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Sea-level rise monitor",
   "author": "Fedor Baart <fedor.baart@deltares.nl>",
   "private": true,

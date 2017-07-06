@@ -4,8 +4,10 @@ import Vue from 'vue';
 import router from './router';
 
 import Vuetify from 'vuetify';
+import VMapboxGL from 'vue2mapbox-gl';
 
 Vue.use(Vuetify);
+Vue.use(VMapboxGL);
 
 Vue.config.productionTip = false;
 
