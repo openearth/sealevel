@@ -1,3 +1,7 @@
+# data
+
+data/**/*.nc
+
 # Logs
 logs
 *.log
