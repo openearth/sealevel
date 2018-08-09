@@ -4,18 +4,26 @@ import pathlib
 import pandas
 
 
+names = {
+    "antarctica_mass": ["year", "mass", "mass_sd"],
+    "greenland_mass": ["year", "mass", "mass_sd"],
+    "ocean_mass": ["year", "slr", "slr_sd", "slr_deseasoned"],
+
+}
+
 ocean_surface = 3.619e+14       # m2
 for name in ['ocean_mass', 'greenland_mass', 'antarctica_mass']:
     path = next(pathlib.Path('.').glob(name + '*.txt'))
     df = pandas.read_csv(
         path,
         comment='H',                # HDR
-        names=('year', 'mass', 'std'),
+        names=names[name],
         sep='\s+'
     )
 
-    # gigatonne, assuming metric to kg, * 1l/kg * m3/l
-    df['volume'] = df['mass'] * 1e12 * 1.0 * 1e-3
-    df['slr'] = -df['volume'] / ocean_surface
+    if name in ['greenland_mass', 'antarctica_mass']:
+        # gigatonne, assuming metric to kg, * 1l/kg * m3/l
+        df['volume'] = df['mass'] * 1e12 * 1.0 * 1e-3
+        df['slr'] = -df['volume'] / ocean_surface
 
     df.to_json(name + '.json', orient='records')
