@@ -1,6 +1,30 @@
 # data
 
 data/**/*.nc
+data/**/*.png
+data/**/*.xls?
+data/**/*.csv
+data/**/*.jpg
+data/**/*.data
+data/**/*.shp
+data/**/*.shx
+data/**/*.dbf
+data/**/*.prj
+data/**/*.sbx
+data/**/*.cpg
+data/**/*.sbn
+data/**/*.shp.xml
+data/**/*.zip
+data/**/*.pdf
+data/**/*.tiff
+data/**/*.tif
+data/**/*.geojson
+data/**/*.sld
+data/**/*.qix
+data/**/*.qpj
+data/**/*.kml
+
+
 
 # Logs
 logs
