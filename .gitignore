@@ -23,6 +23,8 @@ data/**/*.sld
 data/**/*.qix
 data/**/*.qpj
 data/**/*.kml
+data/**/*.txt
+data/**/*.json
 
 
 
