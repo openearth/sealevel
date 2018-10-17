@@ -30,3 +30,6 @@ Voorstellen:
 - AR(1) term tonen.
 - modellen met heteroscedasticiteit robuuste standaard fouten schatten (HC0 als AR term is opgenomen, HAC anders)
 
+Vergelijking satellietdata
+- we gebruiken nog geen wind
+
