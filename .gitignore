@@ -178,3 +178,20 @@ ENV/
 
 # Rope project settings
 .ropeproject
+notebooks/analysis/gtsr/Switchpoint traces.pdf
+notebooks/analysis/gtsr/Trend traces nodal, no wind.pdf
+notebooks/analysis/gtsr/Trend traces with nodal and wind.pdf
+notebooks/analysis/gtsr/Model fit with switchpoint.pdf
+notebooks/analysis/satellite/slr_satellite.pdf
+notebooks/analysis/satellite/dt_global_merged_msla_h_merged.nc
+notebooks/analysis/gtsr/Constant.png
+notebooks/analysis/gtsr/Nodal U.png
+notebooks/analysis/gtsr/Nodal V.png
+notebooks/analysis/gtsr/Sigma.png
+notebooks/analysis/gtsr/Trend.png
+notebooks/analysis/gtsr/Wind $u^2$.png
+notebooks/analysis/gtsr/Wind $v^2$.png
+notebooks/analysis/gtsr/Comparison wind and surge data.ipynb
+notebooks/analysis/gtsr/Comparison wind and surge data.ipynb
+notebooks/analysis/gtsr/Comparison wind and surge data.ipynb
+notebooks/analysis/gtsr/Comparison wind and surge data.ipynb
