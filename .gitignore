@@ -191,3 +191,6 @@ notebooks/analysis/gtsr/Sigma.png
 notebooks/analysis/gtsr/Trend.png
 notebooks/analysis/gtsr/Wind $u^2$.png
 notebooks/analysis/gtsr/Wind $v^2$.png
+notebooks/analysis/gtsr/surge.pkl
+notebooks/analysis/gtsr/FES2012_tide_NorthSea_zeespiegelmonitor.nc
+notebooks/analysis/gtsr/GTSR_surge_NorthSea_zeespiegelmonitor.nc
