@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 import os
 
-path = '../data/ddl/raw/'
+path = '../../data/ddl/raw'
 # get all locations
 locations = ddlpy.locations()
 
@@ -19,6 +19,7 @@ locations = ddlpy.locations()
 code= 'WATHTE'
 unit= 'NAP'
 station= ['DNHV', 'HARLGN', 'HARL', 'HOEKVHLD', 'HOEK', 'HOEKVHLNDDM','VLIS', 'VLISSGN']
+#station= ['VLISSGN']
 
 # Filter the locations dataframe with the desired parameters and stations.
 selected= locations[locations.index.isin(station)]
@@ -34,6 +35,7 @@ for index in range(len(station)):
 
     # This is parallel as ddlpy.measurements
     for year in np.arange(2000, 2020):
+    #for year in [2016]:
         start_date = datetime.datetime(year, 1, 1)
         end_date = datetime.datetime(year, 12, 31)
         print('Starting collecting info for year %d...'%year)
