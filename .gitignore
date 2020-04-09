@@ -1,5 +1,7 @@
 # data
-
+data/**/*.old
+data/**/*.old2
+data/**/*.pck
 data/**/*.nc
 data/**/*.png
 data/**/*.xls?
