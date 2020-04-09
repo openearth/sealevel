@@ -7,6 +7,9 @@ data/**/*.png
 data/**/*.xls?
 data/**/*.csv
 data/**/*.jpg
+data/**/*.ps
+data/**/wget-log
+data/**/*.aux.xml
 data/**/*.data
 data/**/*.shp
 data/**/*.shx
