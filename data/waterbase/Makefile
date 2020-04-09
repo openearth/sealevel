@@ -1,4 +1,4 @@
-YEAR=2018
+YEAR=2019
 
 all: latest_nc latest_txt temperature_nc
 latest_nc: id1-IJMDNDSS.nc id1-DELFZL.nc id1-VLISSGN.nc id1-HOEKVHLD.nc id1-HARLGN.nc id1-DENHDR.nc id1-IJMDBTHVN.nc
