@@ -1,0 +1,50 @@
+[
+    {
+        "id": 20,
+        "name": "Vlissingen",
+        "msl-rlr": 6976,
+        "msl-nap": 46,
+        "nap-rlr": 6930,
+        "alpha": 118
+    },
+    {
+        "id": 22,
+        "name": "Hoek van Holland",
+        "msl-rlr": 6987,
+        "msl-nap": 114,
+        "nap-rlr": 6873,
+        "alpha": 117
+    },
+    {
+        "id": 23,
+        "name": "Den Helder",
+        "msl-rlr": 6962,
+        "msl-nap": 16,
+        "nap-rlr": 6946,
+        "alpha": 107
+    },
+    {
+        "id": 24,
+        "name": "Delfzijl",
+        "msl-rlr": 6953,
+        "msl-nap": 130,
+        "nap-rlr": 6823,
+        "alpha": 117
+    },
+    {
+        "id": 25,
+        "name": "Harlingen",
+        "msl-rlr": 7024,
+        "msl-nap": 110,
+        "nap-rlr": 6914,
+        "alpha": 108
+    },
+    {
+        "id": 32,
+        "name": "IJmuiden",
+        "msl-rlr": 7014,
+        "msl-nap": 64,
+        "nap-rlr": 6950,
+        "alpha": 110
+    }
+]
