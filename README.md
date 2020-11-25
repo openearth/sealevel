@@ -3,7 +3,7 @@ Tools and applications used to monitor sea-level rise. The notebooks under `note
 
 # Notebooks
 
-You can try out the notebooks by going to the [binder](https://mybinder.org/v2/gh/openearth/sealevel/master?filepath=notebooks) website. You can also view them using the [nbviewer](https://nbviewer.ipython.org/github/openearth/sealevel/tree/master/notebooks/) website.
+You can also view them using the [nbviewer](https://nbviewer.ipython.org/github/openearth/sealevel/tree/master/notebooks/) website. You can try out the notebooks by going to the [binder](https://mybinder.org/v2/gh/openearth/sealevel/master?filepath=notebooks) website or using github codespaces. You need to follow a few steps to get an environment that can run the notebooks. The following steps will help you through it. 
 
 # Download data
 For windows systems:
@@ -18,6 +18,11 @@ For all systems, also do:
 cd data
 make
 ```
+Note that for the main sea-level monitor you only need to download the data from the directories: `psmsl` and `noaa`. So you can go into those directories and run make there. This will download all the tide gauge information and information needed to correct for wind effects.
+
+# Packages
+You can install the packages in the file `requirements.txt` using pip or anaconda.
+
 
 # Tags
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/openearth/sealevel/master?filepath=notebooks)
