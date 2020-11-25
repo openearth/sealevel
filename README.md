@@ -24,6 +24,9 @@ Note that for the main sea-level monitor you only need to download the data from
 # Packages
 You can install the packages in the file `requirements.txt` using pip or anaconda. For pip this is done using `pip install -r requirements.txt`. Windows users might want to prefer installing these packages through anaconda.
 
+# Running the notebook
+You can run the notebook in either jupyter notebook or jupyterlab. To start jupyter notebook. From the main level of the repository start `jupyter notebook` and browse through the notebooks folders. The main notebook is `dutch-sea-level-monitor.ipynb`.
+
 
 # Tags
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/openearth/sealevel/master?filepath=notebooks)
