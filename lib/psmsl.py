@@ -48,7 +48,9 @@ def get_data(zf, station, dataset_name):
         }
     )
     df['station'] = station.name
+    # store time as t
     df['t'] = year2date(df.year)
+    # use time as an index
     df = df.set_index('t')
     return df
 
@@ -90,6 +92,7 @@ def get_data_with_wind(station, dataset_name, wind_df, annual_wind_df, zipfiles,
         }
     )
     df['station'] = station.name
+    # store time as t
     df['t'] = year2date(df.year, dtype=wind_df.index.dtype)
     df['alpha'] = station['alpha']
     df = df.set_index('t')

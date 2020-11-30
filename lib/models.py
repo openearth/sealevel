@@ -3,6 +3,7 @@ import statsmodels.api as sm
 
 # define the statistical model
 def linear_acceleration_model(df):
+    """define a simple linear model, with nodal tide and without wind (no acceleration)"""
     y = df['height']
     X = np.c_[
         df['year']-1970,
@@ -67,7 +68,9 @@ def broken_linear_model(df, with_wind=True):
 
 
 def linear_model(df, with_wind=True, with_ar=True):
-    """define the statistical model"""
+    """Define the linear model with optional wind and autoregression.
+    See the latest report for a detailed description.
+    """
 
     y = df['height']
     X = np.c_[
