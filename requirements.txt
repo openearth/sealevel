@@ -1,0 +1,11 @@
+requests
+netCDF4
+numpy
+pandas
+pyproj
+statsmodels
+bokeh
+matplotlib
+cmocean
+ipywidgets
+ipython
