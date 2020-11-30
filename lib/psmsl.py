@@ -13,7 +13,7 @@ def missing2nan(value, missing=-99999):
     return value
 
 def year2date(year_fraction, dtype='datetime64[s]'):
-    """convert a fraction of a year + fraction of a year to a date, for example 1993.12 -> 1993-02-01.
+    """convert a fraction of a year + fraction of a year to a date, for example 1993.083 -~> 1993-02-01.
     The dtype should be a valid numpy datetime unit, such as datetime64[s]"""
     startpoints = np.linspace(0, 1, num=12, endpoint=False)
     remainder = np.mod(year_fraction, 1)
