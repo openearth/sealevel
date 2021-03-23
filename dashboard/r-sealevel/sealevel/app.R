@@ -8,14 +8,18 @@
 #
 
 library(shiny)
-
 library(ggplot2)
-
 # Read the sealevel dataset 
 library(readr)
-sealevel <- read_csv("../dutch-sea-level-monitor-export-2019-09-29.csv", 
-                     comment = "#")
 
+#Path to this file:
+#..\sealevel\dashboard\r-sealevel\sealevel\
+#Path to the data file:
+#..\sealevel\notebooks\
+sealevel <- read_csv("../../../notebooks/dutch-sea-level-monitor-export-2021-03-11.csv", 
+                     comment = "#")
+# or see csv files in:
+#..\sealevel\data\deltares\results
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
