@@ -9,3 +9,6 @@ matplotlib
 cmocean
 ipywidgets
 ipython
+xarray
+dask
+cmcrameri
