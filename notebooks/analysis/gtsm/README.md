@@ -19,11 +19,13 @@ You can find the following files in this dataset.
 - `monthlymean_gtsm_psmsl-{id}.csv`: monthly tidal corrections for mean sea level.
 - `yearlymean_gtsm_psmsl-{id}.csv`: annual tidal corrections for the mean sea level.
 - `yearlymeanOLS_gtsm_psmsl-{id}.csv`: annual tidal corrections based
-  on a harmoni analysis through the reanalysis data (see details
+  on a harmonic analysis through the reanalysis data (see details
   below).
-- `df_OLSmodelstats_year.csv`: overview of the phase and amplitude of the harmonic analysis of all the stations, also includes the equilibrium tidal amplitude.
+  - `df_OLSmodelstats_year.csv`: an overview of the phase and amplitude
+  of the harmonic analysis of all the stations, also includes the
+  equilibrium tidal amplitude.
 
-All files are stored in csv files, using a `,` as field seperator and
+All files are stored in `.csv` files, using a `,` as field separator and
 `.` as decimal separator. Time is stored as `YYYY` for the annual
 series and as `YYYY-MM` for the monthly series.
 
@@ -60,20 +62,20 @@ The file `df_OLSmodelstats_year.csv` contains the following columns:
 
 # Methods
 To generate this dataset we have run a tidal model (GTSM v4.0) for 19
-years. This multi-decadal reanalysis of tides allows to separate the
-tidal component from other sea level fluctuations. See [1, 2] for a
+years. This multi-decadal reanalysis of tides allows separating the
+tidal component from other sea-level fluctuations. See [1, 2] for a
 discussion on this topic.
 
 The equilibrium ampltiude is computed as:
 ``` python
 abs(0.69 * 20 * (3 * sin(deg2rad(lat))**2 - 1)) / 1000
 ```
-This assumes an all water, elastic earth and no self attraction.
+This assumes an all water, elastic earth, and no self attraction.
 
 
 
 Using this dataset we fit, using an ordinary least squares approach,
-the nodal tidal amplitude and phase. Details of this analysis can be
+the nodal tidal amplitude, and phase. Details of this analysis can be
 found in the corresponding notebook [3].
 
 The results have not been validated or published, so please use this
@@ -85,7 +87,7 @@ results.
 These are preliminary results, intended for evaluation with other
 scientists. Make sure you take into account the following:
 
-- These results are based on GTSM 4.0, we expect to create an update
+- These results are based on GTSM 4.0, we expect to create an updated
   version based on 4.1. Version 4.1 should have a better internal tide
   model, which should improve reanalysis results in general.
 
@@ -95,8 +97,8 @@ scientists. Make sure you take into account the following:
   - Regions in inlets have not been validated
 
 - The reanalysis amplitude is lower than expected from equilibrium
-  tide (about a factor 2 lower). Research into the cause for this is
-  pending. (love numbers)
+  tide (about a factor 2 lower). Research into the cause of this is
+  pending (love numbers, self attraction can be considered).
 
 - The phase of the nodal tide is not yet validated.
 
