@@ -1,10 +1,8 @@
-# Nodal tide components for the PSMSL annual and monthly dataset
+# Nodal tide components for the PSMSL annual and monthly dataset (preliminary)
 This preliminary dataset contains the tidal component for the mean sea
 level for the tide gauges in the Permanent Service for Mean Sealevel
 dataset. These files can be used to subtract the long term tide of the
 mean sea level.
-
-# Methods
 
 
 # Authors and contact
@@ -37,34 +35,38 @@ stations can be found at [1].
 # Data specific information
 
 The file `monthlymean_gtsm_psmsl-{id}.csv` contains the following columns:
-- `times`: year-month for which the mean tidal level is determined
-- `values`: mean sea surface level due to tidal waves [m]
+- `time [year-month]` : year-month for which the mean tidal level is determined
+- `sea_surface_height_due_to_tide [m]`: mean sea surface level due to tidal waves [m]
 
 The file `yearlymean_gtsm_psmsl-{id}.csv` contains the following columns:
-- `times`: year for which the mean tidal level is determined
-- `values`: mean sea surface level due to tidal waves [m]
+- `time [year]`: year for which the mean tidal level is determined
+- `sea_surface_height_due_to_tide [m]`: mean sea surface level due to tidal waves [m]
 
 The file `yearlymeanOLS_gtsm_psmsl-{id}.csv` contains the following columns:
-- `times`: year for which the mean tidal level is determined
-- `values`: mean sea surface level due to tidal waves, harmonic fit [m]
+- `time [year]`: year for which the mean tidal level is determined
+- `sea_surface_height_due_to_tide_fitted [m]`: mean sea surface level due to tidal waves, harmonic fit [m]
 
 The file `df_OLSmodelstats_year.csv` contains the following columns:
-- `lon`: longitude of the station
-- `lat`: latitude of the station
+
+- `longitude [degrees east]`: longitude of the station
+- `latitude [degrees north]`: latitude of the station
 - `station_name`: station name
-- `A`: linearized fit of the nodal cycle (A/U/cos term) [m]
-- `B`: linearized fit of the nodal cycle (B/V/sin term) [m]
-- `amplitude`: amplitude of the fitted nodal cycle, sqrt(A**2 + B**2) [m]
-- `phase`: phase of the fitted nodal cycle arctan2(B, A) [rad, epoch 1970]
-- `mean `: mean tidal level over the fitted time window [m]
-- `amp_analytic`: equilibrium amplitude of the nodal tide [m]
+- `nodal tide U [m]`: linearized fit of the nodal cycle (A/U/cos term) (relative to 1970) [m]
+- `nodal tide V [m]`: linearized fit of the nodal cycle (B/V/sin term) (relative to 1970) [m]
+- `nodal amplitude [m]`: amplitude of the fitted nodal cycle, sqrt(A**2 + B**2) [m]
+- `nodal phase [radians since 1970-01-01]`: phase of the fitted nodal cycle arctan2(B, A) [rad, epoch 1970]
+- `mean sea surface height of nodal fit [m]`: mean tidal level over the fitted time window [m]
+- `nodal amplitude fitted with nodal epoch [m]`: amplitude of the fitted nodal tide with epoch at the start of the phase of the nodal tide. Note that the amplitude here can be negative. [m]
+- `nodal amplitude of equilibrium tide [m]`: equilibrium amplitude of the nodal tide [m]
 
 
 # Methods
 To generate this dataset we have run a tidal model (GTSM v4.0) for 19
 years. This multi-decadal reanalysis of tides allows separating the
-tidal component from other sea-level fluctuations. See [1, 2] for a
-discussion on this topic.
+tidal component from other sea-level fluctuations. The purpose of this
+computation is tot correct yearly mean and monthly mean tide gauge
+records for this tide constituent.  See [1, 2] for a discussion on
+this topic.
 
 The equilibrium ampltiude is computed as:
 ``` python
@@ -72,7 +74,13 @@ abs(0.69 * 20 * (3 * sin(deg2rad(lat))**2 - 1)) / 1000
 ```
 This assumes an all water, elastic earth, and no self attraction.
 
-
+In this simulation all tidal forcings (~400) were active in this
+simulation. Thus the estimates also contain indirect non-linear
+effects, such as the nodal modulation on the amplitude of M2
+interacting with itself. This allows the computation to deviate from
+the equilibrium tide. The tidal potential, corrections for solid earth
+tide (through Love numbers) and self attraction and loading aare
+included.
 
 Using this dataset we fit, using an ordinary least squares approach,
 the nodal tidal amplitude, and phase. Details of this analysis can be
@@ -101,6 +109,21 @@ scientists. Make sure you take into account the following:
   pending (love numbers, self attraction can be considered).
 
 - The phase of the nodal tide is not yet validated.
+
+- Some stations have deviating mean sea levels. A few examples:
+
+* psmsl-173: station in the river mound the St. Lawrence River in Quebec. Not enoguh resolotion
+* psmsl-1067: Anchorage in Alaska, in an inlet
+* psmsl-495: inlet
+* psmsl-1908: bathymetry/bridge
+* psmsl-2285: bathymetry resolution/bridge
+
+General remark: resolution in narrow tidal inlets and stations up
+rivers are not accurate. In an updated version we might be able to use
+cells just outside the inlet. But tide in narrow inlets can be quite
+different from outside.
+
+
 
 
 # Sharing and Access information
