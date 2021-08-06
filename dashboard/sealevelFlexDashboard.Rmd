@@ -1,0 +1,94 @@
+---
+title: "Untitled"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(shiny)
+library(ggplot2)
+# Read the sealevel dataset 
+library(readr)
+sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv", 
+                     comment = "#")
+
+```
+
+
+
+Sidebar {.sidebar}
+=======================================================================
+
+## Sea level monitor
+
+### Adjust the flexibility of the loess fit
+
+```{r}
+sliderInput("span",
+            "Span:",
+            min = 0.01,
+            max = 1,
+            value = 0.5)
+
+```
+
+
+</br>
+
+### Adjust the breakpoint year
+
+
+```{r}
+sliderInput("breakpoint",
+            "Break:",
+            min = 1950,
+            max = 1995,
+            value = 1970)
+```
+
+
+Dashboard
+=======================================================================
+
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Variability in sea level over the years
+
+```{r}
+renderPlot({
+        # generate span based on input
+        span <- input$span
+
+        # draw the histogram with the specified number of bins
+        fig <- ggplot(sealevel, aes(year, height)) + geom_point() + geom_smooth(span=span)
+        print(fig)
+    })
+```
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Is there an acceleration of sea level rise?
+
+```{r}
+renderPlot({
+        # generate breakpoint from ui.R
+        breakpoint <- input$breakpoint
+        
+        covariate <- (sealevel$year > breakpoint)*(sealevel$year - breakpoint)
+        
+        # draw the histogram with the specified number of bins
+        broken <- geom_smooth(method="glm", n=nrow(sealevel), formula=y ~ x + covariate +  1)
+        linear <- geom_smooth(method="glm", n=nrow(sealevel), formula=y ~ x + 1, aes(), colour='red') 
+        fig <- ggplot(sealevel, aes(year, height)) + geom_point() + broken + linear
+        print(fig)
+    })    
+```
+
+
