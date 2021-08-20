@@ -3,7 +3,7 @@ title: "Untitled"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
-    vertical_layout: fill
+    # vertical_layout: fill
 runtime: shiny
 ---
 
@@ -11,10 +11,33 @@ runtime: shiny
 library(flexdashboard)
 library(shiny)
 library(ggplot2)
+library(dplyr)
 # Read the sealevel dataset 
 library(readr)
 sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv", 
                      comment = "#")
+
+url <- "~/src/sealevel/data/knmi/cmip5/SeaLevelPerc_KNMI14.csv"
+
+knmi_df <- read_csv(url, comment = "#")
+
+# everything in mm
+knmi_df$perc_ts <- knmi_df$perc_ts * 10
+
+# TODO: use consistent epoch (see http://localhost:8889/notebooks/analysis/scenarios/scenario-vs-measurements.ipynb)
+# Now they start in 2006 which is not compatible with the old method.
+
+# TODO: add/subtract subsidence
+# Double check if new scenarios are including subsidence
+
+processes <- unique(knmi_df$proc)
+scenarios <- unique(knmi_df$scenario)
+
+# merge  percentiles
+knmi_perc10_df <- knmi_df %>% filter(percentiles==10) %>% select(time, scenario, proc, perc_ts) %>%  rename(perc_ts_10=perc_ts)
+knmi_perc50_df <- knmi_df %>% filter(percentiles==50) %>% select(time, scenario, proc, perc_ts) %>%  rename(perc_ts_50=perc_ts)
+knmi_perc90_df <- knmi_df %>% filter(percentiles==90) %>% select(time, scenario, proc, perc_ts) %>%  rename(perc_ts_90=perc_ts)
+knmi_perc_df <- merge(merge(knmi_perc10_df, knmi_perc50_df), knmi_perc90_df) %>% filter(proc=="Total")
 
 ```
 
@@ -23,9 +46,35 @@ sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-20
 Sidebar {.sidebar}
 =======================================================================
 
-## Sea level monitor
+```{r}
+selectInput("exclude",
+            "Excluded processes:",
+            choices = processes,
+            multiple=TRUE)
 
-### Adjust the flexibility of the loess fit
+```
+
+## Scenarios
+
+```{r}
+selectInput("scenarios",
+            "Scenarios:",
+            choices = scenarios)
+
+```
+
+## Fit
+
+```{r}
+selectInput("fit-type",
+            "Fit type:",
+            choices = c("linear", "broken linear", "quadratic", "loess"),
+            selected = "loess")
+
+```
+
+
+### Fit parameters
 
 ```{r}
 sliderInput("span",
@@ -35,12 +84,6 @@ sliderInput("span",
             value = 0.5)
 
 ```
-
-
-</br>
-
-### Adjust the breakpoint year
-
 
 ```{r}
 sliderInput("breakpoint",
@@ -55,40 +98,101 @@ Dashboard
 =======================================================================
 
 
-Column {data-width=500}
------------------------------------------------------------------------
-
-### Variability in sea level over the years
-
-```{r}
-renderPlot({
-        # generate span based on input
-        span <- input$span
-
-        # draw the histogram with the specified number of bins
-        fig <- ggplot(sealevel, aes(year, height)) + geom_point() + geom_smooth(span=span)
-        print(fig)
-    })
-```
 
 Column {data-width=500}
 -----------------------------------------------------------------------
 
-### Is there an acceleration of sea level rise?
+
+### Sea surface height 
 
 ```{r}
+
+
 renderPlot({
-        # generate breakpoint from ui.R
-        breakpoint <- input$breakpoint
-        
-        covariate <- (sealevel$year > breakpoint)*(sealevel$year - breakpoint)
-        
-        # draw the histogram with the specified number of bins
-        broken <- geom_smooth(method="glm", n=nrow(sealevel), formula=y ~ x + covariate +  1)
-        linear <- geom_smooth(method="glm", n=nrow(sealevel), formula=y ~ x + 1, aes(), colour='red') 
-        fig <- ggplot(sealevel, aes(year, height)) + geom_point() + broken + linear
-        print(fig)
-    })    
+  fig <- ggplot(sealevel, aes(year, height))
+  
+  # Show measurements
+  fig <- fig + geom_point()
+  
+  # if selected show loess
+  if (input$`fit-type` == 'loess') {
+    # generate span based on input
+    span <- input$span
+    
+    # draw the histogram with the specified number of bins
+    fig <- fig  + geom_smooth(span = span)
+  }
+  
+  # if selected show broken linear model
+  if (input$`fit-type` == 'broken linear') {
+    # generate breakpoint from ui.R
+    breakpoint <- input$breakpoint
+    covariate <-
+      (sealevel$year > breakpoint) * (sealevel$year - breakpoint)
+    
+    # draw the broken  trend line
+    broken <-
+      geom_smooth(
+        method = "glm",
+        n = nrow(sealevel),
+        formula = y ~ x + covariate +  1
+      )
+    fig <- fig + broken
+  }
+  
+  # if selected show linear model
+  if (input$`fit-type` == "linear") {
+    linear <-
+      geom_smooth(
+        method = "glm",
+        n = nrow(sealevel),
+        formula = y ~ x + 1,
+        aes(),
+        colour = 'red'
+      )
+    fig <- fig + linear
+  }
+  
+  fig <- fig + geom_line(data = knmi_perc_df,
+                         mapping = aes(time, perc_ts_50, colour = scenario)) + geom_ribbon(
+                           data = knmi_perc_df,
+                           mapping = aes(
+                             x = time,
+                             y=perc_ts_50,
+                             ymin = perc_ts_10,
+                             ymax = perc_ts_90,
+                             colour = scenario,
+                             fill = scenario
+                           ),
+                           alpha = 0.1
+                         )
+  
+  # fig <- (
+  #   fig +
+  #     geom_line(
+  #       data = knmi_perc_df,
+  #       mapping = aes(time, perc_ts_50, colour = scenario)
+  #     )  +
+  #     geom_ribbon(
+  #       data = knmi_perc_df,
+  #       mapping = aes(
+  #         x = time,
+  #         ymin = perc_ts_10,
+  #         ymax = perc_ts_90,
+  #         colour = scenario,
+  #         fill = scenario
+  #       ),
+  #       alpha = 0.1
+  #     )
+  # )
+  # 
+  
+  print(fig)
+  
+  
+}, height = 500)
+
+
 ```
 
 
