@@ -64,7 +64,7 @@ The file `df_OLSmodelstats_year.csv` contains the following columns:
 To generate this dataset we have run a tidal model (GTSM v4.0) for 19
 years. This multi-decadal reanalysis of tides allows separating the
 tidal component from other sea-level fluctuations. The purpose of this
-computation is tot correct yearly mean and monthly mean tide gauge
+computation is to correct yearly mean and monthly mean tide gauge
 records for this tide constituent.  See [1, 2] for a discussion on
 this topic.
 
@@ -74,13 +74,12 @@ abs(0.69 * 20 * (3 * sin(deg2rad(lat))**2 - 1)) / 1000
 ```
 This assumes an all water, elastic earth, and no self attraction.
 
-In this simulation all tidal forcings (~400) were active in this
-simulation. Thus the estimates also contain indirect non-linear
-effects, such as the nodal modulation on the amplitude of M2
-interacting with itself. This allows the computation to deviate from
-the equilibrium tide. The tidal potential, corrections for solid earth
-tide (through Love numbers) and self attraction and loading aare
-included.
+In this simulation, all tidal forcings (~400) are active. Thus the
+estimates also contain indirect non-linear effects, such as the nodal
+modulation on the amplitude of M2 interacting with itself. This allows
+the computation to deviate from the equilibrium tide. The tidal
+potential, corrections for solid earth tide (through Love numbers), and
+self attraction and loading are included.
 
 Using this dataset we fit, using an ordinary least squares approach,
 the nodal tidal amplitude, and phase. Details of this analysis can be
@@ -112,7 +111,8 @@ scientists. Make sure you take into account the following:
 
 - Some stations have deviating mean sea levels. A few examples:
 
-* psmsl-173: station in the river mound the St. Lawrence River in Quebec. Not enoguh resolotion
+* psmsl-173: station in the river mound the St. Lawrence River in
+  Quebec. Not enough resolution
 * psmsl-1067: Anchorage in Alaska, in an inlet
 * psmsl-495: inlet
 * psmsl-1908: bathymetry/bridge
@@ -120,7 +120,7 @@ scientists. Make sure you take into account the following:
 
 General remark: resolution in narrow tidal inlets and stations up
 rivers are not accurate. In an updated version we might be able to use
-cells just outside the inlet. But tide in narrow inlets can be quite
+cells just outside the inlet. Tide in narrow inlets can be quite
 different from outside.
 
 
