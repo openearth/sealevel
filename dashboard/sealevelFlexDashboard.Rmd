@@ -17,7 +17,7 @@ library(readr)
 sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv", 
                      comment = "#")
 
-url <- "~/src/sealevel/data/knmi/cmip5/SeaLevelPerc_KNMI14.csv"
+url <- "../data/knmi/cmip5/SeaLevelPerc_KNMI14.csv"
 
 knmi_df <- read_csv(url, comment = "#")
 
@@ -99,7 +99,7 @@ Dashboard
 
 
 
-Column {data-width=500}
+Column {data-width=500} {.tabset}
 -----------------------------------------------------------------------
 
 
@@ -195,4 +195,10 @@ renderPlot({
 
 ```
 
+
+### Underlying processes
+
+```{r}
+# code voor figuur
+```
 
