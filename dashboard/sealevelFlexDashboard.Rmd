@@ -12,6 +12,7 @@ library(flexdashboard)
 library(shiny)
 library(ggplot2)
 library(dplyr)
+library(plotly)
 # Read the sealevel dataset 
 library(readr)
 sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv", 
@@ -108,7 +109,7 @@ Column {data-width=500} {.tabset}
 ```{r}
 
 
-renderPlot({
+renderPlotly({
   fig <- ggplot(sealevel, aes(year, height))
   
   # Show measurements
@@ -187,10 +188,11 @@ renderPlot({
   # )
   # 
   
-  print(fig)
+  # print(fig)
+  ggplotly(fig)
   
-  
-}, height = 500)
+}#, height = 500
+)
 
 
 ```
