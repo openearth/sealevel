@@ -40,6 +40,11 @@ knmi_perc50_df <- knmi_df %>% filter(percentiles==50) %>% select(time, scenario,
 knmi_perc90_df <- knmi_df %>% filter(percentiles==90) %>% select(time, scenario, proc, perc_ts) %>%  rename(perc_ts_90=perc_ts)
 knmi_perc_df <- merge(merge(knmi_perc10_df, knmi_perc50_df), knmi_perc90_df) %>% filter(proc=="Total")
 
+observation_mapping <- list(surge="Surge [mm]", steric="Steric [mean]",	glaciers="Glaciers [mean]", greenland="Greenland Ice Sheet [mean]", antarctica="Antarctic Ice Sheet [mean]", land="Terrestrial Water Storage [mean]",	gia="GIA [mean]", tide='sea_surface_height_due_to_tide [mm]')
+knmi_mapping <- list(steric="Local ocean", surge="Inverse barometer", glaciers="Glaciers", land="Landwater", antarctica="sum anta.", greenland="Greenland SMB")
+mapping <- list(observations=obversation_mapping, knmi=knmi_mapping)
+
+
 ```
 
 
@@ -110,6 +115,11 @@ Column {data-width=500} {.tabset}
 
 
 renderPlotly({
+  # Lookup components to subtract
+  # Map components with mapping to correct variable name
+  # Subtract variable from height / perc_ts_50 
+  # do not show the CI bands: perc_ts_10, perc_ts_90
+  
   fig <- ggplot(sealevel, aes(year, height))
   
   # Show measurements
