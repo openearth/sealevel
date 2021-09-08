@@ -9,19 +9,20 @@ runtime: shiny
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+library(plyr)
 library(shiny)
-library(ggplot2)
-library(dplyr)
+library(tidyverse)
 library(plotly)
 # Read the sealevel dataset 
-library(readr)
-sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv", 
+sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv",
                      comment = "#")
+# read observed component dataset
+observed_components_no_tide <- read_csv("../data/deltares/observed_components_no_tide.csv")
+# read projected data
+
 
 url <- "../data/knmi/cmip5/SeaLevelPerc_KNMI14.csv"
-
 knmi_df <- read_csv(url, comment = "#")
-
 # everything in mm
 knmi_df$perc_ts <- knmi_df$perc_ts * 10
 
@@ -31,18 +32,56 @@ knmi_df$perc_ts <- knmi_df$perc_ts * 10
 # TODO: add/subtract subsidence
 # Double check if new scenarios are including subsidence
 
-processes <- unique(knmi_df$proc)
-scenarios <- unique(knmi_df$scenario)
-
+rename <- dplyr::rename
 # merge  percentiles
 knmi_perc10_df <- knmi_df %>% filter(percentiles==10) %>% select(time, scenario, proc, perc_ts) %>%  rename(perc_ts_10=perc_ts)
 knmi_perc50_df <- knmi_df %>% filter(percentiles==50) %>% select(time, scenario, proc, perc_ts) %>%  rename(perc_ts_50=perc_ts)
 knmi_perc90_df <- knmi_df %>% filter(percentiles==90) %>% select(time, scenario, proc, perc_ts) %>%  rename(perc_ts_90=perc_ts)
+
+observation_mapping <- list(
+  `Surge [mm]` = "surge", 
+  `Steric [mean]` = "steric",	
+  `Glaciers [mean]` = "glaciers", 
+  `Greenland Ice Sheet [mean]` = "greenland", 
+  `Antarctic Ice Sheet [mean]` = "antarctica", 
+  `Terrestrial Water Storage [mean]` = "land",	
+  `GIA [mean]` = "gia", 
+  'sea_surface_height_due_to_tide [mm]' = "tide"
+)
+
+projection_mapping <- list(
+  `Local ocean` = "steric",
+  `Inverse barometer` = "surge",
+  `Glaciers` = "glaciers",
+  `Landwater` = "land",
+  `sum anta.` = "antarctica",
+  `Greenland SMB` = "greenland"
+)
+
+# mapping <- list(observations= observation_mapping, knmi=knmi_mapping)
+
+processes <- unname(unlist(observation_mapping))
+scenarios <- unique(knmi_df$scenario)
+
+# map data to processes
+# 
+names(observed_components_no_tide) <- recode(names(observed_components_no_tide), !!!observation_mapping)
+sealevelPlus <- sealevel %>% left_join(observed_components_no_tide, by = c(year = "Year"))
+
+
+recode(unique(knmi_perc50_df$proc), !!!projection_mapping)
 knmi_perc_df <- merge(merge(knmi_perc10_df, knmi_perc50_df), knmi_perc90_df) %>% filter(proc=="Total")
 
-observation_mapping <- list(surge="Surge [mm]", steric="Steric [mean]",	glaciers="Glaciers [mean]", greenland="Greenland Ice Sheet [mean]", antarctica="Antarctic Ice Sheet [mean]", land="Terrestrial Water Storage [mean]",	gia="GIA [mean]", tide='sea_surface_height_due_to_tide [mm]')
-knmi_mapping <- list(steric="Local ocean", surge="Inverse barometer", glaciers="Glaciers", land="Landwater", antarctica="sum anta.", greenland="Greenland SMB")
-mapping <- list(observations=obversation_mapping, knmi=knmi_mapping)
+
+
+plotFillColors = c("surge" = "lightblue",
+               "steric" = "blue", 
+               "glaciers" = "white", 
+               "greenland" = "green", 
+               "land" = "brown", 
+               "gia" = "red",
+               "antarctica" = "orange"
+               )
 
 
 ```
@@ -72,47 +111,52 @@ selectInput("scenarios",
 ## Fit
 
 ```{r}
-selectInput("fit-type",
+selectInput("fitType",
             "Fit type:",
-            choices = c("linear", "broken linear", "quadratic", "loess"),
-            selected = "loess")
+            choices = c("linear", "broken linear", "quadratic", "loess")
+            )
 
 ```
 
 
-### Fit parameters
 
 ```{r}
-sliderInput("span",
-            "Span:",
-            min = 0.01,
-            max = 1,
-            value = 0.5)
 
+shiny::conditionalPanel(
+  condition = "input.fitType == 'loess'",
+  h4("Fit parameter"),
+  sliderInput("span",
+              "Span:",
+              min = 0.01,
+              max = 1,
+              value = 0.5)
+  
+)
 ```
 
 ```{r}
-sliderInput("breakpoint",
-            "Break:",
-            min = 1950,
-            max = 1995,
-            value = 1970)
+shiny::conditionalPanel(
+  condition = "input.fitType == 'broken linear'",
+  h4("Fit parameter"),
+  sliderInput("breakpoint",
+              "Break:",
+              min = 1950,
+              max = 1995,
+              value = 1970,
+              sep = "")
+)
 ```
 
 
 Dashboard
 =======================================================================
 
-
-
 Column {data-width=500} {.tabset}
 -----------------------------------------------------------------------
-
 
 ### Sea surface height 
 
 ```{r}
-
 
 renderPlotly({
   # Lookup components to subtract
@@ -126,7 +170,7 @@ renderPlotly({
   fig <- fig + geom_point()
   
   # if selected show loess
-  if (input$`fit-type` == 'loess') {
+  if (input$`fitType` == 'loess') {
     # generate span based on input
     span <- input$span
     
@@ -135,7 +179,7 @@ renderPlotly({
   }
   
   # if selected show broken linear model
-  if (input$`fit-type` == 'broken linear') {
+  if (input$`fitType` == 'broken linear') {
     # generate breakpoint from ui.R
     breakpoint <- input$breakpoint
     covariate <-
@@ -152,7 +196,7 @@ renderPlotly({
   }
   
   # if selected show linear model
-  if (input$`fit-type` == "linear") {
+  if (input$`fitType` == "linear") {
     linear <-
       geom_smooth(
         method = "glm",
@@ -164,10 +208,22 @@ renderPlotly({
     fig <- fig + linear
   }
   
-  fig <- fig + geom_line(data = knmi_perc_df,
-                         mapping = aes(time, perc_ts_50, colour = scenario)) + geom_ribbon(
-                           data = knmi_perc_df,
-                           mapping = aes(
+    # if selected show linear model
+  if (input$`fitType` == "quadratic") {
+    quadratic <-
+      geom_smooth(
+        method = "glm",
+        n = nrow(sealevel),
+        formula = y ~ x + I(x^2) + 1, # is linear term necessary?
+        aes(),
+        colour = 'green'
+      )
+    fig <- fig + quadratic
+  }
+
+  
+  fig <- fig + geom_line(data = knmi_perc_df, mapping = aes(time, perc_ts_50, colour = scenario)) + 
+    geom_ribbon(data = knmi_perc_df, aes(
                              x = time,
                              y=perc_ts_50,
                              ymin = perc_ts_10,
@@ -210,7 +266,99 @@ renderPlotly({
 
 ### Underlying processes
 
-```{r}
-# code voor figuur
+
+text....
+
+
+
+
+
+```{r bijdrageComponentenMetingen}
+
+# werkt nu niet, weet niet waarom
+myStyle = 
+  ylab("sea level change (mm)") +
+  scale_fill_manual(values = plotFillColors) +
+  coord_cartesian(ylim = c(-75, 320)) +
+  theme(legend.position = "bottom")
+
+
+
+fillPage(
+  fillRow(height = 600, flex = c(0.5, 0.5), 
+          inputPanel(
+            selectInput("scenario", "Scenario:", choices = scenarios)
+          ),
+          plotlyOutput("observationPlot", height = "100%", width = "50%"),
+          plotlyOutput("projectionPlot", height = "100%", width = "50%")
+  )
+)
+
+
+output$observationPlot <- renderPlotly({
+fig <- sealevelPlus %>% 
+  select(
+    year, steric, glaciers, greenland, antarctica, land # gia and surge removed. not in scenarios
+    # `Surge [mm]`, `Steric [mean]`, `Glaciers [mean]`, `Greenland Ice Sheet [mean]`,
+    # `Antarctic Ice Sheet [mean]`, `Terrestrial Water Storage [mean]`, `GIA [mean]`
+  ) %>%
+  pivot_longer(cols = c(steric, glaciers, greenland, antarctica, land),
+               names_to = "component", values_to = "value"
+               ) %>% 
+  mutate(
+    positive = case_when(
+      value >= 0 ~ value,
+      value < 0 ~ 0
+    ),
+    negative = case_when(
+      value < 0 ~ value,
+      value >= 0 ~ 0
+    )
+  ) %>%
+  ggplot(aes(x = year)) +
+  geom_area(aes(y = positive, fill = component), position = 'stack') +
+  geom_area(aes(y = negative, fill = component), position = 'stack') +
+    ylab("sea level change (mm)") +
+  scale_fill_manual(values = plotFillColors) +
+  coord_cartesian(ylim = c(-75, 320)) +
+  theme(legend.position = "none")
+
+
+# plot(fig)
+ggplotly(fig)
+  
+})
+
+output$projectionPlot <- renderPlotly({
+  fig <- knmi_perc50_df %>% 
+    filter(scenario ==input$scenario) %>%
+    mutate(proc = recode(proc, !!!projection_mapping)) %>%
+    filter(proc %in% unname(unlist(projection_mapping))) %>%
+    rename(component = proc,
+           value = perc_ts_50,
+           year = time) %>%
+    mutate(
+      positive = case_when(
+        value >= 0 ~ value,
+        value < 0 ~ 0
+      ),
+      negative = case_when(
+        value < 0 ~ value,
+        value >= 0 ~ 0
+      )
+    ) %>%
+    ggplot(aes(x = year)) +
+    geom_area(aes(y = positive, fill = component), position = 'stack') +
+    geom_area(aes(y = negative, fill = component), position = 'stack') +
+      ylab("sea level change (mm)") +
+  scale_fill_manual(values = plotFillColors) +
+  coord_cartesian(ylim = c(-75, 320)) +
+  theme(legend.position = "bottom")
+
+  
+  # plot(fig)
+  ggplotly(fig)
+})
 ```
+
 
