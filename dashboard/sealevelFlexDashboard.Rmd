@@ -13,6 +13,7 @@ library(plyr)
 library(shiny)
 library(tidyverse)
 library(plotly)
+
 # Read the sealevel dataset 
 sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv",
                      comment = "#")
@@ -44,7 +45,7 @@ observation_mapping <- list(
   `Glaciers [mean]` = "glaciers", 
   `Greenland Ice Sheet [mean]` = "greenland", 
   `Antarctic Ice Sheet [mean]` = "antarctica", 
-  `Terrestrial Water Storage [mean]` = "land",	
+  `Terrestrial Water Storage [mean]` = "terrestrial",	
   `GIA [mean]` = "gia", 
   'sea_surface_height_due_to_tide [mm]' = "tide"
 )
@@ -53,9 +54,10 @@ projection_mapping <- list(
   `Local ocean` = "steric",
   `Inverse barometer` = "surge",
   `Glaciers` = "glaciers",
-  `Landwater` = "land",
+  `Landwater` = "terrestrial",
   `sum anta.` = "antarctica",
-  `Greenland SMB` = "greenland"
+  `Greenland SMB` = "greenland",
+  `Greenland dynamics` = "greenland"
 )
 
 # mapping <- list(observations= observation_mapping, knmi=knmi_mapping)
@@ -68,17 +70,26 @@ scenarios <- unique(knmi_df$scenario)
 names(observed_components_no_tide) <- recode(names(observed_components_no_tide), !!!observation_mapping)
 sealevelPlus <- sealevel %>% left_join(observed_components_no_tide, by = c(year = "Year"))
 
-
-recode(unique(knmi_perc50_df$proc), !!!projection_mapping)
 knmi_perc_df <- merge(merge(knmi_perc10_df, knmi_perc50_df), knmi_perc90_df) %>% filter(proc=="Total")
 
+knmi_mapped <- knmi_perc50_df %>% 
+  mutate(proc = recode(proc, !!!projection_mapping)) %>%
+  filter(proc %in% unname(unlist(projection_mapping))) %>%
+  rename(component = proc,
+         value = perc_ts_50,
+         year = time) %>%
+  group_by(year, component, scenario) %>%
+  summarize(value = sum(value))
 
+#== visualisation settings =======================
+
+theme_set(theme_minimal())
 
 plotFillColors = c("surge" = "lightblue",
                "steric" = "blue", 
-               "glaciers" = "white", 
+               "glaciers" = "lightgrey", 
                "greenland" = "green", 
-               "land" = "brown", 
+               "terrestrial" = "brown", 
                "gia" = "red",
                "antarctica" = "orange"
                )
@@ -99,16 +110,16 @@ selectInput("exclude",
 
 ```
 
-## Scenarios
+### Scenarios
 
 ```{r}
-selectInput("scenarios",
-            "Scenarios:",
+selectInput("scenario",
+            "Scenario:",
             choices = scenarios)
 
 ```
 
-## Fit
+### Fit
 
 ```{r}
 selectInput("fitType",
@@ -286,9 +297,9 @@ myStyle =
 
 fillPage(
   fillRow(height = 600, flex = c(0.5, 0.5), 
-          inputPanel(
-            selectInput("scenario", "Scenario:", choices = scenarios)
-          ),
+          # inputPanel(
+          #   selectInput("scenario", "Scenario:", choices = scenarios)
+          # ),
           plotlyOutput("observationPlot", height = "100%", width = "50%"),
           plotlyOutput("projectionPlot", height = "100%", width = "50%")
   )
@@ -298,11 +309,11 @@ fillPage(
 output$observationPlot <- renderPlotly({
 fig <- sealevelPlus %>% 
   select(
-    year, steric, glaciers, greenland, antarctica, land # gia and surge removed. not in scenarios
+    year, steric, glaciers, greenland, antarctica, terrestrial # gia and surge removed. not in scenarios
     # `Surge [mm]`, `Steric [mean]`, `Glaciers [mean]`, `Greenland Ice Sheet [mean]`,
     # `Antarctic Ice Sheet [mean]`, `Terrestrial Water Storage [mean]`, `GIA [mean]`
   ) %>%
-  pivot_longer(cols = c(steric, glaciers, greenland, antarctica, land),
+  pivot_longer(cols = c(steric, glaciers, greenland, antarctica, terrestrial),
                names_to = "component", values_to = "value"
                ) %>% 
   mutate(
@@ -330,13 +341,8 @@ ggplotly(fig)
 })
 
 output$projectionPlot <- renderPlotly({
-  fig <- knmi_perc50_df %>% 
-    filter(scenario ==input$scenario) %>%
-    mutate(proc = recode(proc, !!!projection_mapping)) %>%
-    filter(proc %in% unname(unlist(projection_mapping))) %>%
-    rename(component = proc,
-           value = perc_ts_50,
-           year = time) %>%
+  fig <- knmi_mapped %>%
+      filter(scenario ==input$scenario) %>%
     mutate(
       positive = case_when(
         value >= 0 ~ value,
