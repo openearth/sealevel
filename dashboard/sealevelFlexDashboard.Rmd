@@ -8,32 +8,34 @@ runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
+
 library(flexdashboard)
-# library(plyr)
 library(shiny)
 library(tidyverse)
 library(plotly)
+rename <- dplyr::rename
 
 # Read the sealevel dataset 
 sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv",
                      comment = "#")
 # read observed component dataset
 observed_components_no_tide <- read_csv("../data/deltares/observed_components_no_tide.csv")
+
+
+
 # read projected data
-
-
 url <- "../data/knmi/cmip5/SeaLevelPerc_KNMI14.csv"
 knmi_df <- read_csv(url, comment = "#") %>%
-  mutate(perc_ts = 10*perc_ts)
-# everything in mm
+  mutate(perc_ts = 10*perc_ts)                        # everything in mm
 
+#### DONE? FEDOR  
 # TODO: use consistent epoch (see http://localhost:8889/notebooks/analysis/scenarios/scenario-vs-measurements.ipynb)
 # Now they start in 2006 which is not compatible with the old method.
 
 # TODO: add/subtract subsidence
 # Double check if new scenarios are including subsidence
 
-rename <- dplyr::rename
+
 # merge  percentiles
 knmi_perc10_df <- knmi_df %>% filter(percentiles==10) %>% select(time, scenario, proc, perc_ts) %>%  rename(perc_ts_10=perc_ts)
 knmi_perc50_df <- knmi_df %>% filter(percentiles==50) %>% select(time, scenario, proc, perc_ts) %>%  rename(perc_ts_50=perc_ts)
@@ -104,6 +106,7 @@ plotFillColors = c("surge" = "lightblue",
                "antarctica" = "orange"
                )
 
+showSE = 0 # alpha for all smoothings
 
 ```
 
@@ -206,7 +209,7 @@ renderPlotly({
     mutate(value = height - subtract)
 
   
-  fig <- ggplot(sealevelPlus2, aes(year, value))
+  fig <- ggplot(sealevelPlus2, aes(year, height))
   
   # Show measurements
   fig <- fig + geom_point()
@@ -217,7 +220,7 @@ renderPlotly({
     span <- input$span
     
     # draw the histogram with the specified number of bins
-    fig <- fig  + geom_smooth(span = span)
+    fig <- fig  + geom_smooth(span = span, alpha = showSE)
   }
   
   # if selected show broken linear model
@@ -230,18 +233,20 @@ renderPlotly({
     # draw the broken  trend line
     broken <-
       geom_smooth(
-        method = "glm",
+        method = "glm", alpha = showSE ,
         n = nrow(sealevelPlus2),
         formula = y ~ x + covariate +  1
-      )
-    fig <- fig + broken
+      ) 
+    
+    fig <- fig + broken + 
+      geom_vline(xintercept = input$breakpoint, color = "grey")
   }
   
   # if selected show linear model
   if (input$`fitType` == "linear") {
     linear <-
       geom_smooth(
-        method = "glm",
+        method = "glm", alpha = showSE,
         n = nrow(sealevelPlus2),
         formula = y ~ x + 1,
         aes(),
@@ -250,11 +255,11 @@ renderPlotly({
     fig <- fig + linear
   }
   
-    # if selected show linear model
+    # if selected show quadratic model
   if (input$`fitType` == "quadratic") {
     quadratic <-
       geom_smooth(
-        method = "glm",
+        method = "glm", alpha = showSE,
         n = nrow(sealevelPlus2),
         formula = y ~ x + I(x^2) + 1, # is linear term necessary?
         aes(),
@@ -265,9 +270,8 @@ renderPlotly({
 
   
   fig <- fig + 
-    geom_line(data = knmi_mapped2, mapping = aes(year, value))
+    geom_line(data = knmi_mapped2, mapping = aes(year, height))
   
-  if(length(input$exclude) == 0){
     fig = fig +
       geom_ribbon(data = knmi_mapped2, aes(
         x = year,
@@ -279,27 +283,14 @@ renderPlotly({
       color = "red",
       show.legend = F
       ) 
+    
+  if(length(input$exclude) != 0){
+    fig = fig +
+      geom_point(data = sealevelPlus2, aes(year, value), size = 2, alpha = 0.3) +
+      geom_line(data = sealevelPlus2, aes(year, value), size = 2, alpha = 0.3) +
+      geom_line(data = knmi_mapped2, aes(year, value), size = 2, alpha = 0.3)
   }
   
-  # fig <- (
-  #   fig +
-  #     geom_line(
-  #       data = knmi_perc_df,
-  #       mapping = aes(time, perc_ts_50, colour = scenario)
-  #     )  +
-  #     geom_ribbon(
-  #       data = knmi_perc_df,
-  #       mapping = aes(
-  #         x = time,
-  #         ymin = perc_ts_10,
-  #         ymax = perc_ts_90,
-  #         colour = scenario,
-  #         fill = scenario
-  #       ),
-  #       alpha = 0.1
-  #     )
-  # )
-  # 
 fig = fig + 
   coord_cartesian(ylim = c(-250, 750)) +
   ggtitle("Observed and projected sealevel at the Dutch coast") +
@@ -362,50 +353,39 @@ output$processPlot <- renderPlotly({
     ggplot(aes(x = year)) +
     geom_area(aes(y = positive, fill = component), position = 'stack') +
     geom_area(aes(y = negative, fill = component), position = 'stack') +
-    # ylab("sea level change (mm)") +
-    # scale_fill_manual(values = plotFillColors) +
-    # coord_cartesian(ylim = c(-75, 320)) +
-    # theme(legend.position = "none") +
     
-    # 
-    # # plot(fig)
-    # ggplotly(fig)
-    #   
-    # })
-    # 
-  # output$projectionPlot <- renderPlotly({
-  geom_area(data = knmi_mapped %>%
-              filter(scenario ==input$scenario) %>%
-              mutate(
-                positive = case_when(
-                  value >= 0 ~ value,
-                  value < 0 ~ 0
-                ),
-                negative = case_when(
-                  value < 0 ~ value,
-                value >= 0 ~ 0
-              )
-            ), 
-          aes(y = positive, fill = component), position = 'stack', alpha = 0.5) +
-  geom_area(data = knmi_mapped %>%
-              filter(scenario ==input$scenario) %>%
-              mutate(
-                positive = case_when(
-                  value >= 0 ~ value,
-                  value < 0 ~ 0
-                ),
-                negative = case_when(
-                  value < 0 ~ value,
-                  value >= 0 ~ 0
-                )
-              ), 
-            aes(y = negative, fill = component), position = 'stack', alpha = 0.5) +
-  ylab("sea level change (mm)") +
-  ggtitle("Underlying processes for sea level variation") +
-  scale_fill_manual(values = plotFillColors) +
-  coord_cartesian(ylim = c(-75, 320)) +
-  theme(legend.position = "bottom")
-
+    geom_area(data = knmi_mapped %>%
+                filter(scenario ==input$scenario) %>%
+                mutate(
+                  positive = case_when(
+                    value >= 0 ~ value,
+                    value < 0 ~ 0
+                  ),
+                  negative = case_when(
+                    value < 0 ~ value,
+                    value >= 0 ~ 0
+                  )
+                ), 
+              aes(y = positive, fill = component), position = 'stack', alpha = 0.5) +
+    geom_area(data = knmi_mapped %>%
+                filter(scenario ==input$scenario) %>%
+                mutate(
+                  positive = case_when(
+                    value >= 0 ~ value,
+                    value < 0 ~ 0
+                  ),
+                  negative = case_when(
+                    value < 0 ~ value,
+                    value >= 0 ~ 0
+                  )
+                ), 
+              aes(y = negative, fill = component), position = 'stack', alpha = 0.5) +
+    ylab("sea level change (mm)") +
+    ggtitle("Underlying processes for sea level variation") +
+    scale_fill_manual(values = plotFillColors) +
+    coord_cartesian(ylim = c(-75, 320)) +
+    theme(legend.position = "bottom")
+  
   
   # plot(fig)
   ggplotly(fig)
@@ -414,3 +394,11 @@ output$processPlot <- renderPlotly({
 
 
 ### Explanation and methods
+
+Calculation of local budgets is done in [Python using Jupyter notebook](https://github.com/openearth/sealevel/blob/master/notebooks/analysis/budget/local-budget.ipynb).
+
+
+
+
+
+
