@@ -98,13 +98,13 @@ scenarios <- unique(knmi_mapped$scenario)
 theme_set(theme_minimal())
 
 plotFillColors = c("surge" = "lightblue",
-               "steric" = "blue", 
-               "glaciers" = "lightgrey", 
-               "greenland" = "green", 
-               "terrestrial" = "brown", 
-               "gia" = "red",
-               "antarctica" = "orange"
-               )
+                   "steric" = "blue", 
+                   "glaciers" = "lightgrey", 
+                   "greenland" = "green", 
+                   "terrestrial" = "brown", 
+                   "gia" = "red",
+                   "antarctica" = "orange"
+)
 
 showSE = 0 # alpha for all smoothings
 
@@ -115,31 +115,35 @@ showSE = 0 # alpha for all smoothings
 Sidebar {.sidebar}
 =======================================================================
 
-```{r}
-selectInput("exclude",
-            "Excluded processes:",
-            choices = processes,
-            multiple=TRUE)
-
-```
 
 ### Scenarios
 
 ```{r}
 
 radioButtons("scenario",
-            "Scenario:",
-            choices = scenarios)
+             "Choose scenario:",
+             choices = scenarios)
 
 ```
 
-### Fit
+### Exclude processes from observations and projections
+
+```{r}
+selectInput("exclude", 
+            "Excluded processes:",
+            choices = c("choose..." = "", processes),
+            multiple=TRUE)
+
+```
+
+
+### Fit though observations
 
 ```{r}
 selectInput("fitType",
             "Fit type:",
             choices = c("linear", "broken linear", "quadratic", "loess")
-            )
+)
 
 ```
 
@@ -176,6 +180,8 @@ shiny::conditionalPanel(
 Dashboard
 =======================================================================
 
+This app is currently in development. No information in this app can be used by any user in any way. 
+
 Column {data-width=500} {.tabset}
 -----------------------------------------------------------------------
 
@@ -207,7 +213,7 @@ renderPlotly({
     # replace(is.na(.), 0) %>%
     mutate(subtract = rowSums(across(input$exclude))) %>%  # example: c("glaciers", "greenland")
     mutate(value = height - subtract)
-
+  
   
   fig <- ggplot(sealevelPlus2, aes(year, height))
   
@@ -220,7 +226,7 @@ renderPlotly({
     span <- input$span
     
     # draw the histogram with the specified number of bins
-    fig <- fig  + geom_smooth(span = span, alpha = showSE)
+    fig <- fig  + geom_smooth(method = "loess", span = span, alpha = showSE, color = "coral2")
   }
   
   # if selected show broken linear model
@@ -235,7 +241,8 @@ renderPlotly({
       geom_smooth(
         method = "glm", alpha = showSE ,
         n = nrow(sealevelPlus2),
-        formula = y ~ x + covariate +  1
+        formula = y ~ x + covariate +  1, 
+        color = "coral2"
       ) 
     
     fig <- fig + broken + 
@@ -249,53 +256,53 @@ renderPlotly({
         method = "glm", alpha = showSE,
         n = nrow(sealevelPlus2),
         formula = y ~ x + 1,
-        aes(),
-        colour = 'red'
+        aes(), 
+        color = "coral2"
       )
     fig <- fig + linear
   }
   
-    # if selected show quadratic model
+  # if selected show quadratic model
   if (input$`fitType` == "quadratic") {
     quadratic <-
       geom_smooth(
         method = "glm", alpha = showSE,
         n = nrow(sealevelPlus2),
         formula = y ~ x + I(x^2) + 1, # is linear term necessary?
-        aes(),
-        colour = 'green'
+        aes(), 
+        color = "coral2"
       )
     fig <- fig + quadratic
   }
-
+  
   
   fig <- fig + 
     geom_line(data = knmi_mapped2, mapping = aes(year, height))
   
-    fig = fig +
-      geom_ribbon(data = knmi_mapped2, aes(
-        x = year,
-        y=height,
-        ymin = perc_ts_10,
-        ymax = perc_ts_90
-      ),
-      alpha = 0.1,
-      color = "red",
-      show.legend = F
-      ) 
-    
+  fig = fig +
+    geom_ribbon(data = knmi_mapped2, aes(
+      x = year,
+      y=height,
+      ymin = perc_ts_10,
+      ymax = perc_ts_90
+    ),
+    alpha = 0.1,
+    color = "red",
+    show.legend = F
+    ) 
+  
   if(length(input$exclude) != 0){
     fig = fig +
-      geom_point(data = sealevelPlus2, aes(year, value), size = 2, alpha = 0.3) +
-      geom_line(data = sealevelPlus2, aes(year, value), size = 2, alpha = 0.3) +
-      geom_line(data = knmi_mapped2, aes(year, value), size = 2, alpha = 0.3)
+      geom_point(data = sealevelPlus2, aes(year, value), color = "darkolivegreen2", size = 2, alpha = 0.6) +
+      geom_line(data = sealevelPlus2, aes(year, value), color = "darkolivegreen2", size = 2, alpha = 0.6) +
+      geom_line(data = knmi_mapped2, aes(year, value), color = "darkolivegreen2", size = 2, alpha = 0.6)
   }
   
-fig = fig + 
-  coord_cartesian(ylim = c(-250, 750)) +
-  ggtitle("Observed and projected sealevel at the Dutch coast") +
-  ylab("sealevel in mm")
-
+  fig = fig + 
+    coord_cartesian(ylim = c(-250, 750)) +
+    ggtitle("Observed and projected sealevel at the Dutch coast") +
+    ylab("sealevel in mm")
+  
   # print(fig)
   ggplotly(fig)
   
