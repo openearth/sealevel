@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Observed and projected sea level change along the Dutch coast"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -62,14 +62,12 @@ projection_mapping <- list(
   `Greenland dynamics` = "greenland"
 )
 
-# mapping <- list(observations= observation_mapping, knmi=knmi_mapping)
-
 # map data to processes
 
 sealevelPlus <- observed_components_no_tide %>%
   pivot_longer(cols = -Year, names_to = "proc") %>%
-  mutate(proc = recode(proc, !!!observation_mapping)) %>%
-  filter(proc %in% unname(unlist(observation_mapping))) %>%
+  mutate(proc = recode(proc, !!!observation_mapping)) %>%  # apply mapping
+  filter(proc %in% unname(unlist(observation_mapping))) %>%  # remove all unmapped processes
   rename(component = proc,
          value = value,
          year = Year) %>%
@@ -97,13 +95,21 @@ scenarios <- unique(knmi_mapped$scenario)
 
 theme_set(theme_minimal())
 
-plotFillColors = c("surge" = "lightblue",
-                   "steric" = "blue", 
-                   "glaciers" = "lightgrey", 
-                   "greenland" = "green", 
-                   "terrestrial" = "brown", 
-                   "gia" = "red",
-                   "antarctica" = "orange"
+plotFillColors = c(
+  "surge" = "lightblue",
+  "steric" = "blue", 
+  "glaciers" = "lightgrey", 
+  "greenland" = "green", 
+  "terrestrial" = "brown", 
+  "gia" = "red",
+  "antarctica" = "orange"
+)
+
+plotColorColors = c(
+"sea level" = "black",
+"excluded processes" = "darkolivegreen2",
+"fit" = "coral2",
+"projection" = "blue"
 )
 
 showSE = 0 # alpha for all smoothings
@@ -126,7 +132,7 @@ radioButtons("scenario",
 
 ```
 
-### Exclude processes from observations and projections
+### Contributing processes
 
 ```{r}
 selectInput("exclude", 
@@ -137,7 +143,7 @@ selectInput("exclude",
 ```
 
 
-### Fit though observations
+### Fit observations
 
 ```{r}
 selectInput("fitType",
@@ -218,7 +224,9 @@ renderPlotly({
   fig <- ggplot(sealevelPlus2, aes(year, height))
   
   # Show measurements
-  fig <- fig + geom_point()
+  fig <- fig + geom_point(
+    mapping = aes(color = "sea level")
+    )
   
   # if selected show loess
   if (input$`fitType` == 'loess') {
@@ -226,7 +234,11 @@ renderPlotly({
     span <- input$span
     
     # draw the histogram with the specified number of bins
-    fig <- fig  + geom_smooth(method = "loess", span = span, alpha = showSE, color = "coral2")
+    fig <- fig  + geom_smooth(method = "loess", 
+                              span = span, 
+                              alpha = showSE, 
+                              mapping = aes(color = "fit")
+                              )
   }
   
   # if selected show broken linear model
@@ -242,7 +254,7 @@ renderPlotly({
         method = "glm", alpha = showSE ,
         n = nrow(sealevelPlus2),
         formula = y ~ x + covariate +  1, 
-        color = "coral2"
+        mapping = aes(color = "fit")
       ) 
     
     fig <- fig + broken + 
@@ -256,8 +268,7 @@ renderPlotly({
         method = "glm", alpha = showSE,
         n = nrow(sealevelPlus2),
         formula = y ~ x + 1,
-        aes(), 
-        color = "coral2"
+        mapping = aes(color = "fit")
       )
     fig <- fig + linear
   }
@@ -269,15 +280,16 @@ renderPlotly({
         method = "glm", alpha = showSE,
         n = nrow(sealevelPlus2),
         formula = y ~ x + I(x^2) + 1, # is linear term necessary?
-        aes(), 
-        color = "coral2"
+        mapping = aes(color = "fit")
       )
     fig <- fig + quadratic
   }
   
   
   fig <- fig + 
-    geom_line(data = knmi_mapped2, mapping = aes(year, height))
+    geom_line(data = knmi_mapped2, 
+              mapping = aes(year, height, color = "projection")
+    )
   
   fig = fig +
     geom_ribbon(data = knmi_mapped2, aes(
@@ -293,14 +305,15 @@ renderPlotly({
   
   if(length(input$exclude) != 0){
     fig = fig +
-      geom_point(data = sealevelPlus2, aes(year, value), color = "darkolivegreen2", size = 2, alpha = 0.6) +
-      geom_line(data = sealevelPlus2, aes(year, value), color = "darkolivegreen2", size = 2, alpha = 0.6) +
-      geom_line(data = knmi_mapped2, aes(year, value), color = "darkolivegreen2", size = 2, alpha = 0.6)
+      geom_point(data = sealevelPlus2, aes(year, value, color = "excluded processes"), size = 2, alpha = 0.6) +
+      geom_line(data = sealevelPlus2, aes(year, value, color = "excluded processes"), size = 2, alpha = 0.6) +
+      geom_line(data = knmi_mapped2, aes(year, value, color = "excluded processes"), size = 2, alpha = 0.6)
   }
   
   fig = fig + 
     coord_cartesian(ylim = c(-250, 750)) +
     ggtitle("Observed and projected sealevel at the Dutch coast") +
+    scale_color_manual(values = plotColorColors) +
     ylab("sealevel in mm")
   
   # print(fig)
@@ -404,7 +417,40 @@ output$processPlot <- renderPlotly({
 
 Calculation of local budgets is done in [Python using Jupyter notebook](https://github.com/openearth/sealevel/blob/master/notebooks/analysis/budget/local-budget.ipynb).
 
+Current mapping of processes
 
+observation_mapping <- list(
+  `Surge [mm]` = "surge", 
+  `Steric [mean]` = "steric",	
+  `Glaciers [mean]` = "glaciers", 
+  `Greenland Ice Sheet [mean]` = "greenland", 
+  `Antarctic Ice Sheet [mean]` = "antarctica", 
+  `Terrestrial Water Storage [mean]` = "terrestrial",	
+  `GIA [mean]` = "gia", 
+  `sea_surface_height_due_to_tide [mm]` = "tide"
+)
+
+projection_mapping <- list(
+  `Local ocean` = "steric",
+  # `Inverse barometer` = "surge", #taken out, is not only inverse barometer but also wind, not modelled
+  `Glaciers` = "glaciers",
+  `Landwater` = "terrestrial",
+  `sum anta.` = "antarctica",
+  `Greenland SMB` = "greenland",
+  `Greenland dynamics` = "greenland"
+)
+
+Current method:
+
+Observations and projection plotted as is.
+
+When choosing a process, the contribution of that process is removed from both observations and projection.
+
+Only processes that (after mapping) occur in both obs and proj can be removed. The rest is NOT removed.
+
+Apparently, in area of overlap, processes contribution to projections is larger than to observations.
+
+*   Could this be caused by difference in reference year for changes?
 
 
 
