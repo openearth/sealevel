@@ -42,25 +42,26 @@ knmi_perc50_df <- knmi_df %>% filter(percentiles==50) %>% select(time, scenario,
 knmi_perc90_df <- knmi_df %>% filter(percentiles==90) %>% select(time, scenario, proc, perc_ts) %>%  rename(perc_ts_90=perc_ts)
 
 observation_mapping <- list(
-  `Surge [mm]` = "surge", 
-  `Steric [mean]` = "steric",	
+  `Surge [mm]` = "other", 
+  `Steric [mean]` = "steric",
   `Glaciers [mean]` = "glaciers", 
   `Greenland Ice Sheet [mean]` = "greenland", 
   `Antarctic Ice Sheet [mean]` = "antarctica", 
   `Terrestrial Water Storage [mean]` = "terrestrial",	
-  `GIA [mean]` = "gia", 
-  `sea_surface_height_due_to_tide [mm]` = "tide"
+  `GIA [mean]` = "other"#, 
+  # `sea_surface_height_due_to_tide [mm]` = "tide"
 )
 
 projection_mapping <- list(
-  `Local ocean` = "steric",
-  # `Inverse barometer` = "surge",
+  `Global steric` = "other",  # Dewi discuss with Fedor
+  `Local ocean` = "steric",  # Dewi: this is local steric and wind combined
+  `Inverse barometer` = "other",
   `Glaciers` = "glaciers",
-  `Landwater` = "terrestrial",
-  `sum anta.` = "antarctica",
   `Greenland SMB` = "greenland",
-  `Greenland dynamics` = "greenland"
-)
+  `Greenland dynamics` = "greenland",
+  `Landwater` = "terrestrial",
+  `sum anta.` = "antarctica"
+  )
 
 # map data to processes
 
@@ -95,21 +96,26 @@ scenarios <- unique(knmi_mapped$scenario)
 
 theme_set(theme_minimal())
 
+# names on left side appear in legend for processes plot
 plotFillColors = c(
-  "surge" = "lightblue",
+  # "surge" = "lightblue",
   "steric" = "blue", 
   "glaciers" = "lightgrey", 
   "greenland" = "green", 
   "terrestrial" = "brown", 
   "gia" = "red",
-  "antarctica" = "orange"
+  "antarctica" = "orange",
+  "other" = "yellow"
 )
 
+# names on left side appear as legend in scenario plot
 plotColorColors = c(
-"sea level" = "black",
-"excluded processes" = "darkolivegreen2",
+"sea level" = "darkgrey",
+# "excluded processes" = "darkolivegreen2",
 "fit" = "coral2",
-"projection" = "blue"
+"projection" = "blue",
+"proj excl processes" = "lightblue",
+"obs excl processes" = "black"
 )
 
 showSE = 0 # alpha for all smoothings
@@ -202,9 +208,9 @@ renderPlotly({
   # do not show the CI bands: perc_ts_10, perc_ts_90
   
   sealevelPlus2 <- sealevelPlus %>% 
-    select(
-      year, height, steric, glaciers, greenland, antarctica, terrestrial # gia and surge removed. not in scenarios
-    ) %>% 
+    # select(
+    #   year, height, steric, glaciers, greenland, antarctica, terrestrial # gia and surge removed. not in scenarios
+    # ) %>% 
     # replace(is.na(.), 0) %>%
     mutate(subtract = rowSums(across(input$exclude))) %>%  # example: c("glaciers", "greenland")
     mutate(value = height - subtract)
@@ -213,9 +219,9 @@ renderPlotly({
     filter(scenario == input$scenario) %>% # "rcp45"
     pivot_wider(id_cols = c(year, scenario), names_from = component, values_from = value) %>%
     left_join(knmi_perc_df %>% select(year = time, scenario, height = perc_ts_50, perc_ts_10, perc_ts_90)) %>%
-    select(
-      year, height, perc_ts_10, perc_ts_90, steric, glaciers, greenland, antarctica, terrestrial # gia and surge removed. not in scenarios
-    ) %>% 
+    # select(
+    #   year, height, perc_ts_10, perc_ts_90, steric, glaciers, greenland, antarctica, terrestrial # gia and surge removed. not in scenarios
+    # ) %>% 
     # replace(is.na(.), 0) %>%
     mutate(subtract = rowSums(across(input$exclude))) %>%  # example: c("glaciers", "greenland")
     mutate(value = height - subtract)
@@ -305,9 +311,9 @@ renderPlotly({
   
   if(length(input$exclude) != 0){
     fig = fig +
-      geom_point(data = sealevelPlus2, aes(year, value, color = "excluded processes"), size = 2, alpha = 0.6) +
-      geom_line(data = sealevelPlus2, aes(year, value, color = "excluded processes"), size = 2, alpha = 0.6) +
-      geom_line(data = knmi_mapped2, aes(year, value, color = "excluded processes"), size = 2, alpha = 0.6)
+      geom_point(data = sealevelPlus2, aes(year, value, color = "obsp excl processes"), size = 3, alpha = 0.8) +
+      # geom_line(data = sealevelPlus2, aes(year, value, color = "observation processes"), size = 2, alpha = 0.8) +
+      geom_line(data = knmi_mapped2, aes(year, value, color = "proj excl processes"), size = 2, alpha = 0.8)
   }
   
   fig = fig + 
@@ -352,12 +358,12 @@ fillPage(
 
 output$processPlot <- renderPlotly({
   fig <- sealevelPlus %>% 
-    select(
-      year, steric, glaciers, greenland, antarctica, terrestrial # gia and surge removed. not in scenarios
-      # `Surge [mm]`, `Steric [mean]`, `Glaciers [mean]`, `Greenland Ice Sheet [mean]`,
-      # `Antarctic Ice Sheet [mean]`, `Terrestrial Water Storage [mean]`, `GIA [mean]`
-    ) %>%
-    pivot_longer(cols = c(steric, glaciers, greenland, antarctica, terrestrial),
+    # select(
+    #   year, steric, glaciers, greenland, antarctica, terrestrial # gia and surge removed. not in scenarios
+    #   # `Surge [mm]`, `Steric [mean]`, `Glaciers [mean]`, `Greenland Ice Sheet [mean]`,
+    #   # `Antarctic Ice Sheet [mean]`, `Terrestrial Water Storage [mean]`, `GIA [mean]`
+    # ) %>%
+    pivot_longer(cols = -c(year, height),
                  names_to = "component", values_to = "value"
     ) %>% 
     mutate(
@@ -452,6 +458,21 @@ Apparently, in area of overlap, processes contribution to projections is larger 
 
 *   Could this be caused by difference in reference year for changes?
 
+Feedback after discussions with Bart and Dewi
 
+*    Topics to address: confidence interval of the observation regression; meta-information of the projection
+*    Match between the reference for the (corrected) observations and projections
+*    projections reference is 1985-2005
+*    include residual collection of processes  --> DONE, called "other"
+*    Align definitions of the different contribution terms between Dewi and Fedor
+*    distinguish between global steric and local steric. 
+*    In projections local ocean = sum of local steric and wind effect
+*    (In future this local ocean term can be separated into a steric and a wind component)
+*    Representation of uncertainty for each processes needs to include co-dependencies of processes
+*    Confidence interval of total sea level and for each individual process can be made
+*    tide is not in the projections, would be good to remove it from the obs --> Is already 
+*    The uncertainty estimates are associated with timescales. We need to be sure that the uncertainty representation for obs and projections express the same timescale (to avoid comparing different entities)
+*    This platform is the technical repository for this SLR presentation. Does need to be self-explaining, but does not *need to make comparisons with other publications on SLR
+*
 
 
