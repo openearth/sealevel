@@ -11,6 +11,7 @@ runtime: shiny
 
 library(flexdashboard)
 library(shiny)
+library(shinyWidgets)
 library(tidyverse)
 library(plotly)
 rename <- dplyr::rename
@@ -92,7 +93,7 @@ knmi_mapped <- knmi_perc50_df %>%
 processes <- unique(knmi_mapped$component)
 scenarios <- unique(knmi_mapped$scenario)
 
-#== visualisation settings =======================
+#====== visualisation settings =======================
 
 theme_set(theme_minimal())
 
@@ -110,11 +111,12 @@ plotFillColors = c(
 
 # names on left side appear as legend in scenario plot
 plotColorColors = c(
-"sea level" = "darkgrey",
+"yearly average sea level" = "darkgrey",
 # "excluded processes" = "darkolivegreen2",
-"fit" = "coral2",
-"projection" = "blue",
-"proj excl processes" = "lightblue",
+"fitted sea level" = "coral2",
+"projected sea level" = "blue",
+"projected sea level range" = "red",
+"sea level excl selected processes" = "lightblue",
 "obs excl processes" = "black"
 )
 
@@ -132,24 +134,40 @@ Sidebar {.sidebar}
 
 ```{r}
 
-radioButtons("scenario",
-             "Choose scenario:",
-             choices = scenarios)
+# radioButtons("scenario",
+#              "Choose scenario:",
+#              choices = scenarios)
+
+radioGroupButtons(
+   inputId = "scenario",
+   label = "Choose the projection scenario:", 
+    choices = scenarios,
+   status = "primary"
+)
 
 ```
 
-### Contributing processes
+### Underlying processes
 
 ```{r}
-selectInput("exclude", 
-            "Excluded processes:",
-            choices = c("choose..." = "", processes),
-            multiple=TRUE)
+# selectInput("exclude", 
+#             "Excluded processes:",
+#             choices = c("choose..." = "", processes),
+#             multiple=TRUE)
+
+
+checkboxGroupButtons(
+   inputId = "exclude",
+   label = "Choose the underlying processes for sea level variation that you want to exclude from the chart:",
+   choices = processes,
+   direction = "vertical"
+)
+
 
 ```
 
 
-### Fit observations
+### Fit model to observations
 
 ```{r}
 selectInput("fitType",
@@ -167,7 +185,7 @@ shiny::conditionalPanel(
   condition = "input.fitType == 'loess'",
   h4("Fit parameter"),
   sliderInput("span",
-              "Span:",
+              "Span of loess function:",
               min = 0.01,
               max = 1,
               value = 0.5)
@@ -180,7 +198,7 @@ shiny::conditionalPanel(
   condition = "input.fitType == 'broken linear'",
   h4("Fit parameter"),
   sliderInput("breakpoint",
-              "Break:",
+              "year of break:",
               min = 1950,
               max = 1995,
               value = 1970,
@@ -218,20 +236,17 @@ renderPlotly({
   knmi_mapped2 <- knmi_mapped %>%
     filter(scenario == input$scenario) %>% # "rcp45"
     pivot_wider(id_cols = c(year, scenario), names_from = component, values_from = value) %>%
-    left_join(knmi_perc_df %>% select(year = time, scenario, height = perc_ts_50, perc_ts_10, perc_ts_90)) %>%
-    # select(
-    #   year, height, perc_ts_10, perc_ts_90, steric, glaciers, greenland, antarctica, terrestrial # gia and surge removed. not in scenarios
-    # ) %>% 
+    left_join(knmi_perc_df %>% select(year = time, scenario, `median height` = perc_ts_50, `10th percentile` = perc_ts_10, `90th percentile` = perc_ts_90)) %>%
     # replace(is.na(.), 0) %>%
     mutate(subtract = rowSums(across(input$exclude))) %>%  # example: c("glaciers", "greenland")
-    mutate(value = height - subtract)
+    mutate(value = `median height` - subtract)
   
   
   fig <- ggplot(sealevelPlus2, aes(year, height))
   
   # Show measurements
   fig <- fig + geom_point(
-    mapping = aes(color = "sea level")
+    mapping = aes(color = "average sea level")
     )
   
   # if selected show loess
@@ -243,7 +258,7 @@ renderPlotly({
     fig <- fig  + geom_smooth(method = "loess", 
                               span = span, 
                               alpha = showSE, 
-                              mapping = aes(color = "fit")
+                              mapping = aes(color = "fitted sea level")
                               )
   }
   
@@ -260,7 +275,7 @@ renderPlotly({
         method = "glm", alpha = showSE ,
         n = nrow(sealevelPlus2),
         formula = y ~ x + covariate +  1, 
-        mapping = aes(color = "fit")
+        mapping = aes(color = "fitted sea level")
       ) 
     
     fig <- fig + broken + 
@@ -274,7 +289,7 @@ renderPlotly({
         method = "glm", alpha = showSE,
         n = nrow(sealevelPlus2),
         formula = y ~ x + 1,
-        mapping = aes(color = "fit")
+        mapping = aes(color = "fitted sea level")
       )
     fig <- fig + linear
   }
@@ -286,7 +301,7 @@ renderPlotly({
         method = "glm", alpha = showSE,
         n = nrow(sealevelPlus2),
         formula = y ~ x + I(x^2) + 1, # is linear term necessary?
-        mapping = aes(color = "fit")
+        mapping = aes(color = "fitted sea level")
       )
     fig <- fig + quadratic
   }
@@ -294,36 +309,37 @@ renderPlotly({
   
   fig <- fig + 
     geom_line(data = knmi_mapped2, 
-              mapping = aes(year, height, color = "projection")
+              mapping = aes(year, `median height`, color = "projected sea level")
     )
   
   fig = fig +
     geom_ribbon(data = knmi_mapped2, aes(
       x = year,
-      y=height,
-      ymin = perc_ts_10,
-      ymax = perc_ts_90
+      y=`median height`,
+      ymin = `10th percentile`,
+      ymax = `90th percentile`,
+      color = "projected sea level range"
     ),
     alpha = 0.1,
-    color = "red",
-    show.legend = F
+    show.legend = T # change to F to remove this item from legend
     ) 
   
   if(length(input$exclude) != 0){
     fig = fig +
-      geom_point(data = sealevelPlus2, aes(year, value, color = "obsp excl processes"), size = 3, alpha = 0.8) +
+      geom_point(data = sealevelPlus2, aes(year, value, color = "sea level excl selected processes"), size = 3, alpha = 0.8) +
       # geom_line(data = sealevelPlus2, aes(year, value, color = "observation processes"), size = 2, alpha = 0.8) +
-      geom_line(data = knmi_mapped2, aes(year, value, color = "proj excl processes"), size = 2, alpha = 0.8)
+      geom_line(data = knmi_mapped2, aes(year, value, color = "sea level excl selected processes"), size = 2, alpha = 0.8)
   }
   
   fig = fig + 
     coord_cartesian(ylim = c(-250, 750)) +
     ggtitle("Observed and projected sealevel at the Dutch coast") +
     scale_color_manual(values = plotColorColors) +
-    ylab("sealevel in mm")
+    ylab("sealevel in mm") +
+    theme(legend.position = "top")
   
   # print(fig)
-  ggplotly(fig)
+  ggplotly(fig) %>% layout(legend = list(orientation = 'h'))
   
 }#, height = 500
 )
