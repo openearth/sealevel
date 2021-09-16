@@ -22,25 +22,24 @@ sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-20
 # read observed component dataset
 observed_components_no_tide <- read_csv("../data/deltares/observed_components_no_tide.csv")
 
-
-
 # read projected data
 url <- "../data/knmi/cmip5/SeaLevelPerc_KNMI14.csv"
 knmi_df <- read_csv(url, comment = "#") %>%
   mutate(perc_ts = 10*perc_ts)                        # everything in mm
 
-#### DONE? FEDOR  
+#### DONE? FEDOR could you check these points once more?  
 # TODO: use consistent epoch (see http://localhost:8889/notebooks/analysis/scenarios/scenario-vs-measurements.ipynb)
 # Now they start in 2006 which is not compatible with the old method.
 
 # TODO: add/subtract subsidence
 # Double check if new scenarios are including subsidence
 
-
 # merge  percentiles
 knmi_perc10_df <- knmi_df %>% filter(percentiles==10) %>% select(time, scenario, proc, perc_ts) %>%  rename(perc_ts_10=perc_ts)
 knmi_perc50_df <- knmi_df %>% filter(percentiles==50) %>% select(time, scenario, proc, perc_ts) %>%  rename(perc_ts_50=perc_ts)
 knmi_perc90_df <- knmi_df %>% filter(percentiles==90) %>% select(time, scenario, proc, perc_ts) %>%  rename(perc_ts_90=perc_ts)
+
+#=== name mappings =============
 
 observation_mapping <- list(
   `Surge [mm]` = "other", 
@@ -95,9 +94,10 @@ scenarios <- unique(knmi_mapped$scenario)
 
 #====== visualisation settings =======================
 
-theme_set(theme_minimal())
+theme_set(theme_light())
 
 # names on left side appear in legend for processes plot
+# 
 plotFillColors = c(
   # "surge" = "lightblue",
   "steric" = "blue", 
@@ -116,11 +116,14 @@ plotColorColors = c(
 "fitted sea level" = "coral2",
 "projected sea level" = "blue",
 "projected sea level range" = "red",
-"sea level excl selected processes" = "lightblue",
+"sea level excl selected processes" = "darkolivegreen2",
 "obs excl processes" = "black"
 )
 
 showSE = 0 # alpha for all smoothings
+
+
+
 
 ```
 
@@ -134,9 +137,11 @@ Sidebar {.sidebar}
 
 ```{r}
 
-# radioButtons("scenario",
-#              "Choose scenario:",
-#              choices = scenarios)
+# voor dikkere horizontale lijnen (werkt niet op dit moment)
+  # tags$head(
+  #   tags$style(HTML("hr {border-top: 3px solid #000000;}"))
+  # )
+
 
 radioGroupButtons(
    inputId = "scenario",
@@ -145,65 +150,66 @@ radioGroupButtons(
    status = "primary"
 )
 
-```
+hr()
 
-### Underlying processes
-
-```{r}
-# selectInput("exclude", 
-#             "Excluded processes:",
-#             choices = c("choose..." = "", processes),
-#             multiple=TRUE)
-
-
-checkboxGroupButtons(
-   inputId = "exclude",
-   label = "Choose the underlying processes for sea level variation that you want to exclude from the chart:",
-   choices = processes,
-   direction = "vertical"
+radioGroupButtons(
+  inputId = "expert",
+  label = "switch to expert mode:", 
+  choices = c("normal", "expert"),
+  status = "normal"
 )
 
-
-```
-
-
-### Fit model to observations
-
-```{r}
-selectInput("fitType",
-            "Fit type:",
-            choices = c("linear", "broken linear", "quadratic", "loess")
-)
-
-```
-
-
-
-```{r}
-
-shiny::conditionalPanel(
-  condition = "input.fitType == 'loess'",
-  h4("Fit parameter"),
-  sliderInput("span",
-              "Span of loess function:",
-              min = 0.01,
-              max = 1,
-              value = 0.5)
+conditionalPanel(
+  condition = "input.expert == 'expert'",
   
+  
+  inputPanel(width = "25%",
+             tags$h3("Underlying processes"),
+             checkboxGroupButtons(
+               inputId = "exclude",
+               label = "Choose the underlying processes for sea level variation that you want to exclude from the chart:",
+               choices = processes,
+               direction = "vertical"
+             ),
+             hr(),
+             tags$h3("Fit model to observations"),
+             selectInput("fitType",
+                         "Fit type:",
+                         choices = c("linear", "broken linear", "quadratic", "loess")
+             ),
+             shiny::conditionalPanel(
+               condition = "input.fitType == 'loess'",
+               # hr(),
+               h4("Fit parameter"),
+               sliderInput("span",
+                           "Span of loess function:",
+                           min = 0.01,
+                           max = 1,
+                           value = 0.5)
+             ),
+             shiny::conditionalPanel(
+               condition = "input.fitType == 'broken linear'",
+               # hr(),
+               h4("Fit parameter"),
+               sliderInput("breakpoint",
+                           "year of break:",
+                           min = 1950,
+                           max = 1995,
+                           value = 1970,
+                           sep = "")
+             )
+  )
 )
 ```
 
+
 ```{r}
-shiny::conditionalPanel(
-  condition = "input.fitType == 'broken linear'",
-  h4("Fit parameter"),
-  sliderInput("breakpoint",
-              "year of break:",
-              min = 1950,
-              max = 1995,
-              value = 1970,
-              sep = "")
-)
+
+# conditionalPanel(
+#   condition="input.tabselected==sealevel",
+#   h4("Demo conditionalPanel")
+# )
+
 ```
 
 
@@ -215,16 +221,12 @@ This app is currently in development. No information in this app can be used by 
 Column {data-width=500} {.tabset}
 -----------------------------------------------------------------------
 
-### Sea surface height 
+### Sea level visualisation
 
 ```{r}
 
 renderPlotly({
-  # Lookup components to subtract
-  # Map components with mapping to correct variable name
-  # Subtract variable from height / perc_ts_50 
-  # do not show the CI bands: perc_ts_10, perc_ts_90
-  
+
   sealevelPlus2 <- sealevelPlus %>% 
     # select(
     #   year, height, steric, glaciers, greenland, antarctica, terrestrial # gia and surge removed. not in scenarios
@@ -245,9 +247,10 @@ renderPlotly({
   fig <- ggplot(sealevelPlus2, aes(year, height))
   
   # Show measurements
-  fig <- fig + geom_point(
-    mapping = aes(color = "average sea level")
-    )
+  fig <- fig + 
+    geom_hline(yintercept = 0, color = "bisque4") +
+    annotate("text", label = "NAP", x = 1900, y = 25, size = 8, color = "bisque4") +
+    geom_point(mapping = aes(color = "yearly average sea level"))
   
   # if selected show loess
   if (input$`fitType` == 'loess') {
@@ -326,22 +329,24 @@ renderPlotly({
   
   if(length(input$exclude) != 0){
     fig = fig +
-      geom_point(data = sealevelPlus2, aes(year, value, color = "sea level excl selected processes"), size = 3, alpha = 0.8) +
-      # geom_line(data = sealevelPlus2, aes(year, value, color = "observation processes"), size = 2, alpha = 0.8) +
-      geom_line(data = knmi_mapped2, aes(year, value, color = "sea level excl selected processes"), size = 2, alpha = 0.8)
+      geom_point(data = sealevelPlus2, aes(year, value, color = "sea level excl selected processes"), size = 2, alpha = 0.8) +
+      # geom_smooth(data = sealevelPlus2, aes(year, value, color = "fitted sea level"), size = 1.5, method = "lm", alpha = showSE) +
+      geom_line(data = knmi_mapped2, aes(year, value, color = "sea level excl selected processes"), size = 1.5, alpha = 0.8)
   }
   
   fig = fig + 
     coord_cartesian(ylim = c(-250, 750)) +
-    ggtitle("Observed and projected sealevel at the Dutch coast") +
+    ggtitle("Observed and projected sea level at the Dutch coast, in mm") +
     scale_color_manual(values = plotColorColors) +
-    ylab("sealevel in mm") +
+    ylab("sealevel in mm relative to NAP") +
     theme(legend.position = "top")
   
   # print(fig)
   ggplotly(fig) %>% layout(legend = list(orientation = 'h'))
   
-}#, height = 500
+  # further styling of plotly legend: https://plotly.com/r/legend/ 
+  
+}     #, height = 500  # in case the plot is printed as png
 )
 
 
