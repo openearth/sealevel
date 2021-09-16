@@ -14,7 +14,9 @@ library(shiny)
 library(shinyWidgets)
 library(tidyverse)
 library(plotly)
+library(shinyBS)
 rename <- dplyr::rename
+shiny::enableBookmarking(store='server')
 
 # Read the sealevel dataset 
 sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv",
@@ -150,18 +152,29 @@ radioGroupButtons(
    status = "primary"
 )
 
-hr()
+bsPopover(id = "scenario", 
+          title = "Het door KNMI berekende scenario dat getoond wordt", 
+          content = paste("rcp45 = .........;", 
+                          "rcp85 = .......", 
+                          sep = "<br>"), 
+          placement = "bottom", trigger = "hover",
+          options = list(container = "body"))
+
+hr() # horizontal line
 
 radioGroupButtons(
-  inputId = "expert",
+  inputId = "mode",
   label = "switch to expert mode:", 
   choices = c("normal", "expert"),
   status = "normal"
 )
 
+bsTooltip(id = "mode", title = "expert mode to separate between processes", 
+          placement = "bottom", trigger = "hover")
+
+
 conditionalPanel(
-  condition = "input.expert == 'expert'",
-  
+  condition = "input.mode == 'expert'",
   
   inputPanel(width = "25%",
              tags$h3("Underlying processes"),
@@ -200,6 +213,11 @@ conditionalPanel(
              )
   )
 )
+
+
+
+bookmarkButton()
+
 ```
 
 
@@ -442,58 +460,27 @@ output$processPlot <- renderPlotly({
 
 ### Explanation and methods
 
-Calculation of local budgets is done in [Python using Jupyter notebook](https://github.com/openearth/sealevel/blob/master/notebooks/analysis/budget/local-budget.ipynb).
+#### Methods
 
-Current mapping of processes
+Calculation of local budgets for observed sealevel is done according to [Python using Jupyter notebook](https://github.com/openearth/sealevel/blob/master/notebooks/analysis/budget/local-budget.ipynb).
 
-observation_mapping <- list(
-  `Surge [mm]` = "surge", 
-  `Steric [mean]` = "steric",	
-  `Glaciers [mean]` = "glaciers", 
-  `Greenland Ice Sheet [mean]` = "greenland", 
-  `Antarctic Ice Sheet [mean]` = "antarctica", 
-  `Terrestrial Water Storage [mean]` = "terrestrial",	
-  `GIA [mean]` = "gia", 
-  `sea_surface_height_due_to_tide [mm]` = "tide"
-)
+Processes contributing to sea level change have been attributed differently to observations and projections. In this visualizations, a mapping was made to link those processes that can be compared between observations and projections. The remaining effects are catechorized under "other" 
 
-projection_mapping <- list(
-  `Local ocean` = "steric",
-  # `Inverse barometer` = "surge", #taken out, is not only inverse barometer but also wind, not modelled
-  `Glaciers` = "glaciers",
-  `Landwater` = "terrestrial",
-  `sum anta.` = "antarctica",
-  `Greenland SMB` = "greenland",
-  `Greenland dynamics` = "greenland"
-)
+The mapping consists of the following for the different data types:
 
-Current method:
+Observations:
+```{r}
+observation_mapping %>% unlist(use.names = T) %>% as.data.frame() %>% rename(`common name` = "." ) %>% knitr::kable()
+```
 
-Observations and projection plotted as is.
+</br>
+Projections
+```{r}
+projection_mapping %>% unlist(use.names = T) %>% as.data.frame() %>% rename(`common name` = "." ) %>% knitr::kable()
+```
 
-When choosing a process, the contribution of that process is removed from both observations and projection.
 
-Only processes that (after mapping) occur in both obs and proj can be removed. The rest is NOT removed.
 
-Apparently, in area of overlap, processes contribution to projections is larger than to observations.
 
-*   Could this be caused by difference in reference year for changes?
-
-Feedback after discussions with Bart and Dewi
-
-*    Topics to address: confidence interval of the observation regression; meta-information of the projection
-*    Match between the reference for the (corrected) observations and projections
-*    projections reference is 1985-2005
-*    include residual collection of processes  --> DONE, called "other"
-*    Align definitions of the different contribution terms between Dewi and Fedor
-*    distinguish between global steric and local steric. 
-*    In projections local ocean = sum of local steric and wind effect
-*    (In future this local ocean term can be separated into a steric and a wind component)
-*    Representation of uncertainty for each processes needs to include co-dependencies of processes
-*    Confidence interval of total sea level and for each individual process can be made
-*    tide is not in the projections, would be good to remove it from the obs --> Is already 
-*    The uncertainty estimates are associated with timescales. We need to be sure that the uncertainty representation for obs and projections express the same timescale (to avoid comparing different entities)
-*    This platform is the technical repository for this SLR presentation. Does need to be self-explaining, but does not *need to make comparisons with other publications on SLR
-*
 
 
