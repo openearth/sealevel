@@ -130,12 +130,15 @@ showSE = 0 # alpha for all smoothings
 ```
 
 
-
-Sidebar {.sidebar}
+Dutch sea level
 =======================================================================
 
 
-### Scenarios
+Sidebar {.sidebar}
+------------------------------------------------------------
+
+
+### Preferences
 
 ```{r}
 
@@ -153,7 +156,7 @@ radioGroupButtons(
 )
 
 bsPopover(id = "scenario", 
-          title = "Het door KNMI berekende scenario dat getoond wordt", 
+          title = "Climate scenario used to calculate sealevel", 
           content = paste("rcp45 = .........;", 
                           "rcp85 = .......", 
                           sep = "<br>"), 
@@ -169,8 +172,13 @@ radioGroupButtons(
   status = "normal"
 )
 
-bsTooltip(id = "mode", title = "expert mode to separate between processes", 
-          placement = "bottom", trigger = "hover")
+bsPopover(id = "mode", 
+          title = "Expert mode to:", 
+          content = paste("*  see effect of individual processes",
+                          "*  show different model fits through observations",
+                          sep = "<br>"),
+          placement = "bottom", 
+          trigger = "hover")
 
 
 conditionalPanel(
@@ -231,19 +239,23 @@ bookmarkButton()
 ```
 
 
-Dashboard
-=======================================================================
-
-This app is currently in development. No information in this app can be used by any user in any way. 
-
-Column {data-width=500} {.tabset}
+Column 
 -----------------------------------------------------------------------
 
-### Sea level visualisation
+### 
 
 ```{r}
 
-renderPlotly({
+fillPage(
+  fillRow(height = 500, flex = c(1,1), 
+          # inputPanel(
+          #   selectInput("scenario", "Scenario:", choices = scenarios)
+          # ),
+          plotlyOutput("combinedPlot", height = "100%", width = "50%")#,
+  )
+)
+
+output$combinedPlot <- renderPlotly({
 
   sealevelPlus2 <- sealevelPlus %>% 
     # select(
@@ -267,7 +279,7 @@ renderPlotly({
   # Show measurements
   fig <- fig + 
     geom_hline(yintercept = 0, color = "bisque4") +
-    annotate("text", label = "NAP", x = 1900, y = 25, size = 8, color = "bisque4") +
+    annotate("text", label = "NAP", x = 1900, y = 25, size = 6, color = "bisque4") +
     geom_point(mapping = aes(color = "yearly average sea level"))
   
   # if selected show loess
@@ -371,8 +383,38 @@ renderPlotly({
 ```
 
 
-### Underlying processes
 
+
+Underlying processes
+======================================================================
+
+Sidebar {.sidebar}
+------------------------------------------------------------
+
+### Preferences
+
+```{r}
+radioGroupButtons(
+   inputId = "scenario2",
+   label = "Choose the projection scenario:", 
+    choices = scenarios,
+   status = "primary"
+)
+
+bsPopover(id = "scenario2", 
+          title = "Climate scenario used to calculate sealevel", 
+          content = paste("rcp45 = .........;", 
+                          "rcp85 = .......", 
+                          sep = "<br>"), 
+          placement = "bottom", trigger = "hover",
+          options = list(container = "body"))
+
+```
+
+Column 
+-----------------------------------------------------------------------
+
+###
 
 ```{r bijdrageComponentenMetingen}
 
@@ -420,7 +462,7 @@ output$processPlot <- renderPlotly({
     geom_area(aes(y = negative, fill = component), position = 'stack') +
     
     geom_area(data = knmi_mapped %>%
-                filter(scenario ==input$scenario) %>%
+                filter(scenario ==input$scenario2) %>%
                 mutate(
                   positive = case_when(
                     value >= 0 ~ value,
@@ -433,7 +475,7 @@ output$processPlot <- renderPlotly({
                 ), 
               aes(y = positive, fill = component), position = 'stack', alpha = 0.5) +
     geom_area(data = knmi_mapped %>%
-                filter(scenario ==input$scenario) %>%
+                filter(scenario ==input$scenario2) %>%
                 mutate(
                   positive = case_when(
                     value >= 0 ~ value,
@@ -458,7 +500,12 @@ output$processPlot <- renderPlotly({
 ```
 
 
-### Explanation and methods
+
+Explanation and methods
+==========================================================
+
+Column {data-width=300}
+-----------------------------------------------------------------------
 
 #### Methods
 
