@@ -1,8 +1,29 @@
 ---
 title: "Observed and projected sea level change along the Dutch coast"
-output: 
+output:
   flexdashboard::flex_dashboard:
+    # theme: 
+    #   version: 4
+    #   bootswatch: minty
+    # source_code: embed
+    # theme:
+    #   version: 4
+    #   bootswatch: lumen
+      # bg: "#2E89BF"
+      # fg: "#17202A" 
+      # primary: "#ED79F9"
+      # navbar-bg: "#2E89BF"
+      # base_font: 
+      #   google: Prompt
+      # heading_font:
+      #   google: Sen
+      # code_font:
+      #   google: 
+      #     # arguments to sass::font_google() 
+      #     family: JetBrains Mono
+      #     local: false
     orientation: columns
+    css: ["navbar/navbar.css", "style/deltares.css"]
     # vertical_layout: fill
 runtime: shiny
 ---
@@ -63,7 +84,7 @@ projection_mapping <- list(
   `Greenland dynamics` = "greenland",
   `Landwater` = "terrestrial",
   `sum anta.` = "antarctica"
-  )
+)
 
 # map data to processes
 
@@ -100,26 +121,40 @@ theme_set(theme_light())
 
 # names on left side appear in legend for processes plot
 # 
+# colors for line plot:  #572024  #fbedee   #da525b  #8f8ee9
+# colors for fill plot: #8f8ee9  #edc8c0  #b8717d  #a5a4ed  #90d6d3
+# 
 plotFillColors = c(
   # "surge" = "lightblue",
-  "steric" = "blue", 
-  "glaciers" = "lightgrey", 
-  "greenland" = "green", 
-  "terrestrial" = "brown", 
-  "gia" = "red",
-  "antarctica" = "orange",
-  "other" = "yellow"
+  "steric" = "#8f8ee9", 
+  "glaciers" = "#edc8c0", 
+  "greenland" = "#b8717d", 
+  "terrestrial" = "#a5a4ed", 
+  # "gia" = "red",
+  "antarctica" = "#90d6d3",
+  "other" = "lightgrey",
+  "projected sea level range" = "#fbedee"
 )
 
 # names on left side appear as legend in scenario plot
 plotColorColors = c(
-"yearly average sea level" = "darkgrey",
-# "excluded processes" = "darkolivegreen2",
-"fitted sea level" = "coral2",
-"projected sea level" = "blue",
-"projected sea level range" = "red",
-"sea level excl selected processes" = "darkolivegreen2",
-"obs excl processes" = "black"
+  "observed sea level" = "#572024",
+  # "excluded processes" = "darkolivegreen2",
+  "fit observed sea level" = "#da525b",
+  "projected sea level" = "#da525b",
+  "sea level excl selected processes" = "#8f8ee9",
+  "obs excl processes" = "#8f8ee9",
+  "fit obs excl processes" = "#8f8ee9"
+)
+
+plotLineTypes = c(
+  "observed" = "solid",
+  "projected" = "dashed"
+)
+
+plotLineColors = c(
+  "normal" = "",
+  "modified" = ""
 )
 
 showSE = 0 # alpha for all smoothings
@@ -134,7 +169,7 @@ Dutch sea level
 =======================================================================
 
 
-Sidebar {.sidebar}
+Sidebar {.sidebar data-width=400}
 ------------------------------------------------------------
 
 
@@ -143,16 +178,16 @@ Sidebar {.sidebar}
 ```{r}
 
 # voor dikkere horizontale lijnen (werkt niet op dit moment)
-  # tags$head(
-  #   tags$style(HTML("hr {border-top: 3px solid #000000;}"))
-  # )
+# tags$head(
+#   tags$style(HTML("hr {border-top: 3px solid #000000;}"))
+# )
 
 
 radioGroupButtons(
-   inputId = "scenario",
-   label = "Choose the projection scenario:", 
-    choices = scenarios,
-   status = "primary"
+  inputId = "scenario",
+  label = "Choose the projection scenario:", 
+  choices = scenarios,
+  status = "primary"
 )
 
 bsPopover(id = "scenario", 
@@ -183,24 +218,31 @@ bsPopover(id = "mode",
 
 conditionalPanel(
   condition = "input.mode == 'expert'",
-  
-  inputPanel(width = "25%",
-             tags$h3("Underlying processes"),
+  tabsetPanel(
+    tabPanel("processes",
+             tags$h4("Subtract processes"),
              checkboxGroupButtons(
                inputId = "exclude",
                label = "Choose the underlying processes for sea level variation that you want to exclude from the chart:",
                choices = processes,
                direction = "vertical"
-             ),
-             hr(),
-             tags$h3("Fit model to observations"),
+             )
+    ),
+    bsPopover(id = "exclude", 
+              title = "Processes included", 
+              content = paste("In standard mode, all underlying processes causing sea level variation are included. Here you can toggle to exclude processes from observations and projections"),
+              placement = "bottom", 
+              trigger = "hover"),
+    
+    tabPanel("trend observations", 
+             tags$h4("Change model fit to observations"),
              selectInput("fitType",
                          "Fit type:",
-                         choices = c("linear", "broken linear", "quadratic", "loess")
+                         choices = c("linear", "broken linear", "quadratic", "loess", "cyclic")
              ),
              shiny::conditionalPanel(
                condition = "input.fitType == 'loess'",
-               # hr(),
+               hr(),
                h4("Fit parameter"),
                sliderInput("span",
                            "Span of loess function:",
@@ -210,7 +252,7 @@ conditionalPanel(
              ),
              shiny::conditionalPanel(
                condition = "input.fitType == 'broken linear'",
-               # hr(),
+               hr(),
                h4("Fit parameter"),
                sliderInput("breakpoint",
                            "year of break:",
@@ -219,12 +261,13 @@ conditionalPanel(
                            value = 1970,
                            sep = "")
              )
+    )
   )
 )
 
 
 
-bookmarkButton()
+# bookmarkButton()
 
 ```
 
@@ -255,8 +298,26 @@ fillPage(
   )
 )
 
-output$combinedPlot <- renderPlotly({
 
+# WERKT NOG NIET. idee is dat bij "normal" alles weer terugspringt naar beginwaarde
+  # observe({
+  #   x <- input$mode
+  # 
+  #   # Can use character(0) to remove all choices
+  #   if (x == "normal")
+  #     # x <- character(0)
+  # 
+  #   # Can also set the label and select items
+  #   updateSelectInput(session, "fitType",
+  #     # label = paste("Select input label", length(x)),
+  #     # choices = x,
+  #     selected = "linear"
+  #   )
+  # })
+
+
+output$combinedPlot <- renderPlotly({
+  
   sealevelPlus2 <- sealevelPlus %>% 
     # select(
     #   year, height, steric, glaciers, greenland, antarctica, terrestrial # gia and surge removed. not in scenarios
@@ -280,7 +341,7 @@ output$combinedPlot <- renderPlotly({
   fig <- fig + 
     geom_hline(yintercept = 0, color = "bisque4") +
     annotate("text", label = "NAP", x = 1900, y = 25, size = 6, color = "bisque4") +
-    geom_point(mapping = aes(color = "yearly average sea level"))
+    geom_point(mapping = aes(color = "observed sea level"))
   
   # if selected show loess
   if (input$`fitType` == 'loess') {
@@ -288,11 +349,14 @@ output$combinedPlot <- renderPlotly({
     span <- input$span
     
     # draw the histogram with the specified number of bins
-    fig <- fig  + geom_smooth(method = "loess", 
-                              span = span, 
-                              alpha = showSE, 
-                              mapping = aes(color = "fitted sea level")
-                              )
+    fig <- fig  + geom_smooth(
+      method = "loess", 
+      span = span, 
+      alpha = showSE, 
+      mapping = aes(
+        color = "fit observed sea level",
+        linetype = "observed")
+    )
   }
   
   # if selected show broken linear model
@@ -308,7 +372,9 @@ output$combinedPlot <- renderPlotly({
         method = "glm", alpha = showSE ,
         n = nrow(sealevelPlus2),
         formula = y ~ x + covariate +  1, 
-        mapping = aes(color = "fitted sea level")
+        mapping = aes(
+          color = "fit observed sea level",
+          linetype = "observed")
       ) 
     
     fig <- fig + broken + 
@@ -322,10 +388,26 @@ output$combinedPlot <- renderPlotly({
         method = "glm", alpha = showSE,
         n = nrow(sealevelPlus2),
         formula = y ~ x + 1,
-        mapping = aes(color = "fitted sea level")
+        mapping = aes(
+          color = "fit observed sea level",
+          linetype = "observed")
       )
     fig <- fig + linear
   }
+  
+  if (input$`fitType` == "cyclic") {
+    cyclic <-
+      geom_smooth(
+        method = "lm", alpha = showSE, 
+        n = nrow(sealevelPlus2),
+        mapping = aes(
+          color = "fit observed sea level",
+          linetype = "observed"
+          ),
+        formula = y ~ x + I(cos(2 * pi * x / (18.6))) + I(sin(2 * pi * x / (18.6))))
+    fig <- fig + cyclic
+  }
+  
   
   # if selected show quadratic model
   if (input$`fitType` == "quadratic") {
@@ -334,40 +416,63 @@ output$combinedPlot <- renderPlotly({
         method = "glm", alpha = showSE,
         n = nrow(sealevelPlus2),
         formula = y ~ x + I(x^2) + 1, # is linear term necessary?
-        mapping = aes(color = "fitted sea level")
+        mapping = aes(
+          color = "fit observed sea level",
+          linetype = "observed"
+        )
       )
     fig <- fig + quadratic
   }
   
   
+  fig = fig +
+    geom_ribbon(data = knmi_mapped2, 
+                aes(
+                  x = year,
+                  y=`median height`,
+                  ymin = `10th percentile`,
+                  ymax = `90th percentile`,
+                  fill = "projected sea level range",
+                  linetype = "projected"
+                ),
+                color = "white",
+                # alpha = 0.8,
+                show.legend = T # change to F to remove this item from legend
+    ) 
+  
   fig <- fig + 
     geom_line(data = knmi_mapped2, 
-              mapping = aes(year, `median height`, color = "projected sea level")
+              mapping = aes(
+                year, `median height`, 
+                color = "projected sea level",
+                linetype = "projected")
     )
-  
-  fig = fig +
-    geom_ribbon(data = knmi_mapped2, aes(
-      x = year,
-      y=`median height`,
-      ymin = `10th percentile`,
-      ymax = `90th percentile`,
-      color = "projected sea level range"
-    ),
-    alpha = 0.1,
-    show.legend = T # change to F to remove this item from legend
-    ) 
   
   if(length(input$exclude) != 0){
     fig = fig +
-      geom_point(data = sealevelPlus2, aes(year, value, color = "sea level excl selected processes"), size = 2, alpha = 0.8) +
-      # geom_smooth(data = sealevelPlus2, aes(year, value, color = "fitted sea level"), size = 1.5, method = "lm", alpha = showSE) +
-      geom_line(data = knmi_mapped2, aes(year, value, color = "sea level excl selected processes"), size = 1.5, alpha = 0.8)
+      geom_point(data = sealevelPlus2, 
+                 aes(year, value, color = "sea level excl selected processes"), 
+                 size = 2, 
+                 shape = 21,
+                 alpha = 0.8) +
+      # geom_smooth(data = sealevelPlus2, aes(year, value, color = "fit observed sea level"), size = 1.5, method = "lm", alpha = showSE) +
+      geom_line(
+        data = knmi_mapped2, 
+        aes(
+          year, value, 
+          color = "sea level excl selected processes",
+          linetype = "projected"
+          ), 
+        # size = 1.5, 
+        alpha = 0.8)
   }
   
   fig = fig + 
     coord_cartesian(ylim = c(-250, 750)) +
     ggtitle("Observed and projected sea level at the Dutch coast, in mm") +
     scale_color_manual(values = plotColorColors) +
+    scale_fill_manual(values = plotFillColors) +
+    scale_linetype_manual(values = plotLineTypes) +
     ylab("sealevel in mm relative to NAP") +
     theme(legend.position = "top")
   
@@ -394,11 +499,12 @@ Sidebar {.sidebar}
 ### Preferences
 
 ```{r}
-radioGroupButtons(
-   inputId = "scenario2",
-   label = "Choose the projection scenario:", 
-    choices = scenarios,
-   status = "primary"
+shinyWidgets::radioGroupButtons(
+  direction = "horizontal",
+  inputId = "scenario2",
+  label = "Choose the projection scenario:", 
+  choices = scenarios,
+  status = "primary"
 )
 
 bsPopover(id = "scenario2", 
@@ -411,7 +517,7 @@ bsPopover(id = "scenario2",
 
 ```
 
-Column 
+ obColumn 
 -----------------------------------------------------------------------
 
 ###
@@ -495,7 +601,7 @@ output$processPlot <- renderPlotly({
   
   
   # plot(fig)
-  ggplotly(fig)
+  ggplotly(fig) %>% layout(legend = list(orientation = 'h'))
 })
 ```
 
@@ -507,11 +613,29 @@ Explanation and methods
 Column {data-width=300}
 -----------------------------------------------------------------------
 
-#### Methods
+### Observations
 
-Calculation of local budgets for observed sealevel is done according to [Python using Jupyter notebook](https://github.com/openearth/sealevel/blob/master/notebooks/analysis/budget/local-budget.ipynb).
+Yearly average Mean Sea level data for the main Dutch stations have been downloaded via [PSMSL]() (Permanent Service for Mean Sea Level). The data originate from the [Ministry of Infrastructure and Water Management](https://www.rijkswaterstaat.nl/en). The data are checked and analysed every year in the [Sea Level Monitor](https://nbviewer.jupyter.org/github/openearth/sealevel/blob/master/notebooks/dutch-sea-level-monitor.ipynb), which is maintained by [Deltares](https://www.deltares.nl/en/).
 
-Processes contributing to sea level change have been attributed differently to observations and projections. In this visualizations, a mapping was made to link those processes that can be compared between observations and projections. The remaining effects are catechorized under "other" 
+Calculation of local budgets for observed sealevel is done in Python using [this Jupyter notebook](https://github.com/openearth/sealevel/blob/master/notebooks/analysis/budget/local-budget.ipynb).
+
+Processes contributing to sea level change have been attributed differently to observations and projections. In this visualizations, a mapping was made to link those processes that can be compared between observations and projections. The remaining effects are categorized under "other".
+
+
+Column {data-width=300}
+-----------------------------------------------------------------------
+
+### Projections
+
+
+The projections in this version of the interactive tool are presented in the [report on KMI '14 scenarios](https://knmiprojects.archiefweb.eu/?subsite=klimaatscenarios#archive)
+
+These scenarios will be replace at the end of 2021 with newer scenario's. 
+
+Column {data-width=300}
+-----------------------------------------------------------------------
+
+### Mapping of processes
 
 The mapping consists of the following for the different data types:
 
