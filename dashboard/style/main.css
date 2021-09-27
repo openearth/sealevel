@@ -8,19 +8,27 @@ body {
   font-family: 'Asap', sans-serif;
   color: black;
   background-color: white;
+  font-weight: bold;
 }
 
 .navbar-nav {
   text-transform: uppercase;
 }
 
-.navbar-inverse .navbar-nav>.active>a {
-  color: white;
-}
-
-.navbar-inverse .navbar-brand {
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand {
   color: #08948D;
 }
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>.active>a:focus, 
+.navbar-inverse .navbar-nav>li>a:active, .navbar-inverse .navbar-nav>.active>a {
+  color: #08948D;
+}
+.navbar-inverse .navbar-nav>li>a {
+  color: white;
+}
+.navbar-inverse .navbar-nav>li>a:hover {
+  color: #c7ecea;
+}
+
 
 .section {
   margin-left: 0;
@@ -40,11 +48,6 @@ body {
 
 h1,h2,h3 {
   color: black;
-  font-weight: bold;
-}
-
-h4 {
-  font-weight: bold;
 }
 
 h3 {
