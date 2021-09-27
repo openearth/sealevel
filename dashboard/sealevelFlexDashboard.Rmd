@@ -47,14 +47,17 @@ shiny::enableBookmarking(store='server')
 
 # Read the sealevel dataset 
 sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv",
-                     comment = "#")
+                     comment = "#") %>%
+  mutate(height = round(height, 0))
+
 # Read observed component dataset
-observed_components_no_tide <- read_csv("../data/deltares/observed_components_no_tide.csv")
+observed_components_no_tide <- read_csv("../data/deltares/observed_components_no_tide.csv") %>%
+  mutate(across(-Year, signif, 2))
 
 # Read projected data
 url <- "../data/knmi/cmip5/SeaLevelPerc_KNMI14.csv"
 knmi_df <- read_csv(url, comment = "#") %>%
-  mutate(perc_ts = 10*perc_ts)                        # everything in mm
+  mutate(perc_ts = round(10*perc_ts, 0))                        # everything in mm
 
 #### DONE? FEDOR could you check these points once more?  
 # TODO: use consistent epoch (see http://localhost:8889/notebooks/analysis/scenarios/scenario-vs-measurements.ipynb)
@@ -72,7 +75,7 @@ knmi_perc90_df <- knmi_df %>% filter(percentiles==90) %>% select(time, scenario,
 
 observation_mapping <- list(
   `Surge [mm]` = "other", 
-  `Steric [mean]` = "steric",
+  `Steric [mean]` = "other", #"steric", (additional work is needed)
   `Glaciers [mean]` = "glaciers", 
   `Greenland Ice Sheet [mean]` = "greenland", 
   `Antarctic Ice Sheet [mean]` = "antarctica", 
@@ -83,7 +86,7 @@ observation_mapping <- list(
 
 projection_mapping <- list(
   `Global steric` = "other",  # Dewi discuss with Fedor
-  `Local ocean` = "steric",  # Dewi: this is local steric and wind combined
+  `Local ocean` = "other", #"steric",  # Dewi: this is local steric and wind combined
   `Inverse barometer` = "other",
   `Glaciers` = "glaciers",
   `Greenland SMB` = "greenland",
@@ -162,7 +165,7 @@ plotLineTypes = c(
 
 trendLineSize = 0.5
 
-showSE = 0 # alpha for all smoothings
+showSE = 0.4 # alpha for all smoothings
 
 ```
 
