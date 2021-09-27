@@ -29,6 +29,9 @@ body {
   color: #c7ecea;
 }
 
+.btn-primary:active, .btn-primary.active, .btn-primary.active:focus {
+  color: #08948D;
+}
 
 .section {
   margin-left: 0;

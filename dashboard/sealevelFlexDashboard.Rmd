@@ -6,7 +6,7 @@ output:
       version: 3
       fg: "#84D5D0" 
       bg: "white"
-      primary: "#5BC7C0" 
+      primary: "#84D5D0" 
     # source_code: embed
     # theme:
     #   version: 4
