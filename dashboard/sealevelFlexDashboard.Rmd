@@ -2,9 +2,11 @@
 title: "Dutch Sea Level change"
 output:
   flexdashboard::flex_dashboard:
-    # theme: 
-    #   version: 4
-    #   bootswatch: minty
+    theme: 
+      version: 3
+      fg: "#84D5D0" 
+      bg: "white"
+      primary: "#5BC7C0" 
     # source_code: embed
     # theme:
     #   version: 4
@@ -23,8 +25,10 @@ output:
       #     family: JetBrains Mono
       #     local: false
     orientation: columns
-    css: ["navbar/navbar.css", "style/deltares.css"]
-    # vertical_layout: fill
+    includes:
+      after_body : navbar/navbar.html
+    css: ["navbar/navbar.css", "style/deltares.css", "style/main.css"]
+    vertical_layout: fill
 runtime: shiny
 ---
 
@@ -167,11 +171,13 @@ Dutch sea level
 =======================================================================
 
 
-Sidebar {.sidebar data-width=400}
+Sidebar {.sidebar data-width="400px" height="100%"}
 ------------------------------------------------------------
 
 
 ### Preferences
+
+#### Project in scenario 
 
 ```{r}
 
@@ -197,94 +203,140 @@ observeEvent(
 
 radioGroupButtons(
   inputId = "scenario",
-  label = "Choose the projection scenario:", 
+  label = span(
+    "Choose the projection scenario:", 
+    class = "caption",
+    tags$span(
+      icon("info-circle", "fa-1x"),
+      id="scenario-info")
+  ),
   choices = scenarios,
-  status = "primary"
+  width = "100%", 
+  status = "primary",
+  justified = TRUE
 )
 
-bsPopover(id = "scenario", 
-          title = "Climate scenario used to calculate sealevel", 
-          content = paste("rcp45 = .........;", 
-                          "rcp85 = .......", 
-                          sep = "<br>"), 
-          placement = "bottom", trigger = "hover",
+bsPopover(id = "scenario-info",
+          title = "Climate scenario used to calculate sealevel",
+          content = paste("rcp45 = .........;",
+                          "rcp85 = .......",
+                          sep = "<br>"),
+          placement = "right", trigger = "hover",
           options = list(container = "body"))
 
 hr() # horizontal line
 
-radioGroupButtons(
+prettyRadioButtons(
   inputId = "mode",
-  label = "switch to expert mode:", 
+  label = span(
+    "switch to expert mode:",
+    class = "caption",
+    tags$span(
+      id="mode-info"),
+      icon("info-circle", "fa-1x"), 
+  ),
   choices = c("normal", "expert"),
-  status = "normal"
+  width = "100%",
+  inline = TRUE,
+  status = "primary"
+)
+
+bsPopover(
+  id = "mode-info", 
+  title = "Expert mode to:", 
+  content = paste("*  see effect of individual processes",
+                  "*  show different model trend lines through observations",
+                          sep = "<br>"),
+  placement = "bottom", 
+  trigger = "hover"
 )
 
 hr() # horizontal line
-
-bsPopover(id = "mode", 
-          title = "Expert mode to:", 
-          content = paste("*  see effect of individual processes",
-                          "*  show different model trend lines through observations",
-                          sep = "<br>"),
-          placement = "bottom", 
-          trigger = "hover")
-
 
 conditionalPanel(
   condition = "input.mode == 'expert'",
   tabsetPanel(
     tabPanel("Processes",
-             tags$h4("Subtract processes"),
-             checkboxGroupButtons(
-               inputId = "exclude",
-               label = "Choose the underlying processes for sea level variation that you want to exclude from the chart:",
-               choices = processes,
-               direction = "vertical"
-             )
+      tags$h4("Subtract processes"),
+      status = "primary",
+      checkboxGroupButtons(
+        inputId = "exclude",
+        label = span(
+          "Choose the underlying processes for sea level variation that you want to exclude from the chart:", 
+          class = "caption",
+          tags$span(
+            icon("info-circle"),
+            id="processess-info")
+        ),
+        choices = processes,
+        justified = TRUE,
+        direction = "vertical"
+      )
     ),
-    bsPopover(id = "exclude", 
-              title = "Processes included", 
-              content = paste("In standard mode, all underlying processes causing sea level variation are included. Here you can toggle to exclude processes from observations and projections"),
-              placement = "bottom", 
-              trigger = "hover"),
     
-    tabPanel("Trend line", 
-             tags$h4("Change trend to observations"),
-             selectInput("fitType",
-                         "Trend type:",
-                         choices = c("linear", "broken linear", "quadratic", "loess", "cyclic")
-             ),
-             bsPopover(id = "fitType", 
-                       title = "Choose type of trendline ", 
-                       content = paste("The type of trendline", 
-                                       "*  linear: y = ax + b", 
-                                       "*  broken linear: line with breakpoint in certain year", 
-                                       "*  quadratic: y = ax<sup>2</sup> + bx + c", 
-                                       "*  loess: local regression curve fit", 
-                                       "*  cyclic: linear with a nodal cyclic component with a period of 18.6 years", 
-                                       sep = "<br>"), 
-                       placement = "top", trigger = "hover",
-                       options = list(container = "body")),
+    bsPopover(
+      id = "processess-info", 
+      title = "Processes included", 
+      content = paste("In standard mode, all underlying processes causing sea level variation are included. Here you can toggle to exclude processes from observations and projections"),
+      placement = "bottom", 
+      trigger = "hover"),
+    
+    tabPanel(
+      "Trend line", 
+      tags$h4("Change trend to observations"),
+      width = "100%",
+      selectInput("fitType",
+        span(
+          "Trend type:", 
+          class = "caption",
+          tags$span(
+            icon("info-circle", "fa-1x"),
+            id="trend-info")
+        ),
+        choices = c("linear", "broken linear", "quadratic", "loess", "cyclic"),
+        width = "100%"
+      ),
+      bsPopover(id = "trend-info", 
+        title = "Choose type of trendline ", 
+        content = paste("The type of trendline", 
+                       "*  linear: y = ax + b", 
+                       "*  broken linear: line with breakpoint in certain year", 
+                       "*  quadratic: y = ax<sup>2</sup> + bx + c", 
+                       "*  loess: local regression curve fit", 
+                       "*  cyclic: linear with a nodal cyclic component with a period of 18.6 years", 
+                       sep = "<br>"), 
+        placement = "top", trigger = "hover",
+        options = list(container = "body")),
              shiny::conditionalPanel(
                condition = "input.fitType == 'loess'",
                hr(),
                h4("Trend line parameter"),
                sliderInput("span",
-                           "Span of loess function:",
+                           span(
+                            "Span of loess function:",
+                            class = "caption"
+                           ),
                            min = 0.01,
                            max = 1,
-                           value = 0.5)
+                           value = 0.5,
+                           width = "100%"
+              )
+
              ),
              shiny::conditionalPanel(
                condition = "input.fitType == 'broken linear'",
                hr(),
                h4("Trend line parameter"),
                sliderInput("breakpoint",
-                           "year of break:",
+                           span(
+                            "Year of break:",
+                            class = "caption"
+                           ),
                            min = 1950,
                            max = 1995,
                            value = 1970,
-                           sep = "")
+                           sep = "",
+                           width = "100%")
              )
     )
   )
@@ -513,12 +565,19 @@ Sidebar {.sidebar}
 shinyWidgets::radioGroupButtons(
   direction = "horizontal",
   inputId = "scenario2",
-  label = "Choose the projection scenario:", 
+  label = span(
+    "Choose the projection scenario:", 
+    class = "caption",
+    tags$span(
+      icon("info-circle", "fa-1x"),
+      id="scenario2-info")
+  ),
   choices = scenarios,
-  status = "primary"
+  status = "primary",
+  justified = TRUE
 )
 
-bsPopover(id = "scenario2", 
+bsPopover(id = "scenario2-info", 
           title = "Climate scenario used to calculate sealevel", 
           content = paste("rcp45 = .........;", 
                           "rcp85 = .......", 
@@ -612,7 +671,6 @@ output$processPlot <- renderPlotly({
 
 Explanation and methods
 ==========================================================
-
 
 Column {data-width=300}
 -----------------------------------------------------------------------

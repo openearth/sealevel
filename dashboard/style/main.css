@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap&display=swap')
+@font-face {
+  font-family: 'Asap', sans-serif;
+}
+
+body {
+  padding: 60px 0 60px 0;
+  font-family: 'Asap', sans-serif;
+  color: black;
+  background-color: white;
+}
+
+.navbar-nav {
+  text-transform: uppercase;
+}
+
+.navbar-inverse .navbar-nav>.active>a {
+  color: white;
+}
+
+.navbar-inverse .navbar-brand {
+  color: #08948D;
+}
+
+.section {
+  margin-left: 0;
+  border: 0;
+}
+
+.section.vertical-layout-fill {
+  margin: 0 8px 0 8px;
+  overflow: auto;
+}
+
+.section.sidebar {
+  position: absolute;
+  height: calc(100% - 112px);
+  margin: 0;
+}
+
+h1,h2,h3 {
+  color: black;
+  font-weight: bold;
+}
+
+h4 {
+  font-weight: bold;
+}
+
+h3 {
+  color: #08969E;
+  text-transform: uppercase;
+}
+
+i {
+    color: #69C7BF;
+}

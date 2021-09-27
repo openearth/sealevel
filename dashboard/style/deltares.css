@@ -1,18 +1,7 @@
-@font-face {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
 caption,.caption {
   font-style: italic;
   font-size: smaller;
-}
-
-h1,h2,h3,h4 {
-  color: #2E89BF;
+  color: black;
 }
 
 # Styling tables

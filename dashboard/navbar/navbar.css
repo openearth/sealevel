@@ -1,27 +1,21 @@
 .navigation-bar {
     width: 100%;
-    height: 50px; 
-    background-color: #2E89BF; 
+    height: 60px; 
+    background-color: #BEE9E6; 
 }
 .logos {
     display: inline-flex;
     vertical-align: top;
-    height: 50px;
+    height: 60px;
     float: right;
 }
 
 .logo {
-    height: 50px;
+    height: 60px;
 }
 
-.navigation-bar > a {
-    display: inline-block;
-    vertical-align: top;
-    margin-left: 20px;
-    height: 50px;
-    line-height: 50px;
-}
-
-.navigation-bar > a > i {
-    color: white;
+.navbar-caption {
+    line-height: 60px;
+    position: relative;
+    margin-left: 8px;
 }
