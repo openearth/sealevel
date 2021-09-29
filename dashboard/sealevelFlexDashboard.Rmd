@@ -4,10 +4,10 @@ output:
   flexdashboard::flex_dashboard:
     theme: 
       version: 3
-      fg: "#84D5D0" 
+      fg: "#84D5D0"
       bg: "white"
-      primary: "#84D5D0" 
-    # source_code: embed
+      primary: "#84D5D0"
+    source_code: embed
     # theme:
     #   version: 4
     #   bootswatch: lumen
@@ -41,7 +41,8 @@ library(tidyverse)
 library(plotly)
 library(shinyBS)
 rename <- dplyr::rename
-shiny::enableBookmarking(store='server')
+# enable bookmarking of web page; this does not work properly until ui is included in a function
+# shiny::enableBookmarking(store='server')
 
 #===== Read data =====================================================
 
@@ -135,6 +136,8 @@ theme_set(theme_grey())
 # colors for line plot:  #572024  #fbedee   #da525b  #8f8ee9
 # colors for fill plot: #8f8ee9  #edc8c0  #b8717d  #a5a4ed  #90d6d3
 # 
+# Change names with search/replace throughout document !!! manually and carefully
+
 plotFillColors = c(
   # "surge" = "lightblue",
   "steric" = "#db5d5c", 
@@ -144,7 +147,7 @@ plotFillColors = c(
   # "gia" = "red",
   "antarctica" = "#90d6d3",
   "other" = "lightgrey",
-  "projected sea level range" = "#fbedee"
+  "10-90 percentile projected sea level" = "#fbedee"
 )
 
 # names on left side appear as legend in scenario plot
@@ -152,10 +155,11 @@ plotColorColors = c(
   "observed sea level" = "#572024",
   # "excluded processes" = "darkolivegreen2",
   "trend observed sea level" = "#da525b",
-  "projected sea level" = "#da525b",
+  "median projected sea level" = "#da525b",
   "sea level excl selected processes" = "#8f8ee9",
   "obs excl processes" = "#8f8ee9",
-  "trend observations excluding processes" = "#8f8ee9"
+  "trend observations excluding processes" = "#8f8ee9",
+  "10-90 percentile projected sea level" = "darkgrey"
 )
 
 plotLineTypes = c(
@@ -165,7 +169,7 @@ plotLineTypes = c(
 
 trendLineSize = 0.5
 
-showSE = 0.4 # alpha for all smoothings
+showSE = 0.0 # alpha for all smoothings
 
 ```
 
@@ -193,16 +197,16 @@ Sidebar {.sidebar data-width="400px" height="100%"}
 
 observeEvent(
   input$mode == "normal" | input$reset_input, {
-  updateRadioGroupButtons(
-    session, 
-    inputId = "exclude", 
-    selected = "")
-  updateSelectInput(
-    session,
-    inputId = "fitType",
-    selected = "linear"
-  )
-})
+    updateRadioGroupButtons(
+      session, 
+      inputId = "exclude", 
+      selected = "")
+    updateSelectInput(
+      session,
+      inputId = "fitType",
+      selected = "linear"
+    )
+  })
 
 radioGroupButtons(
   inputId = "scenario",
@@ -236,7 +240,7 @@ prettyRadioButtons(
     class = "caption",
     tags$span(
       id="mode-info"),
-      icon("info-circle", "fa-1x"), 
+    icon("info-circle", "fa-1x"), 
   ),
   choices = c("normal", "expert"),
   width = "100%",
@@ -249,7 +253,7 @@ bsPopover(
   title = "Expert mode to:", 
   content = paste("*  see effect of individual processes",
                   "*  show different model trend lines through observations",
-                          sep = "<br>"),
+                  sep = "<br>"),
   placement = "bottom", 
   trigger = "hover"
 )
@@ -260,21 +264,21 @@ conditionalPanel(
   condition = "input.mode == 'expert'",
   tabsetPanel(
     tabPanel("Processes",
-      tags$h4("Subtract processes"),
-      status = "primary",
-      checkboxGroupButtons(
-        inputId = "exclude",
-        label = span(
-          "Choose the underlying processes for sea level variation that you want to exclude from the chart:", 
-          class = "caption",
-          tags$span(
-            icon("info-circle"),
-            id="processess-info")
-        ),
-        choices = processes,
-        justified = TRUE,
-        direction = "vertical"
-      )
+             tags$h4("Subtract processes"),
+             status = "primary",
+             checkboxGroupButtons(
+               inputId = "exclude",
+               label = span(
+                 "Choose the underlying processes for sea level variation that you want to exclude from the chart:", 
+                 class = "caption",
+                 tags$span(
+                   icon("info-circle"),
+                   id="processess-info")
+               ),
+               choices = processes,
+               justified = TRUE,
+               direction = "vertical"
+             )
     ),
     
     bsPopover(
@@ -289,58 +293,58 @@ conditionalPanel(
       tags$h4("Change trend to observations"),
       width = "100%",
       selectInput("fitType",
-        span(
-          "Trend type:", 
-          class = "caption",
-          tags$span(
-            icon("info-circle", "fa-1x"),
-            id="trend-info")
-        ),
-        choices = c("linear", "broken linear", "quadratic", "loess", "cyclic"),
-        width = "100%"
+                  span(
+                    "Trend type:", 
+                    class = "caption",
+                    tags$span(
+                      icon("info-circle", "fa-1x"),
+                      id="trend-info")
+                  ),
+                  choices = c("linear", "broken linear", "quadratic", "loess", "cyclic"),
+                  width = "100%"
       ),
       bsPopover(id = "trend-info", 
-        title = "Choose type of trendline ", 
-        content = paste("The type of trendline", 
-                       "*  linear: y = ax + b", 
-                       "*  broken linear: line with breakpoint in certain year", 
-                       "*  quadratic: y = ax<sup>2</sup> + bx + c", 
-                       "*  loess: local regression curve fit", 
-                       "*  cyclic: linear with a nodal cyclic component with a period of 18.6 years", 
-                       sep = "<br>"), 
-        placement = "top", trigger = "hover",
-        options = list(container = "body")),
-             shiny::conditionalPanel(
-               condition = "input.fitType == 'loess'",
-               hr(),
-               h4("Trend line parameter"),
-               sliderInput("span",
-                           span(
-                            "Span of loess function:",
-                            class = "caption"
-                           ),
-                           min = 0.01,
-                           max = 1,
-                           value = 0.5,
-                           width = "100%"
-              )
-
-             ),
-             shiny::conditionalPanel(
-               condition = "input.fitType == 'broken linear'",
-               hr(),
-               h4("Trend line parameter"),
-               sliderInput("breakpoint",
-                           span(
-                            "Year of break:",
-                            class = "caption"
-                           ),
-                           min = 1950,
-                           max = 1995,
-                           value = 1970,
-                           sep = "",
-                           width = "100%")
-             )
+                title = "Choose type of trendline ", 
+                content = paste("The type of trendline", 
+                                "*  linear: y = ax + b", 
+                                "*  broken linear: line with breakpoint in certain year", 
+                                "*  quadratic: y = ax<sup>2</sup> + bx + c", 
+                                "*  loess: local regression curve fit", 
+                                "*  cyclic: linear with a nodal cyclic component with a period of 18.6 years", 
+                                sep = "<br>"), 
+                placement = "top", trigger = "hover",
+                options = list(container = "body")),
+      shiny::conditionalPanel(
+        condition = "input.fitType == 'loess'",
+        hr(),
+        h4("Trend line parameter"),
+        sliderInput("span",
+                    span(
+                      "Span of loess function:",
+                      class = "caption"
+                    ),
+                    min = 0.01,
+                    max = 1,
+                    value = 0.5,
+                    width = "100%"
+        )
+        
+      ),
+      shiny::conditionalPanel(
+        condition = "input.fitType == 'broken linear'",
+        hr(),
+        h4("Trend line parameter"),
+        sliderInput("breakpoint",
+                    span(
+                      "Year of break:",
+                      class = "caption"
+                    ),
+                    min = 1950,
+                    max = 1995,
+                    value = 1970,
+                    sep = "",
+                    width = "100%")
+      )
     )
   )
 )
@@ -408,10 +412,10 @@ output$combinedPlot <- renderPlotly({
                   y=`median height`,
                   ymin = `10th percentile`,
                   ymax = `90th percentile`,
-                  fill = "projected sea level range",
-                  linetype = "projected"
+                  color = "10-90 percentile projected sea level",
                 ),
-                color = "white",
+                fill = plotFillColors["10-90 percentile projected sea level"],
+                linetype = plotLineTypes["projected"],
                 # alpha = 0.8,
                 show.legend = T # change to F to remove this item from legend
     ) 
@@ -420,8 +424,9 @@ output$combinedPlot <- renderPlotly({
     geom_line(data = knmi_mapped2, 
               mapping = aes(
                 year, `median height`, 
-                color = "projected sea level",
-                linetype = "projected")
+                color = "median projected sea level"
+              ),
+              linetype = plotLineTypes["projected"]
     )
   
   # if selected show loess
@@ -436,8 +441,9 @@ output$combinedPlot <- renderPlotly({
       alpha = showSE, 
       size = trendLineSize,
       mapping = aes(
-        color = "trend observed sea level",
-        linetype = "observed")
+        color = "trend observed sea level"
+      ),
+      linetype = plotLineTypes["observed"]
     )
   }
   
@@ -456,9 +462,8 @@ output$combinedPlot <- renderPlotly({
         size = trendLineSize,
         n = nrow(sealevelPlus2),
         formula = y ~ x + covariate +  1, 
-        mapping = aes(
-          color = "trend observed sea level",
-          linetype = "observed")
+        mapping = aes(color = "trend observed sea level"),
+        linetype = plotLineTypes["observed"]
       ) 
     
     fig <- fig + broken + 
@@ -474,9 +479,8 @@ output$combinedPlot <- renderPlotly({
         size = trendLineSize,
         n = nrow(sealevelPlus2),
         formula = y ~ x + 1,
-        mapping = aes(
-          color = "trend observed sea level",
-          linetype = "observed")
+        mapping = aes(color = "trend observed sea level"),
+        linetype = plotLineTypes["observed"]
       )
     fig <- fig + linear
   }
@@ -488,10 +492,8 @@ output$combinedPlot <- renderPlotly({
         alpha = showSE, 
         size = trendLineSize,
         n = nrow(sealevelPlus2),
-        mapping = aes(
-          color = "trend observed sea level",
-          linetype = "observed"
-          ),
+        mapping = aes(color = "trend observed sea level"),
+        linetype = plotLineTypes["observed"],
         formula = y ~ x + I(cos(2 * pi * x / (18.6))) + I(sin(2 * pi * x / (18.6))))
     fig <- fig + cyclic
   }
@@ -506,10 +508,8 @@ output$combinedPlot <- renderPlotly({
         size = trendLineSize,
         n = nrow(sealevelPlus2),
         formula = y ~ x + I(x^2) + 1, # is linear term necessary?
-        mapping = aes(
-          color = "trend observed sea level",
-          linetype = "observed"
-        )
+        mapping = aes(color = "trend observed sea level"),
+        linetype = plotLineTypes["observed"]
       )
     fig <- fig + quadratic
   }
@@ -528,17 +528,17 @@ output$combinedPlot <- renderPlotly({
         data = knmi_mapped2, 
         aes(
           year, value, 
-          color = "sea level excl selected processes",
-          linetype = "projected"
-          ), 
+          color = "sea level excl selected processes"
+        ), 
+        linetype = plotLineTypes["projected"],
         alpha = 0.8)
   }
   
   fig = fig + 
     coord_cartesian(ylim = c(-250, 750)) +  # initial limits to axes
     scale_color_manual(values = plotColorColors) +
-    scale_fill_manual(values = plotFillColors) +
-    scale_linetype_manual(values = plotLineTypes) +
+    # scale_fill_manual(values = plotFillColors) +
+    # scale_linetype_manual(values = plotLineTypes) +
     ylab("sealevel in mm relative to NAP") +
     theme(axis.ticks = element_blank())
   
@@ -590,7 +590,7 @@ bsPopover(id = "scenario2-info",
 
 ```
 
- obColumn 
+obColumn 
 -----------------------------------------------------------------------
 
 ###
@@ -615,7 +615,7 @@ fillPage(
 
 
 output$processPlot <- renderPlotly({
-
+  
   
   obsData <- sealevelPlus %>%
     pivot_longer(cols = -c(year, height),
@@ -648,16 +648,16 @@ output$processPlot <- renderPlotly({
   fig <- ggplot() +
     # observations:
     geom_area(data = obsData, aes(x = year, y = positive, fill = component), 
-              position = 'stack', color = "white", size = 0.5) +
+              position = 'stack', color = "darkgrey", size = 0.5) +
     geom_area(data = obsData, aes(x = year, y = negative, fill = component), 
-              position = 'stack', color = "white", size = 0.5) +
+              position = 'stack', color = "darkgrey", size = 0.5) +
     # projections:
     geom_area(data = projData, 
               aes(x = year, y = positive, fill = component), 
-              position = 'stack', alpha = 0.5, color = "white", size = 0.5) +
+              position = 'stack', alpha = 0.5, color = "darkgrey", size = 0.5) +
     geom_area(data = projData, 
               aes(x = year, y = negative, fill = component), 
-              position = 'stack', alpha = 0.5, color = "white", size = 0.5) +
+              position = 'stack', alpha = 0.5, color = "darkgrey", size = 0.5) +
     ylab("sea level change (mm)") +
     # ggtitle("Underlying processes for sea level variation") +
     scale_fill_manual(values = plotFillColors) +
