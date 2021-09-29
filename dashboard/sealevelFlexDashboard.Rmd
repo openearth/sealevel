@@ -4,7 +4,7 @@ output:
   flexdashboard::flex_dashboard:
     theme: 
       version: 3
-      fg: "#84D5D0"
+      fg: "black"
       bg: "white"
       primary: "#84D5D0"
     source_code: embed
@@ -236,11 +236,11 @@ hr() # horizontal line
 prettyRadioButtons(
   inputId = "mode",
   label = span(
-    "switch to expert mode:",
+    "Switch to expert mode:",
     class = "caption",
     tags$span(
-      id="mode-info"),
-    icon("info-circle", "fa-1x"), 
+      icon("info-circle", "fa-1x"),
+      id="mode-info")
   ),
   choices = c("normal", "expert"),
   width = "100%",
@@ -265,7 +265,6 @@ conditionalPanel(
   tabsetPanel(
     tabPanel("Processes",
              tags$h4("Subtract processes"),
-             status = "primary",
              checkboxGroupButtons(
                inputId = "exclude",
                label = span(
@@ -280,13 +279,6 @@ conditionalPanel(
                direction = "vertical"
              )
     ),
-    
-    bsPopover(
-      id = "processess-info", 
-      title = "Processes included", 
-      content = paste("In standard mode, all underlying processes causing sea level variation are included. Here you can toggle to exclude processes from observations and projections"),
-      placement = "bottom", 
-      trigger = "hover"),
     
     tabPanel(
       "Trend line", 
@@ -303,6 +295,15 @@ conditionalPanel(
                   choices = c("linear", "broken linear", "quadratic", "loess", "cyclic"),
                   width = "100%"
       ),
+      
+      bsPopover(
+        id = "processess-info", 
+        title = "Processes included", 
+        content = paste("In standard mode, all underlying processes causing sea level variation are included. Here you can toggle to exclude processes from observations and projections"),
+        placement = "bottom", 
+        trigger = "hover"
+      ),
+      
       bsPopover(id = "trend-info", 
                 title = "Choose type of trendline ", 
                 content = paste("The type of trendline", 
