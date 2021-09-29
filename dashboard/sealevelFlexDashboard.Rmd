@@ -152,13 +152,13 @@ plotFillColors = c(
 
 # names on left side appear as legend in scenario plot
 plotColorColors = c(
-  "observed sea level" = "#572024",
+  "Observed sea level" = "#572024",
   # "excluded processes" = "darkolivegreen2",
-  "trend observed sea level" = "#da525b",
-  "median projected sea level" = "#da525b",
-  "sea level excl selected processes" = "#8f8ee9",
-  "obs excl processes" = "#8f8ee9",
-  "trend observations excluding processes" = "#8f8ee9",
+  "Trend observed sea level" = "#da525b",
+  "Median projected sea level" = "#da525b",
+  "Projection excluding selected processes" = "#8f8ee9",
+  "Sea level excluding selected processes" = "#8f8ee9",
+  "Trend observations excluding processes" = "#8f8ee9",
   "10-90 percentile projected sea level" = "darkgrey"
 )
 
@@ -424,7 +424,7 @@ output$combinedPlot <- renderPlotly({
     geom_line(data = knmi_mapped2, 
               mapping = aes(
                 year, `median height`, 
-                color = "median projected sea level"
+                color = "Median projected sea level"
               ),
               linetype = plotLineTypes["projected"]
     )
@@ -434,14 +434,13 @@ output$combinedPlot <- renderPlotly({
     # generate span based on input
     span <- input$span
     
-    # draw the histogram with the specified number of bins
     fig <- fig  + geom_smooth(
       method = "loess", 
       span = span, 
       alpha = showSE, 
       size = trendLineSize,
       mapping = aes(
-        color = "trend observed sea level"
+        color = "Trend observed sea level"
       ),
       linetype = plotLineTypes["observed"]
     )
@@ -462,7 +461,7 @@ output$combinedPlot <- renderPlotly({
         size = trendLineSize,
         n = nrow(sealevelPlus2),
         formula = y ~ x + covariate +  1, 
-        mapping = aes(color = "trend observed sea level"),
+        mapping = aes(color = "Trend observed sea level"),
         linetype = plotLineTypes["observed"]
       ) 
     
@@ -479,7 +478,7 @@ output$combinedPlot <- renderPlotly({
         size = trendLineSize,
         n = nrow(sealevelPlus2),
         formula = y ~ x + 1,
-        mapping = aes(color = "trend observed sea level"),
+        mapping = aes(color = "Trend observed sea level"),
         linetype = plotLineTypes["observed"]
       )
     fig <- fig + linear
@@ -492,7 +491,7 @@ output$combinedPlot <- renderPlotly({
         alpha = showSE, 
         size = trendLineSize,
         n = nrow(sealevelPlus2),
-        mapping = aes(color = "trend observed sea level"),
+        mapping = aes(color = "Trend observed sea level"),
         linetype = plotLineTypes["observed"],
         formula = y ~ x + I(cos(2 * pi * x / (18.6))) + I(sin(2 * pi * x / (18.6))))
     fig <- fig + cyclic
@@ -508,30 +507,32 @@ output$combinedPlot <- renderPlotly({
         size = trendLineSize,
         n = nrow(sealevelPlus2),
         formula = y ~ x + I(x^2) + 1, # is linear term necessary?
-        mapping = aes(color = "trend observed sea level"),
+        mapping = aes(color = "Trend observed sea level"),
         linetype = plotLineTypes["observed"]
       )
     fig <- fig + quadratic
   }
   
   
-  fig <- fig + geom_point(mapping = aes(color = "observed sea level"))
+  fig <- fig + geom_point(mapping = aes(color = "Observed sea level"))
   
   if(length(input$exclude) != 0){
     fig = fig +
       geom_point(data = sealevelPlus2, 
-                 aes(year, value, color = "sea level excl selected processes"), 
+                 aes(
+                   year, 
+                   value, 
+                   color = "Sea level excluding selected processes"), 
                  size = 2, 
                  shape = 21,
                  alpha = 0.8) +
-      geom_line(
-        data = knmi_mapped2, 
-        aes(
-          year, value, 
-          color = "sea level excl selected processes"
-        ), 
-        linetype = plotLineTypes["projected"],
-        alpha = 0.8)
+      geom_line(data = knmi_mapped2, 
+                aes(
+                  year, value, 
+                  color = "Projection excluding selected processes"
+                ), 
+                linetype = plotLineTypes["projected"],
+                alpha = 0.8)
   }
   
   fig = fig + 
@@ -540,10 +541,20 @@ output$combinedPlot <- renderPlotly({
     # scale_fill_manual(values = plotFillColors) +
     # scale_linetype_manual(values = plotLineTypes) +
     ylab("sealevel in mm relative to NAP") +
-    theme(axis.ticks = element_blank())
+    theme(
+      axis.ticks = element_blank(),
+      axis.title = element_text(face = "italic")
+      )
   
   # print(fig)
-  ggplotly(fig) %>% layout(legend = list(orientation = 'h'))
+  ggplotly(fig) %>% 
+    layout(
+      legend = list(
+        orientation = 'v',
+        x = 0.02,
+        y = 1
+        )
+      )
   
   # further styling of plotly legend: https://plotly.com/r/legend/ 
   
@@ -590,21 +601,12 @@ bsPopover(id = "scenario2-info",
 
 ```
 
-obColumn 
+Column 
 -----------------------------------------------------------------------
 
 ###
 
 ```{r bijdrageComponentenMetingen}
-
-# werkt nu niet, weet niet waarom
-myStyle = 
-  ylab("sea level change (mm)") +
-  scale_fill_manual(values = plotFillColors) +
-  coord_cartesian(ylim = c(-75, 320)) +
-  theme(legend.position = "bottom")
-
-
 
 fillPage(
   fillCol(height = "80%", flex = c(NA,1), 
@@ -662,11 +664,22 @@ output$processPlot <- renderPlotly({
     # ggtitle("Underlying processes for sea level variation") +
     scale_fill_manual(values = plotFillColors) +
     coord_cartesian(ylim = c(-75, 320)) +
-    theme(axis.ticks = element_blank())
+    theme(
+      axis.ticks = element_blank(),
+      axis.title = element_text(face = "italic")
+    )
+
   
   
   # plot(fig)
-  ggplotly(fig) %>% layout(legend = list(orientation = 'h'))
+  ggplotly(fig) %>% 
+    layout(
+      legend = list(
+        orientation = 'v',
+        x = 0.02,
+        y = 1
+      )
+    )
 })
 ```
 
