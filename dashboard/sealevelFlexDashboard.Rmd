@@ -2,28 +2,15 @@
 title: "Dutch Sea Level change"
 output:
   flexdashboard::flex_dashboard:
+    navbar:
+      - { title: "About", href: "https://www.deltares.nl/nl/nieuws/nauwkeuriger-inzicht-huidige-zeespiegel-langs-de-nederlandse-kust/" }
+    social: [ "menu" ]
     theme: 
       version: 3
       fg: "black"
       bg: "white"
       primary: "#84D5D0"
     source_code: embed
-    # theme:
-    #   version: 4
-    #   bootswatch: lumen
-      # bg: "#2E89BF"
-      # fg: "#17202A" 
-      # primary: "#ED79F9"
-      # navbar-bg: "#2E89BF"
-      # base_font: 
-      #   google: Prompt
-      # heading_font:
-      #   google: Sen
-      # code_font:
-      #   google: 
-      #     # arguments to sass::font_google() 
-      #     family: JetBrains Mono
-      #     local: false
     orientation: columns
     includes:
       after_body : navbar/navbar.html
@@ -58,7 +45,7 @@ observed_components_no_tide <- read_csv("../data/deltares/observed_components_no
 # Read projected data
 url <- "../data/knmi/cmip5/SeaLevelPerc_KNMI14.csv"
 knmi_df <- read_csv(url, comment = "#") %>%
-  mutate(perc_ts = round(10*perc_ts, 0))                        # everything in mm
+  mutate(perc_ts = round(10*perc_ts, 0))                        # everything in mm, rounded to 0 decimals
 
 #### DONE? FEDOR could you check these points once more?  
 # TODO: use consistent epoch (see http://localhost:8889/notebooks/analysis/scenarios/scenario-vs-measurements.ipynb)
@@ -67,10 +54,15 @@ knmi_df <- read_csv(url, comment = "#") %>%
 # TODO: add/subtract subsidence
 # Double check if new scenarios are including subsidence
 
-# merge  percentiles
-knmi_perc10_df <- knmi_df %>% filter(percentiles==10) %>% select(time, scenario, proc, perc_ts) %>%  rename(perc_ts_10=perc_ts)
-knmi_perc50_df <- knmi_df %>% filter(percentiles==50) %>% select(time, scenario, proc, perc_ts) %>%  rename(perc_ts_50=perc_ts)
-knmi_perc90_df <- knmi_df %>% filter(percentiles==90) %>% select(time, scenario, proc, perc_ts) %>%  rename(perc_ts_90=perc_ts)
+# merge 10, 50, and 90 percentiles
+knmi_perc_df <- knmi_df %>% 
+  filter(percentiles %in% c(10, 50, 90) & proc == "Total") %>%
+  pivot_wider(
+    id_cols = c(time, scenario, proc),
+    names_from = percentiles, 
+    values_from = perc_ts, 
+    names_prefix = "perc_ts_"
+  )
 
 #=== name mappings =============
 
@@ -111,9 +103,15 @@ sealevelPlus <- observed_components_no_tide %>%
   right_join(sealevel %>% select(year, height)) %>%
   arrange(year)
 
-knmi_perc_df <- merge(merge(knmi_perc10_df, knmi_perc50_df), knmi_perc90_df) %>% filter(proc=="Total")
 
-knmi_mapped <- knmi_perc50_df %>% 
+knmi_mapped <- knmi_df %>% 
+  filter(percentiles %in% c(50)) %>%
+  pivot_wider(
+    id_cols = c(time, scenario, proc),
+    names_from = percentiles, 
+    values_from = perc_ts, 
+    names_prefix = "perc_ts_"
+  ) %>% 
   mutate(proc = recode(proc, !!!projection_mapping)) %>%
   filter(proc %in% unname(unlist(projection_mapping))) %>%
   rename(component = proc,
@@ -164,7 +162,8 @@ plotColorColors = c(
 
 plotLineTypes = c(
   "observed" = "solid",
-  "projected" = "dotted"
+  "projected" = "dotted",
+  "projectedPercentiles" = "dotdash"
 )
 
 trendLineSize = 0.5
@@ -178,7 +177,7 @@ Dutch sea level
 =======================================================================
 
 
-Sidebar {.sidebar data-width="400px" height="100%"}
+Sidebar {.sidebar data-width="300px"}
 ------------------------------------------------------------
 
 
@@ -416,7 +415,7 @@ output$combinedPlot <- renderPlotly({
                   color = "10-90 percentile projected sea level",
                 ),
                 fill = plotFillColors["10-90 percentile projected sea level"],
-                linetype = plotLineTypes["projected"],
+                linetype = plotLineTypes["projectedPercentiles"],
                 # alpha = 0.8,
                 show.legend = T # change to F to remove this item from legend
     ) 
@@ -427,7 +426,8 @@ output$combinedPlot <- renderPlotly({
                 year, `median height`, 
                 color = "Median projected sea level"
               ),
-              linetype = plotLineTypes["projected"]
+              linetype = plotLineTypes["projected"],
+              size = 0.8
     )
   
   # if selected show loess
@@ -533,6 +533,7 @@ output$combinedPlot <- renderPlotly({
                   color = "Projection excluding selected processes"
                 ), 
                 linetype = plotLineTypes["projected"],
+              size = 0.8,
                 alpha = 0.8)
   }
   
@@ -544,16 +545,18 @@ output$combinedPlot <- renderPlotly({
     ylab("sealevel in mm relative to NAP") +
     theme(
       axis.ticks = element_blank(),
-      axis.title = element_text(face = "italic")
+      axis.title = element_text(face = "italic"),
+      legend.title=element_blank()
       )
   
   # print(fig)
   ggplotly(fig) %>% 
     layout(
       legend = list(
+        title=NA,
         orientation = 'v',
-        x = 0.02,
-        y = 1
+        x = 1,
+        y = 0.9
         )
       )
   
@@ -571,7 +574,7 @@ output$combinedPlot <- renderPlotly({
 Underlying processes
 ======================================================================
 
-Sidebar {.sidebar}
+Sidebar {.sidebar data-width="300px"}
 ------------------------------------------------------------
 
 ### Preferences
@@ -667,7 +670,8 @@ output$processPlot <- renderPlotly({
     coord_cartesian(ylim = c(-75, 320)) +
     theme(
       axis.ticks = element_blank(),
-      axis.title = element_text(face = "italic")
+      axis.title = element_text(face = "italic"),
+      legend.title=element_blank()
     )
 
   
@@ -677,8 +681,8 @@ output$processPlot <- renderPlotly({
     layout(
       legend = list(
         orientation = 'v',
-        x = 0.02,
-        y = 1
+        x = 1,
+        y = 0.9
       )
     )
 })
@@ -694,13 +698,15 @@ Column {data-width=300}
 
 ```{r}
 h3("General background")
+
+# htmltools::includeMarkdown('doc/generalbackground.md')
 ```
 
-This visualization is a revisit of the visual presented in the [Sea Level Monitor (2018)](https://www.deltares.nl/nl/nieuws/nauwkeuriger-inzicht-huidige-zeespiegel-langs-de-nederlandse-kust/){target="_blank"}. 
+This visualization is a revisit of the visual presented in the [Sea Level Monitor (2018)](https://www.deltares.nl/nl/nieuws/nauwkeuriger-inzicht-huidige-zeespiegel-langs-de-nederlandse-kust/){target="_blank"}.
 
 Compared to the previous visual, the following has changed:
 
-*   The scenarios (projections) have been recalculated by KNMI. 
+*   The scenarios (projections) have been recalculated by KNMI.
 *   The underlying processes can be visualized, and the effect of each on the sea level can be visualized.
 
 
@@ -717,7 +723,7 @@ Yearly average Mean Sea level data for the main Dutch stations have been downloa
 
 Calculation of local budgets for observed sealevel is done in Python using [this Jupyter notebook](https://github.com/openearth/sealevel/blob/master/notebooks/analysis/budget/local-budget.ipynb){target="_blank"}.
 
-Processes contributing to sea level change have been attributed differently to observations and projections. In this visualizations, a mapping was made to link those processes that can be compared between observations and projections. The remaining effects are categorized under "other".
+>  Processes contributing to sea level change have been attributed differently to observations and projections. In this visualizations, a mapping was made to link those processes that can be compared between observations and projections. The remaining effects are categorized under "other".
 
 
 Column {data-width=300}
@@ -728,10 +734,9 @@ h3("Projections")
 ```
 
 
-
 The projections in this version of the interactive tool are presented in the [report on KMI '14 scenarios](https://knmiprojects.archiefweb.eu/?subsite=klimaatscenarios#archive){target="_blank"}
 
-These scenarios will be replace at the end of 2021 with newer scenario's. 
+These scenarios will be replace at the end of 2021 with the KNMI 2021 climate scenarios. 
 
 Column {data-width=300}
 -----------------------------------------------------------------------
