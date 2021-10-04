@@ -4,7 +4,7 @@
 }
 
 body {
-  padding: 60px 0 60px 0;
+  padding: 60px 10px 60px 10px;
   font-family: 'Asap', sans-serif;
   color: black;
   background-color: white;
@@ -70,4 +70,17 @@ h3 {
 
 i {
     color: #69C7BF;
+}
+
+.panel-auth {
+  position: fixed;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #FFF;
+  opacity: 1;
+  z-index: 99997;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }

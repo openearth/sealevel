@@ -19,7 +19,7 @@ output:
 runtime: shiny
 ---
 
-```{r setup, include=FALSE}
+```{r global, include=FALSE}
 
 library(flexdashboard)
 library(shiny)
@@ -27,11 +27,30 @@ library(shinyWidgets)
 library(tidyverse)
 library(plotly)
 library(shinyBS)
+library(leaflet)
 rename <- dplyr::rename
-# enable bookmarking of web page; this does not work properly until ui is included in a function
+
+# enable bookmarking of web page; this does not work properly until ui is included as a function
 # shiny::enableBookmarking(store='server')
 
+#===== user management (temporary) ==================================
+
+#=== uncomment to protect app with password (not very safe!!) ========================
+# library(shinymanager)
+# 
+# # define some credentials (you can also use sqlite database)
+# credentials <- data.frame(
+#   user = c("shiny", "shinymanager"),
+#   password = c("12345", "12345"),
+#   stringsAsFactors = FALSE
+# )
+
+
 #===== Read data =====================================================
+
+# Station information
+
+stations <- read_delim("../data/psmsl/NLstations.csv", delim = ";")
 
 # Read the sealevel dataset 
 sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv",
@@ -193,6 +212,17 @@ Sidebar {.sidebar data-width="300px"}
 # )
 
 # shinyjs::useShinyjs()
+
+#=== uncomment to protect app with password (not very safe!!) ========================
+# auth_ui(id = "auth")
+# 
+# auth <- callModule(
+#     module = auth_server,
+#     id = "auth",
+#     check_credentials = check_credentials(credentials) # data.frame
+#     # check_credentials = check_credentials("path/to/credentials.sqlite", passphrase = "supersecret") # sqlite
+# )
+
 
 observeEvent(
   input$mode == "normal" | input$reset_input, {
@@ -403,7 +433,7 @@ output$combinedPlot <- renderPlotly({
   
   fig <- fig + 
     geom_hline(yintercept = 0, color = "bisque4") +
-    annotate("text", label = "NAP", x = 1900, y = 25, size = 6, color = "bisque4")
+    annotate("text", label = "NAP", x = 2100, y = 25, size = 6, color = "bisque4")
   
   fig = fig +
     geom_ribbon(data = knmi_mapped2, 
@@ -527,6 +557,14 @@ output$combinedPlot <- renderPlotly({
                  size = 2, 
                  shape = 21,
                  alpha = 0.8) +
+      geom_smooth(data = sealevelPlus2,
+                  method = "lm",
+                 aes(
+                   year, 
+                   value, 
+                   color = "Sea level excluding selected processes"), 
+                 size = trendLineSize,
+                 alpha = showSE) +
       geom_line(data = knmi_mapped2, 
                 aes(
                   year, value, 
@@ -539,6 +577,7 @@ output$combinedPlot <- renderPlotly({
   
   fig = fig + 
     coord_cartesian(ylim = c(-250, 750)) +  # initial limits to axes
+    scale_x_continuous(breaks = waiver(), n.breaks = 10) +
     scale_color_manual(values = plotColorColors) +
     # scale_fill_manual(values = plotFillColors) +
     # scale_linetype_manual(values = plotLineTypes) +
@@ -693,7 +732,7 @@ output$processPlot <- renderPlotly({
 Explanation and methods
 ==========================================================
 
-Column {data-width=300}
+Column {data-width=30 data-padding=30}
 -----------------------------------------------------------------------
 
 ```{r}
@@ -711,7 +750,7 @@ Compared to the previous visual, the following has changed:
 
 
 
-Column {data-width=300}
+Column {data-width=30 data-padding=30}
 -----------------------------------------------------------------------
 
 ```{r}
@@ -723,10 +762,16 @@ Yearly average Mean Sea level data for the main Dutch stations have been downloa
 
 Calculation of local budgets for observed sealevel is done in Python using [this Jupyter notebook](https://github.com/openearth/sealevel/blob/master/notebooks/analysis/budget/local-budget.ipynb){target="_blank"}.
 
->  Processes contributing to sea level change have been attributed differently to observations and projections. In this visualizations, a mapping was made to link those processes that can be compared between observations and projections. The remaining effects are categorized under "other".
+Processes contributing to sea level change have been attributed differently to observations and projections. In this visualizations, a mapping was made to link those processes that can be compared between observations and projections. The remaining effects are categorized under "other".
+
+```{r, out.width="100%", fig.cap= "Position of the main Dutch sea level stations."}
+leaflet(stations) %>% 
+  addTiles() %>%
+  addCircleMarkers(lat = ~Lat, lng = ~Lon, label = ~StationName, labelOptions = labelOptions(noHide = T))
+```
 
 
-Column {data-width=300}
+Column {data-width=30 data-padding=30}
 -----------------------------------------------------------------------
 
 ```{r}
@@ -738,29 +783,29 @@ The projections in this version of the interactive tool are presented in the [re
 
 These scenarios will be replace at the end of 2021 with the KNMI 2021 climate scenarios. 
 
-Column {data-width=300}
+Column {data-width=30 data-padding=30}
 -----------------------------------------------------------------------
 
 ```{r}
 h3("Mapping of processes")
 ```
 
-In the current analyses, the variation of sea level could be attributed to different processes. The methodology, and the choice of processes is not necessarily the same for observations and projections. 
+In the current analyses, the sea level change could be attributed to different processes. Because of the different methodologies, the attribution to some of these processes are not the same for observations and projections. In this visualization, an attempt was done to map the effect of processes in observations and projections to a common process name. This mapping is found below in the tables below. In case processes could not be matched to a common name, the label "other" was used. In next versions of this visualization, a more complete mapping will be provided. 
 
-The mapping consists of the following for the different data types:
 
-Observations:
-```{r}
-observation_mapping %>% unlist(use.names = T) %>% as.data.frame() %>% rename(`common name` = "." ) %>% knitr::kable()
+```{r observationMapping}
+observation_mapping %>% unlist(use.names = T) %>% as.data.frame() %>% rename(`common name` = "." ) %>% knitr::kable(caption = "Mapping of processes to common names for observations.")
 ```
 
 </br>
-Projections
-```{r}
-projection_mapping %>% unlist(use.names = T) %>% as.data.frame() %>% rename(`common name` = "." ) %>% knitr::kable()
+
+```{r projectionMapping}
+projection_mapping %>% unlist(use.names = T) %>% as.data.frame() %>% rename(`common name` = "." ) %>% knitr::kable(caption = "Mapping of processes to common names for projections")
 ```
 
 
+
+<!-- If you want to include downloadable tables: https://martinctc.github.io/blog/vignette-downloadable-tables-in-rmarkdown-with-the-dt-package/ -->
 
 
 
