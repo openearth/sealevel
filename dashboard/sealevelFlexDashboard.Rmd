@@ -59,32 +59,43 @@ stations <- read_delim("../data/psmsl/NLstations.csv", delim = ";")
 
 # Read the sealevel dataset 
 sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv",
-                     comment = "#") %>%
-  mutate(height = round(height, 0))
+                     comment = "#")
 
 # Read observed component dataset
-observed_components_no_tide <- read_csv("../data/deltares/observed_components_no_tide.csv") %>%
-  mutate(across(-Year, signif, 2))
+observed_components_no_tide <- read_csv("../data/deltares/observed_components_no_tide.csv")
 
 # Read projected data
 url <- "../data/knmi/cmip5/SeaLevelPerc_KNMI14.csv"
 knmi_df <- read_csv(url, comment = "#") %>%
-  mutate(perc_ts = round(10*perc_ts, 0))                        # everything in mm, rounded to 0 decimals
+  mutate(perc_ts = 10*perc_ts)                        # everything in mm, rounded to 0 decimals
 
-#### DONE? FEDOR could you check these points once more?  
-# TODO: use consistent epoch (see http://localhost:8889/notebooks/analysis/scenarios/scenario-vs-measurements.ipynb)
-# Now they start in 2006 which is not compatible with the old method.
 # From correspondence woth Dewi: "The dataset is sea level anomalies with respect to the period 1986-2005. So 0 is the mean observed sea level for this period."
 # FB: We will compute the mean observed anual sea level over  the period 1986-2005 and add that sea level with  respect to NAP (>2005) to the KNMI scenarios. This the conversion from "anomalies" to NAP. 
 # (checked with Willem, discussed with Dewi,  same as previous study)
 
+meanSL86_05 <- sealevel %>% 
+  filter(year %in% c(1986:2005)) %>% 
+  summarize(meanHeight = mean(height)) %>% 
+  unlist() %>% unname()
 
+knmi_df[knmi_df$proc == "Total","perc_ts"] <- knmi_df[knmi_df$proc == "Total","perc_ts"] + meanSL86_05
 
+# add/subtract subsidence
+# subsidence in mm calculated depending on year
+# subsidence in 2095 should be 45 mm. Marc Hijma & Kooij, 20018
 
-# TODO: add/subtract subsidence
-# Double check if new scenarios are including subsidence
-# 
-# TODO: Scenarios omhoog tot gemiddelde zeespiegelstand 1990?
+subsidence <- knmi_df %>% filter(proc == "Total") %>% 
+  select(time) %>% 
+  distinct() %>% 
+  mutate(subsidence = (time - 1995)*0.45) %>% 
+  arrange(time)
+
+knmi_df %>% left_join(subsidence, by = c(time = "time")) %>%
+  mutate(perc_ts = case_when(
+    proc == "Total" ~ perc_ts + subsidence,
+    proc != "Total" ~ perc_ts
+  ))
+
 
 # merge 10, 50, and 90 percentiles
 knmi_perc_df <- knmi_df %>% 
@@ -429,20 +440,23 @@ fillPage(
 output$combinedPlot <- renderPlotly({
   
   sealevelPlus2 <- sealevelPlus %>% 
-    # select(
-    #   year, height, steric, glaciers, greenland, antarctica, terrestrial # gia and surge removed. not in scenarios
-    # ) %>% 
-    # replace(is.na(.), 0) %>%
-    mutate(subtract = rowSums(across(input$exclude))) %>%  # example: c("glaciers", "greenland")
-    mutate(value = height - subtract)
+    mutate(subtract = rowSums(across(input$exclude))) %>% 
+    mutate(value = height - subtract) %>%
+    mutate(across(-year, signif, digits = 3))
   
   knmi_mapped2 <- knmi_mapped %>%
-    filter(scenario == input$scenario) %>% # "rcp45"
+    filter(scenario == input$scenario) %>%
     pivot_wider(id_cols = c(year, scenario), names_from = component, values_from = value) %>%
-    left_join(knmi_perc_df %>% select(year = time, scenario, `median height` = perc_ts_50, `10th percentile` = perc_ts_10, `90th percentile` = perc_ts_90)) %>%
-    # replace(is.na(.), 0) %>%
-    mutate(subtract = rowSums(across(input$exclude))) %>%  # example: c("glaciers", "greenland")
-    mutate(value = `median height` - subtract)
+    left_join(
+      knmi_perc_df %>% select(year = time, scenario, 
+                              `median height` = perc_ts_50, 
+                              `10th percentile` = perc_ts_10, 
+                              `90th percentile` = perc_ts_90
+      )
+    ) %>%
+    mutate(subtract = rowSums(across(input$exclude))) %>% 
+    mutate(value = `median height` - subtract) %>%
+    mutate(across(c(value, `median height`, `10th percentile`, `90th percentile`), signif, digits = 3))
   
   
   fig <- ggplot(sealevelPlus2, aes(year, height))
@@ -557,7 +571,7 @@ output$combinedPlot <- renderPlotly({
       #             mapping = aes(color = "Trend observed sea level"),
       #             linetype = plotLineTypes["observed"])
     # add text on linear trend statistics
-    fig <- fig + annotate("text", label = paste("linear trend =", format(slope, digits = 4), "mm/year; ", "p=", pvalue), x = 1960, y = 100, size = 4)
+    # fig <- fig + annotate("text", label = paste("linear trend =", format(slope, digits = 4), "mm/year; ", "p=", pvalue), x = 1960, y = 100, size = 4)
     
   }
 
@@ -626,7 +640,7 @@ output$combinedPlot <- renderPlotly({
   }
   
   fig = fig + 
-    coord_cartesian(ylim = c(-250, 750)) +  # initial limits to axes
+    # coord_cartesian(ylim = c(-250, 750)) +  # initial limits to axes
     scale_x_continuous(breaks = waiver(), n.breaks = 10) +
     scale_color_manual(values = plotColorColors) +
     # scale_fill_manual(values = plotFillColors) +
@@ -646,7 +660,8 @@ output$combinedPlot <- renderPlotly({
         orientation = 'v',
         x = 1,
         y = 0.9
-        )
+        ),
+      yaxis = list(hoverformat = '.3r') # does not work.. 
       )
   
   # further styling of plotly legend: https://plotly.com/r/legend/ 
@@ -754,7 +769,7 @@ output$processPlot <- renderPlotly({
     ylab("sea level change (mm)") +
     # ggtitle("Underlying processes for sea level variation") +
     scale_fill_manual(values = plotFillColors) +
-    coord_cartesian(ylim = c(-75, 320)) +
+    # coord_cartesian(ylim = c(-75, 320)) +
     theme(
       axis.ticks = element_blank(),
       axis.title = element_text(face = "italic"),
@@ -770,7 +785,8 @@ output$processPlot <- renderPlotly({
         orientation = 'v',
         x = 1,
         y = 0.9
-      )
+      ),
+      yaxis = list(hoverformat = '.2f')
     )
 })
 ```
