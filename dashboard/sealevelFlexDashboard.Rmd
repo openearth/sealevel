@@ -74,6 +74,12 @@ knmi_df <- read_csv(url, comment = "#") %>%
 #### DONE? FEDOR could you check these points once more?  
 # TODO: use consistent epoch (see http://localhost:8889/notebooks/analysis/scenarios/scenario-vs-measurements.ipynb)
 # Now they start in 2006 which is not compatible with the old method.
+# From correspondence woth Dewi: "The dataset is sea level anomalies with respect to the period 1986-2005. So 0 is the mean observed sea level for this period."
+# FB: We will compute the mean observed anual sea level over  the period 1986-2005 and add that sea level with  respect to NAP (>2005) to the KNMI scenarios. This the conversion from "anomalies" to NAP. 
+# (checked with Willem, discussed with Dewi,  same as previous study)
+
+
+
 
 # TODO: add/subtract subsidence
 # Double check if new scenarios are including subsidence
