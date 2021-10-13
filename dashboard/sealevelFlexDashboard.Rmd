@@ -29,6 +29,11 @@ library(plotly)
 library(shinyBS)
 library(leaflet)
 rename <- dplyr::rename
+library(devtools)
+
+# extra functionality to plot fit equation in chart
+# Lijkt niet te werken in plotly
+# library(ggpmisc)
 
 # enable bookmarking of web page; this does not work properly until ui is included as a function
 # shiny::enableBookmarking(store='server')
@@ -72,6 +77,8 @@ knmi_df <- read_csv(url, comment = "#") %>%
 
 # TODO: add/subtract subsidence
 # Double check if new scenarios are including subsidence
+# 
+# TODO: Scenarios omhoog tot gemiddelde zeespiegelstand 1990?
 
 # merge 10, 50, and 90 percentiles
 knmi_perc_df <- knmi_df %>% 
@@ -163,13 +170,13 @@ plotFillColors = c(
   "terrestrial" = "#a5a4ed", 
   # "gia" = "red",
   "antarctica" = "#90d6d3",
-  "other" = "lightgrey",
+  "other" = "grey",
   "10-90 percentile projected sea level" = "#fbedee"
 )
 
 # names on left side appear as legend in scenario plot
 plotColorColors = c(
-  "Observed sea level" = "#572024",
+  "Observed sea level w standard error" = "#572024",
   # "excluded processes" = "darkolivegreen2",
   "Trend observed sea level" = "#da525b",
   "Median projected sea level" = "#da525b",
@@ -187,7 +194,7 @@ plotLineTypes = c(
 
 trendLineSize = 0.5
 
-showSE = 0.0 # alpha for all smoothings
+showSE = 0.3 # alpha for all smoothings
 
 ```
 
@@ -252,11 +259,14 @@ radioGroupButtons(
   justified = TRUE
 )
 
+scenarioPopoverTitle = "Climate scenario used to calculate sea level"
+scenarioPopoverContent = paste("rcp45 = IPCC scenario SSP2-4.5",
+                          "rcp85 = IPCC scenario SSP5-8.5",
+                          sep = "<br>")
+
 bsPopover(id = "scenario-info",
-          title = "Climate scenario used to calculate sealevel",
-          content = paste("rcp45 = .........;",
-                          "rcp85 = .......",
-                          sep = "<br>"),
+          title = scenarioPopoverTitle,
+          content = scenarioPopoverContent,
           placement = "right", trigger = "hover",
           options = list(container = "body"))
 
@@ -501,20 +511,54 @@ output$combinedPlot <- renderPlotly({
   }
   
   # if selected show linear model
-  if (input$`fitType` == "linear") {
-    linear <-
+  # if (input$`fitType` == "linear") {
+  #   formula <- y ~ x + 1
+  #   linear <-
+  #     geom_smooth(
+  #       method = "lm", 
+  #       alpha = showSE,
+  #       size = trendLineSize,
+  #       # n = nrow(sealevelPlus2),
+  #       formula = formula,
+  #       mapping = aes(color = "Trend observed sea level"),
+  #       linetype = plotLineTypes["observed"]
+  #     )
+  #   fig <- fig + linear    
+  # }
+
+  if(input$`fitType` == "linear"){
+    
+    formula <- height ~ year
+    # create statistics summary values for linear regression
+    regression <- summary(glm(formula, data = sealevelPlus2))
+    slope      <- regression$coefficients[2,1]  #slope of regression
+    pvalue     <- format(round(regression$coefficients[2,4], 2), scientific = F, digits = 2)
+    intercept  <- regression$coefficients[[1]]
+    
+    # add trendline using geom_smooth
+    fig <- fig + 
       geom_smooth(
-        method = "glm", 
+        method = "lm",
         alpha = showSE,
         size = trendLineSize,
-        n = nrow(sealevelPlus2),
-        formula = y ~ x + 1,
+        # n = nrow(sealevelPlus2),
+        formula = y ~ x,
         mapping = aes(color = "Trend observed sea level"),
         linetype = plotLineTypes["observed"]
-      )
-    fig <- fig + linear
+      ) #+
+    ## to check whether geom_smooth and abline are the same (they are)
+      # geom_abline(intercept = intercept, slope = slope,
+      #             mapping = aes(color = "Trend observed sea level"),
+      #             linetype = plotLineTypes["observed"])
+    # add text on linear trend statistics
+    fig <- fig + annotate("text", label = paste("linear trend =", format(slope, digits = 4), "mm/year; ", "p=", pvalue), x = 1960, y = 100, size = 4)
+    
   }
+
   
+  
+  
+    
   if (input$`fitType` == "cyclic") {
     cyclic <-
       geom_smooth(
@@ -545,7 +589,7 @@ output$combinedPlot <- renderPlotly({
   }
   
   
-  fig <- fig + geom_point(mapping = aes(color = "Observed sea level"))
+  fig <- fig + geom_point(mapping = aes(color = "Observed sea level w standard error"))
   
   if(length(input$exclude) != 0){
     fig = fig +
@@ -581,7 +625,7 @@ output$combinedPlot <- renderPlotly({
     scale_color_manual(values = plotColorColors) +
     # scale_fill_manual(values = plotFillColors) +
     # scale_linetype_manual(values = plotLineTypes) +
-    ylab("sealevel in mm relative to NAP") +
+    ylab("sea level in mm relative to NAP") +
     theme(
       axis.ticks = element_blank(),
       axis.title = element_text(face = "italic"),
@@ -634,12 +678,10 @@ shinyWidgets::radioGroupButtons(
   justified = TRUE
 )
 
-bsPopover(id = "scenario2-info", 
-          title = "Climate scenario used to calculate sealevel", 
-          content = paste("rcp45 = .........;", 
-                          "rcp85 = .......", 
-                          sep = "<br>"), 
-          placement = "bottom", trigger = "hover",
+bsPopover(id = "scenario2-info",
+          title = scenarioPopoverTitle,
+          content = scenarioPopoverContent,
+          placement = "right", trigger = "hover",
           options = list(container = "body"))
 
 ```

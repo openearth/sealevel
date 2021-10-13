@@ -5,7 +5,7 @@
 }
 .logos {
     display: inline-flex;
-    vertical-align: top;
+    vertical-align: middle;
     height: 60px;
     float: right;
 }
