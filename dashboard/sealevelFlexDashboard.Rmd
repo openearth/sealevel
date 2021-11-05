@@ -110,7 +110,7 @@ knmi_perc_df <- knmi_df %>%
 #=== name mappings =============
 
 observation_mapping <- list(
-  `Surge [mm]` = "other", 
+  `Surge [mm]` = "surge",  # meenemen als surge
   `Steric [mean]` = "other", #"steric", (additional work is needed)
   `Glaciers [mean]` = "glaciers", 
   `Greenland Ice Sheet [mean]` = "greenland", 
@@ -122,8 +122,8 @@ observation_mapping <- list(
 
 projection_mapping <- list(
   `Global steric` = "other",  # Dewi discuss with Fedor
-  `Local ocean` = "other", #"steric",  # Dewi: this is local steric and wind combined
-  `Inverse barometer` = "other",
+  `Local ocean` = "surge", #"steric",  # Dewi: this is local steric and wind combined
+  `Inverse barometer` = "surge", # meenemen als surge
   `Glaciers` = "glaciers",
   `Greenland SMB` = "greenland",
   `Greenland dynamics` = "greenland",
@@ -180,7 +180,7 @@ theme_set(theme_grey())
 # Change names with search/replace throughout document !!! manually and carefully
 
 plotFillColors = c(
-  # "surge" = "lightblue",
+  "surge" = "lightblue",
   "steric" = "#db5d5c", 
   "glaciers" = "#edc8c0", 
   "greenland" = "#b8717d", 
@@ -193,9 +193,9 @@ plotFillColors = c(
 
 # names on left side appear as legend in scenario plot
 plotColorColors = c(
-  "Observed sea level w standard error" = "#572024",
+  "Observed sea level" = "#572024",
   # "excluded processes" = "darkolivegreen2",
-  "Trend observed sea level" = "#da525b",
+  "Trend observed sea level w standard error" = "#da525b",
   "Median projected sea level" = "#da525b",
   "Projection excluding selected processes" = "#8f8ee9",
   "Sea level excluding selected processes" = "#8f8ee9",
@@ -501,7 +501,7 @@ output$combinedPlot <- renderPlotly({
       alpha = showSE, 
       size = trendLineSize,
       mapping = aes(
-        color = "Trend observed sea level"
+        color = "Trend observed sea level w standard error"
       ),
       linetype = plotLineTypes["observed"]
     )
@@ -522,7 +522,7 @@ output$combinedPlot <- renderPlotly({
         size = trendLineSize,
         n = nrow(sealevelPlus2),
         formula = y ~ x + covariate +  1, 
-        mapping = aes(color = "Trend observed sea level"),
+        mapping = aes(color = "Trend observed sea level w standard error"),
         linetype = plotLineTypes["observed"]
       ) 
     
@@ -540,7 +540,7 @@ output$combinedPlot <- renderPlotly({
   #       size = trendLineSize,
   #       # n = nrow(sealevelPlus2),
   #       formula = formula,
-  #       mapping = aes(color = "Trend observed sea level"),
+  #       mapping = aes(color = "Trend observed sea level w standard error"),
   #       linetype = plotLineTypes["observed"]
   #     )
   #   fig <- fig + linear    
@@ -563,12 +563,12 @@ output$combinedPlot <- renderPlotly({
         size = trendLineSize,
         # n = nrow(sealevelPlus2),
         formula = y ~ x,
-        mapping = aes(color = "Trend observed sea level"),
+        mapping = aes(color = "Trend observed sea level w standard error"),
         linetype = plotLineTypes["observed"]
       ) #+
     ## to check whether geom_smooth and abline are the same (they are)
       # geom_abline(intercept = intercept, slope = slope,
-      #             mapping = aes(color = "Trend observed sea level"),
+      #             mapping = aes(color = "Trend observed sea level w standard error"),
       #             linetype = plotLineTypes["observed"])
     # add text on linear trend statistics
     # fig <- fig + annotate("text", label = paste("linear trend =", format(slope, digits = 4), "mm/year; ", "p=", pvalue), x = 1960, y = 100, size = 4)
@@ -586,7 +586,7 @@ output$combinedPlot <- renderPlotly({
         alpha = showSE, 
         size = trendLineSize,
         n = nrow(sealevelPlus2),
-        mapping = aes(color = "Trend observed sea level"),
+        mapping = aes(color = "Trend observed sea level w standard error"),
         linetype = plotLineTypes["observed"],
         formula = y ~ x + I(cos(2 * pi * x / (18.6))) + I(sin(2 * pi * x / (18.6))))
     fig <- fig + cyclic
@@ -602,14 +602,14 @@ output$combinedPlot <- renderPlotly({
         size = trendLineSize,
         n = nrow(sealevelPlus2),
         formula = y ~ x + I(x^2) + 1, # is linear term necessary?
-        mapping = aes(color = "Trend observed sea level"),
+        mapping = aes(color = "Trend observed sea level w standard error"),
         linetype = plotLineTypes["observed"]
       )
     fig <- fig + quadratic
   }
   
   
-  fig <- fig + geom_point(mapping = aes(color = "Observed sea level w standard error"))
+  fig <- fig + geom_point(mapping = aes(color = "Observed sea level"))
   
   if(length(input$exclude) != 0){
     fig = fig +
@@ -661,7 +661,7 @@ output$combinedPlot <- renderPlotly({
         x = 1,
         y = 0.9
         ),
-      yaxis = list(hoverformat = '.3r') # does not work.. 
+      yaxis = list(hoverformat = ".3r") # does not work.. 
       )
   
   # further styling of plotly legend: https://plotly.com/r/legend/ 

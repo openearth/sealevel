@@ -1,0 +1,121 @@
+---
+title: "Data handling of KNMI21 projections"
+date: '`r lubridate::today()`'
+author: Willem Stolte, Fedor Baart (Deltares)
+output: html_notebook
+---
+
+## Data delivery
+
+Model output data were delivered as NetCDF containing modelled sea level (total) and the contribution of individual processes. This notebook extracts the data and makes correction for vertical reference so that the model results can be compared to the observations. 
+
+
+```{r readData}
+
+require(tidync)
+require(tidyverse)
+
+datadir <- "../data/knmi/knmi21"
+scen = c("ssp126", "ssp245", "ssp585")
+# scen = scen[1]
+scenarios <- list()
+for(scen in scen){
+  con <- file.path(datadir, paste0("SeaLevelPerc_KNMIsignal_BiasCorr_NoWind_",scen,".nc"))
+  df <- tidync::tidync(con, "perc_ts") %>% hyper_tibble()
+  scenarios[[scen]] <- df
+  rm(df)
+}
+df.scenarios <- data.table::rbindlist(scenarios, use.names = TRUE, idcol = "scenario")
+rm(scenarios)
+```
+
+
+Model output for KNMI21 scenario's sent 2021-10-25 was used here. 
+
+It contained the following files:
+
+`r paste(list.files(datadir, pattern = "*.nc"), collapse = "</br>")`
+
+The model ouputs do not include vertical land motion (Le Bars, personal communication)
+
+It contains output for the processes `r df.scenarios %>% distinct(proc) %>%  knitr::kable()`
+
+
+## Model output exploration
+
+The plot below depicts the model outcomes as 5, 50 and 95 percentiles of the three scenarios (columns) and all individual processes including the total (rows).
+
+
+
+```{r exploreData, fig.width = 8, fig.height=10}
+df.scenarios %>%
+  filter(percentiles %in% c(5, 50, 95)) %>%
+  mutate(percentiles = as.factor(percentiles)) %>%
+ggplot(aes(time, perc_ts)) +
+  geom_path(aes(color = percentiles)) +
+  facet_grid(proc ~ scenario) +
+  theme(strip.text.y = element_text(angle = 0))
+```
+
+It is important to note that "sum anta." is the sum of "Antarctic dynamics" and "Antarctic SMB". One of those should be kept out of the visualization. In the contributing factors for observations there is only the total effect of Antarctica. Therefore, "sum anta." was used in the mapping comparing observations with projections. 
+
+
+
+
+
+## Correct for vertical reference
+
+<!-- Gerefereerde scenarios - voor klimaatsignaal. The data that we use and publish is only the total sea level, this is given in the csv file. It includes vertical land motion of 0.45 mm/yr and is given with a reference period of 1995-2014. Like the IPCC AR6 report. -->
+
+```{r, eval=F, echo = F}
+# ref_scenario <- read_csv(file.path(datadir, "DataKlimaatsignaal21_SeaLevel_2100_ref_period_1995_2014.csv"))
+# 
+# ggplot(ref_scenario, aes(x = time)) +
+#   geom_point(aes(y = Zeespiegelmonitor)) +
+#   geom_line(aes(y = `Trend Zeespiegelmonitor`)) +
+#   geom_line(aes(y = ssp245_50pc))
+```
+
+
+
+## correction for sea level during reference period
+
+Dewi:
+
+> Since my code still uses the 1986-2005 as reference period (like AR5) I don't have the 
+components with respect to 1995-2014 but only 1986-2005. One reason I keep 1986-2005 as 
+reference period is that it allows a better evaluation, otherwise the overlap between 
+scenarios and observations is too small. I therefore attach the data for individual 
+contributors and total sea level as netcdf files. These do not include vertical 
+land motion, as the previous data that I sent you. 
+
+```{r}
+# read seas level data
+sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv",
+                     comment = "#")
+
+# calculate mean sea level over period 1986 - 2005 for vertical correction
+meanSL86_05 <- sealevel %>% 
+  filter(year %in% c(1986:2005)) %>% 
+  summarize(meanHeight = mean(height)) %>% 
+  unlist() %>% unname()
+
+df.scenarios <- df.scenarios %>%
+  mutate(
+    perc_ts = case_when(
+      proc == "Total" ~ perc_ts + meanSL86_05,
+      proc != "Total" ~ perc_ts
+    )
+  )
+
+```
+
+
+
+
+
+
+
+
+
+
