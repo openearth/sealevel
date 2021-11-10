@@ -30,6 +30,7 @@ library(shinyBS)
 library(leaflet)
 rename <- dplyr::rename
 library(devtools)
+library(tidync)
 
 # extra functionality to plot fit equation in chart
 # Lijkt niet te werken in plotly
@@ -65,9 +66,26 @@ sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-20
 observed_components_no_tide <- read_csv("../data/deltares/observed_components_no_tide.csv")
 
 # Read projected data
-url <- "../data/knmi/cmip5/SeaLevelPerc_KNMI14.csv"
-knmi_df <- read_csv(url, comment = "#") %>%
-  mutate(perc_ts = 10*perc_ts)                        # everything in mm, rounded to 0 decimals
+
+# read knmi 2021 scenario data direct from netcdf files
+datadir <- "../data/knmi/knmi21"
+scen = c("ssp126", "ssp245", "ssp585")
+# scen = scen[1]
+scenarios <- list()
+for(scen in scen){
+  con <- file.path(datadir, paste0("SeaLevelPerc_KNMIsignal_BiasCorr_NoWind_",scen,".nc"))
+  df <- tidync::tidync(con, "perc_ts") %>% hyper_tibble()
+  scenarios[[scen]] <- df
+  rm(df)
+}
+knmi_df <- data.table::rbindlist(scenarios, use.names = TRUE, idcol = "scenario") %>%
+  mutate(perc_ts = 10*perc_ts)                        # everything in mm
+rm(scenarios)
+
+# old code reading knmi 2014 data from csv file
+# url <- "../data/knmi/cmip5/SeaLevelPerc_KNMI14.csv"
+# knmi_df <- read_csv(url, comment = "#") %>%
+#   mutate(perc_ts = 10*perc_ts)                        # everything in mm
 
 # From correspondence woth Dewi: "The dataset is sea level anomalies with respect to the period 1986-2005. So 0 is the mean observed sea level for this period."
 # FB: We will compute the mean observed anual sea level over  the period 1986-2005 and add that sea level with  respect to NAP (>2005) to the KNMI scenarios. This the conversion from "anomalies" to NAP. 
@@ -83,18 +101,30 @@ knmi_df[knmi_df$proc == "Total","perc_ts"] <- knmi_df[knmi_df$proc == "Total","p
 # add/subtract subsidence
 # subsidence in mm calculated depending on year
 # subsidence in 2095 should be 45 mm. Marc Hijma & Kooij, 20018
+# NOT necessary when subsidence is also subtracted from observations (see below)
+# In discussion with RWS, it was decided to remove subsidence from both
 
-subsidence <- knmi_df %>% filter(proc == "Total") %>% 
-  select(time) %>% 
-  distinct() %>% 
-  mutate(subsidence = (time - 1995)*0.45) %>% 
-  arrange(time)
+# subsidence <- knmi_df %>% filter(proc == "Total") %>% 
+#   select(time) %>% 
+#   distinct() %>% 
+#   mutate(subsidence = (time - 1995)*0.45) %>% 
+#   arrange(time)
+# 
+# knmi_df %>% left_join(subsidence, by = c(time = "time")) %>%
+#   mutate(perc_ts = case_when(
+#     proc == "Total" ~ perc_ts + subsidence,
+#     proc != "Total" ~ perc_ts
+#   ))
 
-knmi_df %>% left_join(subsidence, by = c(time = "time")) %>%
-  mutate(perc_ts = case_when(
-    proc == "Total" ~ perc_ts + subsidence,
-    proc != "Total" ~ perc_ts
-  ))
+# Subtract subsidence from observation (better after discussion with RWS)
+subsidence <- sealevel %>% 
+  select(year) %>%
+  distinct() %>%
+  mutate(subsidence = (year - 2003)*0.45) %>%
+  arrange(year)
+
+sealevel <- sealevel %>% left_join(subsidence, by = c(year = "year")) %>%
+  mutate(height = height - subsidence)
 
 
 # merge 10, 50, and 90 percentiles
@@ -175,12 +205,14 @@ theme_set(theme_grey())
 # names on left side appear in legend for processes plot
 # 
 # colors for line plot:  #572024  #fbedee   #da525b  #8f8ee9
-# colors for fill plot: #8f8ee9  #edc8c0  #b8717d  #a5a4ed  #90d6d3
-# 
+# optional colors for fill plot: #db5d5c, #edc8c0, #b8717d, #a5a4ed, #90d6d3, #c9c8f4, #649593
+
+# extra #8f8ee9,
+
 # Change names with search/replace throughout document !!! manually and carefully
 
 plotFillColors = c(
-  "surge" = "lightblue",
+  "surge" = "#c9c8f4",
   "steric" = "#db5d5c", 
   "glaciers" = "#edc8c0", 
   "greenland" = "#b8717d", 
@@ -230,11 +262,6 @@ Sidebar {.sidebar data-width="300px"}
 
 ```{r}
 
-# voor dikkere horizontale lijnen (werkt niet op dit moment)
-# tags$head(
-#   tags$style(HTML("hr {border-top: 3px solid #000000;}"))
-# )
-
 # shinyjs::useShinyjs()
 
 #=== uncomment to protect app with password (not very safe!!) ========================
@@ -249,7 +276,7 @@ Sidebar {.sidebar data-width="300px"}
 
 
 observeEvent(
-  input$mode == "normal" | input$reset_input, {
+  input$mode == "basic" | input$reset_input, {
     updateRadioGroupButtons(
       session, 
       inputId = "exclude", 
@@ -277,8 +304,10 @@ radioGroupButtons(
 )
 
 scenarioPopoverTitle = "Climate scenario used to calculate sea level"
-scenarioPopoverContent = paste("rcp45 = IPCC scenario SSP2-4.5",
-                          "rcp85 = IPCC scenario SSP5-8.5",
+scenarioPopoverContent = paste(
+  "ssp126 = IPCC scenario SSP1-2.6", 
+  "ssp245 = IPCC scenario SSP2-4.5", 
+  "ssp585 = IPCC scenario SSP5-8.5",
                           sep = "<br>")
 
 bsPopover(id = "scenario-info",
@@ -298,7 +327,7 @@ prettyRadioButtons(
       icon("info-circle", "fa-1x"),
       id="mode-info")
   ),
-  choices = c("normal", "expert"),
+  choices = c("basic", "expert"),
   width = "100%",
   inline = TRUE,
   status = "primary"
@@ -432,7 +461,7 @@ Column
 
 fillPage(
   fillCol(height = "80%", flex = c(NA,1), 
-          h3("Observed and projected sea level at the Dutch coast, in mm"),  
+          h3("Observed and projected sea level at the Dutch coast, in cm"),  
           plotlyOutput("combinedPlot", height = "80%", width = "100%")#,
   )
 )
@@ -442,7 +471,9 @@ output$combinedPlot <- renderPlotly({
   sealevelPlus2 <- sealevelPlus %>% 
     mutate(subtract = rowSums(across(input$exclude))) %>% 
     mutate(value = height - subtract) %>%
-    mutate(across(-year, signif, digits = 3))
+    mutate(across(-year, signif, digits = 3)) %>%
+    mutate(across(-year, function(x) x/10)) # convert mm to cm
+
   
   knmi_mapped2 <- knmi_mapped %>%
     filter(scenario == input$scenario) %>%
@@ -456,7 +487,9 @@ output$combinedPlot <- renderPlotly({
     ) %>%
     mutate(subtract = rowSums(across(input$exclude))) %>% 
     mutate(value = `median height` - subtract) %>%
-    mutate(across(c(value, `median height`, `10th percentile`, `90th percentile`), signif, digits = 3))
+    mutate(across(c(value, `median height`, `10th percentile`, `90th percentile`), signif, digits = 3)) %>%
+        mutate(across(c(value, `median height`, `10th percentile`, `90th percentile`), function(x) x/10)) # converting mm to cm
+
   
   
   fig <- ggplot(sealevelPlus2, aes(year, height))
@@ -571,7 +604,7 @@ output$combinedPlot <- renderPlotly({
       #             mapping = aes(color = "Trend observed sea level w standard error"),
       #             linetype = plotLineTypes["observed"])
     # add text on linear trend statistics
-    # fig <- fig + annotate("text", label = paste("linear trend =", format(slope, digits = 4), "mm/year; ", "p=", pvalue), x = 1960, y = 100, size = 4)
+    # fig <- fig + annotate("text", label = paste("linear trend =", format(slope, digits = 4), "cm/year; ", "p=", pvalue), x = 1960, y = 100, size = 4)
     
   }
 
@@ -645,7 +678,7 @@ output$combinedPlot <- renderPlotly({
     scale_color_manual(values = plotColorColors) +
     # scale_fill_manual(values = plotFillColors) +
     # scale_linetype_manual(values = plotLineTypes) +
-    ylab("sea level in mm relative to NAP") +
+    ylab("sea level in cm relative to NAP") +
     theme(
       axis.ticks = element_blank(),
       axis.title = element_text(face = "italic"),
@@ -716,7 +749,7 @@ Column
 
 fillPage(
   fillCol(height = "80%", flex = c(NA,1), 
-          h3("Underlying processes for sea level variation"),
+          h3("Contribution of underlying processes for sea level variation"),
           plotlyOutput("processPlot", height = "80%", width = "100%")#,
   )
 )
@@ -729,6 +762,7 @@ output$processPlot <- renderPlotly({
     pivot_longer(cols = -c(year, height),
                  names_to = "component", values_to = "value"
     ) %>%
+    mutate(value = value/10) %>%  #convert mm to cm
     mutate(
       positive = case_when(
         value >= 0 ~ value,
@@ -742,6 +776,7 @@ output$processPlot <- renderPlotly({
   
   projData <- knmi_mapped %>%
     filter(scenario == input$scenario2) %>%
+    mutate(value = value/10) %>%  #convert mm to cm
     mutate(
       positive = case_when(
         value >= 0 ~ value,
@@ -766,7 +801,7 @@ output$processPlot <- renderPlotly({
     geom_area(data = projData, 
               aes(x = year, y = negative, fill = component), 
               position = 'stack', alpha = 0.5, color = "darkgrey", size = 0.5) +
-    ylab("sea level change (mm)") +
+    ylab("sea level change (cm)") +
     # ggtitle("Underlying processes for sea level variation") +
     scale_fill_manual(values = plotFillColors) +
     # coord_cartesian(ylim = c(-75, 320)) +

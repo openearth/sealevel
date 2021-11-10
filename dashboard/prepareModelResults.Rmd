@@ -5,7 +5,30 @@ author: Willem Stolte, Fedor Baart (Deltares)
 output: html_notebook
 ---
 
-## Data delivery
+## Data delivery from KNMI to Deltares
+
+*   klimaatsignaal referenced data and scenarios (for visual only)
+*   raw model output data
+
+
+## Klimaatsignaal grafiek 
+
+Gerefereerde scenarios - voor klimaatsignaal. The data that we use and publish is only the total sea level, this is given in the csv file. It includes vertical land motion of 0.45 mm/yr and is given with a reference period of 1995-2014. Like the IPCC AR6 report.
+
+```{r, eval=F, echo = F}
+ref_scenario <- read_csv(file.path(datadir, "DataKlimaatsignaal21_SeaLevel_2100_ref_period_1995_2014.csv"))
+
+ggplot(ref_scenario, aes(x = time)) +
+  geom_point(aes(y = Zeespiegelmonitor)) +
+  geom_line(aes(y = `Trend Zeespiegelmonitor`)) +
+  geom_line(aes(y = ssp245_50pc)) +
+  geom_line(aes(y = ssp245_95pc)) +
+  geom_line(aes(y = ssp245_5pc))
+```
+
+
+
+## Model output data delivery
 
 Model output data were delivered as NetCDF containing modelled sea level (total) and the contribution of individual processes. This notebook extracts the data and makes correction for vertical reference so that the model results can be compared to the observations. 
 
@@ -27,6 +50,9 @@ for(scen in scen){
 }
 df.scenarios <- data.table::rbindlist(scenarios, use.names = TRUE, idcol = "scenario")
 rm(scenarios)
+
+# TODO: this is still in cm
+# divide by 10 for use in dashboard in mm
 ```
 
 
@@ -61,24 +87,7 @@ It is important to note that "sum anta." is the sum of "Antarctic dynamics" and 
 
 
 
-
-
-## Correct for vertical reference
-
-<!-- Gerefereerde scenarios - voor klimaatsignaal. The data that we use and publish is only the total sea level, this is given in the csv file. It includes vertical land motion of 0.45 mm/yr and is given with a reference period of 1995-2014. Like the IPCC AR6 report. -->
-
-```{r, eval=F, echo = F}
-# ref_scenario <- read_csv(file.path(datadir, "DataKlimaatsignaal21_SeaLevel_2100_ref_period_1995_2014.csv"))
-# 
-# ggplot(ref_scenario, aes(x = time)) +
-#   geom_point(aes(y = Zeespiegelmonitor)) +
-#   geom_line(aes(y = `Trend Zeespiegelmonitor`)) +
-#   geom_line(aes(y = ssp245_50pc))
-```
-
-
-
-## correction for sea level during reference period
+## Correct vertical position for reference period
 
 Dewi:
 
@@ -91,24 +100,43 @@ land motion, as the previous data that I sent you.
 
 ```{r}
 # read seas level data
-sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv",
-                     comment = "#")
+sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv", comment = "#")
 
 # calculate mean sea level over period 1986 - 2005 for vertical correction
 meanSL86_05 <- sealevel %>% 
   filter(year %in% c(1986:2005)) %>% 
   summarize(meanHeight = mean(height)) %>% 
   unlist() %>% unname()
+```
 
+Mean sea level during the reference period was `r round(meanSL86_05, 3)` mm. This value is then added to the KNMI projection results, but only to the "Total" sea level. The contribution of the individual processes is unaffected by the reference period. 
+
+
+```{r}
 df.scenarios <- df.scenarios %>%
   mutate(
-    perc_ts = case_when(
+    perc_ts_corr = case_when(
       proc == "Total" ~ perc_ts + meanSL86_05,
       proc != "Total" ~ perc_ts
     )
   )
-
 ```
+
+```{r}
+cols <- c(
+  "uncorrected" = "red",
+  "t.o.v. NAP" = "green"
+)
+df.scenarios %>%
+  filter( percentiles == 50 & proc == "Total") %>%
+ggplot(aes(x = time)) +
+  geom_line(aes(y = perc_ts, lineshape = scenario, color = "uncorrected"), size = 1) +
+  geom_line(aes(y = perc_ts_corr, lineshape = scenario, color = "t.o.v. NAP"), size = 1) +
+  facet_wrap(~scenario) +
+  scale_color_manual(values = cols)
+```
+
+
 
 
 
