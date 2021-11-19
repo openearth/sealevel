@@ -4,12 +4,14 @@ caption,.caption {
   color: black;
 }
 
-# Styling tables
-table  {
+/* Styling tables */
+
+table {
   border-collapse: collapse;
   border-color: #9ABAD9;
   border-spacing:0;
 }
+
 table td {
   background-color: #EBF5FF;
   border-color:#9ABAD9;
@@ -20,6 +22,7 @@ table td {
   padding:9px 11px;
   word-break:normal;
 }
+
 table th {
   background-color:#2E89BF;
   border-color:#9ABAD9;
