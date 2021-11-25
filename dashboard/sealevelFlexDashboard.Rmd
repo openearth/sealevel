@@ -29,7 +29,7 @@ library(plotly)
 library(shinyBS)
 library(leaflet)
 rename <- dplyr::rename
-library(devtools)
+# library(devtools)
 library(tidync)
 
 # extra functionality to plot fit equation in chart
@@ -59,14 +59,19 @@ library(tidync)
 stations <- read_delim("../data/psmsl/NLstations.csv", delim = ";")
 
 # Read the sealevel dataset 
-sealevel <- read_csv("../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv",
+sealevellocatl <- "../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv"
+sealevelurl <- "https://raw.githubusercontent.com/openearth/sealevel/feature/2021-10-update/data/deltares/results/dutch-sea-level-monitor-export-2021-11-24.csv"
+sealevel <- read_csv(sealevelurl,
                      comment = "#")
 
+
 # Read observed component dataset
-observed_components_no_tide <- read_csv("../data/deltares/observed_components_no_tide.csv")
+# observed_components_no_tide <- read_csv("../data/deltares/observed_components_no_tide.csv")
+observed_components_no_tide <- read_csv("../data/deltares/observed_components.csv")
+
+observed_components_no_tide$`sea_surface_height_due_to_tide [mm]` = observed_components_no_tide$`sea_surface_height_due_to_tide [mm]` - mean(observed_components_no_tide$`sea_surface_height_due_to_tide [mm]`)
 
 # Read projected data
-
 # read knmi 2021 scenario data direct from netcdf files
 
 datadir <- "../data/knmi/knmi21"
@@ -129,9 +134,9 @@ sealevel <- sealevel %>% left_join(subsidence, by = c(year = "year")) %>%
   mutate(height = height - subsidence)
 
 
-# merge 10, 50, and 90 percentiles
+# merge 5, 50, and 95 percentiles
 knmi_perc_df <- knmi_df %>% 
-  filter(percentiles %in% c(10, 50, 90) & proc == "Total") %>%
+  filter(percentiles %in% c(5, 50, 95) & proc == "Total") %>%
   pivot_wider(
     id_cols = c(time, scenario, proc),
     names_from = percentiles, 
@@ -148,8 +153,8 @@ observation_mapping <- list(
   `Greenland Ice Sheet [mean]` = "greenland", 
   `Antarctic Ice Sheet [mean]` = "antarctica", 
   `Terrestrial Water Storage [mean]` = "terrestrial",	
-  `GIA [mean]` = "other"#, 
-  # `sea_surface_height_due_to_tide [mm]` = "tide"
+  # `GIA [mean]` = "other"#,  #not necessary, because subsidence is already subtracted above
+  `sea_surface_height_due_to_tide [mm]` = "tide"
 )
 
 projection_mapping <- list(
@@ -196,6 +201,7 @@ knmi_mapped <- knmi_df %>%
   summarize(value = sum(value), .groups = "drop")
 
 processes <- unique(knmi_mapped$component)
+extraprocesses <- c("tide")
 scenarios <- unique(knmi_mapped$scenario)
 
 #====== visualisation settings =======================
@@ -222,7 +228,8 @@ plotFillColors = c(
   # "gia" = "red",
   "antarctica" = "#90d6d3",
   "other" = "grey",
-  "10-90 percentile projected sea level" = "#fbedee"
+  "5-95 percentile projected sea level" = "#fbedee",
+  "tide" = "red"
 )
 
 # names on left side appear as legend in scenario plot
@@ -234,7 +241,7 @@ plotColorColors = c(
   "Projection excluding selected processes" = "#8f8ee9",
   "Sea level excluding selected processes" = "#8f8ee9",
   "Trend observations excluding processes" = "#8f8ee9",
-  "10-90 percentile projected sea level" = "darkgrey"
+  "5-95 percentile projected sea level" = "darkgrey"
 )
 
 plotLineTypes = c(
@@ -353,6 +360,19 @@ conditionalPanel(
     tabPanel("Processes",
              tags$h4("Subtract processes"),
              checkboxGroupButtons(
+               inputId = "tide",
+               label = span(
+                 "remove effect of tide from observations", 
+                 class = "caption",
+                 tags$span(
+                   icon("info-circle"),
+                   id="processess-info")
+               ), 
+               choices = "tide",
+               justified = TRUE,
+               direction = "vertical"
+             ),
+             checkboxGroupButtons(
                inputId = "exclude",
                label = span(
                  "Choose the underlying processes for sea level variation that you want to exclude from the chart:", 
@@ -361,7 +381,7 @@ conditionalPanel(
                    icon("info-circle"),
                    id="processess-info")
                ),
-               choices = processes,
+               choices = c(processes),
                justified = TRUE,
                direction = "vertical"
              )
@@ -471,8 +491,9 @@ fillPage(
 output$combinedPlot <- renderPlotly({
   
   sealevelPlus2 <- sealevelPlus %>% 
-    mutate(subtract = rowSums(across(input$exclude))) %>% 
+    mutate(subtract = rowSums(across(c(input$tide, input$exclude)))) %>%  # tide nog meenemen 
     mutate(value = height - subtract) %>%
+    # mutate(value = ifelse(input$tide, value - tide, value)) %>%
     mutate(across(-year, signif, digits = 3)) %>%
     mutate(across(-year, function(x) x/10)) # convert mm to cm
 
@@ -483,14 +504,14 @@ output$combinedPlot <- renderPlotly({
     left_join(
       knmi_perc_df %>% select(year = time, scenario, 
                               `median height` = perc_ts_50, 
-                              `10th percentile` = perc_ts_10, 
-                              `90th percentile` = perc_ts_90
+                              `5th percentile` = perc_ts_5, 
+                              `95th percentile` = perc_ts_95
       )
     ) %>%
-    mutate(subtract = rowSums(across(input$exclude))) %>% 
+    mutate(subtract = rowSums(across(input$exclude[input$exclude != "tide"]))) %>%
     mutate(value = `median height` - subtract) %>%
-    mutate(across(c(value, `median height`, `10th percentile`, `90th percentile`), signif, digits = 3)) %>%
-        mutate(across(c(value, `median height`, `10th percentile`, `90th percentile`), function(x) x/10)) # converting mm to cm
+    mutate(across(c(value, `median height`, `5th percentile`, `95th percentile`), signif, digits = 3)) %>%
+        mutate(across(c(value, `median height`, `5th percentile`, `95th percentile`), function(x) x/10)) # converting mm to cm
 
   
   
@@ -498,18 +519,18 @@ output$combinedPlot <- renderPlotly({
   
   fig <- fig + 
     geom_hline(yintercept = 0, color = "bisque4") +
-    annotate("text", label = "NAP", x = 2100, y = 25, size = 6, color = "bisque4")
+    annotate("text", label = "NAP", x = 2100, y = 2.5, size = 6, color = "bisque4")
   
   fig = fig +
     geom_ribbon(data = knmi_mapped2, 
                 aes(
                   x = year,
                   y=`median height`,
-                  ymin = `10th percentile`,
-                  ymax = `90th percentile`,
-                  color = "10-90 percentile projected sea level",
+                  ymin = `5th percentile`,
+                  ymax = `95th percentile`,
+                  color = "5-95 percentile projected sea level",
                 ),
-                fill = plotFillColors["10-90 percentile projected sea level"],
+                fill = plotFillColors["5-95 percentile projected sea level"],
                 linetype = plotLineTypes["projectedPercentiles"],
                 # alpha = 0.8,
                 show.legend = T # change to F to remove this item from legend
@@ -646,7 +667,7 @@ output$combinedPlot <- renderPlotly({
   
   fig <- fig + geom_point(mapping = aes(color = "Observed sea level"))
   
-  if(length(input$exclude) != 0){
+  if(length((c(input$tide, input$exclude))) != 0){
     fig = fig +
       geom_point(data = sealevelPlus2, 
                  aes(
@@ -654,7 +675,7 @@ output$combinedPlot <- renderPlotly({
                    value, 
                    color = "Sea level excluding selected processes"), 
                  size = 2, 
-                 shape = 21,
+                 # shape = 21,
                  alpha = 0.8) +
       geom_smooth(data = sealevelPlus2,
                   method = "lm",
@@ -827,6 +848,25 @@ output$processPlot <- renderPlotly({
     )
 })
 ```
+
+
+
+Observations per station
+======================================================================
+
+Sidebar {.sidebar data-width="300px"}
+------------------------------------------------------------
+
+### Preferences
+
+Column 
+-----------------------------------------------------------------------
+
+```{r}
+h3("placeholder figure timeseries per station")
+```
+
+
 
 
 
