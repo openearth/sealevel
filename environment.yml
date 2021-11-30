@@ -1,0 +1,21 @@
+name: slr
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pip
+  - python=3.8
+  - setuptools
+  - requests
+  - netCDF4
+  - numpy
+  - pandas
+  - pyproj=3
+  - statsmodels
+  - bokeh
+  - windrose
+  - matplotlib
+  - cmocean
+  - ipywidgets
+  - jupyterlab
+  - notebook
