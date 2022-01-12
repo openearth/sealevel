@@ -3,20 +3,26 @@ title: "Dutch Sea Level change"
 output:
   flexdashboard::flex_dashboard:
     navbar:
-      - { title: "About", href: "https://www.deltares.nl/nl/nieuws/nauwkeuriger-inzicht-huidige-zeespiegel-langs-de-nederlandse-kust/" }
-    social: [ "menu" ]
+    - title: About
+      href: ''
+    social: menu
     theme: 
       version: 3
-      fg: "black"
-      bg: "white"
-      primary: "#84D5D0"
+      fg: black
+      bg: white
+      primary: '#84D5D0'
     source_code: embed
     orientation: columns
     includes:
-      after_body : navbar/navbar.html
-    css: ["navbar/navbar.css", "style/deltares.css", "style/main.css"]
+      after_body: navbar/navbar.html
+    css:
+    - navbar/navbar.css
+    - style/deltares.css
+    - style/main.css
     vertical_layout: fill
 runtime: shiny
+resource_files:
+- data/knmi/knmi21/knmi_df.Rdata
 ---
 
 ```{r global, include=FALSE}
@@ -30,7 +36,9 @@ library(shinyBS)
 library(leaflet)
 rename <- dplyr::rename
 # library(devtools)
-library(tidync)
+# library(tidync)
+
+status = "concept"
 
 # extra functionality to plot fit equation in chart
 # Lijkt niet te werken in plotly
@@ -59,35 +67,49 @@ library(tidync)
 stations <- read_delim("../data/psmsl/NLstations.csv", delim = ";")
 
 # Read the sealevel dataset 
-sealevellocatl <- "../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv"
-sealevelurl <- "https://raw.githubusercontent.com/openearth/sealevel/feature/2021-10-update/data/deltares/results/dutch-sea-level-monitor-export-2021-11-24.csv"
+# sealevellocatl <- "../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv"
+sealevelurl <- "https://raw.githubusercontent.com/openearth/sealevel/master/data/deltares/results/dutch-sea-level-monitor-export-2021-11-24.csv"
 sealevel <- read_csv(sealevelurl,
+                     comment = "#")
+
+sealevelAllStationsurl <- "https://raw.githubusercontent.com/openearth/sealevel/master/data/deltares/results/dutch-sea-level-monitor-export-stations-2021-11-26.csv"
+sealevelAllStations <- read_csv(sealevelAllStationsurl,
                      comment = "#")
 
 
 # Read observed component dataset
 # observed_components_no_tide <- read_csv("../data/deltares/observed_components_no_tide.csv")
-observed_components_no_tide <- read_csv("../data/deltares/observed_components.csv")
+observed_components <- read_csv("../data/deltares/observed_components.csv")
 
-observed_components_no_tide$`sea_surface_height_due_to_tide [mm]` = observed_components_no_tide$`sea_surface_height_due_to_tide [mm]` - mean(observed_components_no_tide$`sea_surface_height_due_to_tide [mm]`)
+observed_components$`sea_surface_height_due_to_tide [mm]` = observed_components$`sea_surface_height_due_to_tide [mm]` - mean(observed_components$`sea_surface_height_due_to_tide [mm]`)
+
+observed_components$`Surge [mm]` = observed_components$`Surge [mm]` - mean(observed_components$`Surge [mm]`)
+
 
 # Read projected data
 # read knmi 2021 scenario data direct from netcdf files
 
 datadir <- "../data/knmi/knmi21"
-scen = c("ssp126", "ssp245", "ssp585")
-# scen = scen[1]
-scenarios <- list()
-for(scen in scen){
-  con <- file.path(datadir, paste0("SeaLevelPerc_KNMIsignal_BiasCorr_NoWind_",scen,".nc"))
-  df <- tidync::tidync(con, "perc_ts") %>% hyper_tibble()
-  scenarios[[scen]] <- df
-  rm(df)
-}
 
-knmi_df <- data.table::rbindlist(scenarios, use.names = TRUE, idcol = "scenario") %>%
-  mutate(perc_ts = 10*perc_ts)                        # everything in mm
-rm(scenarios)
+# run below code when updating data
+
+# scen = c("ssp126", "ssp245", "ssp585")
+# # scen = scen[1]
+# scenarios <- list()
+# for(scen in scen){
+#   con <- file.path(datadir, paste0("SeaLevelPerc_KNMIsignal_BiasCorr_NoWind_",scen,".nc"))
+#   df <- tidync::tidync(con, "perc_ts") %>% hyper_tibble()
+#   scenarios[[scen]] <- df
+#   rm(df)
+# }
+# 
+# knmi_df <- data.table::rbindlist(scenarios, use.names = TRUE, idcol = "scenario") %>%
+#   mutate(perc_ts = 10*perc_ts)                        # everything in mm
+# rm(scenarios)
+# 
+# save(knmi_df, file =  file.path(datadir, "knmi_df.Rdata"))
+
+load(file.path(datadir, "knmi_df.Rdata"))
 
 # old code reading knmi 2014 data from csv file
 # url <- "../data/knmi/cmip5/SeaLevelPerc_KNMI14.csv"
@@ -170,7 +192,7 @@ projection_mapping <- list(
 
 # Map processes to data
 
-sealevelPlus <- observed_components_no_tide %>%
+sealevelPlus <- observed_components %>%
   pivot_longer(cols = -Year, names_to = "proc") %>%
   mutate(proc = recode(proc, !!!observation_mapping)) %>%  # apply mapping
   filter(proc %in% unname(unlist(observation_mapping))) %>%  # remove all unmapped processes
@@ -234,7 +256,7 @@ plotFillColors = c(
 
 # names on left side appear as legend in scenario plot
 plotColorColors = c(
-  "Observed sea level" = "#572024",
+  "Observed sea level (yearly av)" = "#572024",
   # "excluded processes" = "darkolivegreen2",
   "Trend observed sea level w standard error" = "#da525b",
   "Median projected sea level" = "#da525b",
@@ -250,11 +272,41 @@ plotLineTypes = c(
   "projectedPercentiles" = "dotdash"
 )
 
-trendLineSize = 0.5
+trendLineSize = 1
 
-showSE = 0.3 # alpha for all smoothings
+showSE = 0.2 # alpha for all smoothings
+
+alphaProcessesObs = 0.5
+alphaProcessesProj = 0.5
 
 ```
+
+
+Welcome
+=========================================================================
+
+Sidebar {.sidebar data-width="300px"}
+------------------------------------------------------------
+
+Column 
+-----------------------------------------------------------------------
+
+```{r}
+fillPage(
+  fillCol(height = "80%", flex = c(NA,1), 
+          h3("Dutch Sea Level Visualization. Concept version")
+  )
+)
+
+```
+
+This app visualizes the sea level at the Dutch coast. This version is still in concept. 
+
+Known issues:
+
+*   The effect of tide is currently not properly included yet. 
+
+
 
 
 Dutch sea level
@@ -267,7 +319,7 @@ Sidebar {.sidebar data-width="300px"}
 
 ### Preferences
 
-#### Project in scenario 
+#### Projection scenario 
 
 ```{r}
 
@@ -366,7 +418,7 @@ conditionalPanel(
                  class = "caption",
                  tags$span(
                    icon("info-circle"),
-                   id="processess-info")
+                   id="obsprocesses-info")
                ), 
                choices = "tide",
                justified = TRUE,
@@ -406,11 +458,17 @@ conditionalPanel(
       bsPopover(
         id = "processess-info", 
         title = "Processes included", 
-        content = paste("In standard mode, all underlying processes causing sea level variation are included. Here you can toggle to exclude processes from observations and projections"),
+        content = paste("In basic mode, all underlying processes causing sea level variation are included. Here you can toggle to exclude processes from observations and projections"),
         placement = "bottom", 
         trigger = "hover"
       ),
-      
+      bsPopover(
+        id = "obsprocesses-info", 
+        title = "Effect of tide", 
+        content = paste("The effect of tide can be removed from observations, but are not included int he predictions. Here you can toggle to exclude processes from observations and projections"),
+        placement = "bottom", 
+        trigger = "hover"
+      ),
       bsPopover(id = "trend-info", 
                 title = "Choose type of trendline ", 
                 content = paste("The type of trendline", 
@@ -483,7 +541,7 @@ Column
 
 fillPage(
   fillCol(height = "80%", flex = c(NA,1), 
-          h3("Observed and projected sea level at the Dutch coast, in cm"),  
+          h3("Observed (monitoring) and projected (model scenario) sea level at the Dutch coast, in cm"),  
           plotlyOutput("combinedPlot", height = "80%", width = "100%")#,
   )
 )
@@ -491,7 +549,7 @@ fillPage(
 output$combinedPlot <- renderPlotly({
   
   sealevelPlus2 <- sealevelPlus %>% 
-    mutate(subtract = rowSums(across(c(input$tide, input$exclude)))) %>%  # tide nog meenemen 
+    mutate(subtract = rowSums(across(c(input$tide, input$exclude)))) %>% 
     mutate(value = height - subtract) %>%
     # mutate(value = ifelse(input$tide, value - tide, value)) %>%
     mutate(across(-year, signif, digits = 3)) %>%
@@ -665,7 +723,7 @@ output$combinedPlot <- renderPlotly({
   }
   
   
-  fig <- fig + geom_point(mapping = aes(color = "Observed sea level"))
+  fig <- fig + geom_point(mapping = aes(color = "Observed sea level (yearly av)"))
   
   if(length((c(input$tide, input$exclude))) != 0){
     fig = fig +
@@ -731,123 +789,123 @@ output$combinedPlot <- renderPlotly({
 
 
 
-Underlying processes
-======================================================================
+<!-- Underlying processes -->
+<!-- ====================================================================== -->
 
-Sidebar {.sidebar data-width="300px"}
-------------------------------------------------------------
+<!-- Sidebar {.sidebar data-width="300px"} -->
+<!-- ------------------------------------------------------------ -->
 
-### Preferences
+<!-- ### Preferences -->
 
-```{r}
-shinyWidgets::radioGroupButtons(
-  direction = "horizontal",
-  inputId = "scenario2",
-  label = span(
-    "Choose the projection scenario:", 
-    class = "caption",
-    tags$span(
-      icon("info-circle", "fa-1x"),
-      id="scenario2-info")
-  ),
-  choices = scenarios,
-  status = "primary",
-  justified = TRUE
-)
+<!-- ```{r} -->
+<!-- shinyWidgets::radioGroupButtons( -->
+<!--   direction = "horizontal", -->
+<!--   inputId = "scenario2", -->
+<!--   label = span( -->
+<!--     "Choose the projection scenario:",  -->
+<!--     class = "caption", -->
+<!--     tags$span( -->
+<!--       icon("info-circle", "fa-1x"), -->
+<!--       id="scenario2-info") -->
+<!--   ), -->
+<!--   choices = scenarios, -->
+<!--   status = "primary", -->
+<!--   justified = TRUE -->
+<!-- ) -->
 
-bsPopover(id = "scenario2-info",
-          title = scenarioPopoverTitle,
-          content = scenarioPopoverContent,
-          placement = "right", trigger = "hover",
-          options = list(container = "body"))
+<!-- bsPopover(id = "scenario2-info", -->
+<!--           title = scenarioPopoverTitle, -->
+<!--           content = scenarioPopoverContent, -->
+<!--           placement = "right", trigger = "hover", -->
+<!--           options = list(container = "body")) -->
 
-```
+<!-- ``` -->
 
-Column 
------------------------------------------------------------------------
+<!-- Column  -->
+<!-- ----------------------------------------------------------------------- -->
 
-###
+<!-- ### -->
 
-```{r bijdrageComponentenMetingen}
+<!-- ```{r bijdrageComponentenMetingen} -->
 
-fillPage(
-  fillCol(height = "80%", flex = c(NA,1), 
-          h3("Contribution of underlying processes for sea level variation"),
-          plotlyOutput("processPlot", height = "80%", width = "100%")#,
-  )
-)
+<!-- fillPage( -->
+<!--   fillCol(height = "80%", flex = c(NA,1),  -->
+<!--           h3("Contribution of underlying processes for sea level variation"), -->
+<!--           plotlyOutput("processPlot", height = "80%", width = "100%") -->
+<!--   ) -->
+<!-- ) -->
 
 
-output$processPlot <- renderPlotly({
-  
-  
-  obsData <- sealevelPlus %>%
-    pivot_longer(cols = -c(year, height),
-                 names_to = "component", values_to = "value"
-    ) %>%
-    mutate(value = value/10) %>%  #convert mm to cm
-    mutate(
-      positive = case_when(
-        value >= 0 ~ value,
-        value < 0 ~ 0
-      ),
-      negative = case_when(
-        value < 0 ~ value,
-        value >= 0 ~ 0
-      )
-    )
-  
-  projData <- knmi_mapped %>%
-    filter(scenario == input$scenario2) %>%
-    mutate(value = value/10) %>%  #convert mm to cm
-    mutate(
-      positive = case_when(
-        value >= 0 ~ value,
-        value < 0 ~ 0
-      ),
-      negative = case_when(
-        value < 0 ~ value,
-        value >= 0 ~ 0
-      )
-    )
-  
-  fig <- ggplot() +
-    # observations:
-    geom_area(data = obsData, aes(x = year, y = positive, fill = component), 
-              position = 'stack', color = "darkgrey", size = 0.5) +
-    geom_area(data = obsData, aes(x = year, y = negative, fill = component), 
-              position = 'stack', color = "darkgrey", size = 0.5) +
-    # projections:
-    geom_area(data = projData, 
-              aes(x = year, y = positive, fill = component), 
-              position = 'stack', alpha = 0.5, color = "darkgrey", size = 0.5) +
-    geom_area(data = projData, 
-              aes(x = year, y = negative, fill = component), 
-              position = 'stack', alpha = 0.5, color = "darkgrey", size = 0.5) +
-    ylab("sea level change (cm)") +
-    # ggtitle("Underlying processes for sea level variation") +
-    scale_fill_manual(values = plotFillColors) +
-    # coord_cartesian(ylim = c(-75, 320)) +
-    theme(
-      axis.ticks = element_blank(),
-      axis.title = element_text(face = "italic"),
-      legend.title=element_blank()
-    )
+<!-- output$processPlot <- renderPlotly({ -->
 
-  
-  
-  # plot(fig)
-  ggplotly(fig) %>% 
-    layout(
-      legend = list(
-        orientation = 'v',
-        x = 1,
-        y = 0.9
-      ),
-      yaxis = list(hoverformat = '.2f')
-    )
-})
-```
+
+<!--   obsData <- sealevelPlus %>% -->
+<!--     pivot_longer(cols = -c(year, height), -->
+<!--                  names_to = "component", values_to = "value" -->
+<!--     ) %>% -->
+<!--     mutate(value = value/10) %>%  #convert mm to cm -->
+<!--     mutate( -->
+<!--       positive = case_when( -->
+<!--         value >= 0 ~ value, -->
+<!--         value < 0 ~ 0 -->
+<!--       ), -->
+<!--       negative = case_when( -->
+<!--         value < 0 ~ value, -->
+<!--         value >= 0 ~ 0 -->
+<!--       ) -->
+<!--     ) -->
+
+<!--   projData <- knmi_mapped %>% -->
+<!--     filter(scenario == input$scenario2) %>% -->
+<!--     mutate(value = value/10) %>%  #convert mm to cm -->
+<!--     mutate( -->
+<!--       positive = case_when( -->
+<!--         value >= 0 ~ value, -->
+<!--         value < 0 ~ 0 -->
+<!--       ), -->
+<!--       negative = case_when( -->
+<!--         value < 0 ~ value, -->
+<!--         value >= 0 ~ 0 -->
+<!--       ) -->
+<!--     ) -->
+
+<!--   fig <- ggplot() + -->
+<!--     # observations: -->
+<!--     geom_area(data = obsData, aes(x = year, y = positive, fill = component),  -->
+<!--               position = 'stack', alpha = alphaProcessesObs, color = "darkgrey", size = 0.5) + -->
+<!--     geom_area(data = obsData, aes(x = year, y = negative, fill = component),  -->
+<!--               position = 'stack', alpha = alphaProcessesObs, color = "darkgrey", size = 0.5) + -->
+<!--     # projections: -->
+<!--     geom_area(data = projData,  -->
+<!--               aes(x = year, y = positive, fill = component),  -->
+<!--               position = 'stack', alpha = alphaProcessesProj, color = "darkgrey", size = 0.5) + -->
+<!--     geom_area(data = projData,  -->
+<!--               aes(x = year, y = negative, fill = component),  -->
+<!--               position = 'stack', alpha = alphaProcessesProj, color = "darkgrey", size = 0.5) + -->
+<!--     ylab("sea level change (cm)") + -->
+<!--     # ggtitle("Underlying processes for sea level variation") + -->
+<!--     scale_fill_manual(values = plotFillColors) + -->
+<!--     # coord_cartesian(ylim = c(-75, 320)) + -->
+<!--     theme( -->
+<!--       axis.ticks = element_blank(), -->
+<!--       axis.title = element_text(face = "italic"), -->
+<!--       legend.title=element_blank() -->
+<!--     ) -->
+
+
+
+<!--   # plot(fig) -->
+<!--   ggplotly(fig) %>%  -->
+<!--     layout( -->
+<!--       legend = list( -->
+<!--         orientation = 'v', -->
+<!--         x = 1, -->
+<!--         y = 0.9 -->
+<!--       ), -->
+<!--       yaxis = list(hoverformat = '.2f') -->
+<!--     ) -->
+<!-- }) -->
+<!-- ``` -->
 
 
 
@@ -862,8 +920,40 @@ Sidebar {.sidebar data-width="300px"}
 Column 
 -----------------------------------------------------------------------
 
+###
+
+
 ```{r}
-h3("placeholder figure timeseries per station")
+
+fillPage(
+  fillCol(height = "80%", flex = c(1,2,10), 
+          h3("Observation timeseries per station"),
+          p("The observations per station are shown here for all six main gauge stations at the Dutch coast (points). The lines are linear fits through the data, where the effect of tide and wind is included. The effect of wind can not be included before 1947, because not enough data are available."),
+          plotlyOutput("stationPlot", height = "80%", width = "100%")#,
+  )
+)
+
+output$stationPlot <- renderPlotly({
+  
+  p <- sealevelAllStations %>% 
+    left_join(stations %>% select(ID, StationName), by = c(station = "ID")) %>%
+    mutate(`height in cm` = height / 10,
+           `predicted_linear_with_wind in cm` = predicted_linear_with_wind / 10) %>%
+    ggplot() +
+    geom_point(aes(year, `height in cm`, color = StationName)) +
+    geom_line(aes(year, `predicted_linear_with_wind in cm`, color = StationName))
+  
+  ggplotly(p) %>% 
+    layout(
+      legend = list(
+        orientation = 'v',
+        x = 0.05,
+        y = 0.95
+      ),
+      yaxis = list(hoverformat = '.2f')
+    )
+})
+
 ```
 
 
@@ -882,12 +972,12 @@ h3("General background")
 # htmltools::includeMarkdown('doc/generalbackground.md')
 ```
 
-This visualization is a revisit of the visual presented in the [Sea Level Monitor (2018)](https://www.deltares.nl/nl/nieuws/nauwkeuriger-inzicht-huidige-zeespiegel-langs-de-nederlandse-kust/){target="_blank"}.
+>This visualization is a revisit of the visual presented in the [Sea Level Monitor (2018)](https://www.deltares.nl/nl/nieuws/nauwkeuriger-inzicht-huidige-zeespiegel-langs-de-nederlandse-kust/){target="_blank"}. Compared to this previous visual, the following has changed:
 
-Compared to the previous visual, the following has changed:
+*   The scenarios (projections) have been recalculated by KNMI for the "Klimaatsignaal '21", also specifying the underlying processes responsible for sea level change. 
+*   The underlying processes of observations and projections have been visualiazed together.
 
-*   The scenarios (projections) have been recalculated by KNMI.
-*   The underlying processes can be visualized, and the effect of each on the sea level can be visualized.
+
 
 
 
@@ -899,11 +989,12 @@ h3("Observations")
 ```
 
 
-Yearly average Mean Sea level data for the main Dutch stations have been downloaded via [PSMSL](https://www.psmsl.org/){target="_blank"} (Permanent Service for Mean Sea Level). The data originate from the [Ministry of Infrastructure and Water Management](https://www.rijkswaterstaat.nl/en){target="_blank"}. The data are checked and analysed every year in the [Sea Level Monitor](https://nbviewer.jupyter.org/github/openearth/sealevel/blob/master/notebooks/dutch-sea-level-monitor.ipynb){target="_blank"}, which is maintained by [Deltares](https://www.deltares.nl/en/){target="_blank"}.
+>Yearly average Mean Sea level data for the main Dutch stations have been downloaded via [PSMSL](https://www.psmsl.org/){target="_blank"} (Permanent Service for Mean Sea Level). The data originate from the [Ministry of Infrastructure and Water Management](https://www.rijkswaterstaat.nl/en){target="_blank"}. The data are checked and analysed every year in the [Sea Level Monitor](https://nbviewer.jupyter.org/github/openearth/sealevel/blob/master/notebooks/dutch-sea-level-monitor.ipynb){target="_blank"}, which is maintained by [Deltares](https://www.deltares.nl/en/){target="_blank"}.
 
-Calculation of local budgets for observed sealevel is done in Python using [this Jupyter notebook](https://github.com/openearth/sealevel/blob/master/notebooks/analysis/budget/local-budget.ipynb){target="_blank"}.
+>Calculation of local budgets for observed sealevel is done in Python using [this Jupyter notebook](https://github.com/openearth/sealevel/blob/master/notebooks/analysis/budget/local-budget.ipynb){target="_blank"}.
 
-Processes contributing to sea level change have been attributed differently to observations and projections. In this visualizations, a mapping was made to link those processes that can be compared between observations and projections. The remaining effects are categorized under "other".
+>Processes contributing to sea level change have been attributed differently to observations and projections. In this visualizations, a mapping was made to link those processes that can be compared between observations and projections. The remaining effects are categorized under "other".
+
 
 ```{r, out.width="100%", fig.cap= "Position of the main Dutch sea level stations."}
 leaflet(stations) %>% 
@@ -920,9 +1011,9 @@ h3("Projections")
 ```
 
 
-The projections in this version of the interactive tool are presented in the [report on KMI '14 scenarios](https://knmiprojects.archiefweb.eu/?subsite=klimaatscenarios#archive){target="_blank"}
+>The projections in this version of the interactive tool are presented in the [KNMI klimaatsignaal '21](https://www.knmi.nl/kennis-en-datacentrum/achtergrond/knmi-klimaatsignaal-21){target="_blank"}. More information on KNMI scenario's is available via [this link](https://www.knmi.nl/kennis-en-datacentrum/uitleg/knmi-klimaatscenario-s){target="_blank"}
 
-These scenarios will be replace at the end of 2021 with the KNMI 2021 climate scenarios. 
+
 
 Column {data-width=30 data-padding=30}
 -----------------------------------------------------------------------
@@ -931,7 +1022,9 @@ Column {data-width=30 data-padding=30}
 h3("Mapping of processes")
 ```
 
-In the current analyses, the sea level change could be attributed to different processes. Because of the different methodologies, the attribution to some of these processes are not the same for observations and projections. In this visualization, an attempt was done to map the effect of processes in observations and projections to a common process name. This mapping is found below in the tables below. In case processes could not be matched to a common name, the label "other" was used. In next versions of this visualization, a more complete mapping will be provided. 
+>In the current analyses, the sea level change were attributed to different processes. Because of the different methodologies to do this for observations as compared to the projections, the attribution to some of these processes differ between observations and projections. In this visualization, an attempt was done to map the effect of processes in observations and projections to a common process name. This mapping is found in the tables below. In case processes could not be matched to a common name, the label "other" was used.
+
+>Note that the effect of "tide" can only be attributed to observations, since tide is currently not included in the calculation of projections. 
 
 
 ```{r observationMapping}
@@ -946,7 +1039,7 @@ projection_mapping %>% unlist(use.names = T) %>% as.data.frame() %>% rename(`com
 
 
 
-<!-- If you want to include downloadable tables: https://martinctc.github.io/blog/vignette-downloadable-tables-in-rmarkdown-with-the-dt-package/ -->
+
 
 
 
