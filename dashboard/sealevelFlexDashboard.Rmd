@@ -251,7 +251,7 @@ plotFillColors = c(
   "antarctica" = "#90d6d3",
   "other" = "grey",
   "5-95 percentile projected sea level" = "#fbedee",
-  "tide" = "red"
+  "tide" = "#8f8ee9"
 )
 
 # names on left side appear as legend in scenario plot
@@ -294,7 +294,12 @@ Column
 ```{r}
 fillPage(
   fillCol(height = "80%", flex = c(NA,1), 
-          h3("Dutch Sea Level Visualization. Concept version")
+          h3("Dutch Sea Level Visualization. Concept version"),
+          actionButton(
+            "clickMe",
+            label = "Proceed", class = "btn btn-lg btn-primary",
+            onclick="location.href='#section-dutch-sea-level';"
+          )
   )
 )
 
@@ -305,6 +310,7 @@ This app visualizes the sea level at the Dutch coast. This version is still in c
 Known issues:
 
 *   The effect of tide is currently not properly included yet. 
+
 
 
 
@@ -789,123 +795,124 @@ output$combinedPlot <- renderPlotly({
 
 
 
-<!-- Underlying processes -->
-<!-- ====================================================================== -->
+Underlying processes
+======================================================================
 
-<!-- Sidebar {.sidebar data-width="300px"} -->
-<!-- ------------------------------------------------------------ -->
+Sidebar {.sidebar data-width="300px"}
+------------------------------------------------------------
 
-<!-- ### Preferences -->
+### Preferences
 
-<!-- ```{r} -->
-<!-- shinyWidgets::radioGroupButtons( -->
-<!--   direction = "horizontal", -->
-<!--   inputId = "scenario2", -->
-<!--   label = span( -->
-<!--     "Choose the projection scenario:",  -->
-<!--     class = "caption", -->
-<!--     tags$span( -->
-<!--       icon("info-circle", "fa-1x"), -->
-<!--       id="scenario2-info") -->
-<!--   ), -->
-<!--   choices = scenarios, -->
-<!--   status = "primary", -->
-<!--   justified = TRUE -->
-<!-- ) -->
+```{r}
+shinyWidgets::radioGroupButtons(
+  direction = "horizontal",
+  inputId = "scenario2",
+  label = span(
+    "Choose the projection scenario:",
+    class = "caption",
+    tags$span(
+      icon("info-circle", "fa-1x"),
+      id="scenario2-info")
+  ),
+  choices = scenarios,
+  status = "primary",
+  justified = TRUE
+)
 
-<!-- bsPopover(id = "scenario2-info", -->
-<!--           title = scenarioPopoverTitle, -->
-<!--           content = scenarioPopoverContent, -->
-<!--           placement = "right", trigger = "hover", -->
-<!--           options = list(container = "body")) -->
+bsPopover(id = "scenario2-info",
+          title = scenarioPopoverTitle,
+          content = scenarioPopoverContent,
+          placement = "right", trigger = "hover",
+          options = list(container = "body"))
 
-<!-- ``` -->
+```
 
-<!-- Column  -->
-<!-- ----------------------------------------------------------------------- -->
+Column
+-----------------------------------------------------------------------
 
-<!-- ### -->
+###
 
-<!-- ```{r bijdrageComponentenMetingen} -->
+```{r bijdrageComponentenMetingen}
 
-<!-- fillPage( -->
-<!--   fillCol(height = "80%", flex = c(NA,1),  -->
-<!--           h3("Contribution of underlying processes for sea level variation"), -->
-<!--           plotlyOutput("processPlot", height = "80%", width = "100%") -->
-<!--   ) -->
-<!-- ) -->
-
-
-<!-- output$processPlot <- renderPlotly({ -->
+fillPage(
+  fillCol(height = "80%", flex = c(NA,1),
+          h3("Contribution of underlying processes for sea level variation"),
+          plotlyOutput("processPlot", height = "80%", width = "100%")
+  )
+)
 
 
-<!--   obsData <- sealevelPlus %>% -->
-<!--     pivot_longer(cols = -c(year, height), -->
-<!--                  names_to = "component", values_to = "value" -->
-<!--     ) %>% -->
-<!--     mutate(value = value/10) %>%  #convert mm to cm -->
-<!--     mutate( -->
-<!--       positive = case_when( -->
-<!--         value >= 0 ~ value, -->
-<!--         value < 0 ~ 0 -->
-<!--       ), -->
-<!--       negative = case_when( -->
-<!--         value < 0 ~ value, -->
-<!--         value >= 0 ~ 0 -->
-<!--       ) -->
-<!--     ) -->
-
-<!--   projData <- knmi_mapped %>% -->
-<!--     filter(scenario == input$scenario2) %>% -->
-<!--     mutate(value = value/10) %>%  #convert mm to cm -->
-<!--     mutate( -->
-<!--       positive = case_when( -->
-<!--         value >= 0 ~ value, -->
-<!--         value < 0 ~ 0 -->
-<!--       ), -->
-<!--       negative = case_when( -->
-<!--         value < 0 ~ value, -->
-<!--         value >= 0 ~ 0 -->
-<!--       ) -->
-<!--     ) -->
-
-<!--   fig <- ggplot() + -->
-<!--     # observations: -->
-<!--     geom_area(data = obsData, aes(x = year, y = positive, fill = component),  -->
-<!--               position = 'stack', alpha = alphaProcessesObs, color = "darkgrey", size = 0.5) + -->
-<!--     geom_area(data = obsData, aes(x = year, y = negative, fill = component),  -->
-<!--               position = 'stack', alpha = alphaProcessesObs, color = "darkgrey", size = 0.5) + -->
-<!--     # projections: -->
-<!--     geom_area(data = projData,  -->
-<!--               aes(x = year, y = positive, fill = component),  -->
-<!--               position = 'stack', alpha = alphaProcessesProj, color = "darkgrey", size = 0.5) + -->
-<!--     geom_area(data = projData,  -->
-<!--               aes(x = year, y = negative, fill = component),  -->
-<!--               position = 'stack', alpha = alphaProcessesProj, color = "darkgrey", size = 0.5) + -->
-<!--     ylab("sea level change (cm)") + -->
-<!--     # ggtitle("Underlying processes for sea level variation") + -->
-<!--     scale_fill_manual(values = plotFillColors) + -->
-<!--     # coord_cartesian(ylim = c(-75, 320)) + -->
-<!--     theme( -->
-<!--       axis.ticks = element_blank(), -->
-<!--       axis.title = element_text(face = "italic"), -->
-<!--       legend.title=element_blank() -->
-<!--     ) -->
+output$processPlot <- renderPlotly({
 
 
+  obsData <- sealevelPlus %>%
+    select(-tide) %>%
+    pivot_longer(cols = -c(year, height),
+                 names_to = "component", values_to = "value"
+    ) %>%
+    mutate(value = value/10) %>%  #convert mm to cm
+    mutate(
+      positive = case_when(
+        value >= 0 ~ value,
+        value < 0 ~ 0
+      ),
+      negative = case_when(
+        value < 0 ~ value,
+        value >= 0 ~ 0
+      )
+    )
 
-<!--   # plot(fig) -->
-<!--   ggplotly(fig) %>%  -->
-<!--     layout( -->
-<!--       legend = list( -->
-<!--         orientation = 'v', -->
-<!--         x = 1, -->
-<!--         y = 0.9 -->
-<!--       ), -->
-<!--       yaxis = list(hoverformat = '.2f') -->
-<!--     ) -->
-<!-- }) -->
-<!-- ``` -->
+  projData <- knmi_mapped %>%
+    filter(scenario == input$scenario2) %>%
+    mutate(value = value/10) %>%  #convert mm to cm
+    mutate(
+      positive = case_when(
+        value >= 0 ~ value,
+        value < 0 ~ 0
+      ),
+      negative = case_when(
+        value < 0 ~ value,
+        value >= 0 ~ 0
+      )
+    )
+
+  fig <- ggplot() +
+    # observations:
+    geom_area(data = obsData, aes(x = year, y = positive, fill = component),
+              position = 'stack', alpha = alphaProcessesObs, color = "darkgrey", size = 0.5) +
+    geom_area(data = obsData, aes(x = year, y = negative, fill = component),
+              position = 'stack', alpha = alphaProcessesObs, color = "darkgrey", size = 0.5) +
+    # projections:
+    geom_area(data = projData,
+              aes(x = year, y = positive, fill = component),
+              position = 'stack', alpha = alphaProcessesProj, color = "darkgrey", size = 0.5) +
+    geom_area(data = projData,
+              aes(x = year, y = negative, fill = component),
+              position = 'stack', alpha = alphaProcessesProj, color = "darkgrey", size = 0.5) +
+    ylab("sea level change (cm)") +
+    # ggtitle("Underlying processes for sea level variation") +
+    scale_fill_manual(values = plotFillColors) +
+    # coord_cartesian(ylim = c(-75, 320)) +
+    theme(
+      axis.ticks = element_blank(),
+      axis.title = element_text(face = "italic"),
+      legend.title=element_blank()
+    )
+
+
+
+  # plot(fig)
+  ggplotly(fig) %>%
+    layout(
+      legend = list(
+        orientation = 'v',
+        x = 1,
+        y = 0.9
+      ),
+      yaxis = list(hoverformat = '.2f')
+    )
+})
+```
 
 
 
@@ -977,6 +984,15 @@ h3("General background")
 *   The scenarios (projections) have been recalculated by KNMI for the "Klimaatsignaal '21", also specifying the underlying processes responsible for sea level change. 
 *   The underlying processes of observations and projections have been visualiazed together.
 
+design: Deltares
+
+client: Rijkswaterstaat
+
+data: Deltares, KNMI
+
+styling: http://dirmajanse.nl/
+
+code: https://github.com/openearth/sealevel/tree/sealevelVisual/dashboard 
 
 
 
@@ -1011,7 +1027,9 @@ h3("Projections")
 ```
 
 
->The projections in this version of the interactive tool are presented in the [KNMI klimaatsignaal '21](https://www.knmi.nl/kennis-en-datacentrum/achtergrond/knmi-klimaatsignaal-21){target="_blank"}. More information on KNMI scenario's is available via [this link](https://www.knmi.nl/kennis-en-datacentrum/uitleg/knmi-klimaatscenario-s){target="_blank"}
+>The projections in this version of the interactive tool are based on the [KNMI klimaatsignaal '21](https://www.knmi.nl/kennis-en-datacentrum/achtergrond/knmi-klimaatsignaal-21){target="_blank"}. More information on KNMI scenario's is available via [this link](https://www.knmi.nl/kennis-en-datacentrum/uitleg/knmi-klimaatscenario-s){target="_blank"}. 
+
+>The scenario dataset represent sea level anomalies with respect to the period 1986-2005. To align these data with the observations, the mean observed anual sea level over  the period 1986-2005 was added (>2005) to the KNMI scenarios. This the conversion from "anomalies" to water level related to NAP ("Nieuw Amsterdams Peil", Dutch sea level reference).
 
 
 
