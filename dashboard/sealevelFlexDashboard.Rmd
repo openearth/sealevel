@@ -72,19 +72,27 @@ sealevelurl <- "https://raw.githubusercontent.com/openearth/sealevel/master/data
 sealevel <- read_csv(sealevelurl,
                      comment = "#")
 
-sealevelAllStationsurl <- "https://raw.githubusercontent.com/openearth/sealevel/master/data/deltares/results/dutch-sea-level-monitor-export-stations-2021-11-26.csv"
+# sealevelAllStationsurl <- "https://raw.githubusercontent.com/openearth/sealevel/master/data/deltares/results/dutch-sea-level-monitor-export-stations-2021-11-26.csv"
+
+sealevelAllStationsurl <-
+"https://raw.githubusercontent.com/openearth/sealevel/feature/tide-update/data/deltares/results/dutch-sea-level-monitor-export-2022-01-14.csv"
+
 sealevelAllStations <- read_csv(sealevelAllStationsurl,
                      comment = "#")
+
+sealevelAllStations$`sea_surface_height_due_to_tide` = sealevelAllStations$`sea_surface_height_due_to_tide` - mean(sealevelAllStations$`sea_surface_height_due_to_tide`)
 
 
 # Read observed component dataset
 # observed_components_no_tide <- read_csv("../data/deltares/observed_components_no_tide.csv")
 observed_components <- read_csv("../data/deltares/observed_components.csv")
 
-observed_components$`sea_surface_height_due_to_tide [mm]` = observed_components$`sea_surface_height_due_to_tide [mm]` - mean(observed_components$`sea_surface_height_due_to_tide [mm]`)
+# observed_components$`sea_surface_height_due_to_tide [mm]` = observed_components$`sea_surface_height_due_to_tide [mm]` - mean(observed_components$`sea_surface_height_due_to_tide [mm]`)
 
 observed_components$`Surge [mm]` = observed_components$`Surge [mm]` - mean(observed_components$`Surge [mm]`)
 
+observed_components <- observed_components %>% 
+  left_join(sealevelAllStations %>% select(year, sea_surface_height_due_to_tide), by = c(Year = "year"))
 
 # Read projected data
 # read knmi 2021 scenario data direct from netcdf files
@@ -116,9 +124,8 @@ load(file.path(datadir, "knmi_df.Rdata"))
 # knmi_df <- read_csv(url, comment = "#") %>%
 #   mutate(perc_ts = 10*perc_ts)                        # everything in mm
 
-# From correspondence woth Dewi: "The dataset is sea level anomalies with respect to the period 1986-2005. So 0 is the mean observed sea level for this period."
+# From correspondence with KNMI: "The dataset is sea level anomalies with respect to the period 1986-2005. So 0 is the mean observed sea level for this period."
 # FB: We will compute the mean observed anual sea level over  the period 1986-2005 and add that sea level with  respect to NAP (>2005) to the KNMI scenarios. This the conversion from "anomalies" to NAP. 
-# (checked with Willem, discussed with Dewi,  same as previous study)
 
 meanSL86_05 <- sealevel %>% 
   filter(year %in% c(1986:2005)) %>% 
@@ -176,12 +183,12 @@ observation_mapping <- list(
   `Antarctic Ice Sheet [mean]` = "antarctica", 
   `Terrestrial Water Storage [mean]` = "terrestrial",	
   # `GIA [mean]` = "other"#,  #not necessary, because subsidence is already subtracted above
-  `sea_surface_height_due_to_tide [mm]` = "tide"
+  `sea_surface_height_due_to_tide` = "tide"
 )
 
 projection_mapping <- list(
-  `Global steric` = "other",  # Dewi discuss with Fedor
-  `Local ocean` = "surge", #"steric",  # Dewi: this is local steric and wind combined
+  `Global steric` = "other",  
+  `Local ocean` = "surge", #"steric",  # this is local steric and wind combined
   `Inverse barometer` = "surge", # meenemen als surge
   `Glaciers` = "glaciers",
   `Greenland SMB` = "greenland",
@@ -294,7 +301,7 @@ Column
 ```{r}
 fillPage(
   fillCol(height = "80%", flex = c(NA,1), 
-          h3("Dutch Sea Level Visualization. Concept version"),
+          h3("Dutch Sea Level Visualization."),
           actionButton(
             "clickMe",
             label = "Proceed", class = "btn btn-lg btn-primary",
@@ -305,13 +312,7 @@ fillPage(
 
 ```
 
-This app visualizes the sea level at the Dutch coast. This version is still in concept. 
-
-Known issues:
-
-*   The effect of tide is currently not properly included yet. 
-
-
+This app visualizes the sea level at the Dutch coast. Underlying data will be updated with new versions when available.
 
 
 
@@ -825,7 +826,23 @@ bsPopover(id = "scenario2-info",
           placement = "right", trigger = "hover",
           options = list(container = "body"))
 
+br()
+
+h3("Explanation")
+
+p("Processes contributing to the change in sea level are visualized as stacked lines representing the sea level due to the individual processes relative to NAP.")
+
+br()
+
+p("For observations, only the period has been regarded where the contribution of all processes was resolved. ")
+
+p("Due to the overlap in observations and prediction scenarios, part of the graph contains overlapping surfaces. The surfaces have been made half-transparent for that reason.")
 ```
+
+
+
+
+
 
 Column
 -----------------------------------------------------------------------
@@ -982,7 +999,8 @@ h3("General background")
 >This visualization is a revisit of the visual presented in the [Sea Level Monitor (2018)](https://www.deltares.nl/nl/nieuws/nauwkeuriger-inzicht-huidige-zeespiegel-langs-de-nederlandse-kust/){target="_blank"}. Compared to this previous visual, the following has changed:
 
 *   The scenarios (projections) have been recalculated by KNMI for the "Klimaatsignaal '21", also specifying the underlying processes responsible for sea level change. 
-*   The underlying processes of observations and projections have been visualiazed together.
+*   The underlying processes contributing to sea level change for observations and projections have been visualized together.
+
 
 design: Deltares
 
