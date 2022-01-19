@@ -40,12 +40,6 @@ rename <- dplyr::rename
 
 status = "concept"
 
-# extra functionality to plot fit equation in chart
-# Lijkt niet te werken in plotly
-# library(ggpmisc)
-
-# enable bookmarking of web page; this does not work properly until ui is included as a function
-# shiny::enableBookmarking(store='server')
 
 #===== user management (temporary) ==================================
 
@@ -64,35 +58,34 @@ status = "concept"
 
 # Station information
 
-stations <- read_delim("../data/psmsl/NLstations.csv", delim = ";")
+stations <- read_delim("https://raw.githubusercontent.com/openearth/sealevel/sealevelVisual/data/psmsl/NLstations.csv", delim = ";")
 
 # Read the sealevel dataset 
 # sealevellocatl <- "../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv"
-sealevelurl <- "https://raw.githubusercontent.com/openearth/sealevel/master/data/deltares/results/dutch-sea-level-monitor-export-2021-11-24.csv"
+# sealevelurl <- "https://raw.githubusercontent.com/openearth/sealevel/master/data/deltares/results/dutch-sea-level-monitor-export-2021-11-24.csv"
+
+sealevelurl <- "https://raw.githubusercontent.com/openearth/sealevel/feature/tide-update/data/deltares/results/dutch-sea-level-monitor-export-2022-01-14.csv"
+
 sealevel <- read_csv(sealevelurl,
                      comment = "#")
 
-# sealevelAllStationsurl <- "https://raw.githubusercontent.com/openearth/sealevel/master/data/deltares/results/dutch-sea-level-monitor-export-stations-2021-11-26.csv"
-
-sealevelAllStationsurl <-
-"https://raw.githubusercontent.com/openearth/sealevel/feature/tide-update/data/deltares/results/dutch-sea-level-monitor-export-2022-01-14.csv"
+sealevelAllStationsurl <- "https://raw.githubusercontent.com/openearth/sealevel/master/data/deltares/results/dutch-sea-level-monitor-export-stations-2021-11-26.csv"
 
 sealevelAllStations <- read_csv(sealevelAllStationsurl,
                      comment = "#")
 
-sealevelAllStations$`sea_surface_height_due_to_tide` = sealevelAllStations$`sea_surface_height_due_to_tide` - mean(sealevelAllStations$`sea_surface_height_due_to_tide`)
+sealevel$`sea_surface_height_due_to_tide` = sealevel$`sea_surface_height_due_to_tide` - mean(sealevel$`sea_surface_height_due_to_tide`)
 
 
 # Read observed component dataset
 # observed_components_no_tide <- read_csv("../data/deltares/observed_components_no_tide.csv")
 observed_components <- read_csv("../data/deltares/observed_components.csv")
 
-# observed_components$`sea_surface_height_due_to_tide [mm]` = observed_components$`sea_surface_height_due_to_tide [mm]` - mean(observed_components$`sea_surface_height_due_to_tide [mm]`)
-
 observed_components$`Surge [mm]` = observed_components$`Surge [mm]` - mean(observed_components$`Surge [mm]`)
 
+# import tide into table with other observed components
 observed_components <- observed_components %>% 
-  left_join(sealevelAllStations %>% select(year, sea_surface_height_due_to_tide), by = c(Year = "year"))
+  left_join(sealevel %>% select(year, sea_surface_height_due_to_tide), by = c(Year = "year"))
 
 # Read projected data
 # read knmi 2021 scenario data direct from netcdf files
