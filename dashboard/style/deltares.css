@@ -1,0 +1,48 @@
+caption,.caption {
+  font-style: italic;
+  font-size: smaller;
+  color: black;
+}
+
+/* Styling tables */
+
+table {
+  border-collapse: collapse;
+  border-color: #9ABAD9;
+  border-spacing:0;
+}
+
+table td {
+  background-color: #EBF5FF;
+  border-color:#9ABAD9;
+  border-style:solid;
+  border-width:0px;
+  color:#444;
+  overflow:hidden;
+  padding:9px 11px;
+  word-break:normal;
+}
+
+table th {
+  background-color:#2E89BF;
+  border-color:#9ABAD9;
+  border-style:solid;
+  border-width:0px;
+  color:#fff;
+  font-weight:normal;
+  overflow:hidden;
+  padding:9px 11px;
+  word-break:normal;
+}
+table table-lboi {
+  border-color:inherit;
+  text-align:left;
+  vertical-align:middle
+}
+
+table table-48yq{
+  background-color:#D2E4FC;
+  border-color:inherit;
+  text-align:left;
+  vertical-align:middle
+}

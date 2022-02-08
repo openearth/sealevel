@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap&display=swap')
+@font-face {
+  font-family: 'Asap', sans-serif;
+}
+
+body {
+  padding: 60px 10px 60px 10px;
+  font-family: 'Asap', sans-serif;
+  color: black;
+  background-color: white;
+}
+
+.navbar-inverse {
+  background-color: #84D5D0;
+  color: #84D5D0;
+}
+
+.navbar-nav {
+  text-transform: uppercase;
+}
+
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand {
+  color: #08948D;
+  background-color: #84D5D0;
+}
+
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>.active>a:focus, 
+.navbar-inverse .navbar-nav>li>a:active, .navbar-inverse .navbar-nav>.active>a {
+  color: #08948D;
+  background-color: #84D5D0;
+}
+.navbar-inverse .navbar-nav>li>a {
+  color: white;
+  background-color: #84D5D0;
+}
+.navbar-inverse .navbar-nav>li>a:hover {
+  color: #c7ecea;
+}
+
+.btn-primary:active, .btn-primary.active, .btn-primary.active:focus {
+  color: #08948D;
+}
+
+.section {
+  margin-left: 0;
+  border: 0;
+}
+
+.section.vertical-layout-fill {
+  margin: 0 8px 0 8px;
+  overflow: auto;
+}
+
+.section.sidebar {
+  position: absolute;
+  height: calc(100% - 112px);
+  margin: 0;
+  background-color: #EAF8F7;
+}
+
+h1,h2,h3 {
+  color: black;
+  font-weight: bold;
+}
+
+h3 {
+  color: #08969E;
+  /*text-transform: uppercase;*/
+}
+
+i {
+    color: #69C7BF;
+}
+
+.panel-auth {
+  position: fixed;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #FFF;
+  opacity: 1;
+  z-index: 99997;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
