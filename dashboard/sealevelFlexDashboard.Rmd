@@ -26,7 +26,8 @@ resource_files:
 ---
 
 ```{r global, include=FALSE}
-
+# you might need to install flexdashboard by hand using
+# install.packages(c("flexdashboard"))
 library(flexdashboard)
 library(shiny)
 library(shinyWidgets)
@@ -35,8 +36,13 @@ library(plotly)
 library(shinyBS)
 library(leaflet)
 rename <- dplyr::rename
-# library(devtools)
-# library(tidync)
+
+# only needed when we update KNMI data (done client side)
+updateData <- FALSE
+if (updateData) {
+  library(devtools)
+  library(tidync)
+}
 
 status = "concept"
 
@@ -93,29 +99,25 @@ observed_components <- observed_components %>%
 datadir <- "../data/knmi/knmi21"
 
 # run below code when updating data
-
-# scen = c("ssp126", "ssp245", "ssp585")
-# # scen = scen[1]
-# scenarios <- list()
-# for(scen in scen){
-#   con <- file.path(datadir, paste0("SeaLevelPerc_KNMIsignal_BiasCorr_NoWind_",scen,".nc"))
-#   df <- tidync::tidync(con, "perc_ts") %>% hyper_tibble()
-#   scenarios[[scen]] <- df
-#   rm(df)
-# }
-# 
-# knmi_df <- data.table::rbindlist(scenarios, use.names = TRUE, idcol = "scenario") %>%
-#   mutate(perc_ts = 10*perc_ts)                        # everything in mm
-# rm(scenarios)
-# 
-# save(knmi_df, file =  file.path(datadir, "knmi_df.Rdata"))
+if (updateData) {
+  scen = c("ssp126", "ssp245", "ssp585")
+  # scen = scen[1]
+  scenarios <- list()
+  for(scen in scen){
+    con <- file.path(datadir, paste0("SeaLevelPerc_KNMIsignal_BiasCorr_NoWind_",scen,".nc"))
+    df <- tidync::tidync(con, "perc_ts") %>% hyper_tibble()
+    scenarios[[scen]] <- df
+    rm(df)
+  }
+  
+  knmi_df <- data.table::rbindlist(scenarios, use.names = TRUE, idcol = "scenario") %>%
+    mutate(perc_ts = 10*perc_ts)                        # everything in mm
+  rm(scenarios)
+  
+  save(knmi_df, file =  file.path(datadir, "knmi_df.Rdata"))
+}
 
 load(file.path(datadir, "knmi_df.Rdata"))
-
-# old code reading knmi 2014 data from csv file
-# url <- "../data/knmi/cmip5/SeaLevelPerc_KNMI14.csv"
-# knmi_df <- read_csv(url, comment = "#") %>%
-#   mutate(perc_ts = 10*perc_ts)                        # everything in mm
 
 # From correspondence with KNMI: "The dataset is sea level anomalies with respect to the period 1986-2005. So 0 is the mean observed sea level for this period."
 # FB: We will compute the mean observed anual sea level over  the period 1986-2005 and add that sea level with  respect to NAP (>2005) to the KNMI scenarios. This the conversion from "anomalies" to NAP. 
@@ -132,18 +134,6 @@ knmi_df[knmi_df$proc == "Total","perc_ts"] <- knmi_df[knmi_df$proc == "Total","p
 # subsidence in 2095 should be 45 mm. Marc Hijma & Kooij, 20018
 # NOT necessary when subsidence is also subtracted from observations (see below)
 # In discussion with RWS, it was decided to remove subsidence from both
-
-# subsidence <- knmi_df %>% filter(proc == "Total") %>% 
-#   select(time) %>% 
-#   distinct() %>% 
-#   mutate(subsidence = (time - 1995)*0.45) %>% 
-#   arrange(time)
-# 
-# knmi_df %>% left_join(subsidence, by = c(time = "time")) %>%
-#   mutate(perc_ts = case_when(
-#     proc == "Total" ~ perc_ts + subsidence,
-#     proc != "Total" ~ perc_ts
-#   ))
 
 # Subtract subsidence from observation (better after discussion with RWS)
 subsidence <- sealevel %>% 
@@ -167,7 +157,6 @@ knmi_perc_df <- knmi_df %>%
   )
 
 #=== name mappings =============
-
 observation_mapping <- list(
   `Surge [mm]` = "surge",  # meenemen als surge
   `Steric [mean]` = "other", #"steric", (additional work is needed)
@@ -191,7 +180,6 @@ projection_mapping <- list(
 )
 
 # Map processes to data
-
 sealevelPlus <- observed_components %>%
   pivot_longer(cols = -Year, names_to = "proc") %>%
   mutate(proc = recode(proc, !!!observation_mapping)) %>%  # apply mapping
@@ -205,7 +193,7 @@ sealevelPlus <- observed_components %>%
   right_join(sealevel %>% select(year, height)) %>%
   arrange(year)
 
-
+# Mapping KNMI variables to processes
 knmi_mapped <- knmi_df %>% 
   filter(percentiles %in% c(50)) %>%
   pivot_wider(
@@ -280,32 +268,6 @@ alphaProcessesObs = 0.5
 alphaProcessesProj = 0.5
 
 ```
-
-
-Welcome
-=========================================================================
-
-Sidebar {.sidebar data-width="300px"}
-------------------------------------------------------------
-
-Column 
------------------------------------------------------------------------
-
-```{r}
-fillPage(
-  fillCol(height = "80%", flex = c(NA,1), 
-          h3("Dutch Sea Level Visualization."),
-          actionButton(
-            "clickMe",
-            label = "Proceed", class = "btn btn-lg btn-primary",
-            onclick="location.href='#section-dutch-sea-level';"
-          )
-  )
-)
-
-```
-
-This app visualizes the sea level at the Dutch coast. Underlying data will be updated with new versions when available.
 
 
 
@@ -644,22 +606,6 @@ output$combinedPlot <- renderPlotly({
       geom_vline(xintercept = input$breakpoint, color = "grey")
   }
   
-  # if selected show linear model
-  # if (input$`fitType` == "linear") {
-  #   formula <- y ~ x + 1
-  #   linear <-
-  #     geom_smooth(
-  #       method = "lm", 
-  #       alpha = showSE,
-  #       size = trendLineSize,
-  #       # n = nrow(sealevelPlus2),
-  #       formula = formula,
-  #       mapping = aes(color = "Trend observed sea level w standard error"),
-  #       linetype = plotLineTypes["observed"]
-  #     )
-  #   fig <- fig + linear    
-  # }
-
   if(input$`fitType` == "linear"){
     
     formula <- height ~ year
@@ -675,24 +621,13 @@ output$combinedPlot <- renderPlotly({
         method = "lm",
         alpha = showSE,
         size = trendLineSize,
-        # n = nrow(sealevelPlus2),
         formula = y ~ x,
         mapping = aes(color = "Trend observed sea level w standard error"),
         linetype = plotLineTypes["observed"]
-      ) #+
-    ## to check whether geom_smooth and abline are the same (they are)
-      # geom_abline(intercept = intercept, slope = slope,
-      #             mapping = aes(color = "Trend observed sea level w standard error"),
-      #             linetype = plotLineTypes["observed"])
-    # add text on linear trend statistics
-    # fig <- fig + annotate("text", label = paste("linear trend =", format(slope, digits = 4), "cm/year; ", "p=", pvalue), x = 1960, y = 100, size = 4)
+      ) 
     
   }
 
-  
-  
-  
-    
   if (input$`fitType` == "cyclic") {
     cyclic <-
       geom_smooth(
@@ -754,11 +689,8 @@ output$combinedPlot <- renderPlotly({
   }
   
   fig = fig + 
-    # coord_cartesian(ylim = c(-250, 750)) +  # initial limits to axes
     scale_x_continuous(breaks = waiver(), n.breaks = 10) +
     scale_color_manual(values = plotColorColors) +
-    # scale_fill_manual(values = plotFillColors) +
-    # scale_linetype_manual(values = plotLineTypes) +
     ylab("sea level in cm relative to NAP") +
     theme(
       axis.ticks = element_blank(),
@@ -766,7 +698,6 @@ output$combinedPlot <- renderPlotly({
       legend.title=element_blank()
       )
   
-  # print(fig)
   ggplotly(fig) %>% 
     layout(
       legend = list(
@@ -780,7 +711,7 @@ output$combinedPlot <- renderPlotly({
   
   # further styling of plotly legend: https://plotly.com/r/legend/ 
   
-}     #, height = 500  # in case the plot is printed as png
+} 
 )
 
 
