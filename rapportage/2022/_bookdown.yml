@@ -1,0 +1,9 @@
+book_filename: "zeespiegelmonitor"
+delete_merged_file: true
+language:
+  label:
+    fig: "Figuur "
+    tab: "Tabel "
+    eq: "Vergelijking "
+  ui:
+    chapter_name: "Hoofdstuk "
