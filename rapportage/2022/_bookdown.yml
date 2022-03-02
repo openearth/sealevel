@@ -4,6 +4,6 @@ language:
   label:
     fig: "Figuur "
     tab: "Tabel "
-    eq: "Vergelijking "
+    # eq: "Vergelijking "
   ui:
     chapter_name: "Hoofdstuk "

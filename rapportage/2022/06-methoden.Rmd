@@ -60,6 +60,8 @@ In eenvoudige vorm wordt de waterstand beschreven als de volgende vergelijking:
   (\#eq:trend)
 \end{equation} 
 
+<moet er zo uit zien:>
+$$h_t = constante + trend + versnelling? + getij + wind + residu$$
 
 De versnelling is optioneel (zie sectie \@ref(versnelling-methods). In \@ref(eq:gedetailleerdevergelijking)  is de gedetailleerde wiskundige vergelijking van het regressiemodel voor de zeewaterstand
 opgenomen.

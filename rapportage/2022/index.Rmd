@@ -2,7 +2,7 @@
 title: "Zeespiegelmonitor"
 author: "Deltares"
 date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
+# site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, bibhkv.bib, R.bib]
 biblio-style: apalike
