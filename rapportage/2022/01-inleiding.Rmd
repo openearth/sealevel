@@ -1,5 +1,13 @@
 # Inleiding (OUDE VERSIE: AANPASSEN) {#inleiding}
 
+```{r, include=FALSE}
+
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
 
 In dit rapport wordt de actuele stand en stijging van de zeespiegel langs de Nederlandse kust beschreven. Deze huidige zeespiegel is belangrijk voor het Nederlandse kustbeleid. De Nederlandse kust is fundamenteel voor onze veiligheid, drinkwatervoorziening, ecologie en recreatie.
 
@@ -12,15 +20,8 @@ In de laatste jaren is de hoeveelheid tijdelijk teruggebracht. Er is meer zand b
 De directe koppeling tussen kustfundament, zeespiegelstijging en suppletievolume maken het doelmatig suppleren en de precieze bepaling van de zeespiegelstijging en het kustfundament tot relevante onderzoeksthema's. In het programma `Kustgenese 2' wordt toegewerkt naar een verdere uitwerking van deze aanpak. De grenzen van het kustfundament worden opnieuw bepaald. De uitwisseling tussen het kustfundament en de bekkens (Waddenzee, Westerschelde) wordt geschat en er wordt gekeken naar uitwisselingen van sediment over de landsgrenzen.  Daarnaast, en belangrijk voor dit onderzoek, wordt ook de relatieve zeespiegelstijging verder uitgesplitst in een schatting van absolute bodemdaling en absolute zeespiegelstijging. Relatieve zeespiegelstijging is de stijging van de zeespiegel ten opzichte van het land, de som van de absolute zeespiegelstijging en de daling van het landgebonden referentievlak, zie \@ref(fig:relatievezeespiegel) en de nadere uitwerking in [@Dillingh2010].
 
 ```{r relatievezeespiegel, fig.cap="Relatieve versus absolute zeespiegelstijging."}
-# knitr::include_graphics("path-to-relatievezeespiegel-figure")
+knitr::include_graphics("figures/relatievezeespiegel.png")
 ```
-
-<!-- \begin{figure}[htbp] -->
-<!--   \centering -->
-<!--   \includegraphics[width=\linewidth]{relatievezeespiegel} -->
-<!--   \caption[Relatieve zeespiegel]{Relatieve versus absolute zeespiegelstijging.} -->
-<!--   \label{fig:relatievezeespiegel} -->
-<!-- \end{figure} -->
 
 In de context van kustbeheer wordt onder de `zeespiegel' verstaan de over langere tijd gemiddelde hoogte van het zeeoppervlak, waaruit de korte termijn fluctuaties (windgolven, getij, windopzet etc.) nagenoeg zijn verdwenen. Wat overblijft is de geleidelijke verandering van de hoogte van het zeeoppervlak. Dit wordt nader uitgewerkt in \ref{#methode}.
 

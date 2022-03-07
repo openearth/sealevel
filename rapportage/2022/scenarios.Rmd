@@ -1,0 +1,136 @@
+# Scenarios
+
+```{r, include=FALSE}
+
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+Zoals we in
+\@ref(toepassingen) gezien hebben zijn er
+zeespiegelindicatoren gebaseerd op alleen metingen (trends,
+gemiddelden), de combinatie van modellen en metingen (heranalyses) en
+indicatoren op basis van modelberekingen zonder metingen (scenario's).
+Daarom kijken we in deze sectie apart naar de aansluiting tussen
+scenario's en metingen.
+
+In de context van klimaatonderzoek is er inconsistentie over de
+terminologie van verwachtingen, voorspellingen en scenario's en daardoor
+is er verwarring over welke kwaliteiten aan de termen toegedicht kunnen
+worden [@Bray2009]. Ook in Nederlands beleid worden diverse termen
+gebruikt.
+
+Scenario
+
+:   een plausibele toekomstige ontwikkeling, zoals gebruikt door
+    [KNMI]{acronym-label="KNMI" acronym-form="singular+short"}
+
+Projectie
+
+:   een naar door de toekomst doorgetrokken trend, zoals gebruikt door
+    [CBS]{acronym-label="CBS" acronym-form="singular+short"}.
+
+Verwachting
+
+:   een meest waarschijnlijke toekomst, bijvoorbeeld een
+    weersverwachting, zoals gebruikt door [KNMI]{acronym-label="KNMI"
+    acronym-form="singular+short"}
+
+Raming
+
+:   korte termijn verwachting, zoals gebruikt door
+    [CPB]{acronym-label="CPB" acronym-form="singular+short"},
+    [@Mooij2003].
+
+Voorspelling
+
+:   een verwachting met bekende zekerheid, bijvoorbeeld
+    getijvoorspellingen, zolas gebruikt door [RWS]{acronym-label="RWS"
+    acronym-form="singular+short"}
+
+Andere gebruikte termen in deze context zijn prognoses, vooruitzichten
+en toekomstperspectieven.
+
+In Nederland wordt doorgaans gebruik gemaakt van de zogenaamde
+[KNMI]{acronym-label="KNMI" acronym-form="singular+short"} scenario's
+[@Hurk2014]. Het zijn representaties van een plausibel toekomstige
+ontwikkeling, op basis van paden gedefinieerd door
+[IPCC]{acronym-label="IPCC" acronym-form="singular+short"} [@IPCC2013].
+Een voorbeeld van hoe deze scenario's geduid worden is het volgende. In
+de vergadering over de wet opslag duurzame energie van 28 november 2012
+gebruikte Minister Kamp een zeespiegelscenario als volgt: "Op dit moment
+wordt ons voorspeld dat er in een eeuw tijd een zeespiegelstijging van 1
+meter zal zijn. \... Stel nu dat op een gegeven moment blijkt dat het
+echt naar de verkeerde kant doorslaat en we er helemaal niets aan hebben
+gedaan omdat we alles maar flauwekul vonden en geen kosten wilden maken.
+Dan zijn de bedrijven in Nederland pas echt slecht uit.". Er zit dus
+enige spanning tussen waar we rekening mee houden, een scenario, en wat
+echt uit komt. Dat kan positief uitvallen, de zeespiegel kan lager zijn
+dan onze scenario's, en het kan negetief uitvallen, de zeespiegel kan
+harder stijgen dan de scenario's. Ook zit er vaak verschil tussen hoe de
+scenario's bedoeld waren, een mogelijke toekomstige ontwikkeling van
+emissie gecombineerd met een verhaallijn [@Moss2010], gebruikt als een
+voorspelling met bekende zekerheid.
+
+Hier laten we zien hoe de scenario's aansluiten bij de metingen die
+sinds de productie van de scenario's zijn uitgevoerd. Hierbij moet met
+een aantal technische details rekening gehouden worden.
+
+Epoch
+
+:   De zeespiegel scenario's zijn relatief ten opzichte van de
+    gemiddelde zeespiegel over de periode 1986 tot 2015. De zeespiegel
+    was toen al 2 cm boven [NAP]{acronym-label="NAP"
+    acronym-form="singular+short"}, dus de scenario's moeten, indien
+    gepresenteerd samen met getijstations beginnen bij de zeespiegel in
+    de zogenaamde epoch.
+
+Absoluut
+
+:   De zeespiegel scenario's hebben betrekking op de absolute
+    zeespiegel. Als we deze willen vergelijken met de getijde stations
+    moeten we of van de metingen de bodemdaling af halen, of bij de
+    scenario's de bodemdaling optellen. In dit rapport doen we het
+    laatste, omdat we hier kijken vanuit de toepassing aan de kust. Aan
+    de kust is de relatieve zeespiegelstijging belangrijk en niet de
+    absolute.
+
+Voor het gebruik van de informatie dat onze huidige zeespiegel zich nu
+aan de onder of bovenkant van een scenario bevindt kan men denken aan
+toepassingen waarbij men enige vrijheid heeft om een optimistische keuze
+te maken. Bij optimistische keuzes kan men denken in de context van
+adaptieve ontwerpen, onderhoud met een flexibele begroting en ontwerpen
+met goede vervangingsstrategie. Hierbij moet wel steeds rekening
+gehouden worden met het voorzorgsprincipe. Het principe dat als er
+gevaar is en sprake is van een onzekerheid, dat men de veilige kant moet
+kiezen. Dat betekent echter niet altijd zo hoog mogelijk bouwen, het
+wordt ook geïnterpreteerd als beter monitoren en zoals in de Waddenzee
+nu gehanteerd wordt, de hand aan de (gas en zout)kraan houden.
+
+In \@ref(fig:metingen-scenarios){reference-type="ref"
+reference="fig:metingen-scenarios"} zien we dat als we rekening houden
+met de anomaliteit ten opzichte van de epoch en met de bodemdaling dat
+de zeespiegel nu aan de onderkant ligt van het laagste scenario. De
+zeespiegel aan de Nederlandse kust is dus minder gestegen dan waar in de
+twee [KNMI]{acronym-label="KNMI" acronym-form="singular+short"}
+scenario's van uit werd gegaan. Dit betekent niet dat de scenario's niet
+klopppen, het waren immers uitspraken in de vorm van 'het zou kunnen
+dat', en dat was toen waar. Het betekent ook niet dat de zeespiegel niet
+sneller zou kunnen gaan stijgen langs de Nederlandse kust.
+
+Gegeven dat het ijs smelt en de aarde opwarmt, verwachten we nog steeds
+een versnelde zeespiegelstijging. De conclusie is wel, dat vanuit het
+perspectief van de paar honderd kilometer zee waar de Nederlandse getij
+stations liggen, en over de korte periode waarover we nu gemeten hebben
+sinds de scenario's gedefinieerd zijn, we concluderen dat het hoge
+scenario te pessimistisch is en dat we aan de lage kant van het lage
+scenario zitten.
+
+!!!!!!!!! REPLACE WITH UPDATED FIGURE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+![Vergelijking tussen metingen en zeespiegelscenario's van
+[@Hurk2014]](sea-level-scenarios){#fig:metingen-scenarios
+width="1\\linewidth"}

@@ -1,6 +1,6 @@
 # Metingen {#metingen}
 
-```{r, message=FALSE, warning=FALSE, include=FALSE}
+```{r, include=FALSE}
 
 knitr::opts_chunk$set(
 	echo = FALSE,
@@ -26,7 +26,6 @@ Deze stations maken deel uit van het [LMW]{acronym-label="LMW" acronym-form="sin
 ```{r waterbase, fig.cap= "Overzicht van de beschikbare waterstandsmetingen van de stations die waterstanden meten langs de kust. Rood/groen: actief/niet actief, Stippel/doorgetrokken lijn: meting t.o.v NAP (kust)/meting t.o.v. MSL (buitengaats)."}
 
 knitr::include_graphics("figures/waterbase.png")
-
 ```
 
 Alle hoofdstations zijn uitgerust met twee vlotters. Er zijn ook enkele stations met andere sensoren, zoals radar. Soms kan een station een tijd niet beschikbaar zijn. Zo is het station van Den Helder wel eens uitgevallen door de groei van mosselen. De gegevens worden dan teruggeschat op basis van naburige stations (in dit geval Texel en IJmuiden). Dit wordt de opvulmethode genoemd. Daarnaast vinden er diverse validaties plaats. Zie de memo in de bijlage waar het meetproces uitgebreid beschreven wordt.
