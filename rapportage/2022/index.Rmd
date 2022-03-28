@@ -4,7 +4,7 @@ author: "Deltares"
 date: "`r Sys.Date()`"
 # site: bookdown::bookdown_site
 documentclass: book
-bibliography: [bib/book.bib, bib/bibhkv.bib, bib/R.bib]
+bibliography: [bib/book.bib, bib/bibhkv.bib, bib/R.bib, bib/sealevel.bib]
 biblio-style: apalike
 link-citations: yes
 description: "Dit is de Zeespiegelmonitor. De Zeespiegelmonitor wordt gemaakt door Deltares met bijdragen van HKV in opdracht van Rijkswaterstaat. "

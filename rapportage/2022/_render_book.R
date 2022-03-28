@@ -12,11 +12,11 @@ file.remove("_main.md")
 
 # Fedors bibliography synchroniseren wanneer nodig.
 # download.file("https://raw.githubusercontent.com/SiggyF/bibliography/master/bibliography.bib", destfile = "bib/bibliography.bib")
-## convert refs  
+# # convert refs
 # require(RefManageR)
-# refs <- RefManageR::ReadBib("bib/bibliography.bib")
+# refs <- RefManageR::ReadBib("bib/bibliography.bib", .Encoding = 'utf-8', check = 'error')
 # RefManageR::WriteBib(refs, file = "bib/bibliography_adapted.bib", biblatex = T)
-
+# 
 
 
 # gitbook formatted html pages (gebruikt op testpagina)

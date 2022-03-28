@@ -1,3 +1,9 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
 # Toepassingen
 
 ```{r, include=FALSE}
@@ -17,8 +23,8 @@ scheepvaart. Met name de tijdstippen van het getij zijn belangrijk om te
 bepalen of er genoeg ruimte onder de kiel (laagwater) en onder een brug
 (hoogwater) is. Sinds het begin van de 20e eeuw ontstond het idee dat de
 zeespiegel al lange tijd aan het stijgen is. Daardoor werd het steeds
-belangrijker om ook naar de gemiddelde zeespiegel te kijken
-[@Veen1945; @Veen1954].
+belangrijker om ook naar de gemiddelde zeespiegel te kijken [@Veen1945;
+@Veen1954].
 
 In dit hoofdstuk bespreken we een aantal toepassingen waar de stand van
 de zeespiegel, nu ten opzichte van vroeger, of in de toekomst ten
@@ -420,7 +426,6 @@ knitr::include_graphics("figures/callantsoog.png")
 knitr::include_graphics("figures/callantsoog-legenda.png")
 ```
 
-
 Naam
 
 :   Zeespiegel over 200 jaar
@@ -470,14 +475,14 @@ adaptief wordt ontworpen en is degene die de waterkering / kunstwerk
 aanlegt ook verantwoordelijk voor het onderhoud.
 
 ::: {#tab:indicatoren-trend}
-  Voorheen                       Nu
-  ------------------------------ ----------------------------------------
-  Statische ontwerpen            Adaptieve en/of uitbreidbare ontwerpen
-  Langere ontwerpduur            Kortere ontwerpduur
-  B & O gescheiden van ontwerp   Design Build Finance and Maintain
-  Robuust ontwerp                Kosteneffectief ontwerp
+| Voorheen                     | Nu                                     |
+|:-----------------------------|:---------------------------------------|
+| Statische ontwerpen          | Adaptieve en/of uitbreidbare ontwerpen |
+| Langere ontwerpduur          | Kortere ontwerpduur                    |
+| B & O gescheiden van ontwerp | Design Build Finance and Maintain      |
+| Robuust ontwerp              | Kosteneffectief ontwerp                |
 
-  : Trends in zeespiegel indicatoren
+: Trends in zeespiegel indicatoren
 :::
 
 Op basis van de expertsessie en de uitwerking van de indicatoren blijkt

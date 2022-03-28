@@ -131,6 +131,6 @@ scenario zitten.
 
 !!!!!!!!! REPLACE WITH UPDATED FIGURE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-![Vergelijking tussen metingen en zeespiegelscenario's van
-[@Hurk2014]](sea-level-scenarios){#fig:metingen-scenarios
-width="1\\linewidth"}
+<!-- ![Vergelijking tussen metingen en zeespiegelscenario's van -->
+<!-- [@Hurk2014]](sea-level-scenarios){#fig:metingen-scenarios -->
+<!-- width="1\\linewidth"} -->

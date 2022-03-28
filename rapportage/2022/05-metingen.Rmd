@@ -126,10 +126,13 @@ In [3](#fig:nap-history){reference-type="ref" reference="fig:nap-history"} zien 
 knitr::include_graphics("figures/nulpalen.png")
 ```
 
+
+
 ```{r satellieten, fig.cap="Overzicht van de historie van de NAP merken in de buurt van de meetstations over de hele periode van beschikbare gegevens." }
 knitr::include_graphics("figures/nap-history.png")
 ```
 
+## Satellietmeting van de zeehoogte
 
 Deze sectie geeft een overzicht van satellietmetingen van de zeehoogte (altimetrie). De altimetrie satellieten zijn begonnen met meten in 1992, met de lancering van de TOPEX/Poseidon satelliet. Over de afgelopen decennia is met meerdere satellieten de zeehoogte vastgesteld. De satellieten beschikken over een radar altimeter waarmee de zeehoogte wordt vastgesteld.
 
@@ -142,3 +145,6 @@ De satellieten meten zowel met radar altimeter als met microgolf radiometer. De 
 Door de covariantie tussen satellietparen wordt met kriging (een interpolatie techniek) een vlak gefit. Hiermee wordt in de ruimte geïnterpoleerd. In de tijd wordt lineair geïnterpoleerd. De gegevens worden ter validatie vergeleken met data die weggelaten is uit het verwerkingsproces en met getijstations. De nauwkeurigheid ligt in de orde van 4 cm ([RMS]{acronym-label="RMS" acronym-form="singular+short"}).
 
 De satellietdata zijn niet gevalideerd bij kusten en het is bekend dat de radiometer en altimeter "vervuild" kunnen raken door de onzekerheden in de correctie voor getij en doordat de sensor deels land en deels water meet. De radius van de kriging methode zorgt ervoor dat data van nabij de kust en verderaf door elkaar geïnterpoleerd wordt. Daarom wordt aangeraden om voorzichtig te zijn met het interpreteren van data in de buurt van de kust. Recent zijn satellieten gelanceerd (bijv. Sentinel-3A en B) met een wat kleinere 'footprint' waardoor dichter bij de kust gemeten kan worden. Zie [@Vignudelli2011] voor een overzicht van diverse toepassingen.
+
+
+
