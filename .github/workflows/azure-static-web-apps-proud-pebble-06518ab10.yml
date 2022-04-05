@@ -28,7 +28,7 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: _book
-          path: _book/
+          path: rapportage/2022/_book/
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
