@@ -1,4 +1,6 @@
-# Inleiding (OUDE VERSIE: AANPASSEN) {#inleiding}
+# Inleiding {#inleiding}
+
+!!!(OUDE VERSIE: AANPASSEN) 
 
 ```{r, include=FALSE}
 

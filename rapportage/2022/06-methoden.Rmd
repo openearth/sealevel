@@ -1,4 +1,4 @@
-# Methoden
+# Methoden (met alle basisinformatie; verwijzing naar 2015 expliciet toevoegen)
 
 In hoofdstuk \ref(toepassingen) hebben we gezien dat er een 'huidige zeespiegel' nodig is, onder andere om de suppletiebehoefte te bepalen. Huidig is in de context van deze toepassing eigenlijk geen tijdspunt, maar een tijdsspanne. Het gaat niet om de zeespiegel vandaag, maar om de zeespiegel van enkele jaren terug tot nu.
 

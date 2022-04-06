@@ -1,4 +1,4 @@
-# Oorzaken
+# Oorzaken zeespiegelverandering
 
 ```{r, include=FALSE}
 
@@ -14,14 +14,70 @@ De zeespiegel wordt beïnvloed door verschillende processen die variëren in tij
 
 ```{r oorzaken, fig.cap= "Overzicht van oorzaken van de lokale relatieve zeespiegelstijging. De groene onderdelen komen in dit hoofdstuk aan bod. Tijdschalen in de orde van jaren tot decaden. Links de globale oorzaken doorvertaald naar rechts, de lokale oorzaken."}
 
-knitr::include_graphics("figures/oorzaken.png")
+# knitr::include_graphics("figures/oorzaken.png")
+
+# https://rich-iannone.github.io/DiagrammeR/graphviz_and_mermaid.html
+
+DiagrammeR::grViz("digraph {
+
+  graph [overlap = true, fontsize = 10, layout = dot, rankdir = LR]
+  
+  node [shape = rectangle,
+      style = filled,
+      color = DarkSeaGreen2,
+      label = '']
+      
+  Ant [label = 'Antarctica']
+  Groen [label = 'Groenland']
+  Landijs [label = 'Landijs']
+  OceaanMas [label = 'Oceaan \n massa']
+  Dichtheid [label = 'Dichtheid \n temperatuur \n saliniteit', url = '#temperatuur']
+  OceaanVol [label = 'Oceaan \n volume']
+  GravRot [label = 'Gravitatatie en \nrotatie effecten']
+  BodDal [label = ' Bodemdaling']
+  RegZS [label = 'Regionale \n zeespiegel']
+  Wind [label = 'Wind']
+  Getij [label = 'Getij']
+  LokRelZS [label = 'Lokale \n relatieve \n zeespiegel']
+  
+  node [shape = rectangle,
+      style = filled,
+      color = LightSteelBlue2,
+      label = '']
+  
+  Glet [label =  'Gletsjers']
+  OvWater [label = 'Overig \n watermassa']
+  CircDichtheid [label = 'Circulaties en \ndichtheidsvariaties']
+
+  
+  # edge definitions with the node IDs
+  
+  Ant->Landijs  Groen->Landijs  Glet->Landijs
+  Landijs->OceaanMas OvWater->OceaanMas
+  OceaanMas->OceaanVol
+  Dichtheid->OceaanVol
+  GravRot->RegZS  OceaanVol->RegZS  CircDichtheid->RegZS
+  RegZS->LokRelZS  BodDal->LokRelZS  Wind->LokRelZS  Getij->LokRelZS
+  
+  }",
+  width = 800)
+
 ```
+
+
+
+
 
 Naast de fysische oorzaken zijn er diverse methodologische keuzes die de hoogte van de zeespiegel bepalen. De diverse metingen hebben onnauwkeurigheden en de beperkte historische dekking van de metingen kan voor vertekening zorgen.
 
 Welke regionale en lokale aspecten van de zeespiegel belangrijk zijn varieert per gebied. De Noordzee is onderdeel van het continentaal plat van Europa en is daardoor relatief ondiep. Door deze ondiepte zijn getij en windopzet de belangrijkste processen die bijdragen aan variaties in de zeespiegel langs de Nederlandse kust op de tijdschaal van jaren tot decaden.
 
 Wereldwijd wordt doorgaans gekeken naar de absolute zeespiegelstijging. De term absolute zeespiegel wordt gebruikt voor de hoogte ten opzichte van de geoïde, het vlak dat het water zou volgen als er geen wind, getij en stroming zouden zijn in de oceaan. Lokaal is vooral relatieve zeespiegelstijging interessant, de combinatie van bodemdaling en absolute zeespiegelstijging.
+
+## Definitie zeespiegelstijging
+
+{nav vraag QL. Nader in te vullen}
+
 
 ## Methoden
 
@@ -59,7 +115,7 @@ Een overzicht van de uitsplitsing van de globale zeespiegelstijging, over de per
 
 Om de grafieken op elkaar aan te laten sluiten worden diverse correcties en filters toegepast. In [2](#fig:global-budget){reference-type="ref" reference="fig:global-budget"} zijn bijvoorbeeld de seizoenseffecten verwijderd, de data is gefilterd met een lopend gemiddelde, zodat deze er wat minder grillig uitzien. Er is een correctie doorgevoerd voor de [GIA]{acronym-label="GIA" acronym-form="singular+short"}. De oceaanbodem zakt waardoor het oceaanvolume toeneemt. Bij een constant zeeniveau stijgt na het toepassen van deze correctie de globale zeespiegel met 0.3mm/. Er zijn goede metingen van ijsmassaveranderingen beschikbaar sinds de start van de [GRACE]{acronym-label="GRACE" acronym-form="singular+short"} missie in 2002. De globale dekking van sterische effecten, op basis van het [Argo]{acronym-label="Argo" acronym-form="singular+short"} programma begint in 2004.
 
-In het bovenste paneel van [2](#fig:global-budget){reference-type="ref" reference="fig:global-budget"} is te zien dat de sterische component (tot 2000m diep) en de toename van de oceaan massa de zeespiegelstijging voor hun rekening nemen. Over deze periode komt de meeste zeespiegelstijging door de toename van massa van de oceaan (bovenste paneel) en dan met name door het afsmelten en afkalven van het ijs op Groenland (onderste paneel).
+In het bovenste paneel van figuur \@ref(fig:global-budget) is te zien dat de sterische component (tot 2000m diep) en de toename van de oceaan massa de zeespiegelstijging voor hun rekening nemen. Over deze periode komt de meeste zeespiegelstijging door de toename van massa van de oceaan (bovenste paneel) en dan met name door het afsmelten en afkalven van het ijs op Groenland (onderste paneel).
 
 Een nadere beschouwing van deze balans is uitgewerkt door een groep wetenschappers [@Cazenave2018] die zich daar als onderdeel van het [WCRP]{acronym-label="WCRP" acronym-form="singular+short"} mee bezig hebben gehouden. Ze komen tot de conclusie dat de gemeten zeespiegeltrend 0.37 mm/ hoger is dan verwacht op basis van de boekhouding over de periode 1993 - 2017. Over deze periode schatten ze de bijdrage van toename van massa op 1.4mm/ en de toename door temperatuurstoename op 1.3mm/.
 
@@ -70,7 +126,7 @@ knitr::include_graphics("figures/global-budget-noseason.png")
 
 ### Sinds de laatste ijstijd
 
-De laatste keer dat de zeespiegel zo hoog stond als tegenwoordig was aan het einde van laatste interglaciale periode [@McKay2011], ongeveer 120 duizend jaar terug. Tijdens deze periode stond de zeespiegel 6 tot 9m hoger dan nu [@Kopp2009; @Dutton2015]. Tijdens de laatste ijstijd, het Weichselglaciaal, daalde de zeespiegel. Zo'n 21 duizend jaar terug werd het laatste dal bereikt op 125 m onder huidig zeeniveau. Sindsdien is de zeespiegel aan het stijgen, met een snelheid in de orde van tientallen mm/ tot enkele mm/ [3](#fig:postglacial){reference-type="ref" reference="fig:postglacial"}. De grootste stijging, 20m in 500 vond plaats tijdens de periode van 14.5 duizend jaar voor heden tot 14 duizend jaar voor heden. Deze periode wordt [MWP]{acronym-label="MWP" acronym-form="singular+short"}-1A genoemd. Er is discussie in de literatuur of de bron Noord Amerika of Antarctica is [@Deschamps2012].
+De laatste keer dat de zeespiegel zo hoog stond als tegenwoordig was aan het einde van laatste interglaciale periode [@McKay2011], ongeveer 120 duizend jaar terug. Tijdens deze periode stond de zeespiegel 6 tot 9m hoger dan nu [@Kopp2009; @Dutton2015]. Tijdens de laatste ijstijd, het Weichselglaciaal, daalde de zeespiegel. Zo'n 21 duizend jaar terug werd het laatste dal bereikt op 125 m onder huidig zeeniveau. Sindsdien is de zeespiegel aan het stijgen, met een snelheid in de orde van tientallen mm/ tot enkele mm/ (figuur \@ref(fig:postglacial)). De grootste stijging, 20m in 500 vond plaats tijdens de periode van 14.5 duizend jaar voor heden tot 14 duizend jaar voor heden. Deze periode wordt [MWP]{acronym-label="MWP" acronym-form="singular+short"}-1A genoemd. Er is discussie in de literatuur of de bron Noord Amerika of Antarctica is [@Deschamps2012].
 
 Gek genoeg is de zeespiegelstijging over de laatste eeuwen lastiger te bepalen dan over de laatste duizenden jaren. In Nederland meten we al sinds 1700, maar door het gebrek aan een hoogtemodel en de lokale verzakkingen zijn de gegevens als ongeschikt voor het bepalen van de zeespiegelstijging aangemerkt [@Veen1945]. Daarom kijken we normaal gesproken pas naar de gegevens vanaf 1890. Goede historische bronnen zijn schaars. Een mooi voorbeeld is de analyse van schilderijen van Venetië waaruit bleek dat de relatieve zeespiegel daar sinds 1700 constant stijgt [@Camuffo2017]. Andere veelgebruikte bronnen zijn gegevens uit zoutmoerassen, zie bijvoorbeeld [@Kemp2011]. De zeespiegelstijging over een periode in de orde van duizenden jaren kan bepaald worden op basis van koolstofdatering [@Libby1946] van geologische lagen [@Shepard1956].
 
@@ -81,7 +137,7 @@ Het is duidelijk dat de zeespiegel in de 20e eeuw sneller steeg dan enkele honde
 knitr::include_graphics("figures/postglacial.png")
 ```
 
-### Temperatuur {#sec:temperatuur}
+### Temperatuur {#temperatuur}
 
 Een belangrijke factor in de trend van de zeespiegel is de temperatuur van de oceanen. Als de temperatuur stijgt, stijgt de zeespiegel doordat warmer water een lagere dichtheid heeft. Zoet water heeft de hoogste dichtheid bij 4°C, hoe zouter het water hoe lager de temperatuur met de hoogste dichtheid [@Caldwell1978]. Van de temperatuur van het oppervlakte van de oceaan zijn lange meetreeksen en heranalyses beschikbaar [@Huang2017]. Uit deze reeks blijkt dat de temperatuur van oceaan, nadat deze in de kleine ijstijd flink was gezakt [@Voosen2017], weer aan het stijgen is [4](#fig:sst){reference-type="ref" reference="fig:sst"}.
 
