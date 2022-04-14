@@ -1,578 +1,105 @@
-# Discussie
-
-In de voorgaande hoofdstukken hebben we gekeken naar de oorzaken van
-zeespiegelstijging, de toepassingen in het Nederlands beleid en hebben
-we de actuele of huidige zeespiegelstand en -stijging bepaald. In deze context is er
-nog een aantal punten die relevant zijn om te bespreken.
-
-
-\section{Versnelling}
-\label{sec:versnelling-discussie}
-De zeespiegel aan de Nederlandse kust stijgt. We zien geen
-noemenswaardige versnelling. Dat roept bij menigeen vragen op als:
-\begin{inparaenum}
-\item Hadden we niet al versnelling verwacht?
-\item Meten we wel goed?
-\item Hebben we niet te veel ruis?
-\item Versnelt de zeespiegel bij ons anders dan de globale zeespiegel?
-\item Zit er ergens zeespiegelstijging verstopt?
-\end{inparaenum}
-
-Allereerst, hadden we al een versnelling verwacht? De eerste
-Deltacommissie rekende al met een zeespiegelstijging van
-70\si{\centi\meter} \citep{Dantzig1956}, voor de toen komende
-eeuw. Ook recente scenario's voor de Nederlandse kust gaan uit van een
-huidige versnelling \citep{Hurk2014}. Deze versnelde zeespiegel komt
-terug in verschillende toepassingen, zowel planologisch (voor 200 jaar
-vooruit ruimte gereserveerd), als in het ontwerp (bovenkant
-Oosterscheldekering is in het ontwerp vervangbaar), als in het kader
-van adaptief beheer (door kustsuppleties afhankelijk van de
-zeespiegelstijging). Een overzicht van globale projecties is
-beschreven door \citep{Garner2018}.  We houden dus al geruime tijd
-rekening met een aankomende versnelling.
-
-Meten we wel goed? Als we kijken naar de metingen dan zien we dat we,
-met 300 jaar ervaring, de dubbel uitgevoerde instrumenten en een groot
-aantal stations die ter validatie kunnen dienen, een solide basis
-hebben om de toestand van de zeespiegel aan de kust vast te stellen.
-De metingen zijn onderling consistent \cref{fig:6stations}. De
-metingen van de Nederlandse getijstations zijn ook consistent met onze
-buren en tot op zekere hoogte met de satellietmetingen, zoals
-beschreven in \cref{sec:satelliet-results}, \citep[zie
-  ook][]{Sterlini2017}. Er zijn dus geen redenen om aan te nemen dat
-we niet goed meten.
-
-Hebben we niet te veel ruis? In \cref{sec:power} hebben we gezien dat
-als er een noemenswaardige versnelling plaats vindt, dat we deze ook
-snel zullen zien. We zien deze ook snel omdat de gegevens van
-Nederlandse getijstations dagelijks worden ontsloten. Onderliggend is
-vaak de vraag of we een wereldwijde versnelling wel in Nederland zien.
-De Nederlandse metingen zijn niet bedoeld en ook niet geschikt om iets
-te zeggen over de globale zeespiegelstijging. Omdat we van het
-massaverlies van Groenland weinig verwachten te zien zijn de
-Nederlandse gegevens niet representatief voor de rest van de
-wereld. Daarom kijken we in deze rapportage niet alleen naar de
-Nederlandse zeespiegel, maar ook naar de globale. Dit sluit aan bij de
-methodiek om indicatoren te kiezen op basis van verschillende
-kwaliteiten. Voorbeelden van kwaliteiten zijn te vinden in de
-literatuur, bijvoorbeeld de aansluiting bij strategische doelen
-\citep{Koningsveld2004}, geloofwaardigheid, overtuigingskracht
-\citep{Haasnoot2018}, scherpheid (zien we zeldzame gebeurtenissen),
-integriteit (is er niet met de data gerommeld) en reproduceerbaarheid
-(veranderen de resultaten als iemand anders ze analyseert)
-\citep{Baart2013}.
-
-De afwijking tussen de Nederlandse en de globale zeespiegelstijging
-hebben we verder uitgewerkt. Aan de ene kant verklaringen die het
-verschil nog groter maken (4.5\si{\centi\meter\per\century} van onze
-relatieve zeespiegelstijging is bodemdaling). Maar ook hebben we in
-\cref{sec:gravitatie} gezien dat een groot deel van de wereldwijde
-zeespiegelstijging, ongeveer 9\si{\centi\meter\per\century} niet bij
-ons terecht komt. Een klein deel van onze zeespiegelstijging,
-$2$\si{\centi\meter} voor het station Hoek van Holland, komt door de
-gaswinning. Een deel van de wereldwijde zeespiegelstijging
-(3\si{\centi\meter\per\century}) kunnen we niet meten met de
-getijstations omdat het een correctie is voor de zakking van het
-oceaanbekken door de \ac{GIA}. De wereldwijde versnelling die
-geconstateerd wordt door \citet{Nerem2018}, binnen de periode
-1993-2017, zien we ook niet terug. Om de versnelling te vinden was een
-correctie nodig voor de uitbarsting van de Pinatubo en \ac{ENSO}. Deze
-correcties passen we in de zeespiegelmonitor niet toe.
-
-Een deel van de globale zeespiegel kan niet verklaard worden door
-de onderliggende processen \citep{Cazenave2018}. Een recente
-reconstructie vindt een lagere zeespiegelstijging over de periode
-1900-1990 van \SI{12 \pm 2}{\centi\meter\per\century}, dat komt
-ongeveer overeen met onze absolute zeespiegeltrend over dezelfde periode. Ze
-vinden een zeespiegelstijging van \SI{30 \pm
-  7}{\centi\meter\per\century} over de periode 1993 tot en met
-2010. Deze versnelling zien we maar in zeer beperkte mate terug
-(19\si{\centi\meter\per\century} absolute zeespiegelstijging over 1993
-tot en met 2017 op basis van het breekpuntmodel.
-
-Sommerend komen we op de volgende balans van de wereldwijde versus de
-Nederlandse zeespiegelstijging over de periode 1993-2017. De
-zeespiegelstijging over deze periode is in Nederlands wat hoger dan
-over andere perioden, zoals besproken in
-\cref{sec:versnelling-results}, vooral door de lage zeespiegelstand in
-1996. Eigenlijk zou de zeespiegelstijging hoger moeten zijn dan
-globaal, omdat in Nederland naast de zeespiegelstijging ook nog
-bodemdaling is. Maar omdat 3\si{\centi\meter} van de globale
-zeespiegelstijging een correctie is die niet aan de kust gemeten wordt
-(3\si{\centi\meter}) en omdat we op een gunstige plek liggen wat
-gravitatie effect betreft (9\si{\centi\meter}) zien we aan de kust van
-Nederland toch een lagere zeespiegelstijging dan globaal, zoals
-weergegeven in \cref{fig:nl-global}. Andere effecten, zoals
-veranderingen in dichtheid, zijn hier buiten beschouwing gelaten.
-
-
-%% \begin{table}[htbp]
-%%   \centering
-%%   \begin{tabular}[htbp]{l|r|r}
-%%     Term & Nederland & Globaal naar lokaal \\
-%%     \toprule
-%%     Absolute zeespiegelstijging [\si{\centi\meter\per\century}] & 24 & 32  \\
-%%     Bodemdaling [\si{\centi\meter\per\century}] & -4.5 &  \\
-%%     \ac{GIA} correctie [\si{\centi\meter\per\century}] &  & -3 \\
-%%     Gravitatie effect [\si{\centi\meter\per\century}] &  & -9 \\
-%%     \midrule
-%%     Lokale absolute zeespiegel [\si{\centi\meter\per\century}] & 19  & 20 \\
-
-%%     \bottomrule
-%%   \end{tabular}
-%%   \caption[Nederland versus globaal]{Verschillen tussen de Nederlandse en de globale zeespiegel. Nederland: zeespiegelstijging over de periode 1993-2017. Globaal: zeespiegelstijging op basis van satellietmetingen. Om de Nederlandse gegevens absoluut te maken moet de bodemdaling verwijderd worden. Om de globale gegevens naar Nederland te vertalen moet voor het gravitatie effect worden gecorrigeerd en moeten gegevens van volumes naar absolute stijging worden vertaald door de \ac{GIA} correctie ongedaan te maken. }
-%%   \label{tab:nl-global}
-%% \end{table}
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=1\linewidth]{balans}
-  \caption[Nederland versus globaal]{Verschillen tussen de Nederlandse
-    en de globale zeespiegelstijging over de periode 1993-2017. Links globaal:
-    zeespiegelstijging op basis van satellietmetingen vertaald naar
-    regionale absolute zeespiegelstijging. Rechts Nederland:
-    zeespiegelstijging over de periode 1993-2017 vertaald naar
-    absolute zeespiegelstijging. Om de Nederlandse gegevens absoluut
-    te maken moet de bodemdaling verwijderd worden. Om de globale
-    gegevens naar Nederland te vertalen moet voor het gravitatie
-    effect worden gecorrigeerd en moeten gegevens van volumes naar
-    absolute stijging worden vertaald door de \ac{GIA} correctie
-    ongedaan te maken. }
-  \label{fig:nl-global}
-\end{figure}
-
-
-Concluderend zien we een recent verschil tussen wat we meten langs de
-Nederlandse kust en wat we globaal meten, maar dit kunnen we verklaren
-met de verschillen tussen wat we aan de kust meten en wat globaal
-gemeten wordt. We moeten wel enig voorbehoud maken bij de praktijk van
-het sluitend maken van budgetten, waar we hierbij aansluiten. Het
-is een confirmatieve analyse, in de zin dat er wordt gezocht naar `sluiting' in
-plaats van dat de theorie op de proef gesteld wordt. Vergelijk de
-stelling ``Confirming evidence should not count except when it is the
-result of a genuine test of the theory'' die door \citet{Popper2014}
-gebruikt wordt om onderscheid te maken tussen wetenschap en
-pseudo-wetenschap.
-
-Dat het optelt wil, net als bij een echte boekhouding, daarom ook niet
-zeggen dat het klopt. Op basis van \cref{fig:conservative} kunnen we
-ook tot de conclusie komen dat de 3.2\si{\milli\meter\per\year}
-gebaseerd is op een statistisch artefact en dat er geen globale
-zeespiegelversnelling is. Hebben we nu een globale versnelling gezien
-of hebben we alleen de achterstand ingehaald? Hoe gaan we om met
-perioden van een vertraagde zeespiegel?  Genoeg vragen voor verder
-onderzoek.
-
-Dit beantwoordt \cref{question:verschil}, waarom de Nederlandse
-zeespiegelstijging afwijkt van de globale zeespiegelstijging.
-\label{answer:verschil}
-
-De vraag of er nog ergens zeespiegelstijging verstopt zit is vooral
-relevant voor de toekomst. Het hele oppervlak van de oceaan wordt
-gemeten. Van de variatie van de zeespiegel is, achteraf, het grootste
-deel verklaarbaar. Naar de toekomst toe zijn er wel veel openstaande
-vragen. Welk deel van het ijs van Antarctica smelt als eerste?  Zal de
-bodem onder Antarctica snel genoeg terugveren om de zeespiegelstijging
-te stoppen?  Hoe lang gaat de bodemdaling nog door nadat we stoppen
-met de gaswinning?  Als de \ac{AMO} verandert, welk effect heeft dat
-op onze zeespiegeltrend? Dat zijn echter onderwerpen die we in de
-Zeespiegelmonitor niet behandelen.
-
-
-
-%% \cite{Haasnoot2018}
-
-\section{Toepassing}
-\label{sec:toepassing}
-In dit onderzoek hebben we de huidige zeespiegel en huidige
-zeespiegelstijging bepaald. Deze zijn bedoeld om te gebruiken als maat
-voor de bepaling van het suppletievolume. In deze sectie beschouwen
-we de mogelijke toepassingen wat breder.
-
-De overwegingen die gebruikt zijn bij het defin\"ieren van de huidige
-zeespiegelstand en zeespiegelstijging zijn vooral relevant in de context
-van vandaag. De zeespiegeltrends zijn niet bedoeld om de verwachte
-zeespiegelstand in 2050 of 2100 te bepalen. Tegelijkertijd zien we dat
-zeespiegelscenario's niet bedoeld zijn om op de korte termijn wat te
-zeggen. Daarom kiezen we een periode van tot 15 jaar vooruit, een
-halve klimaatperiode, als de periode waarvoor we het gebruik van de
-huidige zeespiegel maximaal aanraden.
-
-Een huidige zeespiegelstand op zichzelf is niet geschikt voor
-beoordelingen van veiligheid. Daarvoor is de verwachte maximale
-zeespiegel nodig (getij + absolute zeespiegel + bodemdaling +
-hoogwater + golven) ten opzichte van de hoogte van de keringen. Het
-kan wel als component gebruikt worden. Het is raadzaam de componenten
-te scheiden.
-
-In de context van ontwerp, beheer, beoordeling en planvorming liggen
-de toepassingen dus vooral voor korte termijn ontwerpen, beheer en
-beoordeling. In de planvorming gebruikt men zichttermijnen van
-tientallen tot 200 jaar. Om dit kengetal beter te kunnen bepalen geven
-we in de volgende paragraaf nog een opzoekgrafiekje waarmee het op
-basis van de huidige zeespiegelstand is op te zoeken.
-
-Dit beantwoordt \cref{question:toepassingen}, welke kenmerkende
-waarden voor de zeespiegel aansluiten bij de verschillende
-toepassingen. \label{answer:toepassingen}
-
-\section{Nederland onder zeespiegel}
-\label{sec:nl-below-sl}
-Zoals we gezien hebben in \cref{sec:perc-below-sl}, vertellen we aan
-buitenlandse bezoekers vaak trots welk deel van Nederland onder de
-zeespiegel ligt. Daarnaast gebruiken we dit getal graag als makkelijke
-intro, Nederland ligt voor xx\% onder zeeniveau, dus
-zeespiegelstijging is belangrijk, dus we gaan onderzoek doen naar
-zeespiegelstijging. Vergelijkbare opvulkengetallen zijn welk deel van
-de wereld bij de kust ligt, welk deel van de wereld in een delta ligt
-en welk deel overstromingsgevoelig is. Het zijn getallen die we noemen
-maar niet tot een concrete actie leiden.
-
-Het probleem met het xx\% van Nederland ligt onder zeeniveau is dat we
-het al jaren verkeerd gebruiken. Sinds het verkeerd in het \ac{IPCC}
-rapport stond hebben we een ruwe schatting \citep{PBL2010}. Maar we
-gebruiken het nog steeds vaak verkeerd \citep{Rutte2016} of we
-formuleren het in vage termen als `a lot of land below sea level'
-\citep{Rutte2017}.
-
-We bevestigen dat eerder genoemde getallen als twee derde van Nederland
-ligt onder zeeniveau, de helft van Nederland ligt onder zeeniveau en
-een derde van Nederland ligt onder zeeniveau niet accuraat zijn. Soms
-wordt er een vorm gebruikt als xx\% van Nederand ligt onder \ac{NAP}
-gelijk aan gemiddeld zeeniveau. Ook dat is niet meer accuraat sinds de
-jaren 80 van de vorige eeuw.
-
-Het percentage van Nederland (ten tijde van \ac{AHN}2) dat onder het
-huidige zeespiegel ligt is 27\%. Het percentage van Nederland dat
-onder \ac{NAP} ligt is 26\%. Voor de andere percentages geldt dat een
-derde van Nederland ligt onder een zeespiegelniveau van
-60\si{\centi\meter} boven \ac{NAP}, de helft van Nederland ligt onder een
-zeespiegelniveau van 4\si{\meter} en twee derde van Nederland ligt
-onder een niveau van 11\si{\meter}. De berekening is beschikbaar via
-een reproduceerbare berekening \notebook{analysis/nl-below-sl} op
-basis van \ac{AHN}2 en de TOP10 vector water.
-
-Omdat het percentage van Nederland onder de zeespiegel een populaire
-indicator is, rechtstreeks gekoppeld aan de huidige zeespiegelstand
-nemen we deze indicator voortaan op in deze rapportage.
-
-\section{Hoe relatief willen we meten?}
-\label{sec:relatief-absoluut}
-Disussies over hoe relatief we de zeespiegel meten worden vrij snel
-verwarrend omdat we een theoretisch \ac{NAP} hebben en daar een
-concrete implementatie van hebben die over de tijd veranderd
-is. Historische gegevens van het \ac{NAP} en belangrijke documenten
-over de nulpalen zijn moeilijk achterhaalbaar. Doordat de details
-hierover niet publiek ontsloten zijn is het nagenoeg onmogelijk om een
-compleet accuraat beel te vormen.
-
-Je kan je afvragen hoe bruikbaar het referentiestelsel als zodanig is
-voor de toepassing in de context van de zeespiegel.  Vanuit het
-perspectief van de monitoring van de zeespiegel zijn we vooral
-ge\"interesseerd in de relatieve zeespiegelstijging. Daarom is de
-implementatie, het referentiestelsel, eigenlijk handiger dan dan het
-referentiesysteem van het \ac{NAP}.  Zouden we namelijk precies het
-vlak volgen van de Amsterdam en tegenwoordig de Veluwe tot aan de kust
-en ten opzichte daarvan de zeespiegel meten, dan zouden we de
-relatieve zeespiegel meten met daarin de bodemdaling van vroeger
-Amsterdam en nu de Veluwe.
-
-Gelukkig wordt hier al veel aandacht aan besteed. Naar het publiek toe
-is in het kader van het 200 jarig bestaan al moeite gestopt om de
-historie te documenteren \citep{Dam2018}. Er is een lespakket
-beschikbaar via Rijkswaterstaat. Ook de in 1982 opgerichte
-\href{https://www.normaalamsterdamspeil.nl}{stichting \ac{NAP}} houdt
-zich bezig met publieksgerichte informatie, zoals het onderhouden van
-een tentoonstelling ingericht in de Stopera.
-
-In de toekomst, als de gegevens bij de kust nauwkeuriger worden,
-zullen we geleidelijk op satellietmetingen over kunnen stappen voor
-zowel absolute zeespiegelmetingen en absolute bodemdaling.
-
-Om deze transitie goed uit te voeren is het belangrijk dat we een
-ruime periode van dubbeluitgevoerde metingen hebben inclusief de
-aansluiting op globale en lokale hoogtereferentiesystemen. Voorlopig
-zijn lokale metingen ten opzichte van waterpassingen nauwkeuriger. De
-\ac{GNSS} hoogtes zijn onnauwkeuriger te meten en maken gebruik van
-een quasi-geo\"ide.
-
-
-\subsection{Verschillen binnen Nederland}
-\label{sec:verschillen}
-Zowel de zeespiegelstand (hoe hoog ligt de lijn) als de
-zeespiegelstijging (hoe steil is de lijn) var\"ieren langs de
-Nederlandse kust. Daarvoor zijn verschillende mogelijke oorzaken
-waarvan we er een aantal hebben teruggezien.
-
-\begin{description}
-\item[Bodemdaling] Het ten opzichte van elkaar verzakken van de
-  nulpalen (\cref{sec:bodemdaling-result}).
-\item[Absolute zeespiegel] De absolute zeespiegelstijging is niet uniform
-  verdeeld door bijvoorbeeld dichtheidsvariaties, stromingvariaties, gravitatieeffect en
-  interacties tussen bijvoorbeeld zeespiegelstijging en getij
-  (\cref{sec:satelliet-results}) % undefined
-\item[Meettechnieken] er kunnen verschillen zijn in de manier van
-  meten (\cref{chap:metingen})
-\item[Overige] daarnaast kunnen lokale ingrepen en onbekende oorzaken
-  veranderingen veroorzaken (\cref{sec:verschillen})
-\end{description}
-
-De verschillen van de stand tussen de stations kan doordat we meten
-ten opzichte van lokale nulpalen. De hoogte van deze nulpalen is
-vastgesteld met waterpassing. De standaardafwijking van de hoogtes
-ligt in de orde van 4\si{\milli\meter} \citep{Brand2004}. Tijdens het
-aanleggen van de peilmerken lag deze nauwkeurigheid in de orde van
-10\si{\milli\meter} \citep{Bruijne2005} (voor een afstand van
-200\si{\meter}). De variatie tussen de stations ligt in de orde van
-25\si{milli\meter}. De variatie tussen de stations kan voor een deel
-verklaard worden door de nauwkeurigheid van de waterpassingen, maar
-een deel blijft onverklaard.
-
-De verschillen in de trend tussen de getijdestations kunnen we niet
-verklaren op basis van de variatie in bodemdaling, zoals te zien in
-\cref{sec:bodemdaling-result}. Het is mogelijk dat een deel van de
-stijging van Delfzijl is toe te schrijven aan de bodemdaling, tussen
-het begin van de gaswinning en de loskoppeling van het peilmerk. Maar
-dit is niet wat er toen beschreven is, zie \cref{sec:nulpaal}. In de
-metingen met satellieten zien we dezelfde langsvariatie van de
-zeespiegel als die we langs de kust meten. Dezelfde orde van grote van
-variatie is ook terug te vinden in een reconstructie
-\citep{Frederikse2016} met het \ac{DCSM} \citep{Gebraad1998}. De
-gravitatie effecten zijn groot genoeg om een deel van de verschillen
-te verklaren \cref{fig:self-gravitation}.
-
-De belangrijkste conclusie is dat de zeespiegel langs de Nederlandse
-kust niet uniform hoeft te zijn. Een uitgewerkt voorbeeld van hoe
-verschillen in luchtdruk en temperatuur resulteerden in grote
-zeespiegelvariaties tussen stations in Florida \citep{Domingues2018}
-laat zien dat de zeespiegel langs dezelfde kust kan dalen en
-versnellen tegelijk.
-
-Van de bekende interventies zien we de aanleg van de Afsluitdijk terug
-in Den Helder. De grootste effecten van veranderingen aan de kust zien
-we terug in getijamplitudes \citep{Hollebrandse2005}. Het bepalen van
-de effecten van de aanleg van objecten op basis van alleen tijdseries
-is een beetje koffiedik kijken. Als er een verandering optreedt kort na
-een interventie is dat nog niet zeker een causaal verband. De
-verandering had niet moeten optreden als de interventie niet
-uitgevoerd was, en dat weten we niet. Daarom is het beter om dit soort
-analyses uit te voeren door een combinatie van effect studies met
-modellen en verificatie met metingen.
-
-Dit overwegende komen we tot de conclusie dat de oorzaken van de
-verschillen in trends tussen de stations het meest waarschijnlijk hun
-oorsprong vinden in absolute zeespiegelvariaties. De verschillen in
-absolute waarden kunnen veroorzaakt zijn door de methodiek van de
-nulpalen en de vaststelling van het \ac{NAP}. Het uitrusten van alle
-stations met \ac{GNSS} zou hier, op termijn, uitsluitsel over kunnen geven.  Dit
-beantwoordt \cref{question:variatie}, waarom de stations langs de
-Nederlandse kust van elkaar verschillen. \label{answer:variatie}
-
-
-% \section{Vliegen zeespiegelprojecties uit de bocht?}
-
-% De scenario's die het \ac{KNMI} gebruikt zijn gebaseerd op de
-% \ac{IPCC} scenario's. Een recente studie liet de groei zien in het
-% aantal scenario studies \cite{Garner2018}. Hierbij valt op dat er een
-% structurele stijging is van de bovengrenzen van studies over de tijd
-% terwijl de \ac{IPCC} scenario's deze steeds extremere bovengrenzen
-% terzijde tot nu steeds terzijde hebben gelegd.
-
-
-
-
-% we rekening houden met zeespiegelstijging, kan men dus bevestigend
-% antwoorden. Ook regionaal geldt dit voor de meeste gebieden. Er zijn
-% uitzonderingen zoals in Scandinavie, waar de bodem sneller omhoog komt
-% dan de zeespiegel stijgt en dus netto zeespiegeldaling is. Een
-% overzicht van hoe dit inzicht zich ontwikkelde op globaal niveau is
-% gegeven door \citet{Fairbridge1961}. Voor Nederland was de laatste
-% keer dat deze vraag gesteld werd in de literatuur in 1945
-% \citep{Veen1945}.
-
-% Het onderzoek naar zeespiegel heeft een enorme vlucht genomen, vooral
-% kwantitatief. Zo zijn er sinds onze vorige monitor 17.000 papers,
-% rapporten en abstracts verschenen over zeespiegelstijging en
-% getijstations en 12.300 over zeespiegelstijging en satellieten (op
-% basis van schattingen van google scholar). Per jaar verschijnen er nu
-% op basis van schattingen van Web of Science bijna 4000
-% wetenschappelijke papers met de zeespiegel als onderwerp. Dit was in
-% het jaar 2000 nog 1300 en in 1980 verschenen 49 papers.
-
-% Er zijn verschillende onderwerpen
-% te onderschijden in het zeespiegeltrend onderzoek:
-% \begin{description}
-% \item[kust trend] reconstructies maken van combinaties getijstations
-% \item[oceaan trend] reconstructies maken op basis van meerdere satellietmissies
-% \item[kust vs oceaan] het vergelijken of integreren van de zeespiegel
-%   gemeten met getijstations aan de kust met de zeespiegelstijging op
-%   zee
-% \item[methodologie] variabelen wel of niet meenemem en toepassen van correcties, detectie van versnelling
-% \item[gevolgen] deze onderzoeken behandelden we hier niet
-% \end{description}
-
-% Onderzoekers die naar de {\em kust trends} kijken werken aan de vraag,
-% wanneer de zeespiegel nou precies is gaan stijgen
-% \citep{Gehrels2013}. Dit is nodig omdat er enige discrepantie lijkt te
-% bestaan, omdat de zeespiegel al steeg voor we goed en wel met de CO2
-% uitstoot zijn begonnen. Eerder concludeerde \citet{Jevrejeva2008} dat
-% de versnelling in 1850 begonnen was, \citet{Gehrels2013} komen uit op
-% 1925. Onderzoekers zijn ook bezig met het attribueren van onderdelen
-% van de zeespiegel en het maken van reconstructies. Een recente
-% reconstructie van \citet{Gregory2013} concludeerde dat er geen
-% versnelling was over de tweede helft van de 20e eeuw en dat er
-% nauwelijks correlatie is tussen klimaatverandering en de snelheid van
-% de zeespiegelstijging.
-
-% Op het onderwerp van {\em kust vs oceaan} zijn vooral onderzoers bezig
-% waar de zeespiegel aan de kust harder stijgt dan op de oceaan, zoals
-% in Florida \citep{Ezer2013}, ze zoeken naar verklaringen. Anderen werken aan de integratie van verschillende data bronnen en modellen \citep[bijvoorbeeld][]{Hay2015}.
-
-% Op het gebied van {\em methodologie} hebben verschillende onderzoekers
-% in navolging van \citet{Watson2015} een correctie geintroduceerd
-% waarbij de satellietmetingen in de eerste zes jaren worden
-% verlaagd. De motivatie hierachter is om een betere match te krijgen
-% tussen {\em kust vs oceaan}. Het gevolg is ook dat doordat de begin
-% van de reeks nu lager is, er een acceleratie ontstaat in plaats van
-% een deceleratie, zoals eerder door \citep{Dean2013} in een
-% vergelijking tussen getijstations en
-% satellietmetingen. \Citep{Cazenave2014} vonden de deceleratie ook,
-% maar deze werd gecorrigeerd door deze gelijk te trekken aan de massa
-% en thermostatische variabiliteit. Een overzicht van recente studies
-% naar verschillende manieren om met autocorrelatie rekening te houden
-% is gegeven door \citep{Bos2014}.
-
-
-% De basis van de zeespiegeltrends op satellietmetingen wordt in twijfel
-% getrokken door \citet{Parker2016}. Ze stellen dat de 3.2
-% \si{\milli\meter\per\year} trend alleen gevonden kan worden door diverse
-% aribtraire ``correcties'' toe te passen en dat de data van de Envisat
-% missies zijn aangepast zonder motivatie. In een ander tijdschrift is
-% hier een commentaar \citep{Williams2016} op verschenen omdat de
-% auteurs van het commentaar weigerde in hetzelfde tijdschrift als
-% \citep{Parker2016} te publiceren. Ze benadrukken dat het belangrijk is
-% om zowel naar de verschillen tussen {\em kust vs ocean trends} te
-% kijken en dat er ook ontwikkelingen zijn die de toepassingen van
-% satellietmetingen langs de kust verbeteren \citep{Vignudelli2011}.
-
-% Er is nu een zekere methodologische schifting ontstaan. Er zijn
-% verschillende onderzoeksinstituten die een schatting van de globale
-% zeespiegelstijging rapporteren. Dit wordt doorgaans gedaan op basis
-% van reconstructies op basis van satellietmetingen. Hierin zien we
-% variaties in welke fysische aspecten wel of niet worden meegenomen
-% (wel of niet corrigeren voor \ac{GIA} en \ac{IB}).
-
-% De \ac{GIA} correctie op satellietdata was nodig omdatdat de
-% hoeveelheid massa die in de ocean terecht kwam groter was dan de
-% stijging van de zeespiegel \citep{Peltier2009}. Deze correctie komt er
-% op neer dat er 0.3\si{\milli\meter} zeespiegel opgeteld wordt bij de
-% geobserveerde zeespiegel, om te compenseren voor het kleiner worden
-% van de oceaan bekkens door de \ac{GIA}. Vanuit het sluiten van de
-% balans is het logisch om in volumes te denken, maar voor toepassingen
-% in de context van kustbeheer is het niet logisch om deze correctie mee
-% te nemen. Vanaf de kust gezien heeft deze 0.3
-% \si{\milli\meter} namelijk niet plaatsgevonden.
-
-% \begin{table}[hbtp]
-%   \centering
-%   \begin{tabular}{l|r|l}
-      %       Instituut & trend (linear/accelerating) & correcties \\
-      %       \hline \\
-      %       Colorado University & \num{3.4 \pm 0.4}\si{\milli\meter \per\year} (linear) & GIA, IB, Seasonal \\
-      %       CSIRO & \num{3.4 \pm 0.4}\si{\milli\meter\per\year} (linear) & GIA, IB, Seasonal \\
-      %       NOAA & \num{2.9 \pm 0.4}\si{\milli\meter\per\year} (linear) & Seasonal \\
-      %       NASA & \num{3.2 \pm 0.4}\si{\milli\meter\per\year} (linear) & Seasonal, GIA \\
-      %       AVISO & \num{3.3} \si{\milli\meter\per\year} (linear) & Seasonal, GIA \\
-      %       Dit rapport & \num{2.9 \pm 0.4}\si{\milli\meter\per\year} (linear) & Seasonal \\
-      %     \end{tabular}
-      %       \caption[Zeespiegelstijging uit satellieten]{Overzicht van
-      %       schattingen van de huidige zeespiegelstijging op basis van
-      %       satellietmetingen, update van overzicht van sealevel.colorado.edu}
-      %       \label{tab:satelliet-trends}
-      %       \end{table}
-
-      %       Tegelijkertijd zijn er nu recente studies die een versnelling
-      %       rapporteren, welke gebaseerd is op de nieuwe omstreden correcties. Dit
-      %       maakt dat er tegelijkertijd cijfers van versnelling, geen versnelling
-      %       en vertraging naar buiten worden gebracht, allemaal op basis van
-      %       dezelfde metingen. Er was al veel onduidelijkheid over de verschillen
-      %       tussen trends van getij stations en satellietmetingen en tussen trends
-      %       over de 20e eeuw vergeleken met de huidige eeuw. Maar met deze
-      %       methodologische vrijheid is het moeilijk om het te blijven volgen.
-
-      %       Zorgwekkend is verslechterde cultuur die we terug zien in het
-      %       zeespiegelonderzoek. We zien dat kritiek op zeespiegelonderzoek vooral
-      %       plaats vind door gepensioneerde wetenschappers (bijv. \citet{Houston2011}
-      %       ). Van onderzoeker Parker wordt gesteld dat hij een pseudoniem
-      %       gebruikt. Het gebruik van pseudoniemen in de wetenschap is discutabel
-      %       \citep{Bohannon2016}. Tegelijkertijd zijn er wetenschappers die op
-      %       wetenschappelijke fora de onderzoeker proberen te deanonimiseren
-      %       (doxing), een evenzo verwerpbare praktijk (zie online discussie bij
-      %       \citet{Nicholls2011}). Er zijn websites waar zeespiegelonderzoekers,
-      %       zowel voor als tegenstanders van het standpunt van menselijke
-      %       geinduceerde klimaatverandering, online aan de schandpaal worden
-      %       genageld.
-
-      %       Vanuit het beleid is steeds meer roep om een evidence-based
-      %       practice. Eerder constateerde we al methodologische tekortkomeningen
-      %       in het zeespiegel trend vakgebied \citep{Baart2012a} welke
-      %       tegenwoordig bekend staan als de reproduceerbaarheidscrisis
-      %       \citep{Baker2016}. In bovenstaande zou je kunnen overwegen of het niet
-      %       nodig is om studies blind uit te voeren of het
-      %       onderzoeksprotocol vast te leggen voor aan de studie begonnen
-      %       wordt. Het is in ieder geval belangrijk om steeds te blijven kijken
-      %       naar welke cijfers er nodig zijn voor onze toepassingen en hoe nieuwe
-      %       cijfers, die vaak zonder bovenstaande context het nieuws halen, geduid
-      %       moeten worden.
-
-      %       Gegeven bovenstaande discussies gebruiken we onze eigen afwegingen en
-      %       methode voor de bepaling van de versnelling in de satellietmetingen,
-      %       zoals beschreven in sectie \cref{sec:versnelling-methode}, om te
-      %       bepalen of er een versnelling is. We concluderen het volgende over de
-      %       verschillende mogelijke versnellingen. Wel of niet versneld betekent
-      %       in deze context of er, onder de aanname van geen versnelling en op
-      %       basis van de variatie in de gegevens, een versnelling was verwacht zo
-      %       groot als die gezien is. Dit geeft antwoord op de vraag
-      %       \cref{question:versnelling}.
-
-      %       \begin{description}
-      %       \item[kust Nederland, periode 1890-2017] niet versneld, op basis van \cref{sec:versnelling-nl}.
-      %       \item[zee Nederland, periode 1993-2017] niet versneld, op basis van \cref{sec:versnelling-noordzee}.
-      %       \item[kust Globaal, periode 1890-2010] wel versneld, we maken geen eigen reconstructie, dus op basis van \citep{Stocker2013}.
-      %       \item[oceaan Globaal, periode 1993-2017] niet versneld, op basis van \cref{sec:versnelling-globaal}
-      %       \end{description}
-
-      %       \subsection{Zeespiegelonderzoek als vakgebied}
-
-
-
-      %       \section{Bruikbaarheid voor verschillende toepassingen}
-      %       \section{Actualiteiten overzicht}
-      %       \section{Discussie in de context van historisch overzicht van nieuws en kamervragen}
-
-      %       Veel van de ongemakken komen voort uit de mismatch tussen de
-      %       geobserveerde zeespiegel en de verwachte zeespiegel vanuit perspectief
-      %       van klimaatverandering. Daardoor `moet' de zeespiegel wel
-      %       versnellen. Probleem is echter niet zo zeer of de zeespiegel in de
-      %       laatste paar jaar gaat versnellen. We voorspellen immers al sinds de
-      %       jaren 50 dat de zeespiegel sneller moet gaan stijgen. De discrepantie
-      %       wordt er niet noemenswaardig minder over als er nu opeens wel een
-      %       versnelling opduikt. We zaten er al ruim 60 jaar naast, dan maakt een
-      %       paar jaar meer of minder niet meer uit.
-
-      %       Relevanter is de vraag, hoe kan het dat we al zo lang uitgaan van een
-      %       versnelde zeespiegelstijging, zonder dat dat gebaseerd is op
-      %       observaties. De huidige oplossing om de metingen aan te passen als die
-      %       niet bij de theorie passen is niet helemaal volgens het boekje.
-
-
-
-
-
-
-
-
-      %%%       Local Variables:
-      %%%       mode: latex
-      %%%       TeX-master: t
-      %%%       End: 
+# Discussie {#discussie}
+
+In de voorgaande hoofdstukken hebben we gekeken naar de oorzaken van zeespiegelstijging, de toepassingen in het Nederlands beleid en hebben we de actuele of huidige zeespiegelstand en -stijging bepaald. In deze context is er nog een aantal punten die relevant zijn om te bespreken.
+
+## Versnelling {#sec:versnelling-discussie}
+
+De zeespiegel aan de Nederlandse kust stijgt. We zien geen noemenswaardige versnelling. Dat roept bij menigeen vragen op als:
+
+Hadden we niet al versnelling verwacht?
+
+Meten we wel goed?
+
+Hebben we niet te veel ruis?
+
+Versnelt de zeespiegel bij ons anders dan de globale zeespiegel?
+
+Zit er ergens zeespiegelstijging verstopt?
+
+Allereerst, hadden we al een versnelling verwacht? De eerste Deltacommissie rekende al met een zeespiegelstijging van 70cm [@Dantzig1956], voor de toen komende eeuw. Ook recente scenario's voor de Nederlandse kust gaan uit van een huidige versnelling [@Hurk2014]. Deze versnelde zeespiegel komt terug in verschillende toepassingen, zowel planologisch (voor 200 jaar vooruit ruimte gereserveerd), als in het ontwerp (bovenkant Oosterscheldekering is in het ontwerp vervangbaar), als in het kader van adaptief beheer (door kustsuppleties afhankelijk van de zeespiegelstijging). Een overzicht van globale projecties is beschreven door [@Garner2018]. We houden dus al geruime tijd rekening met een aankomende versnelling.
+
+Meten we wel goed? Als we kijken naar de metingen dan zien we dat we, met 300 jaar ervaring, de dubbel uitgevoerde instrumenten en een groot aantal stations die ter validatie kunnen dienen, een solide basis hebben om de toestand van de zeespiegel aan de kust vast te stellen. De metingen zijn onderling consistent \@ref(fig:6stations). De metingen van de Nederlandse getijstations zijn ook consistent met onze buren en tot op zekere hoogte met de satellietmetingen, zoals beschreven in \@ref(satelliet-results), [zie ook @Sterlini2017]. Er zijn dus geen redenen om aan te nemen dat we niet goed meten.
+
+Hebben we niet te veel ruis? In \@ref(power) hebben we gezien dat als er een noemenswaardige versnelling plaats vindt, dat we deze ook snel zullen zien. We zien deze ook snel omdat de gegevens van Nederlandse getijstations dagelijks worden ontsloten. Onderliggend is vaak de vraag of we een wereldwijde versnelling wel in Nederland zien. De Nederlandse metingen zijn niet bedoeld en ook niet geschikt om iets te zeggen over de globale zeespiegelstijging. Omdat we van het massaverlies van Groenland weinig verwachten te zien zijn de Nederlandse gegevens niet representatief voor de rest van de wereld. Daarom kijken we in deze rapportage niet alleen naar de Nederlandse zeespiegel, maar ook naar de globale. Dit sluit aan bij de methodiek om indicatoren te kiezen op basis van verschillende kwaliteiten. Voorbeelden van kwaliteiten zijn te vinden in de literatuur, bijvoorbeeld de aansluiting bij strategische doelen [@Koningsveld2004], geloofwaardigheid, overtuigingskracht [@Haasnoot2018], scherpheid (zien we zeldzame gebeurtenissen), integriteit (is er niet met de data gerommeld) en reproduceerbaarheid (veranderen de resultaten als iemand anders ze analyseert) [@Baart2013].
+
+De afwijking tussen de Nederlandse en de globale zeespiegelstijging hebben we verder uitgewerkt. Aan de ene kant verklaringen die het verschil nog groter maken (4.5cm/ van onze relatieve zeespiegelstijging is bodemdaling). Maar ook hebben we in [$$sec:gravitatie$$](#sec:gravitatie){reference-type="ref" reference="sec:gravitatie"} gezien dat een groot deel van de wereldwijde zeespiegelstijging, ongeveer 9cm/ niet bij ons terecht komt. Een klein deel van onze zeespiegelstijging, $2$cm voor het station Hoek van Holland, komt door de gaswinning. Een deel van de wereldwijde zeespiegelstijging (3cm/) kunnen we niet meten met de getijstations omdat het een correctie is voor de zakking van het oceaanbekken door de [GIA]{acronym-label="GIA" acronym-form="singular+short"}. De wereldwijde versnelling die geconstateerd wordt door @Nerem2018, binnen de periode 1993-2017, zien we ook niet terug. Om de versnelling te vinden was een correctie nodig voor de uitbarsting van de Pinatubo en [ENSO]{acronym-label="ENSO" acronym-form="singular+short"}. Deze correcties passen we in de zeespiegelmonitor niet toe.
+
+Een deel van de globale zeespiegel kan niet verklaard worden door de onderliggende processen [@Cazenave2018]. Een recente reconstructie vindt een lagere zeespiegelstijging over de periode 1900-1990 van 12 \\pm 2 cm/, dat komt ongeveer overeen met onze absolute zeespiegeltrend over dezelfde periode. Ze vinden een zeespiegelstijging van 30 \\pm 7 cm/ over de periode 1993 tot en met 2010. Deze versnelling zien we maar in zeer beperkte mate terug (19cm/ absolute zeespiegelstijging over 1993 tot en met 2017 op basis van het breekpuntmodel.
+
+Sommerend komen we op de volgende balans van de wereldwijde versus de Nederlandse zeespiegelstijging over de periode 1993-2017. De zeespiegelstijging over deze periode is in Nederlands wat hoger dan over andere perioden, zoals besproken in [$$sec:versnelling-results$$](#sec:versnelling-results){reference-type="ref" reference="sec:versnelling-results"}, vooral door de lage zeespiegelstand in 1996. Eigenlijk zou de zeespiegelstijging hoger moeten zijn dan globaal, omdat in Nederland naast de zeespiegelstijging ook nog bodemdaling is. Maar omdat 3cm van de globale zeespiegelstijging een correctie is die niet aan de kust gemeten wordt (3cm) en omdat we op een gunstige plek liggen wat gravitatie effect betreft (9cm) zien we aan de kust van Nederland toch een lagere zeespiegelstijging dan globaal, zoals weergegeven in [1](#fig:nl-global){reference-type="ref" reference="fig:nl-global"}. Andere effecten, zoals veranderingen in dichtheid, zijn hier buiten beschouwing gelaten.
+
+![Verschillen tussen de Nederlandse en de globale zeespiegelstijging over de periode 1993-2017. Links globaal: zeespiegelstijging op basis van satellietmetingen vertaald naar regionale absolute zeespiegelstijging. Rechts Nederland: zeespiegelstijging over de periode 1993-2017 vertaald naar absolute zeespiegelstijging. Om de Nederlandse gegevens absoluut te maken moet de bodemdaling verwijderd worden. Om de globale gegevens naar Nederland te vertalen moet voor het gravitatie effect worden gecorrigeerd en moeten gegevens van volumes naar absolute stijging worden vertaald door de [GIA]{acronym-label="GIA" acronym-form="singular+short"} correctie ongedaan te maken.](balans){#fig:nl-global width="1\\linewidth"}
+
+Concluderend zien we een recent verschil tussen wat we meten langs de Nederlandse kust en wat we globaal meten, maar dit kunnen we verklaren met de verschillen tussen wat we aan de kust meten en wat globaal gemeten wordt. We moeten wel enig voorbehoud maken bij de praktijk van het sluitend maken van budgetten, waar we hierbij aansluiten. Het is een confirmatieve analyse, in de zin dat er wordt gezocht naar 'sluiting' in plaats van dat de theorie op de proef gesteld wordt. Vergelijk de stelling "Confirming evidence should not count except when it is the result of a genuine test of the theory" die door @Popper2014 gebruikt wordt om onderscheid te maken tussen wetenschap en pseudo-wetenschap.
+
+Dat het optelt wil, net als bij een echte boekhouding, daarom ook niet zeggen dat het klopt. Op basis van [$$fig:conservative$$](#fig:conservative){reference-type="ref" reference="fig:conservative"} kunnen we ook tot de conclusie komen dat de 3.2mm/ gebaseerd is op een statistisch artefact en dat er geen globale zeespiegelversnelling is. Hebben we nu een globale versnelling gezien of hebben we alleen de achterstand ingehaald? Hoe gaan we om met perioden van een vertraagde zeespiegel? Genoeg vragen voor verder onderzoek.
+
+Dit beantwoordt [$$question:verschil$$](#question:verschil){reference-type="ref" reference="question:verschil"}, waarom de Nederlandse zeespiegelstijging afwijkt van de globale zeespiegelstijging. $$answer:verschil$$
+
+De vraag of er nog ergens zeespiegelstijging verstopt zit is vooral relevant voor de toekomst. Het hele oppervlak van de oceaan wordt gemeten. Van de variatie van de zeespiegel is, achteraf, het grootste deel verklaarbaar. Naar de toekomst toe zijn er wel veel openstaande vragen. Welk deel van het ijs van Antarctica smelt als eerste? Zal de bodem onder Antarctica snel genoeg terugveren om de zeespiegelstijging te stoppen? Hoe lang gaat de bodemdaling nog door nadat we stoppen met de gaswinning? Als de [AMO]{acronym-label="AMO" acronym-form="singular+short"} verandert, welk effect heeft dat op onze zeespiegeltrend? Dat zijn echter onderwerpen die we in de Zeespiegelmonitor niet behandelen.
+
+## Toepassing {#toepassing}
+
+In dit onderzoek hebben we de huidige zeespiegel en huidige zeespiegelstijging bepaald. Deze zijn bedoeld om te gebruiken als maat voor de bepaling van het suppletievolume. In deze sectie beschouwen we de mogelijke toepassingen wat breder.
+
+De overwegingen die gebruikt zijn bij het definïeren van de huidige zeespiegelstand en zeespiegelstijging zijn vooral relevant in de context van vandaag. De zeespiegeltrends zijn niet bedoeld om de verwachte zeespiegelstand in 2050 of 2100 te bepalen. Tegelijkertijd zien we dat zeespiegelscenario's niet bedoeld zijn om op de korte termijn wat te zeggen. Daarom kiezen we een periode van tot 15 jaar vooruit, een halve klimaatperiode, als de periode waarvoor we het gebruik van de huidige zeespiegel maximaal aanraden.
+
+Een huidige zeespiegelstand op zichzelf is niet geschikt voor beoordelingen van veiligheid. Daarvoor is de verwachte maximale zeespiegel nodig (getij + absolute zeespiegel + bodemdaling + hoogwater + golven) ten opzichte van de hoogte van de keringen. Het kan wel als component gebruikt worden. Het is raadzaam de componenten te scheiden.
+
+In de context van ontwerp, beheer, beoordeling en planvorming liggen de toepassingen dus vooral voor korte termijn ontwerpen, beheer en beoordeling. In de planvorming gebruikt men zichttermijnen van tientallen tot 200 jaar. Om dit kengetal beter te kunnen bepalen geven we in de volgende paragraaf nog een opzoekgrafiekje waarmee het op basis van de huidige zeespiegelstand is op te zoeken.
+
+Dit beantwoordt [$$question:toepassingen$$](#question:toepassingen){reference-type="ref" reference="question:toepassingen"}, welke kenmerkende waarden voor de zeespiegel aansluiten bij de verschillende toepassingen. $$answer:toepassingen$$
+
+## Nederland onder zeespiegel {#nl-below-sl}
+
+Zoals we gezien hebben in \@ref(perc-below-sl), vertellen we aan buitenlandse bezoekers vaak trots welk deel van Nederland onder de zeespiegel ligt. Daarnaast gebruiken we dit getal graag als makkelijke intro, Nederland ligt voor xx% onder zeeniveau, dus zeespiegelstijging is belangrijk, dus we gaan onderzoek doen naar zeespiegelstijging. Vergelijkbare opvulkengetallen zijn welk deel van de wereld bij de kust ligt, welk deel van de wereld in een delta ligt en welk deel overstromingsgevoelig is. Het zijn getallen die we noemen maar niet tot een concrete actie leiden.
+
+Het probleem met het xx% van Nederland ligt onder zeeniveau is dat we het al jaren verkeerd gebruiken. Sinds het verkeerd in het [IPCC]{acronym-label="IPCC" acronym-form="singular+short"} rapport stond hebben we een ruwe schatting [@PBL2010]. Maar we gebruiken het nog steeds vaak verkeerd [@Rutte2016] of we formuleren het in vage termen als 'a lot of land below sea level' [@Rutte2017].
+
+We bevestigen dat eerder genoemde getallen als twee derde van Nederland ligt onder zeeniveau, de helft van Nederland ligt onder zeeniveau en een derde van Nederland ligt onder zeeniveau niet accuraat zijn. Soms wordt er een vorm gebruikt als xx% van Nederand ligt onder [NAP]{acronym-label="NAP" acronym-form="singular+short"} gelijk aan gemiddeld zeeniveau. Ook dat is niet meer accuraat sinds de jaren 80 van de vorige eeuw.
+
+Het percentage van Nederland (ten tijde van [AHN]{acronym-label="AHN" acronym-form="singular+short"}2) dat onder het huidige zeespiegel ligt is 27%. Het percentage van Nederland dat onder [NAP]{acronym-label="NAP" acronym-form="singular+short"} ligt is 26%. Voor de andere percentages geldt dat een derde van Nederland ligt onder een zeespiegelniveau van 60cm boven [NAP]{acronym-label="NAP" acronym-form="singular+short"}, de helft van Nederland ligt onder een zeespiegelniveau van 4m en twee derde van Nederland ligt onder een niveau van 11m. De berekening is beschikbaar via een reproduceerbare berekening op basis van [AHN]{acronym-label="AHN" acronym-form="singular+short"}2 en de TOP10 vector water.
+
+Omdat het percentage van Nederland onder de zeespiegel een populaire indicator is, rechtstreeks gekoppeld aan de huidige zeespiegelstand nemen we deze indicator voortaan op in deze rapportage.
+
+## Hoe relatief willen we meten? {#relatief-absoluut}
+
+Disussies over hoe relatief we de zeespiegel meten worden vrij snel verwarrend omdat we een theoretisch [NAP]{acronym-label="NAP" acronym-form="singular+short"} hebben en daar een concrete implementatie van hebben die over de tijd veranderd is. Historische gegevens van het [NAP]{acronym-label="NAP" acronym-form="singular+short"} en belangrijke documenten over de nulpalen zijn moeilijk achterhaalbaar. Doordat de details hierover niet publiek ontsloten zijn is het nagenoeg onmogelijk om een compleet accuraat beel te vormen.
+
+Je kan je afvragen hoe bruikbaar het referentiestelsel als zodanig is voor de toepassing in de context van de zeespiegel. Vanuit het perspectief van de monitoring van de zeespiegel zijn we vooral geïnteresseerd in de relatieve zeespiegelstijging. Daarom is de implementatie, het referentiestelsel, eigenlijk handiger dan dan het referentiesysteem van het [NAP]{acronym-label="NAP" acronym-form="singular+short"}. Zouden we namelijk precies het vlak volgen van de Amsterdam en tegenwoordig de Veluwe tot aan de kust en ten opzichte daarvan de zeespiegel meten, dan zouden we de relatieve zeespiegel meten met daarin de bodemdaling van vroeger Amsterdam en nu de Veluwe.
+
+Gelukkig wordt hier al veel aandacht aan besteed. Naar het publiek toe is in het kader van het 200 jarig bestaan al moeite gestopt om de historie te documenteren [@Dam2018]. Er is een lespakket beschikbaar via Rijkswaterstaat. Ook de in 1982 opgerichte [stichting [NAP]{acronym-label="NAP" acronym-form="singular+short"}](https://www.normaalamsterdamspeil.nl) houdt zich bezig met publieksgerichte informatie, zoals het onderhouden van een tentoonstelling ingericht in de Stopera.
+
+In de toekomst, als de gegevens bij de kust nauwkeuriger worden, zullen we geleidelijk op satellietmetingen over kunnen stappen voor zowel absolute zeespiegelmetingen en absolute bodemdaling.
+
+Om deze transitie goed uit te voeren is het belangrijk dat we een ruime periode van dubbeluitgevoerde metingen hebben inclusief de aansluiting op globale en lokale hoogtereferentiesystemen. Voorlopig zijn lokale metingen ten opzichte van waterpassingen nauwkeuriger. De [GNSS]{acronym-label="GNSS" acronym-form="singular+short"} hoogtes zijn onnauwkeuriger te meten en maken gebruik van een quasi-geoïde.
+
+## Verschillen binnen Nederland {#sec:verschillen}
+
+Zowel de zeespiegelstand (hoe hoog ligt de lijn) als de zeespiegelstijging (hoe steil is de lijn) varïeren langs de Nederlandse kust. Daarvoor zijn verschillende mogelijke oorzaken waarvan we er een aantal hebben teruggezien.
+
+Bodemdaling
+
+:   Het ten opzichte van elkaar verzakken van de nulpalen (paragraaf \@ref(bodemdaling-result))
+
+Absolute zeespiegel
+
+:   De absolute zeespiegelstijging is niet uniform verdeeld door bijvoorbeeld dichtheidsvariaties, stromingvariaties, gravitatieeffect en interacties tussen bijvoorbeeld zeespiegelstijging en getij (paragraaf \@ref(satelliet-results))
+
+Meettechnieken
+
+:   er kunnen verschillen zijn in de manier van meten (hoofdstuk \@ref(metingen))
+
+Overige
+
+:   daarnaast kunnen lokale ingrepen en onbekende oorzaken veranderingen veroorzaken (paragraaf \@ref(verschillen))
+
+De verschillen van de stand tussen de stations kan doordat we meten ten opzichte van lokale nulpalen. De hoogte van deze nulpalen is vastgesteld met waterpassing. De standaardafwijking van de hoogtes ligt in de orde van 4mm [@Brand2004]. Tijdens het aanleggen van de peilmerken lag deze nauwkeurigheid in de orde van 10mm [@Bruijne2005] (voor een afstand van 200m). De variatie tussen de stations ligt in de orde van 25millim. De variatie tussen de stations kan voor een deel verklaard worden door de nauwkeurigheid van de waterpassingen, maar een deel blijft onverklaard.
+
+De verschillen in de trend tussen de getijdestations kunnen we niet verklaren op basis van de variatie in bodemdaling, zoals te zien in \@ref(bodemdaling-result). Het is mogelijk dat een deel van de stijging van Delfzijl is toe te schrijven aan de bodemdaling, tussen het begin van de gaswinning en de loskoppeling van het peilmerk. Maar dit is niet wat er toen beschreven is, zie \@ref(nulpaal). In de metingen met satellieten zien we dezelfde langsvariatie van de zeespiegel als die we langs de kust meten. Dezelfde orde van grote van variatie is ook terug te vinden in een reconstructie [@Frederikse2016] met het [DCSM]{acronym-label="DCSM" acronym-form="singular+short"} [@Gebraad1998]. De gravitatie effecten zijn groot genoeg om een deel van de verschillen te verklaren \@ref(fig:self-gravitation).
+
+De belangrijkste conclusie is dat de zeespiegel langs de Nederlandse kust niet uniform hoeft te zijn. Een uitgewerkt voorbeeld van hoe verschillen in luchtdruk en temperatuur resulteerden in grote zeespiegelvariaties tussen stations in Florida [@Domingues2018] laat zien dat de zeespiegel langs dezelfde kust kan dalen en versnellen tegelijk.
+
+Van de bekende interventies zien we de aanleg van de Afsluitdijk terug in Den Helder. De grootste effecten van veranderingen aan de kust zien we terug in getijamplitudes [@Hollebrandse2005]. Het bepalen van de effecten van de aanleg van objecten op basis van alleen tijdseries is een beetje koffiedik kijken. Als er een verandering optreedt kort na een interventie is dat nog niet zeker een causaal verband. De verandering had niet moeten optreden als de interventie niet uitgevoerd was, en dat weten we niet. Daarom is het beter om dit soort analyses uit te voeren door een combinatie van effect studies met modellen en verificatie met metingen.
+
+Dit overwegende komen we tot de conclusie dat de oorzaken van de verschillen in trends tussen de stations het meest waarschijnlijk hun oorsprong vinden in absolute zeespiegelvariaties. De verschillen in absolute waarden kunnen veroorzaakt zijn door de methodiek van de nulpalen en de vaststelling van het [NAP]{acronym-label="NAP" acronym-form="singular+short"}. Het uitrusten van alle stations met [GNSS]{acronym-label="GNSS" acronym-form="singular+short"} zou hier, op termijn, uitsluitsel over kunnen geven. Dit beantwoordt [$$question:variatie$$](#question:variatie){reference-type="ref" reference="question:variatie"}, waarom de stations langs de Nederlandse kust van elkaar verschillen. $$answer:variatie$$

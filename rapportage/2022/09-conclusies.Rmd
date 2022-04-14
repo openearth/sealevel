@@ -26,8 +26,7 @@ door bodemdaling. Dit rapport maakt een beter onderscheid naar de
 verschillende bodemdalingscomponenten
 ([\[question:bodemdaling\]](#question:bodemdaling){reference-type="ref"
 reference="question:bodemdaling"}, beantwoord in
-[\[sec:bodemdaling-result\]](#sec:bodemdaling-result){reference-type="ref"
-reference="sec:bodemdaling-result"}).
+\@ref(bodemdaling-result)).
 
 Doordat de zeespiegel niet sneller is gaan stijgen en doordat de
 zeespiegelstijging voor een deel uit bodemdaling bestaat is de huidige
