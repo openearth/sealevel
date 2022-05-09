@@ -11,16 +11,9 @@ file.remove("_main.Rmd")
 file.remove("_main.md")
 
 # Fedors bibliography synchroniseren wanneer nodig.
-# download.file("https://raw.githubusercontent.com/SiggyF/bibliography/master/bibliography.bib", destfile = "bib/bibliography.bib")
-# # convert refs
-# require(RefManageR)
-# refs <- RefManageR::ReadBib("bib/bibliography.bib", .Encoding = 'utf-8', check = 'error')
-# RefManageR::WriteBib(refs, file = "bib/bibliography_adapted.bib", biblatex = T)
-# 
+# download.file("https://raw.githubusercontent.com/SiggyF/bibliography/master/bibliography.bib", destfile = "bib/sealevel.bib")
 
-
-# gitbook formatted html pages (gebruikt op testpagina)
-
+# render to format specified in _output.yml
 bookdown::render_book(file.path("index.Rmd"), output_dir = "docs",
                       output_format = NULL, 
                       new_session = F)
