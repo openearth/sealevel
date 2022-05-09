@@ -64,13 +64,13 @@ status = "concept"
 
 # Station information
 
-stations <- read_delim("https://raw.githubusercontent.com/openearth/sealevel/sealevelVisual/data/psmsl/NLstations.csv", delim = ";")
+stations <- read_delim("https://raw.githubusercontent.com/openearth/sealevel/master/data/psmsl/NLstations.csv", delim = ";")
 
 # Read the sealevel dataset 
 # sealevellocatl <- "../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv"
 # sealevelurl <- "https://raw.githubusercontent.com/openearth/sealevel/master/data/deltares/results/dutch-sea-level-monitor-export-2021-11-24.csv"
 
-sealevelurl <- "https://raw.githubusercontent.com/openearth/sealevel/feature/tide-update/data/deltares/results/dutch-sea-level-monitor-export-2022-01-14.csv"
+sealevelurl <- "https://raw.githubusercontent.com/openearth/sealevel/master/data/deltares/results/dutch-sea-level-monitor-export-2022-01-14.csv"
 
 sealevel <- read_csv(sealevelurl,
                      comment = "#")
