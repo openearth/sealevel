@@ -64,7 +64,7 @@ status = "concept"
 
 # Station information
 
-stations <- read_delim("https://raw.githubusercontent.com/openearth/sealevel/sealevelVisual/data/psmsl/NLstations.csv", delim = ";")
+stations <- read_delim("https://raw.githubusercontent.com/openearth/sealevel/master/data/psmsl/NLstations.csv", delim = ";")
 
 # Read the sealevel dataset 
 # sealevellocatl <- "../data/deltares/results/dutch-sea-level-monitor-export-2020-11-25.csv"
@@ -96,7 +96,7 @@ observed_components <- observed_components %>%
 # Read projected data
 # read knmi 2021 scenario data direct from netcdf files
 
-datadir <- "../data/knmi/knmi21"
+datadir <- "../data/knmi/knmi22"
 
 # run below code when updating data
 if (updateData) {
@@ -117,17 +117,19 @@ if (updateData) {
   save(knmi_df, file =  file.path(datadir, "knmi_df.Rdata"))
 }
 
-load(file.path(datadir, "knmi_df.Rdata"))
+load(file.path(datadir, "knmi_df22.Rdata"))
 
 # From correspondence with KNMI: "The dataset is sea level anomalies with respect to the period 1986-2005. So 0 is the mean observed sea level for this period."
 # FB: We will compute the mean observed anual sea level over  the period 1986-2005 and add that sea level with  respect to NAP (>2005) to the KNMI scenarios. This the conversion from "anomalies" to NAP. 
+# KNMI (2022) - new dataset containing model results with respect to period 1995-2014
 
-meanSL86_05 <- sealevel %>% 
-  filter(year %in% c(1986:2005)) %>% 
+sealevelcorrection <- sealevel %>% 
+  # filter(year %in% c(1986:2005)) %>% 
+  filter(year %in% c(1995:2014)) %>%  # for recalculated KNMI scenarios (22) 
   summarize(meanHeight = mean(height)) %>% 
   unlist() %>% unname()
 
-knmi_df[knmi_df$proc == "Total","perc_ts"] <- knmi_df[knmi_df$proc == "Total","perc_ts"] + meanSL86_05
+knmi_df[knmi_df$proc == "Total","perc_ts"] <- knmi_df[knmi_df$proc == "Total","perc_ts"] + sealevelcorrection
 
 # add/subtract subsidence
 # subsidence in mm calculated depending on year
