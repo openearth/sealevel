@@ -43,6 +43,83 @@ In @Dillingh2013 werden de huidige zeespiegelstand en de huidige zeespiegelstijg
 
 @Baart2014 hebben de combinatie van statistische en fysische modellen verder uitgewerkt. Daarop bouwen we in dit onderzoek weer verder. Er werden voor het eerst heranalyses in de berekeningen meegenomen. Het gebruik van tijdsafhankelijke trends werd geïntroduceerd om sneller inzicht te krijgen in mogelijke versnelling. 
 
+## Raakvlakken
+
+**Programma's**
+
+Naam programma | indicatorsoort
+--------------------- | --------------------
+[Onderzoeksprogramma Kustgenese](https://www.helpdeskwater.nl/onderwerpen/waterveiligheid/kust/kustgenese-2-0/) | huidige zeespiegel, zeespiegelstijging
+[Onderzoeksprogramma BenO Kust](https://publicwiki.deltares.nl/pages/viewpage.action?pageId=131138795) | huidige zeespiegel; zeespiegelstijging
+[Kennisagenda Waterveiligheid 2018](https://www.helpdeskwater.nl/onderwerpen/waterveiligheid/primaire/kennisagenda/) | extremen waterhoogte
+[Kennisprogramma Zeespiegelstijging (KP ZSS)](https://www.deltaprogramma.nl/deltaprogramma/kennisontwikkeling-en-signalering/zeespiegelstijging)<br> - Spoor I - Zeespiegelstijging en Antarctica<br> - Spoor II - [Systeemverkenningen](https://www.rijkswaterstaat.nl/water/waterbeheer/bescherming-tegen-het-water/maatregelen-om-overstromingen-te-voorkomen/kennisprogramma-zeespiegelstijging/index.aspx) <br> - Spoor III - Signaleringsmethodiek<br> - Spoor IV - [Langetermijnopties](https://www.deltaprogramma.nl/deltaprogramma/kennisontwikkeling-en-signalering/zeespiegelstijging/spoor-4)<br> - Spoor V - Implementatiestrategie | o.a. zeespiegel
+[Klimaatscenarios](https://www.knmi.nl/kennis-en-datacentrum/uitleg/knmi-klimaatscenario-s) | toekomstige zeespiegel
+[Onderzoek bodemdaling](https://www.tno.nl/nl/aandachtsgebieden/energietransitie/expertisegroepen/geomodelling/bodemdaling-in-nederland/) | bodemdaling
+[Programma Beoordelings- en Ontwerpinstrumentarium (BOI 2023)](https://www.helpdeskwater.nl/onderwerpen/waterveiligheid/primaire/beoordelen/nieuwsbrieven/nieuwsbrief-landelijke-beoordeling/nieuwsbrief-boi-oktober-2019/programma-boi-2023/) | extremen waterhoogte en golven
+
+
+
+**Instituten**
+
+*   [NIOZ](https://www.nioz.nl/en)
+*   [Universiteit Utrecht](https://www.uu.nl/onderzoek)
+*   [TU Delft](https://www.tudelft.nl/onderzoek)
+*   [KNMI](https://www.knmi.nl/)
+*   [Deltares](https://www.deltares.nl/nl/)
+*   [TNO](https://www.tno.nl/nl/)
+*   [PBL](https://www.pbl.nl/)
+
+
+
+
+```{r, eval=F}
+DiagrammeR::grViz("digraph {
+
+  graph [overlap = true, fontsize = 10, layout = dot, rankdir = LR]
+  
+  node [shape = rectangle,
+      style = filled,
+      color = DarkSeaGreen2,
+      label = '']
+      
+  Huidig [label = 'huidige ZSS']
+  Zeespiegel [label = 'Zeespiegel']
+  Projectie [label = 'Projecties ~ 100 j']
+  Hoogwater [label = 'Hoogwaters']
+
+  node [shape = rectangle,
+      style = filled,
+      color = LightSteelBlue2,
+      label = '']
+  
+  ZSM [label =  'Zeespiegelmonitor']
+  Klimadash [label = 'Klimaatdashboard']
+  BOI [label = 'Programma BOI']
+  KennisZSSI [label = 'Kennisprogramma ZSS spoor I']
+  KennisZSSII [label = 'Kennisprogramma ZSS spoor II']
+  KennisZSSIII [label = 'Kennisprogramma ZSS spoor III']
+  KennisZSSIV [label = 'Kennisprogramma ZSS spoor IV']
+  
+
+  
+  # edge definitions with the node IDs
+  
+  ZSM->Huidig 
+  Huidig->Zeespiegel
+  Klimadash->Projectie
+  BOI->Hoogwater
+  KennisZSSI->
+  KennisZSSII->
+  KennisZSSIII->
+  KennisZSSIV->
+  
+  }",
+  width = 800)
+```
+
+
+
+
 ## Onderzoeksvragen {#onderzoeksvragen}
 
 Dit rapport heeft als doel de volgende centrale vraagstellingen te

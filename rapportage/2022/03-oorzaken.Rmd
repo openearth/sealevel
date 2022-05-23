@@ -172,6 +172,14 @@ Een overzicht van verschillende studies naar smelten van gletsjers is te vinden 
 
 De dataset van @Watkins2015 maakt het mogelijk om een schatting te maken van de massa veranderingen. Over de periode 2003 tot 2018 is er een 3000Gt aan ijsmassa verdwenen van Groenland. Dat komt overeen met een globale zeespiegelstijging van 8 mm over 15 jaar en dus 5.3 cm/. Als 360 Gt ijs smelt dan komt dat overeen met 1 mm zeespiegelstijging op basis van de dichtheid en het oppervlak van de oceanen. De massa verandering op Antarctica was de helft van Groenland, 1500Gt. Dat komt overeen met 4 mm of 2.7 cm/. Zie ook een analyse van een langere reeks aan gegevens door @Team2018.
 
+**Animatie massaverlies Antarctica**
+
+Voor de Zeespiegelmonitor is een animatie gemaakt die het massaverlies op Antarctica laat zien op twee verschillende plaatsen: De Thwaites Gletsjer (links) en de Pine Island Gletsjer (rechts). De animatie laat de veranering van ijsmassa zien als bewerkte radarbeelden en als grafiek (linksonder). Duidelijk zijn de verschillende processen te zien (gletsjerbeweging, afbreken, verlies van zeeijs). Een overzicht van het hele gebied is te zien rechtsonder. 
+
+<iframe width="100%" height="550" src="https://www.youtube-nocookie.com/embed/UmEEDsMqHIA?start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ 
+</br>
+
 Het afsmelten van zeeijs heeft geen direct effect op de zeespiegel. Het ijs op de Noordpool ligt al in het water en drukt het water (wet van Archimedes) opzij met zijn eigen massa. Toch kijken we ook naar het zeeijs in de context van zeespiegelstijging. Het zeeijs zorgt voor een meer reflectief oppervlak. Het smelten van ijs is een drijvende kracht achter de thermohaliene circulatie, ook wel bekend als de Noord-Atlantische Diepwaterpomp, zoals beschreven in [3.2](#sec:circulaties){reference-type="ref" reference="sec:circulaties"}. Op Antarctica en Groenland werkt het zeeijs kan als tegenkracht tegen het afbrokkelen van het landijs.
 
 De trends van het zeeijsoppervlak zijn weergegeven in [5](#fig:ice-trend){reference-type="ref" reference="fig:ice-trend"}, op basis van @Fetterer2017. Het oppervlak van het zeeijs van de Noordpool is sinds 1989 aan het dalen. Het oppervlak van het zeeijs van de Zuidpool steeg gestaag tot 2015, toen is het oppervlak abrupt gekrompen.
