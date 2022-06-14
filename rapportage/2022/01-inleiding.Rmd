@@ -9,6 +9,7 @@ knitr::opts_chunk$set(
 	message = FALSE,
 	warning = FALSE
 )
+require(tidyverse)
 ```
 
 In dit rapport wordt de actuele stand en stijging van de zeespiegel langs de Nederlandse kust beschreven. Deze huidige zeespiegel is belangrijk voor het Nederlandse kustbeleid. De Nederlandse kust is fundamenteel voor onze veiligheid, drinkwatervoorziening, ecologie en recreatie.
@@ -45,18 +46,32 @@ In @Dillingh2013 werden de huidige zeespiegelstand en de huidige zeespiegelstijg
 
 ## Raakvlakken
 
+### Nationaal
+
 **Programma's**
 
-Naam programma | indicatorsoort
---------------------- | --------------------
-[Onderzoeksprogramma Kustgenese](https://www.helpdeskwater.nl/onderwerpen/waterveiligheid/kust/kustgenese-2-0/) | huidige zeespiegel, zeespiegelstijging
-[Onderzoeksprogramma BenO Kust](https://publicwiki.deltares.nl/pages/viewpage.action?pageId=131138795) | huidige zeespiegel; zeespiegelstijging
-[Kennisagenda Waterveiligheid 2018](https://www.helpdeskwater.nl/onderwerpen/waterveiligheid/primaire/kennisagenda/) | extremen waterhoogte
-[Kennisprogramma Zeespiegelstijging (KP ZSS)](https://www.deltaprogramma.nl/deltaprogramma/kennisontwikkeling-en-signalering/zeespiegelstijging)<br> - Spoor I - Zeespiegelstijging en Antarctica<br> - Spoor II - [Systeemverkenningen](https://www.rijkswaterstaat.nl/water/waterbeheer/bescherming-tegen-het-water/maatregelen-om-overstromingen-te-voorkomen/kennisprogramma-zeespiegelstijging/index.aspx) <br> - Spoor III - Signaleringsmethodiek<br> - Spoor IV - [Langetermijnopties](https://www.deltaprogramma.nl/deltaprogramma/kennisontwikkeling-en-signalering/zeespiegelstijging/spoor-4)<br> - Spoor V - Implementatiestrategie | o.a. zeespiegel
-[Klimaatscenarios](https://www.knmi.nl/kennis-en-datacentrum/uitleg/knmi-klimaatscenario-s) | toekomstige zeespiegel
-[Onderzoek bodemdaling](https://www.tno.nl/nl/aandachtsgebieden/energietransitie/expertisegroepen/geomodelling/bodemdaling-in-nederland/) | bodemdaling
-[Programma Beoordelings- en Ontwerpinstrumentarium (BOI 2023)](https://www.helpdeskwater.nl/onderwerpen/waterveiligheid/primaire/beoordelen/nieuwsbrieven/nieuwsbrief-landelijke-beoordeling/nieuwsbrief-boi-oktober-2019/programma-boi-2023/) | extremen waterhoogte en golven
+```{r}
+programmas <- readxl::read_excel("../../data/deltares/intern/raakvlakken.xlsx", sheet = "listProjects")
 
+programmas %>% 
+  mutate(
+    programma = paste0("[", programma, "]", "(", URL, ")")
+    ) %>% replace(is.na(.), "") %>%
+  select(programma, relatie, indicator) %>%
+knitr::kable()
+```
+
+
+<!-- Naam programma | Relatie indicatoren -->
+<!-- --------------------- | -------------------- -->
+<!-- [Onderzoeksprogramma Kustgenese](https://www.helpdeskwater.nl/onderwerpen/waterveiligheid/kust/kustgenese-2-0/) | huidige zeespiegel, zeespiegelstijging -->
+<!-- [Onderzoeksprogramma BenO Kust](https://publicwiki.deltares.nl/pages/viewpage.action?pageId=131138795) | huidige zeespiegel; zeespiegelstijging -->
+<!-- [Kennisagenda Waterveiligheid 2018](https://www.helpdeskwater.nl/onderwerpen/waterveiligheid/primaire/kennisagenda/) | extremen voor waterhoogte -->
+<!-- [Kennisprogramma Zeespiegelstijging (KP ZSS)](https://www.deltaprogramma.nl/deltaprogramma/kennisontwikkeling-en-signalering/zeespiegelstijging)<br> - Spoor I - Zeespiegelstijging en Antarctica<br> - Spoor II - [Systeemverkenningen](https://www.rijkswaterstaat.nl/water/waterbeheer/bescherming-tegen-het-water/maatregelen-om-overstromingen-te-voorkomen/kennisprogramma-zeespiegelstijging/index.aspx) <br> - Spoor III - Signaleringsmethodiek<br> - Spoor IV - [Langetermijnopties](https://www.deltaprogramma.nl/deltaprogramma/kennisontwikkeling-en-signalering/zeespiegelstijging/spoor-4)<br> - Spoor V - Implementatiestrategie | o.a. zeespiegel -->
+<!-- [Hoogwaterbeschermingsprogramma (HWBP)](https://www.hwbp.nl/projecten), onderdeel van het [Deltaprogramma](https://www.deltaprogramma.nl/deltaprogramma) | Zeespiegel (extremen?) -->
+<!-- [Klimaatscenarios](https://www.knmi.nl/kennis-en-datacentrum/uitleg/knmi-klimaatscenario-s) | toekomstige zeespiegel -->
+<!-- [Onderzoek bodemdaling](https://www.tno.nl/nl/aandachtsgebieden/energietransitie/expertisegroepen/geomodelling/bodemdaling-in-nederland/) | bodemdaling -->
+<!-- [Programma Beoordelings- en Ontwerpinstrumentarium (BOI 2023)](https://www.helpdeskwater.nl/onderwerpen/waterveiligheid/primaire/beoordelen/nieuwsbrieven/nieuwsbrief-landelijke-beoordeling/nieuwsbrief-boi-oktober-2019/programma-boi-2023/) | extremen waterhoogte en golven -->
 
 
 **Instituten**
@@ -69,7 +84,13 @@ Naam programma | indicatorsoort
 *   [TNO](https://www.tno.nl/nl/)
 *   [PBL](https://www.pbl.nl/)
 
+**Dashboards**
 
+-   Compendium voor de leefomgeving - Klimaatverandering dashboard - [Zeespiegelstijging langs de Nederlandse kust en mondiaal, 1890-2018](https://www.clo.nl/indicatoren/nl0229-zeespiegelstand-nederland-en-mondiaal)
+-   Zeespiegelmonitor dashboard - [Gemeten en geprojecteerde zeespiegel langs de Nederlandse kust](https://deltares.shinyapps.io/sealevelFlexDashboard/)
+-   KNMI - [Klimaatverandering dashboard - Zeespiegel](https://www.knmi.nl/klimaatdashboard) 
+-   Deltaprogramma [signaaldashboard - zeespiegel](https://www.deltaprogramma.nl/deltaprogramma/kennisontwikkeling-en-signalering/signaalgroep/signaaldashboard/zeespiegel)
+-   European Environmental Agency (EEA) dashboard of [Global and European sea level rise](https://www.eea.europa.eu/ims/global-and-european-sea-level-rise)
 
 
 ```{r, eval=F}
@@ -116,6 +137,12 @@ DiagrammeR::grViz("digraph {
   }",
   width = 800)
 ```
+
+### Internationaal
+
+ICCP
+
+PSMSL
 
 
 

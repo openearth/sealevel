@@ -1,10 +1,455 @@
+# (APPENDIX) Appendix {.unnumbered}
 
-# (APPENDIX) Appendix {-} 
+# Rapporten en memo's  {#bijlagerapporten}
 
-# Rapporten en memo's {#bijlagerapporten}
+[Reproduceerbaarheid zeespiegelprojecties](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000020847)
 
-This will be Appendix A.
+Samenvatting:
+Veel beslissingen worden genomen op basis van de zeespiegelmetingen, berekeningen en voorspellingen. Om die gegevens te kunnen vertrouwen moeten ze betrouwbaar en valide zijn. Betrouwbaarheid bestaat uit reproduceerbaarheid (kan het herhaald worden), gevoeligheid (is de uitkomst afhankelijke van perturbaties of keuzes) en stabiliteit (worden afrondingen uitvergroot). Deze memo sluit aan bij de twee memo’s over de reproduceerbaarheid van metingen en de bepaling van de huidige zeespiegel. In deze memo worden de
+zeespiegelprojecties zoals deze op dit moment in gebruik zijn (KNMI 2014) behandeld.
 
-# Bijlage 2
+[Reproduceerbaarheid zeespiegelmetingen](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000020846)
 
-This will be Appendix B.
+Samenvatting: Veel beslissingen worden genomen op basis van de zeespiegelmetingen, berekeningen en voorspellingen. Om die gegevens te kunnen vertrouwen moeten ze betrouwbaar en valide zijn. Betrouwbaarheid bestaat uit reproduceerbaarheid (kan het herhaald worden), gevoeligheid (is de uitkomst afhankelijke van perturbaties of keuzes) en stabiliteit (worden afrondingen uitvergroot). Deze memo richt zich op de reproduceerbaarheid van de metingen en de daaruit afgeleide jaargemiddelden. De reproduceerbaarheid van afgeleide waarden zoals de huidige en toekomstige zeespiegel worden in 2017 onderzocht.
+
+[Reproduceerbaarheid van statistische modellen voor zeespiegelprojecties](http://pub.kennisbank.deltares.nl/Details/fullCatalogue/70769)
+
+Samenvatting: Dit onderzoek vindt plaats in aansluiting op de onderzoeksagenda zeespiegelmonitor (Baart, 2014). Veel beslissingen worden genomen op basis van de zeespiegelmetingen, berekeningen, scenario's, en de probabilistische inschattingen hiervan. In dit deelonderzoek concentreren we ons op de reproduceerbaarheid van de statistische modellen zoals deze gebruikt worden in het zeespiegeldossier. Deze memo sluit aan bij de drie memo's over de reproduceerbaarheid van metingen, de reproduceerbaarheid van de fysica, en de bepaling van de huidige zeespiegel. De vraag waarop in dit memo antwoord gegeven wordt, luidt: Hoe goed is de reproduceerbaarheid van de door Deltares bepaalde zeespiegelprojecties en onzekerheidsbanden voor de Noordzee tot aan het jaar 2100, en geef daarbij een oordeel op: i) Mate van documentatie, ii) Traceerbaarheid, iii) Overdraagbaarheid, iv) Herhaalbaarheid, v) Herleidbaarheid.
+
+[Zeespiegelmonitor : eenduidige zeespiegelindicatoren](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000020845)
+
+Samenvatting: Op dit moment hebben slechts enkele experts het overzicht over welke zeespiegelindicator voor welke toepassing wordt gebruikt en waarom. Het doel is om deze kennis breed toegankelijk te maken. In dit rapport zijn daarom de verschillende indicatoren die in het Nederlands beleid worden toegepast op overzichtelijke wijze en in detail uitgewerkt op basis van vragen als: Welke definities worden gehanteerd? ; Welke factoren worden meegenomen? ; Hoe verhouden getalswaarden zich tot elkaar? ; Wat is het toepassingsgebied van de indicator? ; Welk beleidsterrein betreft deze toepassing? ; Door wie wordt de indicator bepaald en toegepast?
+
+[Zeespiegelmonitor 2014 : rekenmethode voor huidige en toekomstige zeespiegelstijging](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000001063)
+
+Samenvatting: Dit rapport beschrijft de methode om de huidige zeespiegel te beschrijven. De methode is veranderd ten opzichte van de vorige methode doordat het statistisch model gebruik maakt van de heranalyse van wind gegevens en rekening houdt met mogelijke niet-lineaire zeespiegelstijging. De methode combineert de voorspellingen van het statistische model op een gewogen manier met de schattingen uit het klimaat model. Hierdoor ontstaat een schatting van de zeespiegel die van huidig tot toekomstig consistent is en die waarschijnlijker is. De analyses van de zeespiegelstijging kengetallen kunnen elk jaar oppervlakkig bekeken worden, en elke vijf jaar in detail. Daarnaast adviseert dit rapport om de zeespiegel kengetallen in een van de bestaande viewers onder te brengen om de kennis te borgen.
+
+[Visualizing changes of the Antarctic Ice Sheet](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000020844)
+
+Samenvatting: This memo describes a new method to visualize data using tiled videomaps. These provide a zoomable video of the current (last 5 years) of ice loss at the area that is most relevant for the Netherlands. This results in an easy-to-understand visualization of some of the processes (glacier flow, sea-ice loss, fracturing) that contribute to the current mass loss We hope that this can contribute to ongoing discussions on the current state sea-level rise inducing processes.
+
+[The effect of the 18.6-year lunar nodal cycle on regional sea-level rise estimates](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/200002977)
+
+[Trends in sea-level trend analysis](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/200002978)
+
+[	Is er al een versnelde zeespiegelstijging?](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/200003084)
+
+Samenvatting: In dit artikel wordt ingegaan op de vraag in hoeverre Nederland rekening moet houden met een versnelde zeespiegelstijging. Voor het ontwerpen van dijken, dammen, sluizen, stormvloedkeringen e.d. moet rekening gehouden worden met versnelde zeespiegelstijging vanwege de lange
+levensduur, grote investering en weinig flexibiliteit. Voor zandsuppleties wordt thans uitgegaan van een relatieve zeespiegelstijging (ten opzichte van de bovenkant van het pleistoceen) van 20 cm per eeuw. De afgelopen eeuw heeft een stijgsnelheid van 19 cm per eeuw laten zien. De koppeling van
+deze lineaire trendlijn aan het lage KNMI’06-scenario levert een stijging van ongeveer 23 cm per eeuw voor het heden op. Omdat een significante versnelling niet is aangetoond, is het advies om het huidige uitgangspunt van 20 cm per eeuw vooralsnog te handhaven. Over circa zes jaar (cyclus van de toetsing van de primaire waterkeringen) kan opnieuw worden bekeken of het suppletieprogramma aangepast moet worden aan nieuwe
+inzichten. Dat is een verantwoorde strategie vanwege de grote flexibiliteit van het suppletieprogramma.
+
+
+# Ad hoc vragen
+
+Vanuit verschillende organisaties, het publieke debat en soms ook van geïnteresseerde burgers komen regelmatig vragen over de zeespiegel(stijging) bij Deltares terecht. Hieronder is een overzicht van deze vragen van de laatste 2 jaar, en het indertijd gegeven antwoord.
+
+## 2021
+
+### KNMI
+
+Zijn de gegevens van zeespiegel t.o.v. NAP uit openearth-sealevel hetzelfde als die van RWS? Ik meende te zien dat jullie transfomatie van rlr naar NAP niet hetzelfde is als die van PSMSL?
+
+:   
+
+-   RWS levert maandelijkse metric data aan, bijvoorbeeld voor IJmuiden [^appendix-1]. PSMSL rekent die om naar RLR (een arbitraire hoogte bijv. MSL 2007 -- 7.014m voor IJmuiden, NAP -- MSL = 0.064m).
+-   Onze RLR -\> NAP is hetzelfde als wat in dit diagram staat [^appendix-2], zie deze omrekening in cel 4 [^appendix-3], daar staan die getallen 7014 en 64 in. In NL heb je het post-2005 NAP en pre-2005 NAP (allebei NAP, de methode, maar met nieuwe hoogtes voor de kuststations). We rekenen alles terug naar post-2005 NAP, zodat de data vergelijkbaar zijn. In de metric reeks zijn de data tot 2005 t.o.v. een andere NAP hoogte als na 2005. Vandaar dat we zo ingewikkeld doen. Er staat hier nog een check [^appendix-4].
+
+[^appendix-1]: <https://www.psmsl.org/data/obtaining/met.monthly.data/32.metdata>
+
+[^appendix-2]: <https://www.psmsl.org/data/obtaining/rlr.diagrams/32.php>
+
+[^appendix-3]: <https://github.com/openearth/sealevel/blob/master/notebooks/dutch-sea-level-monitor.ipynb>
+
+[^appendix-4]: <https://github.com/openearth/sealevel/blob/master/notebooks/validation/metric-vs-rlr.ipynb>
+
+------------------------------------------------------------------------
+
+Wij willen graag automatiseren. Dat lukt niet helemaal met psmsl data (de relatie tussen rlr en NAP kan veranderen; updates van de data zijn er niet aan het begin van een nieuw jaar). Weet jij misschien of RWS zelf ook correcte data van zeestanden t.o.v. NAP ergens online heeft staan?
+
+:   
+
+-   RWS heeft de gegevens niet online staan. Je kan wel de dagelijkse data uit de zogenaamde data distributielaag lezen, maar dan heb je nog geen jaargemiddelden (en soms deels niet gevalideerde data, en soms ontbreekt er wat, en het is langzaam en instabiel). Je kan ook uit Matroos data opvragen, die heeft geen api problemen maar is niet gevalideerd. Ik vraag nu elk jaar of RWS data aanlevert aan PSMSL. Die data zijn vaak rond september beschikbaar. Er is wel een plan om dit jaar wat kustgerelateerde indicatoren/data via de RWS site te ontsluiten. Daar zit ook nog een validatie stap tussen. Die doen ze meestal in juni van elk jaar.
+-   De PSMSL past ook af en toe hun verticale RLR niveau aan. Dan moet je ook weer alles opnieuw omrekenen. Dus dat moet je elke keer checken als je de RLR data gebruikt. Je kan dan beter nog de metric data gebruiken en die zelf omrekenen naar post-2005 NAP. Die kan je wel als constant veronderstellen (dan hoef je alleen de data voor 2005 aan te passen met een constante per station). Daar moet je wel jaargemiddelde uit uitrekenen (even checken voor consistentie wat betreft aantal dagen per maand en schrikkeldagen, etc...).
+-   Gegeven de huidige toestand heb ik zelf in ieder geval besloten om het niet te automatiseren. Ik heb het wel geautomatiseerd in de zin van dat ik de data met een script opvraag en de grafieken allemaal uitreken. Maar ik check de data wel nog elke keer handmatig voor ik ze online zet.
+-   Wij exporteren de reeksen ook op zenodo (reeksen staan in deltares/results) [^appendix-5]. Die worden veel gebruikt, bijvoorbeeld in het compendium voor de leefomgeving [^appendix-6]. Daar overleg ik ook dit soort details mee, maar dan met PBL. Je zou ook kunnen kijken of je daar wat mee kan integreren, want zij herpubliceren die cijfers ook al.
+
+[^appendix-5]: <https://zenodo.org/record/4609775>
+
+[^appendix-6]: <https://www.clo.nl/indicatoren/nl0229-zeespiegelstand-nederland-en-mondiaal>
+
+------------------------------------------------------------------------
+
+Hoe linken jullie de globale zeespiegel met de Nederlandse t.o.v. NAP? Dit is natuurlijk arbitrair en alleen van belang voor het plaatje. Wij denken erover om de gemiddelden over de laatste 3 volledige decaden aan elkaar gelijk te maken (overeenkomend met de meest recente klimaat-normaal). Zou jij dit ook zo doen of heb je misschien een beter idee?
+
+:   
+
+-   Het is nogal arbitrair omdat globale trends geen verticaal referentie systeem hebben. Satellietmetingen worden doorgaans als anomaliteiten (t.o.v. een referentie jaar of referentie periode) gerapporteerd. Als je verticale referentie systemen wil matchen doe je dat vaak geodetisch (op basis van een geoide) of op basis van Lowest Astronomical Tide kaarten. Maar omdat satelliet producten die doorgaans niet hebben, kan dat niet. Dus dan zit je vast aan het kiezen van een referentieperiode. Vaak wordt satellietdata t.o.v. 1993 uitgedrukt omdat de metingen toen begonnen. De zeespiegel stond wereldwijd toen 5mm lager door de uitbarsting van de Pinatubo [^appendix-7], dat maakt het ook nog eens ongelukkig om naar die globale reeks te kijken over die tijdsperiode. Ook is er discussie in de literatuur over de correctheid van de atmosferische correcties in het begin van de reeks. Sommige doen nu voor beide een correctie waardoor de zeespiegel wat minder snel stijgt, maar wel meer versnelt, waardoor je op een hogere actuele zeespiegelstijging uitkomt (\~4.0mm/yr ipv 3.2). Daar staat niet iedereen achter. NOAA doet geloof ik geen correcties en die schatten de globale zeespiegel nu op 2.9mm/yr (NOAA website is offline dus ik kan even geen bron geven). Dus je moet ook nog even goed vermelden welke reeks je precies gebruikt en welke correcties daar wel en niet inzitten en wat het effect daarvan is.
+-   In de meeste (behalve die van NOAA) reeksen van satellieten zit ook nog een GIA correctie. Die moet je er eigenlijk weer vanaf halen (\~0.3mm / year voor globaal) als je het met de stand aan de kust vergelijkt. De bodem onder de oceaan is gezakt, daar wordt 0.3mm per jaar voor bij de globale zeespiegel opgeteld, maar die zie je niet aan de kust. Datzelfde geldt voor bodemdaling onder het land (\~0.45mm/yr aan de kust), die zit niet in de globale zeespiegelstijging.
+-   Het belangrijkste om op te letten is hoe mensen de data interpreteren. Als je het einde van de reeks gelijk trekt, dan groeien de twee reeksen per definitie naar elkaar toe. Als je ze aan het begin aan elkaar knoopt, groeien ze uit elkaar. Het is dezelfde data, maar de duiding die men er aan geeft is tegenovergesteld.
+-   Ik zet ze normaal niet in 1 plaatje. Als ik het zou doen, dan zou ik ze op 1993 uitlijnen, vanwege de definitie van de satelliet anomalies, en omdat klimaatscenario's vaak rond die tijd beginnen. Ik heb nog nooit een gezamenlijke figuur gezien van getij metingen en satellietmetingen waarbij alle details klopten en de figuur goed werd geduid en begrepen.
+-   We hebben ook nog samen met KNMI gewerkt aan gezamenlijke figuren. Die kan je er ook nog even bij pakken ter referentie. (later toegevoegd: De gezamenlijke figuren zijn work-in-progress [^appendix-8])
+
+[^appendix-7]: <https://pubmed.ncbi.nlm.nih.gov/16267551/>
+
+[^appendix-8]: <https://deltares.shinyapps.io/sealevelFlexDashboard/>
+
+### Pers
+
+Waarom was er in de tweede helft van de jaren vijftig opeens zoveel aandacht voor de stijgende zeespiegel, zoals blijkt uit de twee links die je me stuurde? Had het iets te maken met de start van de CO~2~-metingen op Mauna Loa?
+
+:   
+
+Dat citaat kwam uit het Nieuwsblad van het Noorden, 1958-08-09, pagina 3 rechts bovenaan.\
+Hier de link via de kb naar delpher. Als het goed is, is dat een publieke link [^appendix-9].
+
+[^appendix-9]: <https://www.delpher.nl/nl/kranten/view?coll=ddd&identifier=ddd:010677357:mpeg21>
+
+Ook in die tijd waren er al zorgen over de versnelde zeepsiegelstijging (ze hadden het toen over rijzing ipv stijging en koolzuurgas ipv CO~2~), bijv: Nijlpaarden in West Europa? [^appendix-10]
+
+[^appendix-10]: <https://www.delpher.nl/nl/kranten/view?coll=ddd&identifier=MMKB19:000273027:mpeg21>
+
+### Publiek
+
+In uw samenvatting van de zeespiegelmonitor 2018 lees ik "Een belangrijke factor waardoor de zeespiegelstijging in Nederland lager is dan wereldwijd, is dat door het zwaartekrachteffect het ijs dat smelt en afkalft op Groenland niet bij Nederland terechtkomt. Nu was ik juist zo gecharmeerd van uw eerdere feitelijke mededeling over de centimeters grote zeespiegeldaling in 2018. "Fedor Baart (kustexpert Deltares): "Wat verder opviel is dat in het jaar 2018 de gemiddelde zeespiegel langs de Nederlandse kust met 7,2 cm is gedaald ten opzichte van de gemiddelde stand in 2017. Dat is de grootste daling sinds 1996." Die uitspraak over Groenlandse ijssmelt staat qua feitelijkheid bij mij wat lager in achting. Of, anders gezegd, ik bespeur hier een zeker verhoogd (ideologisch) glazen-bol-gehalte. Mag ik weten hoe en waarom en door wie die passage erin is gefietst?
+
+:   
+
+Zowel de eerste passage als de tweede passage heb ik opgesteld, in samenspraak met onze communicatie afdeling en met Rijkswaterstaat. Beide zinnen hebben betrekking op de zeespiegelmonitor, te vinden in onderstaande link [<https://www.deltares.nl/app/uploads/2019/03/Zeespiegelmonitor-2018-final.pdf>]. De eerste zin slaat terug op sectie 2.3.1, daarin wordt één van de factoren die invloed heeft op de zeespiegelstijging langs de Nederlandse kust beschreven. In sectie 7.1 wordt deze factor in de context van andere factoren besproken.
+
+------------------------------------------------------------------------
+
+Gister kreeg ik een folder van Forum voor Democratie in de bus met daarin een artikel over de klimaatcrisis (zie bijlage). Nu gaat het mij niet direct om de politieke standpunten van de partij maar om de bronverwijzing. Men verwijst namelijk naar een onderzoek van u waarin een toekomstvoorspelling van de zeespiegelstijging in Nederland is te zien alsmede de verwachting van activisten over die toekomst. Ik kan deze grafiek niet vinden op de website van het consortium. Ik kan wel een andere grafiek vinden. Hierin is echter geen toekomstvoorspelling van het consortium of van activisten opgenomen.
+
+:   
+
+Toelichting op de antwoorden: De meetgegevens uit het compendium voor de leefomgeving komen uit de zeespiegelmonitor [^appendix-11] waar Deltares hoofdauteur van is. Wij trekken de metingen niet door naar de verre toekomst. We adviseren om de huidige zeespiegelstijging (de trend) te gebruiken voor toepassingen tot maximaal 15 jaar vooruit. We hebben aangestipt dat de zeespiegelscenario's voor Nederland een overschatting laten zien ten opzichte van de huidige metingen [^appendix-12], zie onze FAQ's voor een nadere duiding [^appendix-13] [^appendix-14]. Het hoogste scenario waar we mee rekenen is terug te vinden in [^appendix-15]. Daar rekenen we met een bovengrens van iets boven de 3m. Het zou kunnen zijn dat dat de bron is van de "activisten" curve (daar lees ik iets boven de 3.5m af, dat is iets te hoog). Of dit daadwerkelijk de bronnen zijn kunt u het beste bij Forum voor Democratie verifiëren. Naar beide bronnen wordt in het compendium voor de leefomgeving in ieder geval verwezen [^appendix-16].
+
+[^appendix-11]: <https://www.deltares.nl/app/uploads/2019/03/Zeespiegelmonitor-2018-final.pdf>
+
+[^appendix-12]: <https://www.deltares.nl/nl/nieuws/nauwkeuriger-inzicht-huidige-zeespiegel-langs-de-nederlandse-kust/>
+
+[^appendix-13]: <https://www.deltares.nl/app/uploads/2018/09/QenAs-gevolgen-versnelde-zeespiegelstijging.pdf>
+
+[^appendix-14]: <https://www.deltares.nl/app/uploads/2019/03/faq-zeespiegelmonitor-2018-.pdf>
+
+[^appendix-15]: <https://www.deltaprogramma.nl/binaries/deltacommissaris/documenten/publicaties/2018/09/18/dp2019-b-rapport-deltares/DP2019+B+Rapport+Deltares.pdf>
+
+[^appendix-16]: <https://www.clo.nl/indicatoren/nl0229-zeespiegelstand-nederland-en-mondiaal>
+
+------------------------------------------------------------------------
+
+Is de aangedragen grafiek in de folder wel de uwe?
+
+:   
+
+-   Nee, maar wel deels op onze data.
+
+------------------------------------------------------------------------
+
+Zo nee, hoe staat u dan tegenover het gebruik van de grafiek op deze manier onder uw naam?
+
+:   
+
+-   We zijn een open kennisinstituut. Het doel van de zeespiegelmonitor is om gebruikt te worden in het kustbeleid. We publiceren ook de gegevens en de computercode die we gebruiken in ons rapport [^appendix-17]. Het doel om deze onderliggende data te publiceren is dat het iedereen vrij staat om deze data te hergebruiken.
+
+[^appendix-17]: <http://doi.org/10.5281/zenodo.4298787>
+
+------------------------------------------------------------------------
+
+Is het volgens u (indien de grafiek uit de folder wel klopt) een terechte aanwijzing dat we niet in een klimaatcrisis zitten, zoals het artikel beweerd?
+
+:   
+
+-   Je kan vanuit het perspectief van de huidige Nederlandse zeespiegelstijging niet tot een conclusie komen of we wel of niet in een klimaatcrisis zitten.
+
+------------------------------------------------------------------------
+
+Ik ben me aan het afvragen hoe men de stijging van DE zeespiegel meet of berekent. Nu heb ik op : KNMI - Zeespiegelstijging gekeken en daar allerlei tegenstrijdige zaken gezien en gelezen. En ook gehoord.Er staat daar geschreven dat de zeespiegel met ca 1,5mm per jaar stijgt. Er is een filmpje waarin wordt gezegd dat de zeespiegel mogelijk met een meter of meer zou kunnen stijgen... voor het jaar 2100. Nu heb ik een rekenmachientje en als ik intik 2x100 dan heb ik 200 mm zijnde 20 cm... Dat is dan een heel verschil met datgene wat er in dat filmpje wordt beweerd. Er is een faktor 5 in het geding. Nu staat er te lezen dat het zeenivo niet vlak is. En dat er bergen en dalen zijn tgv div zaken, wind , magnetisme draaiing vd aarde etc etc...
+
+:   
+
+-   U stipt aan dat de zeespiegel met een factor 5 harder zou moeten stijgen om 1 meter zeespiegelstijging in 2100 te kunnen bereiken. Er zit inderdaad een groot verschil tussen wat we nu observeren en voor in de toekomst verwachten. U kunt dit bijvoorbeeld terugzien in figuur 2 (rechter figuur) in het rapport van mijn collega Haasnoot [<https://www.deltaprogramma.nl/documenten/publicaties/2018/09/18/dp2019-b-rapport-deltares>]. De snelheden in de scenario's waarmee gerekend wordt voor het jaar 2100 lopen op tot 124mm per jaar. Dus tot ruim een factor 80 hoger dan de huidige 1.5mm per jaar (absolute) zeespiegelstijging langs de Nederlandse kust.
+
+------------------------------------------------------------------------
+
+Er wordt heeeel secuur gemeten... dat doet men oa aan de kust met een stok en daarop een meter bevestigd. Ik heb meet en regeltechniek gestudeerd en van daaruit WEET ik dat deze methode totaal onbetrouwbaar is. Alleen al de parallactische fout is bij deze meting niet te verwaarlozen.. Bovendien zakt die stok de grond in. Met de satelliet meten. Er is eb en vloed er is wind er is magnetisme. De hoogte wordt, door satellieten, gemeten, zo staat er te lezen, t.o.v. het middelpunt der aarde. Heuh hoe weet die satelliet op de mm af waar het middelpunt der aarde is... Zeker er staat bij dat de satellietmetingen onnauwkeurig zijn, maar toch... Evenzo goed wordt er vanuit gegaan dat de zeespiegel zomaar 1 meter kan stijgen, terwijl het absoluut nergens onderbouwd wordt. Er is een kaart waar de oceaan is ingekleurd en waar je op zou kunnen zien dat de oceaan in z'n totaliteit niet stijgt of nauwelijks. Zeker die kaart is maar een kaart en is geen zekerheid. Maar toch.
+
+:   
+
+-   U geeft aan dat de op de KNMI site staat aangegeven dat er wordt gemeten aan de kust met een peilstok. Dat is niet juist. Ik zal de KNMI er nog eens op wijzen dat dit nog steeds fout staat. Ik wees ze hier begin vorig jaar ook op. De metingen in de hoofdstations vinden plaats met een nauwkeuriger instrument. In vijf van de zes hoofdstations wordt gemeten met een zogenaamde digital niveau meter. Aan deze meter is een vlotter gemonteerd die meebeweegt met het wateroppervlak. In IJmuiden wordt sinds 2020 gemeten met een digitale radarmeting. Deze radar staat gericht op het wateroppervlak en meet zo ook de variatie en uiteindelijk de gemiddelde hoogte van het wateroppervlak. Satellietmetingen (ook met radar) zijn minder geschikt voor toepassingen direct aan de kust maar geven wel een goede dekking van de hele oceaan. Satellietmetingen zijn wat onnauwkeuriger dan metingen met vlotters en dan metingen met radar dicht bij het wateroppervlak. Op zee wordt nog wel eens gemeten met een zogenaamde stappenbaken, waar langs een peilstok om de 10cm electroden zijn gemonteerd. Deze meetopstelling is goed bestand tegen ruwe omgevingen. Maar die metingen gebruiken we niet voor de zeespiegel langs de kust.
+-   U noemt ook nog dat de stok inzakt. De hoogte van het meetinstrument wordt jaarlijks afgestemd met de dichtstbijzijnde NAP 0-paal. Daardoor zijn de metingen niet gevoelig voor lokale verzakkingen van het peilstation.
+
+------------------------------------------------------------------------
+
+Vreemd , vreemd allemaal.. zeker als je bedenkt dat 'heuse'wetenschappers voor enkele jaren op de tv kwamen en schreven in gerenommeerde kranten als NRC, Trouw dat door het smelten van het Noorpoolijs de zeespiegel zou stijgen, terwijl wij op de 2e klas van het voortgezet onderwijs leerden en ZAGEN dat het nivo van water met daarin ijs zou dalen als het ijs smelt. En sterker dat het niveau DAALDE omdat het water afkoelde
+
+:   
+
+-   U stipt ook nog het water dalen door afkoeling aan. Dit hebben we een paar jaar terug nog aangestipt door een vraag te maken voor de wetenschapsquiz (\@ 1:20:30 in [<https://www.npostart.nl/de-nationale-wetenschapsquiz-2017/26-12-2017/VPWON_1282245>]). We maken ons in Nederland overigens niet zo zeer zorgen voor het Noordpoolijs, maar vooral voor het ijs dat afsmelt van Antarctica. Voor Nederland is vooral het gebied Dronning Maud Land van belang, van elk cm zeespiegel equivalent die daar afsmelt krijgt Nederland er 1.35 cm. Gelukkig groeit de ijsmassa daar op dit moment aan. Wel kalft het ijs snel af van de Thwaites gletsjer en omgeving. Dat is voor de Nederland net zo vervelend als voor de rest van de wereld.
+
+## 2020
+
+### Rijkswaterstaat
+
+Verzoek om figuren en verklarende tekst met betrekking tot zeespiegelstijging in de Eems-Dollard.
+
+:   
+
+Tekst en figuren samengesteld in [online korte memo](https://deltares-my.sharepoint.com/:w:/r/personal/fedor_baart_deltares_nl/_layouts/15/guestaccess.aspx?e=4%3AMvwH6k&at=9&share=EVW-3-KAA_RPk89UOjAq0lQBsx8hxWGK73s-w7YVdLk7oQ)
+
+------------------------------------------------------------------------
+
+Is een knikpunt rond 1993 het gevolg van een versnelling of het gevolg van een lage gemiddelde zeestand in de jaren er voor?
+
+:   
+
+Begin jaren 1990 stond de zeespiegel wat lager. Dit wordt voor een deel toegeschreven aan de uitbarsting van Mount Pinatubo (bijv. "the eruption of Mount Pinatubo in 1991 caused a decrease in GMSL" [^appendix-18]). Daarnaast was er aan de Nederlandse kust een negatieve opzet. Deze negatieve surge kunnen we deels "corrigeren" met ons huidige windmodel. Met het GTSM model (globale Delft3D FM model) wordt het afwijkende jaar nog iets beter meegenomen (zie bijgevoegde figuur uit de online rekendocumenten van het rapport).
+
+[^appendix-18]: <https://www.pnas.org/doi/10.1073/pnas.1717312115>
+
+Er is dus een knikpunt te vinden. Deze duiden we vooralsnog als een ingehaalde achterstand, en niet als een versnelling.
+
+------------------------------------------------------------------------
+
+Waarom zou er een knikpunt zijn, immers ZSS werd (zeker in de jaren 90) gedreven door uitzetten van de oceanen. Dat is een geleidelijk proces en veroorzaakt geen knikpunten.
+
+:   
+
+Het effect is wat lastig te reconstrueren. De uitbarsting vond net voor het "satelliettijdperk" plaats. Ik zag wel dat er een nieuw scenario in de CMIP6 scenario's zit, speciaal voor deze uitbarsting. In [^appendix-19] schrijven ze 5 tot 7 mm zeespiegeldaling toe aan de afkoeling van de oceanen.
+
+[^appendix-19]: <https://www.nature.com/articles/srep31245>
+
+De Zeespiegelmonitor geeft ook een mogelijk knikpunt in 1993-1994, alleen is die beoordeeld als niet beter de trend beschrijvend dan gewoon een lineaire trend. Daarmee blijft de vraag, hoe relevant is een mogelijke trendbreuk?
+
+Ik bekijk het vooral absoluut. Hoe hoog staat de zeespiegel dit jaar, met en zonder knik. Als we het model met knikpunt hanteren, beginnen we voor 1994 1 cm lager en schatten we voor 2018 de zeespiegel 1cm hoger. Ik vind het relevant genoeg om te noemen. Daarom staat het ook in het rapport. Daarnaast is het relevant om een goede vergelijking te kunnen maken met satellietmetingen over dezelfde tijdspanne.
+
+### TU Eindhoven
+
+I write to you because I have some doubts concerning some sea level data. As you probably know, I worked in the past with monthly averaged PSMSL for some of the tidal gauges in the the Netherlands. However, for comparison with simulations and other analysis we use the sea level data from Rijkswaterstaat which uses NAP as the references. My questions are: how can I compare these data? Is it possible to compute sea level trends from Rijkswaterstaat data? I know about your report that NAP was shifted in 2005. Has it been shifted again after that?
+
+:   
+
+First regarding your question "how can I compare these data?". The comparison between the NAP and the PSMSL data is stored at the PSMSL in the form of a chart. You can see these charts per station, for example for [IJmuiden](https://www.psmsl.org/data/obtaining/rlr.diagrams/32.php)
+
+The adjusted measurements are what the PSMSL refers to as the Revised Local Reference level. The original NAP data is what they call "metric". For people with an imperial background, "metric" sounds like something that should be converted. You can see details on how I use these parameters in these notebooks [^appendix-20]. Please note that the PSMSL sometimes changes these parameters (in particular the number 7014 in the figure above) without a notice, so you have to check the parameters now and then.
+
+[^appendix-20]: [https://github.com/openearth/sealevel/tree/master/notebooks/(dutch-sealevel](https://github.com/openearth/sealevel/tree/master/notebooks/(dutch-sealevel)%7B.uri%7D...)
+
+Regarding your question "Is it possible to compute sea level trends from Rijkswaterstaat data?". You can compute trends with and without this correction (on the metric data and on the rlr data from psmsl). But PSMSL advices to use the RLR data. If you compute the trend on the metric dataset a small part of your trend is due to a change in the vertical reference level. I also compute relative to RLR, but compute it back to post 2005 NAP, so that it can be compared with the latest measurements.
+
+There was no shift after 2005. The 2004 shift is described here [^appendix-21]. We compute the results back to the "\>=2005 NAP". It's both NAP, but a different instance.
+
+[^appendix-21]: <http://publicaties.minienm.nl/download-bijlage/57206/agi-gap-04-004.pdf>
+
+### Ministerie
+
+Er is nav voortgangsrapportage HWBP een kamervraag binnengekomen: *Kunt u aangeven met hoeveel millimeter de zeespiegel aan de Nederlandse kusten in 2019 is gestegen?* Al googlend kom ik de zeespiegelmonitor 2019 nog niet tegen. RWS coördineert en moet op woensdag ambtelijk akkoord voorstel aanleveren. Dus fijn als we dit uiterlijk dinsdagochtend helder hebben.. Is dat haalbaar?
+
+:   
+
+De meetgegevens voor zeespiegel die we op dit moment tot onze beschikking hebben komen niet door ons validatieproces, waardoor we geen definitieve uitspraak kunnen doen over de zeespiegelstijging in 2019. De oorzaak hiervan is dat de zeespiegel data over 2019 nog hiaten vertoont. Dit heeft te maken met nog uit te voeren RWS validatieprocedures, Normaal gesproken doen wij onze validatie in september, als alle RWS validaties zeker gedaan zijn. Deze vraag heeft dit proces versneld, met negatief resultaat. (Deze vraag is een paar weken later wel beantwoord, na opnieuw downloaden en controleren van de RWS meetdata uit de datadistributielaag.)
+
+### KNMI
+
+Kan 1 van jullie mij adviseren waar ik hoogfrequente tide gauge data van nv Harlingen kan krijgen. Ik wil graag het getijdesignaal isoleren, checken of het naar 0 middelt (wsch niet) en indien niet in hoeverre dit verandert in de tijd. De traditionele websites/links (zie hieronder) geven problemen.
+
+:   
+
+De waterbase API is uitgezet vorig jaar en de nieuwe Digitale Distributie Laag API heeft wat "uitdagingen". De nieuwe api (vervangt waterbase) is hier beschreven: <https://www.rijkswaterstaat.nl/rws/opendata/DistributielaagWebservices-SUM-2v7.pdf>
+
+Deltares heeft, om het leven wat makkelijker te maken, een python api en een R api gemaakt om de data uit te lezen. <https://github.com/openearth/ddlpy/> (python) <https://github.com/wstolte/rwsapi> (R)
+
+Mocht je niet geïnteresseerd zijn in de data van de afgelopen twee jaar dan kan je ook hier de netCDF's met de historie tot 2018 te downloaden: <http://opendap.deltares.nl/thredds/catalog/opendap/rijkswaterstaat/waterbase/27_Waterhoogte_in_cm_t.o.v._normaal_amsterdams_peil_in_oppervlaktewater/nc/catalog.html>
+
+Ik heb RWS geadviseerd om de hoogfrequente data ook aan te leveren aan deze service, maar dat is nog niet gelukt: <http://uhslc.soest.hawaii.edu/thredds/catalog.html>
+
+De actuele data zit wel al in de tussenstap, in het IOC, maar daar is volgens mij geen archief en de maand/jaar validaties worden niet met terugewerkende kracht doorgevoerd: <http://www.ioc-sealevelmonitoring.org/station.php?code=harl>
+
+Je hebt ook nog een ander pad om de data op te vragen, via het matroos archief. Volgens mij mag het KNMI daar ook bij. Daar kan je ook metingen en forecasts downloaden. Dan kan je ook je eigen getijanalyse vergelijken met wat RWS produceert op basis van getijsys. Los daarvan heeft KNMI volgens mij ook nog een eigen SQL database met een archief van (WAQUA, SIMONA, Delft3D?) forecasts en daarbij ook opgetreden waterstanden. Ik heb daar vroeger wel eens een extract uit gekregen.
+
+De getijanalyse komt nogal nauw. We (Deltaresmedewerkers) hebben een paar jaar geleden een vergelijking gemaakt tussen verschillende getijsoftware (t-tide, tappy, getijsys, delft3d-tide (gebaseerd op Ejo Schrama's code geloof ik). Daar bleek de getijanalyse van getijsys (die al sinds de jaren 1990 niet meer actief ontwikkeld wordt) het meest accuraat (analyse in jaar 0, vergeleken met opgetreden amplitudes in jaar +1 +5). Dat was wel jammer omdat die nog wat functionele en onderhoudsuitdagingen heeft (fortran 77 code, kan niet omgaan met wisselingen van meetfrequenties, etc...)
+
+Bij getijanalyse moet je opletten hoeveel jaar je analyseert (gebruikelijk met 1 jaar), maar dan kan je niet goed met knoopfactoren rekenen (daarvoor heb je 19 jaar nodig). Je kan ook kiezen of je zeespiegel als constante of als trend meerekent, dat maakt voor de toepassing die je noemt ook veel uit, als je bijvoorbeeld een storm hebt aan het begin van het jaar. Ik heb nog wel een voorbeeld staan van een eenvoudige getijanalyse [^appendix-22] die we gebruiken om naar trends in M2 amplitude te kijken. Daar zie je ook dat niet elk jaar een goede oplossing geeft omdat er vroeger nog geen "opvul" routine meeliep. Veel getijpakketten kunnen niet omgaan met missing data of niet-equidistante tijdstappen. Onderstaande analyse is met utide gemaakt (python versie van Eric Firing, Filipe Fernandez), er is ook een matlab versie. Data voor 1970 gaf problemen. Waarschijnlijk omdat er toen missings in zaten, maar het kan ook zijn dat utide een aanname heeft over de epoch. Sommige getijsoftware (bijv. t-tide waar utide op gebaseerd is) werkt niet voor 1970-01-01 omdat dat het unix jaar 0 is (een soort millennium bug).
+
+[^appendix-22]: <https://github.com/openearth/sealevel/blob/master/notebooks/analysis/tide/tidal-trends.ipynb>
+
+### Pers
+
+Als wetenschapsjournalist ben ik nu bezig met een stuk voor Trouw over de zeespiegel die bij ons voor de deur minder hard stijgt dan mondiaal. Ik ben op zoek naar de jongste getallen op dat gebied (jonger dan de monitor van Deltares uit 2018). Is er al iets bekend over de waterstanden in de Waddenzee van de afgelopen zomer met relatief veel oostenwind? En heeft de wind ook een meetbaar effect op de stand van de Noordzee?
+
+:   
+
+We hebben vooralsnog alleen voorlopige cijfers. Juist in de zomer waren er nogal wat missings bij Den Helder (in vorige jaren kwam dat door mosselen in de buis die door de dijk loopt). Daarom zou ik wat huiverig zijn om specifieke cijfers voor de Wadden te delen. Julie leveren de definitieve cijfers altijd in de zomer aan bij PSMSL. Dat is dit jaar nog niet gebeurd Zie bijvoorbeeld IJmuiden [^appendix-23] (data is nog tot 2018).
+
+[^appendix-23]: <https://www.psmsl.org/data/obtaining/stations/32.php>
+
+------------------------------------------------------------------------
+
+Ik ben momenteel bezig met een achtergrondartikel over zeespiegelstijging in combinatie met het verzakken van steden door hun eigen gewicht, n.a.v. het [artikel onlangs in AGU Advances](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2020AV000277). Naar aanleiding hiervan zou ik u graag wat vragen willen stellen over de Nederlandse situatie. De zeespiegel is voor Nederlandse kust de afgelopen 128 jaar met 1,86 mm per jaar (18,6 cm per eeuw) gestegen en de stijging is niet versneld, rapporteerde Deltares enkele jaren terug. Volgens IPCC versnelt de zeespiegelstijging echter wel, en is deze 4 mm per jaar. Hoe verhouden deze op het oog tegenstrijdige cijfers zich tot elkaar?
+
+:   
+
+Het belangrijkste is om dezelfde periode en gebied te vergelijken. Langs de Nederlandse kust hebben we nauwkeurige metingen sinds 1890, dus daar kijken we wat verder terug. We meten de zeespiegel pas globaal dekkend sinds 1992. De IPCC rapporteert in zijn laatste SROCC rapport 3.2 mm per jaar over de periode 1993--2015 en 3.6 mm over de periode 2006--2015. Dit gaat over de globale zeespiegelstijging (op een klein stukje Noordpool na). Als we aan de Nederlandse kust kijken zien we minder zeespiegelstijging. Dat heeft een aantal oorzaken. We hebben de periode sinds 1993 met Nederland vergeleken. Dan vallen een aantal verschillen op.
+
+-   Waar gaat het water naar toe? Nederland ligt gunstig. Het afgesmolten ijs verdeeld zich niet gelijkmatig. Nederland krijgt minder dan een evenredig deel. Vooral van Groenland krijgen we minder dan gemiddeld. Van de plek waar het in Antarctica nu in het hardste afkalft, rond de Thwaites Gletsjer, krijgen we een evenredig deel.
+-   Welke bodemveranderingen neem je mee? In de 3.2mm per jaar zit voor een deel een correctie voor de verdieping van de oceaan (omdat massa zich verplaatst naar plekken waar ijs is verdwenen). Aan de kusten zie je de zeespiegel maar gemiddeld met 2.9mm per jaar stijgen over de periode 1993-2015. Daar is de bodemdaling aan de kust niet in meegenomen. In de Nederlandse metingen zit nog een deel (0.45mm/jaar) bodemdaling. Onder de kust bij Delfzijl is de bodemdaling nog groter, maar die rekenen we apart mee.
+-   De trend is nogal gevoelig voor het beginjaar. In 1991 was bijvoorbeeld net de Pinatubo uitgebarsten. Daardoor koelde de wereld wat af en stond de zeespiegel wat lager. In Nederland verbinden we de lijn voor 1993 met de metingen daarvoor. Dat maakt de zeespiegelstijging iets robuuster.
+
+Merk op dat de Nederlandse zeespiegelstijgingtrend dus duidelijk afwijkt van de globale. Dat is iets wat je over de hele wereld ziet, bijvoorbeeld in Zweden, daar daalt de zeespiegel. De huidige globale zeespiegelstijging zegt niet zo veel over wat er aan een stukje kust gebeurt.
+
+### Publiek
+
+I am writing you based on a recommendation of Laurens de Haan. His 1990 paper Fighting the Archenemy with Mathematics, was the basis for my question for him. The references to his paper include one for Gottschalk and his collation of six centuries of North Sea storm surges published in three volumes beginning in 1971. However, the recalibration of the Dutch dyke and levee system to a 1 in 10,000 year event after the 1953 disaster leveraged a different, earlier information source. For instance, I used to have in my possession a paper published in the early 1960s which described this first Delta project. This paper stated that it used a 400 year record for its block maxima EVT model, an obviously earlier data source than Gottschalk's. With your permission, I would like to ask you the same question I had for Dr de Haan. Can you point me to the source and data for this earlier 400 year of maxima for North Sea storm surges?
+
+:   
+
+According to the records that I have, the daily recording of tide gauges in the Netherlands started in 1700 in Amsterdam (not quite 400 years). Most of the return period estimates of the 1953 storm that were published in the 1960's, of which I am aware of, refer back to the work of Wemelsfelder. Wemelsfelder used data from 1880 and later through 1950's to estimate the return period of the 1953 storm (estimated at \~400 years). I am not aware of any studies that use the data since 1700 (or older) for extreme value/annual maxima estimates. I would be interested though, so please let me know if you do find the title of the paper which mentions that the 400 year data source.
+
+We collected information on the older records and stored them in the PSMSL archive [^appendix-24]. Unfortunately these records don't have the old daily/hourly/high/low tide records. Only annual mean and mid-levels were kept. This makes these records unusable for extreme value statistics. We did reconstruct the old storm surge water levels for that purpose (based on a wide variety information collected by Gottschalk, Buisman and on old paintings for the storms of 1741, 1776) in [^appendix-25].
+
+[^appendix-24]: <https://www.psmsl.org/data/longrecords/ancill_rep.htm>
+
+[^appendix-25]: <https://eur03.safelinks.protection.outlook.com/?url=https%3A%2F%2Frepository.tudelft.nl%2Fislandora%2Fobject%2Fuuid%3A64161304-4714-4214-9790-e0da4a71399d%3Fcollection%3Dresearch&data=02%7C01%7C%7Cf086eadac64a43f6998208d842d029f6%7C15f3fe0ed7124981bc7cfe949af215bb%7C0%7C0%7C637332809120119449&sdata=mREquYS3%2BkKtN9rO8aT%2FV6EjGi9u7VNPyXCZZHlGTAs%3D&reserved=0>
+
+We have higher temporal resolution data (hourly -- minutely), with known properties of the vertical reference level, available for the main tide gauges in the Netherlands. These records go back to 1850-1880's, depending on the station.
+
+------------------------------------------------------------------------
+
+Ik ben u op het spoor gekomen via het rapport over de zeespiegel langs de Nederlandse kust. Ik hoop dat u mij op weg kunt helpen met de volgende vraag. Conclusie in het rapport is dat de stijging tot nu toe niet is versneld en achter raakt op de wereldwijde zeespiegelstijging die met satellieten gemeten wordt en wel lijkt te versnellen. Mogelijke verklaring hiervoor is het zwaartekrachteffect. Wat ik mij nu afvraag is als de stijging in Nederland gedempt wordt, dan zal dat toch als effect hebben dat ergens anders op de aarde de zeespiegelstijging "versneld" versneld?
+
+:   
+
+Hieronder vindt u een overzicht van stations waar er een hoge versnelling is. Een versnelling kan meerdere vormen hebben. Een plotselinge verandering in hoogte (zoals in Ayukawa), een trendbreuk (zoals in Manilla) of een geleidelijke verandering in de hellingshoek (zoals in de Finse en Zweedse stations te berekenen is).
+
+U maakte ook een opmerking over de versnelling van versnelling. Daarbij de volgende rekenkundige/taalkundige opmerking. We kijken meestal naar de stand (hoe hoog staat het water), naar de stijging van de zeespiegel (hoeveel stijgt de zeespiegel elk jaar) en naar de versnelling van de zeespiegel (stijgt de zeespiegel steeds sneller). Zo kan je nog verder gaan en dan krijg je een versnelling van de zeespiegelstijging (nog een orde hoger). En nog een orde hoger de versnelling van de zeespiegelversnelling. Naar die laatste twee kijken we normaal niet. Toch wordt de term "de versnelling van de zeespiegelstijging" wel vaak gebruikt. Meestal bedoelen mensen als ze zeggen "de versnelling van de zeespiegelstijging" eigenlijk "de versnelling van de zeespiegel".
+
+Enkele voorbeelden van stations waar de zeespiegel het meest versneld is vindt u hieronder. Dit zijn vooral stations waar iets bijzonders aan de hand is:
+
+-   Langs de Japanse kust, doordat stations instantaan zijn verzakt door aardbevingen, bijvoorbeeld Ayukawa [^appendix-26]
+-   Mossel Bay (Zuid Afrika), daar zijn diverse problemen met het station (zie opmerkingen [^appendix-27])
+-   Murmansk II in Rusland, niet echt aan de open zee. Is inmiddels weer gedaald [^appendix-28]. Zie ook daar opmerkingen bij het station.
+-   Brisbane. Daar is vooral een versnelling voor en na de breuk in de metingen [^appendix-29]. Metingen worden vaak gestart als er een probleem is met de zeespiegel.
+-   Nelson in NZ. Daar ook vooral een versnelling na een breuk in de metingen [^appendix-30].
+-   Manilla. Als voorbeeld van een station met een wat langere meetreeks. Deze versnelling wordt toegeschreven aan depositie en land aanwinning [^appendix-31].
+-   Batumi. Ook een voorbeeld van een station met een langere reeks. De tectonische plaat is in beweging [^appendix-32].
+
+[^appendix-26]: <https://www.psmsl.org/data/obtaining/stations/131.php>
+
+[^appendix-27]: <https://www.psmsl.org/data/obtaining/stations/910.php>
+
+[^appendix-28]: <https://www.psmsl.org/data/obtaining/stations/687.php>
+
+[^appendix-29]: <https://www.psmsl.org/data/obtaining/stations/822.php>
+
+[^appendix-30]: <https://www.psmsl.org/data/obtaining/stations/787.php>
+
+[^appendix-31]: <https://www.psmsl.org/data/obtaining/stations/145.php>
+
+[^appendix-32]: <https://www.psmsl.org/data/obtaining/stations/51.php>
+
+------------------------------------------------------------------------
+
+Ik heb veel data via de [Permanent Service for Mean Sea Level](https://eur03.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.psmsl.org%2F&data=02%7C01%7C%7Cd24af9109f7d4727109808d80d20edd4%7C15f3fe0ed7124981bc7cfe949af215bb%7C0%7C0%7C637273782363809603&sdata=8r5u6NHMJcbkrV88mcnPog7Z%2FUKWqPqdkr7UhjjPyZY%3D&reserved=0) kunnen vinden en flink met excel aan de stoei geweest maar er lijkt niet één plaats op de aarde te zijn waar de stijging uberhaubt versnelt laat staan "versneld" versnelt. Weet u zo'n plaats op de aarde of is die er inderdaad niet?
+
+:   
+
+Van de stations met langere reeksen (\>100 jaar) is de versnelling beperkt en niet op het oog zichtbaar. De top 5 van versnellingen bestaat uit stations waar de zeespiegel steeds minder snel daalt:
+
+-   Furuogrund [^appendix-33]
+-   Klaipeda [^appendix-34]
+-   Pietarsaari [^appendix-35]
+-   Smogen [^appendix-36]
+-   Mantyluoto [^appendix-37]
+
+[^appendix-33]: <https://www.psmsl.org/data/obtaining/stations/203.php>
+
+[^appendix-34]: <https://www.psmsl.org/data/obtaining/stations/118.php>
+
+[^appendix-35]: <https://www.psmsl.org/data/obtaining/stations/194.php>
+
+[^appendix-36]: <https://www.psmsl.org/data/obtaining/stations/179.php>
+
+[^appendix-37]: <https://www.psmsl.org/data/obtaining/stations/172.php>
+
+------------------------------------------------------------------------
+
+Deltares en HKV lijn in water in opdracht van Rijkswaterstaat gewerkt aan een nieuwe methode om de zeespiegelstijging langs de Nederlandse kust nauwkeuriger te bepalen. De conclusie is dat de zeespiegel de afgelopen 128 jaar met 1,86 mm per jaar (18,6 cm per eeuw) is gestegen en dat de stijging niet is versneld. Die andere 28 jaar moeten daar dus nog vanaf neem ik aan?
+
+:   
+
+Hartelijk dank voor uw vraag. Als ik het goed begrijp vindt u het verwarrend dat er in zowel naar 128 jaar en naar een eeuw verwezen wordt in één zin. Hieronder schrijf ik het iets meer uit:
+
+De stijging is berekend over de periode van 1890 tot en met 2017. Dat zijn 128 jaar. Over die periode was de stijging gemiddeld 1,86 mm per jaar, ook uit te drukken als 18,6 cm per eeuw. De totale stijging is 1,86mm/jaar \* 128jaar is 238,08mm, ook uit te drukken als 23,8 cm (afgerond op mm).
+
+Zie ook het volledige rapport [^appendix-38].
+
+[^appendix-38]: <https://www.deltares.nl/app/uploads/2019/03/Zeespiegelmonitor-2018-final.pdf>
+
+### PBL
+
+Een vraag over zeespiegel langs de Nederlandse kust. Heb jij de jaargetallen voor de zes heel oude kuststations al beschikbaar en wil je ze mij al ter beschikking stellen? Ik wil binnenkort de [CLO-pagina over zeespiegel](https://www.clo.nl/indicatoren/nl0229-zeespiegelstand-nederland-en-mondiaal) updaten Ik bedoel dan de jaargemiddelde stijging die aansluit (zonder verdere correctie) op de data op de PSMSL-website. Uiteraard gebruik ik de data met bronvermelding
+
+:   
+
+Ik heb de cijfers tot en met 2018 (met gemiddelde over de zes hoofdstations) hier neergezet. <https://doi.org/10.5281/zenodo.2595087> De laatste versie staat in het mapje data/deltares/results: dutch-sea-level-monitor-export-2019-09-29.csv
+
+We hebben ook voorlopige cijfers over 2019, maar die heb ik nog niet gecontroleerd.
+
+Je kan ook de door Rijkswaterstaat aangeleverde gegevens hier terugvinden: <https://www.psmsl.org/data/obtaining/>
+
+Er zijn twee bronnen: - Metrisch (wat er gemeten is zonder correcties voor veranderingen in hoogtemodel) - Revised Local Reference (wat er gemeten is met een correctie voor verandering in referentiestelsels). Deze gebruik ik meestal omdat het NAP is aangepast in 2005.
+
+De berekeningen om jaargemiddelden en correcties te doen kan je hier [^appendix-39] terugvinden.
+
+[^appendix-39]: <https://nbviewer.ipython.org/github/openearth/sealevel/blob/master/notebooks/dutch-sea-level-monitor.ipynb>
+
+------------------------------------------------------------------------
+
+In de oude CLO-tekst schat ik dat de bodemdaling langs de hele kust ongeveer 0.2 mm/jaar is. Die schatting heb ik gehaald uit Kooi et al. (1998) en Kooi (2008). Die daling verloopt van 0.0 tot 0.3 mm/jaar en gemiddeld ongeveer 0.2mm/jaar. Maar in Hijma en Kooi (2018, Deltares rapport deel II) staan heel andere cijfers, die jij ook overneemt. Deze cijfers zijn veel groter en gemiddeld over de zes stations ruwweg een daling van 0.45 mm/ jaar. Veel groter dus dan mijn 0.2 mm/jaar. Mijn vraag kloppen de nieuwe cijfers en had ik verouderde inzichten?
+
+:   
+
+Volgens mij stond in Kooi et al. (1998) [^appendix-40] ook al een cijfer van 0.4 mm / jaar bodemdaling. Uit de paper lees ik: "Estimates of isostasy and compaction movements at the coast are I=−0.3±0.5 mm/yr and C=−0.1±0.05, respectively." Ik zie wel dat deze cijfers vaak verkeerd worden overgenomen. In de oude KNMI scenario's (volgens mij 2006) heeft ook wel eens 1mm/jaar gestaan, volgens mij met dezelfde bron. Dus het kan zo maar zijn dat je ze wel correct hebt overgenomen, maar niet rechtstreeks uit Kooi 1998.
+
+[^appendix-40]: <https://www.sciencedirect.com/science/article/pii/S0040195198002091?casa_token=ybhUG6nha2kAAAAA:ppmVHw4oblCKIIi7utcgW01gMIYLj_tXSp79UgtXA0xQ6kuOq7KPdpmb1-Q-lCVkXyNiYKLfSDc>
+
+------------------------------------------------------------------------
+
+Verder: opmerkelijk die enorme daling bij Delfzijl door gas/olie winning. Wel raar dat Rijkswaterstaat die weggecorrigeerd heeft .. Vreemd toch? Tenminste vermoedelijk want jij weet het ook niet zeker, schrijf je.
+
+:   
+
+Die "weggecorrigeerd" bodemdaling bij Delfzijl is op zich wel te verdedigen. Het NAP is een gedefinieerd als vlak, en Groningen wijkt daar lokaal van af. Daar moet je lokaal iets voor verzinnen. Dat is toen de bodemdaling begonnen is ook gedaan. Maar hoe, dat was niet goed bekend. De stukken waarin het vastgelegd is waren praktisch onvindbaar. Uiteindelijk heeft RWS de stukken gevonden in een archief. Daarin stond netjes beschreven hoe er in de jaren 1970 mee omgegaan is. Ik heb geen logboeken van de landmeters en kalibraties van de stations. Of er ten alle tijden consistent mee omgegaan is, kan ik dus niet checken. Vandaar dat ik deze aannames met enige voorzichtigheid formuleer in het rapport.
+
+------------------------------------------------------------------------
+
+Ik kwam bij Riva et al. (2017) een bodemstijging tegen die jij niet noemt. In het CLO schrijf ik: "Naast deze bodemdaling speelt het smelten van het ijs op Groenland mogelijk een rol. Riva et al. (2017) laten zien dat dit afsmelten een bodemstijging veroorzaakt ter hoogte van Engeland van gemiddeld 0,4 mm per jaar over de periode 1902-2014. Daarbij vinden zij een versnelling in de laatste decaden." Die 0,4 mm per jaar is best heel veel (rondom Engeland maar dat is toch vlakbij NL). Ken jij dit werk en kan dat echt, dat opveren door ijsmassa-verlies op Groenland. Ik ben dit verder ook nergens tegengekomen..
+
+:   
+
+Ik zal nog even vragen aan mijn collega, of hij de getallen van Riva kan duiden. <Niet bekend of dit ook opgevolgd is>
+
+------------------------------------------------------------------------
+
+Verder nog een verzoek om voorlopige berekeningen
+
+:   
+
+Verwezen naar getallen op de Github repository voor de Zeespiegelmonitor.
+
+### Deltaprogramma
+
+Voor de Signaalgroep van het Deltaprogramma willen we de zeespiegeldata langs de NL kust uit de Zeespiegelmonitor ontsluiten via een Signaalgroep dashboard. Kunnen jullie ons helpen aan een beschrijving van de manier waarop we die data kunnen ophalen?
+
+:   
+
+De zeespiegelmonitor wordt periodiek gereleased en gearchiveerd bij zenodo. Van die url kan je ervan uitgaan dat die altijd beschikbaar is. <https://doi.org/10.5281/zenodo.3952423> Daar staat de data in: data/deltares/results/dutch-sea-level-monitor-export-2020-07-20.csv
+
+Als je de data rechtstreeks wil inlezen (zonder uitpakken van een zipfile) dan kan je ook de de data van github halen. Zorg dat je naar een tag verwijst zodat de url niet meer veranderd als iemand de directory structuur aanpast. <https://raw.githubusercontent.com/openearth/sealevel/v2019.0.1/data/deltares/results/dutch-sea-level-monitor-export-2020-07-20.csv>
+
+RWS heeft de data over 2019 nog niet gevalideerd en gepubliceerd. De huidige data loopt tot en met 2018. Voorlopige data (tot vandaag) kan je opvragen via RWS DDL (niet triviaal).
+
+Context en duiding graag even afstemmen met Willem. Merk op dat PBL ook een dashboard heeft voor een brede verzameling van indicatoren [^appendix-41], de zeespiegelstijging zit daar ook in. Als je een thema specifiek dashboard maakt, dan kan je de gegevensverwerking en updates etc.. via CLO kunnen laten lopen. Dan doe je geen werk dubbel.
+
+[^appendix-41]: <https://www.clo.nl/indicatoren/nl0229-zeespiegelstand-nederland-en-mondiaal>
