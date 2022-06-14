@@ -52,7 +52,7 @@ In @Dillingh2013 werden de huidige zeespiegelstand en de huidige zeespiegelstijg
 **Programma's**
 
 ```{r}
-programmas <- readxl::read_excel("../../data/deltares/intern/raakvlakken.xlsx", sheet = "listProjects")
+programmas <- read_excel("../../data/deltares/intern/raakvlakken.xlsx", sheet = "listProjects")
 
 programmas %>% 
   mutate(
