@@ -250,7 +250,7 @@ Dit beantwoordt
 reference="question:bodemdaling"} hoe we absolute bodemdaling en
 absolute zeespiegelstijging kunnen uitsplitsen. $$answer:bodemdaling$$
 
-## Scenario's versus de huidige zeespiegel {#sec:scenarios}
+## (SM) Scenario's versus de huidige zeespiegel {#sec:scenarios}
 
 Zoals we in \@ref(toepassingen) gezien hebben zijn er
 zeespiegelindicatoren gebaseerd op alleen metingen (trends,
@@ -427,7 +427,7 @@ zeespiegelstijging aansluit beantwoordt
 [$$question:aansluiten$$](#question:aansluiten){reference-type="ref"
 reference="question:aansluiten"}. $$answer:aansluiten$$
 
-## Nederland versus buurlanden {#nl-vs-northsea}
+## (SM) Nederland versus buurlanden {#nl-vs-northsea}
 
 Naast Nederland hebben ook de andere landen die aan de Noordzee liggen
 een historie van metingen van de zeespiegel. De stations laten een
@@ -444,7 +444,7 @@ knitr::include_graphics("figures/multiple-stations.png")
 
 ```
 
-## Nederland versus globaal {#sec:nl-vs-globaal}
+## (SM) Nederland versus globaal {#sec:nl-vs-globaal}
 
 Als we de Nederlandse zeespiegel vergelijken met de globale zeespiegel
 dan kunnen we kijken naar de globale zeespiegelstijging zoals deze aan
@@ -566,7 +566,7 @@ Zowel het toevoegen van de autocorrelatieterm als de correctie voor
 heteroskedasticiteit heeft geen effect op de schattingen van de huidige
 zeespiegel, alleen op de standaardfouten.
 
-## Heranalyses voor wind en getij {#sec:dcsm}
+## (SM) (to methods) Heranalyses voor wind en getij {#sec:dcsm}
 
 In de bijlage in \@ref(frederikse) is onderzocht of het gebruik van
 stormopzetten uit [GTSM]{acronym-label="GTSM"
