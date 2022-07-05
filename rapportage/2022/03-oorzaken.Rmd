@@ -99,7 +99,7 @@ De uitdaging in het kwantificeren van de zeespiegel is om spaarzaam een verzamel
 
 Dit rapport gebruikt alle drie de aanpakken. In de beschrijving van de globale zeespiegel ligt de nadruk wat meer op de boekhoud aanpak. Voor de bepaling van de huidige zeespiegel wordt gebruik gemaakt van data science en geassimileerde heranalyses.
 
-## Globaal {#boekhouding}
+## (SM) Globaal {#boekhouding}
 
 De globale zeespiegelveranderingen (gemiddeld over alle oceanen) wordt grotendeels veroorzaakt door twee componenten [Zie bijvoorbeeld @Chambers2017]. Beide componenten zorgen ervoor dat het oceaanvolume toeneemt.
 
@@ -137,7 +137,7 @@ Het is duidelijk dat de zeespiegel in de 20e eeuw sneller steeg dan enkele honde
 knitr::include_graphics("figures/postglacial.png")
 ```
 
-### Temperatuur {#temperatuur}
+### (SM) Temperatuur {#temperatuur}
 
 Een belangrijke factor in de trend van de zeespiegel is de temperatuur van de oceanen. Als de temperatuur stijgt, stijgt de zeespiegel doordat warmer water een lagere dichtheid heeft. Zoet water heeft de hoogste dichtheid bij 4°C, hoe zouter het water hoe lager de temperatuur met de hoogste dichtheid [@Caldwell1978]. Van de temperatuur van het oppervlakte van de oceaan zijn lange meetreeksen en heranalyses beschikbaar [@Huang2017]. Uit deze reeks blijkt dat de temperatuur van oceaan, nadat deze in de kleine ijstijd flink was gezakt [@Voosen2017], weer aan het stijgen is [4](#fig:sst){reference-type="ref" reference="fig:sst"}.
 
@@ -152,7 +152,7 @@ knitr::include_graphics("figures/sea-surface-temperature.png")
 
 Eigenlijk is niet de temperatuur van het oceaanoppervlak van belang, maar de oceaantemperatuur over de hele diepte van de oceaan. Met dit doel is begin van de eeuw een globaal programma van boeien opgezet, het [Argo]{acronym-label="Argo" acronym-form="singular+short"} programma. Deze 3900 boeien kunnen naar beneden duiken en zo de zoutgradiënt, druk en temperatuur meten over de bovenste 2000m van de oceaan. Er wordt gewerkt aan de uitbreiding tot 6000m diep [@Jayne2017], zie ook @Talley2016 voor een overzicht van metingen van schepen. Op basis van deze data wordt een schatting gemaakt van de veranderingen in dichtheid [@Roemmich2009] en deze wordt beschikbaar gesteld in een dataset. Op basis van de combinatie van zeespiegelmetingen, zwaartekrachtmetingen en dichtheid is de conclusie getrokken dat de diepe oceaan, dieper dan 2000 meter, niet opwarmt [@Llovel2014]. schatten de bijdrage van de diepe oceaan aan de zeespiegelstijging op ongeveer 0.1mm/. De schatting van de zeespiegelbijdrage van de bovenste 2000m bedraagt 1.1mm/ op basis van data van [@Llovel2014; @Roemmich2009], zoals weergegeven in [2](#sec:boekhouding){reference-type="ref" reference="sec:boekhouding"}.
 
-### Massaveranderingen, gletsjers, landijs en zeeijs
+### (SM) Massaveranderingen, gletsjers, landijs en zeeijs
 
 !!!(ontbrekende tekst) liet zien dat ongeveer 1.8 mm/ van de globale zeespiegelstijging kan worden toegeschreven aan veranderingen in massa. De massaverandering bestaat uit het verplaatsen van massa, door:
 
@@ -199,7 +199,7 @@ knitr::include_graphics("figures/sea-level-trends.png")
 knitr::include_graphics("figures/sea-level-trends-legend.png", dpi = 450)
 ```
 
-## Gravitatie {#sec:gravitatie}
+### (SM) Gravitatie {#sec:gravitatie}
 
 In de jaren 70 van de vorige eeuw ontstond het inzicht dat de stijgende zeespiegel na afkalving of smelting zich niet uniform verdeelt over de wereld [@Clark1977], door wat we zelfgravitatie noemen. Het concept van zelfgravitatie is in de astronomie al langer in gebruik [zie bijvoorbeeld @Chamberlin1909]. In de eerste zeespiegelprojecties werd dit fenomeen al meegenomen [@Mercer1978]. Daarna is het in de vergetelheid geraakt. In de laatste klimaatscenario's is het, in de ontwikkeling naar beter regionaal toepasbare scenario's, weer meegenomen [@Slangen2012; @Hurk2014].
 
@@ -214,7 +214,7 @@ knitr::include_graphics("figures/self-gravitation.png")
 
 Deze onderverdeling komt grotendeels overeen met de verwachte vingerafdrukken [zie bijvoorbeeld voor de Wadden @Vermeersen2018]. Voor Nederland geldt dat we nagenoeg geen zeespiegelstijging verwachten van het afsmelten van Groenland. Dat we slechts ongeveer 60% van de zeespiegelstijging van afsmeltende gletsjers aan de Nederlandse kust verwachten en 95%, net iets minder dan een evenredig deel, van het afsmelten van Antarctica. Nederland ligt daarmee, na de Scandinavische landen die ook nog bodemrijzing ondervinden van de laatste ijstijd, op een van de de meest gunstige plekken ter wereld. Als Antarctica veel verder afsmelt liggen vooral zuid Argentinïe en Chili gunstig.
 
-### Circulaties {#sec:circulaties}
+### (SM) Circulaties {#sec:circulaties}
 
 De zeespiegel kan ook beïnvloed worden door oceaancirculaties. Door verschillen in temperatuur, saliniteit, het corioliseffect en de kracht van de wind op het oppervlak van de oceaan ontstaan er oceaancirculaties, weegegeven in figuur \@ref(fig:ocean-current).
 
@@ -229,13 +229,13 @@ Een van de variaties in de circulatie wordt aangemerkt als de [AMO]{acronym-labe
 knitr::include_graphics("figures/amo.png")
 ```
 
-### Luchtdruk {#sec:luchtdruk}
+### (SM) Luchtdruk {#sec:luchtdruk}
 
 Als er ruimtelijk luchtdruk verschillen ontstaan, dan stijgt de zeespiegel op de plek met de laagste luchtdruk. Een daling van 1 mbar komt ongeveer overeen met een stijging van 1 cm. Een gebied met hoge luchtdruk drukt het zeeoppervlak naar beneden [@Dickman1988].
 
 Door dit effect kunnen regionale veranderingen in luchtdruk zorgen voor een stijging of daling van de zeespiegel. Dit effect vindt plaats tijdens een storm waar een gebied met lage luchtdruk voor extra stormopzet zorgt. Er kunnen ook variaties over langere termijn optreden. Een bekend fenomeen is de [NAO]{acronym-label="NAO" acronym-form="singular+short"}. Bij een hoge [NAO]{acronym-label="NAO" acronym-form="singular+short"}, wat overeenkomt met een lage atmosferische druk, staat de zeespiegel op de Noord Atlantische Oceaan wat hoger.
 
-### Getij {#sec:getij}
+### (SM) Getij {#sec:getij}
 
 Het zeeoppervlak varieert door veranderingen van de aantrekkingskracht veroorzaakt door verandering van de posities van de aarde, de maan en de zon. Dit resulteert in zes verschillende frequenties [1](#tab:getij-frequenties){reference-type="ref" reference="tab:getij-frequenties"} die samengesteld tot een variabele waterstand leiden, het getij. Deze frequenties beïnvloeden de waterstand in verschillende boventonen (dubbeldaags getij) en modulaties (spring-doodtij cyclus). In de context van klimaatcycli kent men nog drie langere periodes, bekend als de Milankovich termen [@Munk2002].
 
