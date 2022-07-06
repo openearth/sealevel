@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
 
 Er zijn twee manieren om de zeespiegel te meten. De relatieve zeespiegel aan de kust wordt gemeten met een vlotter of radar in een getijstation ten opzichte van een referentieniveau op het land en de absolute zeespiegel op de oceaan wordt gemeten met satellieten met een radar, ten opzichte van een spheroïde, geoïde of als anomaliteit. Dit hoofdstuk beschrijft deze twee meetbronnen.
 
-## Getijdestations {#station-overzicht}
+## (FB) Getijdestations {#station-overzicht}
 
 De eerste waterstandsmetingen aan de Nederlandse kust zijn gestart in het jaar 1700 in Amsterdam. Sinds de invoering van het [NAP]{acronym-label="NAP" acronym-form="singular+short"} zijn de gegevens ook geschikt om zeespiegeltrends mee te bepalen.
 
@@ -80,7 +80,7 @@ knitr::include_graphics("figures/DELFZL.jpg")
 
 Dit station bevindt zich in de haven van Delfzijl. Het station heeft een hoofdgebouw met een fundament op een stalen ronde paal (binnenbreedte = 2.3m, buitenbreedte 2.348m) en reikt tot een diepte van -20m NAP. Het gebouw is verbonden met het vaste land door middel van een stalen trap naar een kade. De peilbout bevindt zich in de constructie die aan de muur is bevestigd. De betonnen onderwaterkamer bevindt zich tussen -4 en -5 m. Dit station is door gaswinning 24cm gezakt [@Hijma2018] en zakt nog steeds. De peilbouten zijn 'losgekoppeld' van het [NAP]{acronym-label="NAP" acronym-form="singular+short"} [@Jong1973]. De hoogtes van buiten de gaswinningsschotel worden doorgetrokken naar Delfzijl. Om de relatieve zeespiegelstijging te berekenen moet daarom bij dit station de door gaswinning veroorzaakte bodemdaling opgeteld worden. In de buurt van het station Delfzijl is een [GNSS]{acronym-label="GNSS" acronym-form="singular+short"} station geplaatst.
 
-## Verticale referentieniveaus
+## (FB) Verticale referentieniveaus
 
 Een meting van hoogte heeft een verticale referentie nodig. Hiervoor wordt een geodetisch datum gebruikt. Er zijn verschillende referentiesystemen in gebruik, in de context van zeespiegelonderzoek heeft men te maken met globale, continentale (tectonische platen), nationale en maritieme referentieniveaus.
 
@@ -132,7 +132,7 @@ knitr::include_graphics("figures/nulpalen.png")
 knitr::include_graphics("figures/nap-history.png")
 ```
 
-## Satellietmeting van de zeehoogte
+## (SM) Satellietmeting van de zeehoogte
 
 Deze sectie geeft een overzicht van satellietmetingen van de zeehoogte (altimetrie). De altimetrie satellieten zijn begonnen met meten in 1992, met de lancering van de TOPEX/Poseidon satelliet. Over de afgelopen decennia is met meerdere satellieten de zeehoogte vastgesteld. De satellieten beschikken over een radar altimeter waarmee de zeehoogte wordt vastgesteld.
 
