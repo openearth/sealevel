@@ -4,6 +4,9 @@
 require(tidyverse)
 ```
 
+<!-- Proposed way to handle acronyms in Rmarkdown -->
+<!-- https://github.com/rchaput/acronymsdown  -->
+<!-- see last chunk for conversion to yaml -->
 
 
 ```{r acroniemenTabel"}
@@ -119,3 +122,17 @@ acroniemen <-
 
 knitr::kable(acroniemen, caption = "Lijst met gebruikte acroniemen")
 ```
+
+
+```{r eval=FALSE, include=FALSE}
+
+# Voor verwerking als in https://github.com/rchaput/acronymsdown is een yaml header nodig
+# Dit komt volgens mij al dicht in de buurt
+
+library(yaml)
+
+as.yaml(list(acronyms = list(key = t(acroniemen))))
+
+```
+
+
