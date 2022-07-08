@@ -13,7 +13,7 @@ require(tidyverse)
 
 acroniemen <- 
   tribble(
-    ~afkorting, ~definitie,
+    ~shortname, ~longname,
  "AR", "Autoregressie",
  "Argo", "Argo, vernoemd naar schip uit de Griekse mythologie",
  "AGRS", "Actief GNSS Referentie Systeem",
@@ -131,7 +131,12 @@ knitr::kable(acroniemen, caption = "Lijst met gebruikte acroniemen")
 
 library(yaml)
 
-as.yaml(list(acronyms = list(key = t(acroniemen))))
+acrYmlHeader <- as.yaml(list(acronyms = list(key = t(split(acroniemen, acroniemen$shortname)))))
+cat(acrYmlHeader)
+# Bijna goed.. indent mist nog
+
+write_lines(acrYmlHeader, "acroniemHeader.yml")
+
 
 ```
 
