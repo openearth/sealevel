@@ -82,6 +82,8 @@ Voor we de stijging van de zeespiegel kunnen definieren moeten we eerst de zeesp
 
 De tweede manier om de zeespiegelstand te bepalen is ten opzichte van de geoïde en te meten met satellieten. Door de hoogte van het zeespiegeloppervlak te meten over alle oceanen kan de globaal gemiddelde zeespiegel worden bepaald. Het is niet makkelijk om de zeespiegel netjes te refereren aan de geoïde. Daarom worden ook wel zeespiegelanomaliteiten gebruikt. Zeespiegelanomaliteiten zijn  zeespiegelstanden uitgedrukt ten opzichte van gemiddelde zeespiegelstanden over een eerdere periode [@Author2022b].
 
+Gebaseerd op de zeespiegelstanden kan een zeespiegelstijging worden bepaald. Een trend wordt altijd vastgesteld over een periode. De methoden voor het bepalen van de zeespiegelstijging worden verder besproken in hoofdstuk \ref(methoden).
+
 
 ## Methoden
 
