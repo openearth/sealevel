@@ -76,7 +76,11 @@ Wereldwijd wordt doorgaans gekeken naar de absolute zeespiegelstijging. De term 
 
 ## Definitie zeespiegelstijging
 
-{nav vraag QL. Nader in te vullen}
+Voor we de stijging van de zeespiegel kunnen definieren moeten we eerst de zeespiegelstand definieren. Om de zeespiegelstand te definieren maken we doorgaans gebruik van een "gemiddelde zeespiegel". Omdat de zeespiegel van minuut tot minuut en van uur tot uur varieert middelen we de zeespiegel vaak eerst uit over een bepaalde periode (maand of jaar). De zeespiegelstand van uur tot uur noemen we de waterstand of waterhoogte. Als we alleen zeespiegelstand of zeespiegel noemen bedoelen we doorgaans de gemiddelde zeespiegelstand. Er zijn twee definities voor de gemiddelde zeespiegel in gebruik. Dit komt omdat er twee locaties zijn waar we de zeespiegel meten, aan de kust en op de oceanen en zeeën.
+
+ Aan de kust wordt de zeespiegel gemeten ten op zichte van een vast kenmerk. In Nederland is dat ten opzichte van de \acr{NAP} bouten. Omdat de zeespiegel kan veranderen door aanpassing van het land of aanpassing van het volume van het water noemen we dit ook wel relatieve zeespiegelstand. De Intergovernmental Oceanografysiche Commissie heeft procedures beschreven om van metingen van een getijdestations tot een zeespiegelstand te komen. 
+
+De tweede manier om de zeespiegelstand te bepalen is ten opzichte van de geoïde en te meten met satellieten. Door de hoogte van het zeespiegeloppervlak te meten over alle oceanen kan de globaal gemiddelde zeespiegel worden bepaald. Het is niet makkelijk om de zeespiegel netjes te refereren aan de geoïde. Daarom worden ook wel zeespiegelanomaliteiten gebruikt. Zeespiegelanomaliteiten zijn  zeespiegelstanden uitgedrukt ten opzichte van gemiddelde zeespiegelstanden over een eerdere periode [@Author2022b].
 
 
 ## Methoden
