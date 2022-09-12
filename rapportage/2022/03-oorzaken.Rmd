@@ -22,10 +22,12 @@ DiagrammeR::grViz("digraph {
 
   graph [overlap = true, fontsize = 10, layout = dot, rankdir = LR]
   
-  node [shape = rectangle,
-      style = filled,
-      color = DarkSeaGreen2,
-      label = '']
+  node [fontname = Helvetica, 
+        fontsize = 10,
+        shape = rectangle,
+        style = filled,
+        color = DarkSeaGreen2,
+        label = '']
       
   Ant [label = 'Antarctica']
   Groen [label = 'Groenland']
