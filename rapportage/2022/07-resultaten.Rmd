@@ -197,6 +197,9 @@ Er zijn verschillende oorzaken die deze verschillen tussen de stations
 kunnen verklaren. De beschouwing van deze oorzaken is te vinden in
 \@ref(verschillen).
 
+## Controles en validatie {#controles-en-validatie}
+
+
 ## Bodemdaling of zeespiegelstijging? {#bodemdaling-result}
 
 Op basis van de analyse in \@ref(bodemdaling) en \@ref(nulpaal) kwamen
