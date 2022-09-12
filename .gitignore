@@ -1,3 +1,7 @@
+# Don't checkin project file
+rapportage/2022/2022.Rproj
+.Rhistory
+
 # data
 data/**/*.old
 data/**/*.old2

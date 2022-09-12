@@ -463,6 +463,53 @@ verantwoording
 
 :   [@Author2012]
 
+
+## Signalering {#sec:signalering}
+
+Het Deltaprogramma gebruikt adaptief deltamanagement in haar taak om Nederland te beschermen tegen overstromingen, en te zorgen voor voldoende zoet water. Om adaptief te kunnen reageren wordt de "Meten, Weten, Handelen" methodiek gehanteerd. Bij nieuwe externe ontwikkelingen, zoals een versnelde zeespiegel, kan er een signaal afgegegeven worden. Elke zes jaar worden de indicatoren en de doelen opnieuw vastgesteld. De methodiek voor de signalering van versnelde zeespiegel moet nog ontwikkeld worden. 
+
+
+Naam
+
+:   Signalering zeespiegelversnelling
+
+Definitie
+
+:   Onbepaald
+
+Grootheid
+
+:   Zeespiegelversnelling
+
+Type
+
+:   Planvorming
+
+Toepassing
+
+:   Adaptatief deltamanagement
+
+Oorsprong
+
+:   Deltaprogramma
+
+Context
+
+:   Deze indicator wordt beschreven in de 
+    [@Infrastructuur-en-Waterstaat2018].
+
+Producent
+
+:   Kennisprogramma zeespiegelstijging
+
+Gebruiker
+
+:   Deltacommisaris
+
+Verantwoording
+
+:   Er is nog geen vastgelegde methodiek.
+
 ## Trends in toepassingen van de zeespiegel {#sec:toepassing-trends}
 
 Uit de workshop in november 2016 bleek dat er een aantal ontwikkellingen
