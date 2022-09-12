@@ -74,7 +74,7 @@ Welke regionale en lokale aspecten van de zeespiegel belangrijk zijn varieert pe
 
 Wereldwijd wordt doorgaans gekeken naar de absolute zeespiegelstijging. De term absolute zeespiegel wordt gebruikt voor de hoogte ten opzichte van de geoïde, het vlak dat het water zou volgen als er geen wind, getij en stroming zouden zijn in de oceaan. Lokaal is vooral relatieve zeespiegelstijging interessant, de combinatie van bodemdaling en absolute zeespiegelstijging.
 
-## Definitie zeespiegelstijging
+## Definitie zeespiegelstand
 
 Voor we de stijging van de zeespiegel kunnen definieren moeten we eerst de zeespiegelstand definieren. Om de zeespiegelstand te definieren maken we doorgaans gebruik van een "gemiddelde zeespiegel". Omdat de zeespiegel van minuut tot minuut en van uur tot uur varieert middelen we de zeespiegel vaak eerst uit over een bepaalde periode (maand of jaar). De zeespiegelstand van uur tot uur noemen we de waterstand of waterhoogte. Als we alleen zeespiegelstand of zeespiegel noemen bedoelen we doorgaans de gemiddelde zeespiegelstand. Er zijn twee definities voor de gemiddelde zeespiegel in gebruik. Dit komt omdat er twee locaties zijn waar we de zeespiegel meten, aan de kust en op de oceanen en zeeën.
 
@@ -125,7 +125,7 @@ In het bovenste paneel van figuur \@ref(fig:global-budget) is te zien dat de ste
 
 Een nadere beschouwing van deze balans is uitgewerkt door een groep wetenschappers [@Cazenave2018] die zich daar als onderdeel van het [WCRP]{acronym-label="WCRP" acronym-form="singular+short"} mee bezig hebben gehouden. Ze komen tot de conclusie dat de gemeten zeespiegeltrend 0.37 mm/ hoger is dan verwacht op basis van de boekhouding over de periode 1993 - 2017. Over deze periode schatten ze de bijdrage van toename van massa op 1.4mm/ en de toename door temperatuurstoename op 1.3mm/.
 
-```{r global-budget, fig.cap= 'Bovenste paneel: uitsplitsing van globale zeespiegelstijging [GMSL]{acronym-label="GMSL" acronym-form="singular+short"} naar verschillende componenten ( *ocean*: oceaan massa, *steric* sterische bijdrage). Onderste paneel uitsplitsing van oceaan massa in oorsprong van Groenland en Antarctica. De seizoensvariatie is in beide figuren verwijderd .'}
+```{r global-budget, fig.cap= 'FB: Bovenste paneel: uitsplitsing van globale zeespiegelstijging [GMSL]{acronym-label="GMSL" acronym-form="singular+short"} naar verschillende componenten ( *ocean*: oceaan massa, *steric* sterische bijdrage). Onderste paneel uitsplitsing van oceaan massa in oorsprong van Groenland en Antarctica. De seizoensvariatie is in beide figuren verwijderd .'}
 
 knitr::include_graphics("figures/global-budget-noseason.png")
 ```
