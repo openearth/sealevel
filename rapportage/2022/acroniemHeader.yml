@@ -1,0 +1,214 @@
+acronyms:
+  keys:
+    - shortname: AGRS
+      longname: Actief GNSS Referentie Systeem
+    - shortname: AHN
+      longname: Actueel Hoogtebestand Nederland
+    - shortname: AIC
+      longname: Akaike Informatie Criterium, (een maat voor de goodness-of-fit van een
+        model)
+    - shortname: AMO
+      longname: Atlantic Multidecadal Oscillation
+    - shortname: AR
+      longname: Autoregressie
+    - shortname: Argo
+      longname: Argo, vernoemd naar schip uit de Griekse mythologie
+    - shortname: AVISO
+      longname: Archiving, Validation and Interpretation of Satellite Oceanographic
+        data
+    - shortname: BGT
+      longname: Basisregistratie Grootschalige Topografie
+    - shortname: BKL
+      longname: Basis KustLijn
+    - shortname: BMA
+      longname: Bayesian Model Averaging
+    - shortname: BRK
+      longname: Basisregistratie Kadaster
+    - shortname: CBS
+      longname: Centraal Bureau voor de Statistiek
+    - shortname: CIV
+      longname: Centrale Informatievoorziening
+    - shortname: CPB
+      longname: Centraal Plan Bureau
+    - shortname: CSIRO
+      longname: Commonwealth Scientific and Industrial Research Organisation
+    - shortname: DCSM
+      longname: Dutch Continental Shelf Model
+    - shortname: DG
+      longname: Directoraat-generaal
+    - shortname: DNM
+      longname: Digitale Niveau Meter
+    - shortname: ECCO
+      longname: Estimating the Circulation and Climate of the Ocean
+    - shortname: EGM2008
+      longname: Earth Gravitational Model 2008
+    - shortname: EGM96
+      longname: Earth Gravitational Model 1996
+    - shortname: ENSO
+      longname: El Niño–Southern Oscillation
+    - shortname: ERSST
+      longname: Extended Reconstructed Sea Surface Temperature
+    - shortname: ETRS89
+      longname: European Terrestrial Reference System 1989
+    - shortname: EZK
+      longname: Ministerie van Economische Zaken en Klimaat
+    - shortname: GIA
+      longname: Glacial Isostatic Adjustment, postglaciale opheffing
+    - shortname: GLM
+      longname: Generalized Linear Model
+    - shortname: GLOSSIS
+      longname: Global Storm Surge Forecasting and Information System
+    - shortname: GMSL
+      longname: Global Mean Sea Level, globaal gemiddeld zeeniveau
+    - shortname: GNSS
+      longname: Global Navigation Satellite System
+    - shortname: GODAS
+      longname: Global Ocean Data Assimilation System
+    - shortname: GPS
+      longname: Global Positioning System
+    - shortname: GRACE
+      longname: Gravity Recovery and Climate Experiment
+    - shortname: GRACE-FO
+      longname: Gravity Recovery and Climate Experiment Follow-on
+    - shortname: GTSM
+      longname: Global Tidal Surge Model
+    - shortname: GTSR
+      longname: Global Tidal Surge Reanalysis
+    - shortname: HAC
+      longname: Heteroskedasticity and Autocorrelation Consistent
+    - shortname: HHNK
+      longname: Hoogheemraadschap Hollands Noorderkwartier
+    - shortname: HKV
+      longname: HKV lijn in water
+    - shortname: IaaS
+      longname: Infrastructure as a Service
+    - shortname: IB
+      longname: Inverse Barometer
+    - shortname: IenW
+      longname: Ministerie van Infrastructuur en Water
+    - shortname: IHM
+      longname: InformatieHuis Marien
+    - shortname: IHO
+      longname: International Hydrographic Organization
+    - shortname: IHW
+      longname: InformatieHuis Water
+    - shortname: IOOS
+      longname: Integrated Ocean Observing System
+    - shortname: IPCC
+      longname: Intergovernmental Panel on Climate Change
+    - shortname: IV
+      longname: Informatie Voorziening
+    - shortname: JASON
+      longname: Joint Altimetry Satellite Oceanography Network
+    - shortname: K1
+      longname: Lunar diurnal constituent
+    - shortname: KNMI
+      longname: Koninklijk Nederlands Meteorologisch Instituut
+    - shortname: KPP
+      longname: Kennis voor Primaire Processen
+    - shortname: L2
+      longname: Smaller lunar elliptic semidiurnal constituent
+    - shortname: LAT
+      longname: Lowest Astronomical Tide
+    - shortname: LMW
+      longname: Landelijk Meetnet Water
+    - shortname: LOESS
+      longname: LOcal regrESSion (a later generalization of LOWESS)
+    - shortname: LOWESS
+      longname: Locally weighted scatterplot smoothing
+    - shortname: LSTM
+      longname: Long Short-Term Memory
+    - shortname: M2
+      longname: Principal lunar semidiurnal constituent
+    - shortname: M4
+      longname: Shallow water overtides of principal lunar constituent
+    - shortname: MAP
+      longname: Maximum A Posteriori
+    - shortname: MCMC
+      longname: Markov chain Monte Carlo
+    - shortname: MDN
+      longname: Mixture density networks
+    - shortname: MLLW
+      longname: Mean Lower Low Water. The average of the lower low water height of each
+        tidal day observed over the National Tidal Datum Epoch. https://tidesandcurrents.noaa.gov/datum_options.html
+    - shortname: MLW
+      longname: Mean Low Water.  The average of all the low water heights observed over
+        the National Tidal Datum Epoch. https://tidesandcurrents.noaa.gov/datum_options.html
+    - shortname: MN4
+      longname: Shallow water quarter diurnal constituent
+    - shortname: MorphAn
+      longname: Morphological Analysis
+    - shortname: MS4
+      longname: Shallow water quarter diurnal constituent
+    - shortname: MSL
+      longname: Mean Sea Level
+    - shortname: MSLA
+      longname: Monthly mean climatology maps of Sea Level Anomalies
+    - shortname: MU2
+      longname: Variational constituent
+    - shortname: MWP
+      longname: Meltwater Pulse
+    - shortname: N2
+      longname: Larger lunar elliptic semidiurnal constituent
+    - shortname: NAO
+      longname: North Atlantic Oscillation
+    - shortname: NAP
+      longname: Normaal Amsterdams Peil
+    - shortname: NASA
+      longname: National Aeronautics and Space Administration
+    - shortname: NCAR
+      longname: National Center for Atmospheric Research
+    - shortname: NCEP
+      longname: National Centers for Environmental Prediction
+    - shortname: NCG
+      longname: Nederlands Centrum voor Geodesie en Geo-informatica
+    - shortname: NLGEO2004
+      longname: Nederlands Geoïdemodel 2004
+    - shortname: NOAA
+      longname: National Oceanic and Atmospheric Administration
+    - shortname: NWP
+      longname: Nationaal Water Plan
+    - shortname: O1
+      longname: Lunar diurnal constituent
+    - shortname: OGC
+      longname: Open Geospatial Consortium
+    - shortname: PaaS
+      longname: Platform as a Service
+    - shortname: PBL
+      longname: Planbureau voor de Leefomgeving
+    - shortname: PGB
+      longname: Postglaciale bodembeweging
+    - shortname: PSMSL
+      longname: Permanent Service for Mean Sea Level
+    - shortname: PVDA
+      longname: Partij van de Arbeid
+    - shortname: RCP
+      longname: Representative Concentration Pathway
+    - shortname: RD
+      longname: Rijksdriehoeksstelsel
+    - shortname: RLR
+      longname: Revised Local Reference
+    - shortname: RMS
+      longname: Root Mean Square
+    - shortname: ROFI
+      longname: Region Of Freshwater Influence
+    - shortname: RWS
+      longname: Rijkswaterstaat
+    - shortname: S2
+      longname: Principal solar semidiurnal constituent
+    - shortname: SaaS
+      longname: Software as a Service
+    - shortname: SLF
+      longname: Sea Level Fingerprint
+    - shortname: STL
+      longname: Seasonal Decomposition of Time Series by Loess
+    - shortname: TGBM
+      longname: Tide Gauge Benchmark
+    - shortname: TNO
+      longname: Nederlandse Organisatie voor Toegepast Natuurwetenschappelijk Onderzoek
+    - shortname: WBI
+      longname: Wettelijke BeoordelingsInstrumentarium
+    - shortname: WCRP
+      longname: World Climate Research Programme
+    - shortname: WGS84
+      longname: World Geodetic System 1984
