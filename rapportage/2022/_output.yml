@@ -7,10 +7,28 @@ bookdown::gitbook:
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     download: ["pdf", "epub"]
+  includes:
+    before_body: navbar/navbar.html
+    in_header: clickandzoom.html
+  pandoc_args: 
+    -   !expr acronymsdown::add_filter()
+    -   --wrap=none
+    -   --top-level-division=chapter
+bookdown::bs4_book:
+  theme:
+    primary: "#982a31"
+    fg: "#2b2121"
+    bg: "#ffffff"
+  # includes:
+  #   before_body: navbar/navbar.html
+  #   in_header: clickandzoom.html
+  # css: ["navbar/navbar.css", "style/deltares.css"]
+  pandoc_args: !expr acronymsdown::add_filter()
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
-  latex_engine: xelatex
-  citation_package: natbib
+  template: deltares-report-template.tex
+  latex_engine: pdflatex
+  # citation_package: natbib
   keep_tex: yes
-bookdown::epub_book: default
+  pandoc_args: !expr acronymsdown::add_filter()
