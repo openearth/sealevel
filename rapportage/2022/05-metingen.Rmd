@@ -1,13 +1,6 @@
 # Metingen {#metingen}
 
-```{r, include=FALSE}
 
-knitr::opts_chunk$set(
-	echo = FALSE,
-	message = FALSE,
-	warning = FALSE
-)
-```
 
 Er zijn twee manieren om de zeespiegel te meten. De relatieve zeespiegel aan de kust wordt gemeten met een vlotter of radar in een getijstation ten opzichte van een referentieniveau op het land en de absolute zeespiegel op de oceaan wordt gemeten met satellieten met een radar, ten opzichte van een spheroïde, geoïde of als anomaliteit. Dit hoofdstuk beschrijft deze twee meetbronnen.
 
@@ -28,7 +21,7 @@ Deze stations maken deel uit van het [LMW]{acronym-label="LMW" acronym-form="sin
 knitr::include_graphics("figures/waterbase.png")
 ```
 
-Alle hoofdstations zijn uitgerust met twee vlotters. Er zijn ook enkele stations met andere sensoren, zoals radar. Soms kan een station een tijd niet beschikbaar zijn. Zo is het station van Den Helder wel eens uitgevallen door de groei van mosselen. De gegevens worden dan teruggeschat op basis van naburige stations (in dit geval Texel en IJmuiden). Dit wordt de opvulmethode genoemd. Daarnaast vinden er diverse validaties plaats. Zie de memo in de bijlage waar het meetproces uitgebreid beschreven wordt.
+Alle hoofdstations zijn uitgerust met twee vlotters. Er zijn ook enkele stations met andere sensoren, zoals radar. Soms kan een station een tijd niet beschikbaar zijn. Zo is het station van Den Helder wel eens uitgevallen door de groei van mosselen. De gegevens worden dan teruggeschat op basis van naburige stations (in dit geval Texel en IJmuiden). Dit wordt de opvulmethode genoemd. Daarnaast vinden er diverse validaties plaats. Zie de memo in bijlage \@ref(bijlagerapporten) waar het meetproces uitgebreid beschreven wordt.
 
 De bekende eigenschappen van de constructie van de stations worden in onderstaand overzicht weergegeven. Bij de stations van Hoek van Holland en Delfzijl heeft onder de stations gaswinning plaatsgevonden. De foto's zijn van Rijkswaterstaat.
 
@@ -80,7 +73,7 @@ knitr::include_graphics("figures/DELFZL.jpg")
 
 Dit station bevindt zich in de haven van Delfzijl. Het station heeft een hoofdgebouw met een fundament op een stalen ronde paal (binnenbreedte = 2.3m, buitenbreedte 2.348m) en reikt tot een diepte van -20m NAP. Het gebouw is verbonden met het vaste land door middel van een stalen trap naar een kade. De peilbout bevindt zich in de constructie die aan de muur is bevestigd. De betonnen onderwaterkamer bevindt zich tussen -4 en -5 m. Dit station is door gaswinning 24cm gezakt [@Hijma2018] en zakt nog steeds. De peilbouten zijn 'losgekoppeld' van het [NAP]{acronym-label="NAP" acronym-form="singular+short"} [@Jong1973]. De hoogtes van buiten de gaswinningsschotel worden doorgetrokken naar Delfzijl. Om de relatieve zeespiegelstijging te berekenen moet daarom bij dit station de door gaswinning veroorzaakte bodemdaling opgeteld worden. In de buurt van het station Delfzijl is een [GNSS]{acronym-label="GNSS" acronym-form="singular+short"} station geplaatst.
 
-## (FB) Verticale referentieniveaus
+## (FB) Verticale referentieniveaus {#verticale-referentie}
 
 Een meting van hoogte heeft een verticale referentie nodig. Hiervoor wordt een geodetisch datum gebruikt. Er zijn verschillende referentiesystemen in gebruik, in de context van zeespiegelonderzoek heeft men te maken met globale, continentale (tectonische platen), nationale en maritieme referentieniveaus.
 
