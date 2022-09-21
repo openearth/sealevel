@@ -5,7 +5,7 @@ author: "Deltares"
 # site: bookdown::bookdown_site
 documentclass: book
 site: bookdown::bookdown_site
-bibliography: [bib/book.bib, bib/bibhkv.bib, bib/R.bib, bib/sealevel.bib]
+bibliography: [bib/book.bib, bib/bibhkv.bib, bib/R.bib, bib/sealevel.bib, bib/willems.bib]
 biblio-style: apalike
 link-citations: yes
 acronyms:
@@ -29,3 +29,5 @@ description: "Dit is de Zeespiegelmonitor. De Zeespiegelmonitor wordt gemaakt do
 <!-- Uit de analyse van de historie van het NAP is naar voren gekomen dat de nulpalen van Delfzijl in 1973 uit het NAP zijn gehaald. Hierdoor is de bodemdaling bij Delfzijl niet in de gemiddelde zeespiegel opgenomen. Wel is hierdoor onopgemerkt gebleven dat de zeespiegel door de gaswinning 23cm extra is gestegen bovenop de gemiddelde zeespiegelstijging van 19cm per eeuw in Delfzijl. Dit onderschrijft de relevantie van periodiek onderzoek naar de reproduceerbaarheid van de verschillende bronnen die we gebruiken om beslissingen te nemen over het Nederlands kustbeleid. -->
 
 <!-- We adviseren om kritisch te kijken naar de discrepantie tussen de gemeten zeespiegel en de zeespiegelstijging die we in het verleden voor de toekomst geprojecteerd hebben. We kunnen beter gaan meten, bijvoorbeeld door alle getijstations met GNSS apparatuur uit te rusten. In de komende jaren zal gewerkt worden aan een betere ontsluiting van zeespiegelinformatie via de publieke kanalen van Rijkswaterstaat. -->
+
+\printacronyms

@@ -2,43 +2,55 @@
 
 ## Rapporten en memo's {#bijlagerapporten}
 
-[Reproduceerbaarheid zeespiegelprojecties](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000020847){target="_blank"}
+[Zeespiegelstijging in ontwerpnormen stormvloedkeringen : inventarisatie van zeespiegelstijging in ontwerpnormen van de Oosterscheldekering en de Maeslantkering](https://kennisbank.deltares.nl/Details/fullCatalogue/1000020898){target="_blank"} [@Oerlemans2022]
+
+Samenvatting: De aanleiding voor voorliggend rapport is dat in de Tweede Kamer en in de media verschillende zeespiegelcijfers circuleren. Doelstelling van deze studie was te inventariseren hoe zeespiegelstijging is meegenomen in het ontwerp van de Oosterscheldekering en de Maeslantkering. Het onderzoek bestond uit een bureaustudie en semigestructureerde interviews met experts die betrokken zijn geweest bij het ontwerp van de Maeslantkering en de Oosterscheldekering. In het onderzoek zijn de snelheid van zeespiegelstijging, levensduur en toeslagwaarde geïnventariseerd. Daarbij is nadrukkelijk gekeken naar de uitgangspunten die zijn meegenomen in het ontwerp. Daarnaast is geanalyseerd of de toeslagwaarde op logische wijze uit de snelheid van de zeespiegelstijging en de levensduur volgt.
+
+[Advies kenmerkende waarden kust : overzicht zeespiegelindicatoren](https://kennisbank.deltares.nl/Details/fullCatalogue/70785){target="_blank"} [@Nicolai2020a]
+
+Samenvatting: Rijkswaterstaat verzamelt al jaren gegevens over de waterstanden en afvoeren in ons land. Met deze gegevens kan RWS uitrekenen wat gedurende enkele tientallen jaren de representatieve waterstand en afvoer op verschillende locaties in de zee, rivieren en meren was. Deze representatieve waarden, zoals gemiddelden, hoogste en laagste waarden, over- en onderschrijdingswaarden, noemen we kenmerkende waarden. RWS berekent en publiceert iedere 10 jaar kenmerkende waarden, zowel voor het rivierengebied als voor de kustwateren. De kenmerkende waarden voor de kustwateren volgen via een berekening uit de meetgegevens van de getijstations langs de kust. Naast deze kenmerkende waarden laat Rijkswaterstaat ook andere zeespiegelgetallen uitrekenen. Twee bekende indicatoren zijn de actuele zeespiegel en de actuele trend in de zeespiegelstijging. Deltares en HKV berekenen deze indicatoren jaarlijks in de Zeespiegelmonitor. Dit rapport beantwoordt de volgende vraag: \"Is er overlap tussen de kenmerkende waarden Kustwateren en de indicatoren in de Zeespiegelmonitor?\". Deze vraag is beantwoord door het raadplegen van de relevante rapporten en door middel van interviews met enkele experts die betrokken zijn bij het afleiden van zeespiegelgetallen. Er blijkt inderdaad een overlap te zijn, al is die beperkt tot de indicator \"gemiddelde zeestand\". De totstandkoming van deze indicator blijkt te verschillen.
+
+[Methode voor visualisatie van tijdreeksen en scenario's voor zeespiegelstijging (concept versie voor discussie)](https://kennisbank.deltares.nl/Details/fullCatalogue/1000020941){target="_blank"} [@Baart2021]
+
+Samenvatting: Dit document geeft invulling aan het voorstel voor een nieuwe gezamenlijke presentatie van de KNMI klimaatscenario's van zeespiegelstijging en de metingen langs de Nederlandse kust (2019). In dat memo werd aanbevolen om Deltares en KNMI een nieuwe variant te laten maken van deze gezamenlijke presentatie, zodat beide instituten dezelfde figuur gebruiken. Dit memo beschrijft eerst een set afwegingen bij het maken van een gecombineerde presentatie van metingen en scenario's. Op basis van deze afwegingen is een prototype van deze figuur opgesteld.
+
+[Reproduceerbaarheid zeespiegelprojecties](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000020847){target="_blank"} [@Toom2017]
 
 Samenvatting: Veel beslissingen worden genomen op basis van de zeespiegelmetingen, berekeningen en voorspellingen. Om die gegevens te kunnen vertrouwen moeten ze betrouwbaar en valide zijn. Betrouwbaarheid bestaat uit reproduceerbaarheid (kan het herhaald worden), gevoeligheid (is de uitkomst afhankelijke van perturbaties of keuzes) en stabiliteit (worden afrondingen uitvergroot). Deze memo sluit aan bij de twee memo's over de reproduceerbaarheid van metingen en de bepaling van de huidige zeespiegel. In deze memo worden de zeespiegelprojecties zoals deze op dit moment in gebruik zijn (KNMI 2014) behandeld.
 
-[Reproduceerbaarheid zeespiegelmetingen](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000020846){target="_blank"}
+[Reproduceerbaarheid zeespiegelmetingen](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000020846){target="_blank"} [@Baart2016]
 
 Samenvatting: Veel beslissingen worden genomen op basis van de zeespiegelmetingen, berekeningen en voorspellingen. Om die gegevens te kunnen vertrouwen moeten ze betrouwbaar en valide zijn. Betrouwbaarheid bestaat uit reproduceerbaarheid (kan het herhaald worden), gevoeligheid (is de uitkomst afhankelijke van perturbaties of keuzes) en stabiliteit (worden afrondingen uitvergroot). Deze memo richt zich op de reproduceerbaarheid van de metingen en de daaruit afgeleide jaargemiddelden. De reproduceerbaarheid van afgeleide waarden zoals de huidige en toekomstige zeespiegel worden in 2017 onderzocht.
 
-[Reproduceerbaarheid van statistische modellen voor zeespiegelprojecties](http://pub.kennisbank.deltares.nl/Details/fullCatalogue/70769){target="_blank"}
+[Reproduceerbaarheid van statistische modellen voor zeespiegelprojecties](http://pub.kennisbank.deltares.nl/Details/fullCatalogue/70769){target="_blank"} [@Gelder2017]
 
 Samenvatting: Dit onderzoek vindt plaats in aansluiting op de onderzoeksagenda zeespiegelmonitor (Baart, 2014). Veel beslissingen worden genomen op basis van de zeespiegelmetingen, berekeningen, scenario's, en de probabilistische inschattingen hiervan. In dit deelonderzoek concentreren we ons op de reproduceerbaarheid van de statistische modellen zoals deze gebruikt worden in het zeespiegeldossier. Deze memo sluit aan bij de drie memo's over de reproduceerbaarheid van metingen, de reproduceerbaarheid van de fysica, en de bepaling van de huidige zeespiegel. De vraag waarop in dit memo antwoord gegeven wordt, luidt: Hoe goed is de reproduceerbaarheid van de door Deltares bepaalde zeespiegelprojecties en onzekerheidsbanden voor de Noordzee tot aan het jaar 2100, en geef daarbij een oordeel op: i) Mate van documentatie, ii) Traceerbaarheid, iii) Overdraagbaarheid, iv) Herhaalbaarheid, v) Herleidbaarheid.
 
-[Zeespiegelmonitor : eenduidige zeespiegelindicatoren](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000020845){target="_blank"}
+[Zeespiegelmonitor : eenduidige zeespiegelindicatoren](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000020845){target="_blank"} [@Nicolai2016]
 
 Samenvatting: Op dit moment hebben slechts enkele experts het overzicht over welke zeespiegelindicator voor welke toepassing wordt gebruikt en waarom. Het doel is om deze kennis breed toegankelijk te maken. In dit rapport zijn daarom de verschillende indicatoren die in het Nederlands beleid worden toegepast op overzichtelijke wijze en in detail uitgewerkt op basis van vragen als: Welke definities worden gehanteerd? ; Welke factoren worden meegenomen? ; Hoe verhouden getalswaarden zich tot elkaar? ; Wat is het toepassingsgebied van de indicator? ; Welk beleidsterrein betreft deze toepassing? ; Door wie wordt de indicator bepaald en toegepast?
+
+[Visualizing changes of the Antarctic Ice Sheet](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000020844){target="_blank"} [@Baart2020]
+
+Samenvatting: This memo describes a new method to visualize data using tiled videomaps. These provide a zoomable video of the current (last 5 years) of ice loss at the area that is most relevant for the Netherlands. This results in an easy-to-understand visualization of some of the processes (glacier flow, sea-ice loss, fracturing) that contribute to the current mass loss We hope that this can contribute to ongoing discussions on the current state sea-level rise inducing processes.
+
+[The effect of the 18.6-year lunar nodal cycle on regional sea-level rise estimates](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/200002977){target="_blank"} [@Baart2012e]
+
+Samenvatting: Sea-level rise rates have become important drivers for policy makers dealing with the long-term protection of coastal populations. Scenario studies suggest that an acceleration in sea-level rise is imminent. The anticipated acceleration is hard to detect because of spatial and temporal variability, which consequently, have become important research topics. A known decadal-scale variation is the 18.6-year nodal cycle. Here, we show how failing to account for the nodal cycle resulted in an overestimation ofDutch sea-level rise. The nodal cycle is present across the globe with a varying phase and a median amplitude of 2.2 cm. Accounting for the nodal cycle increases the probability of detecting acceleration in the rate of sea-level rise. In an analysis of the Dutch coast, however, still no significant acceleration was found. The nodal cycle causes sea level to drop or to rise at an increased rate; therefore, accounting for it is crucial to accurately estimate regional sea-level rise.
+
+[Trends in sea-level trend analysis](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/200002978){target="_blank"}[@Baart2012b]
+
+Samenvatting: Discussions on sea-level rise trend estimates as, for example, the one recently published in this Journal of Coastal Research, reveal different perspectives on proper methods of deriving sea-level trend estimates. This editorial discusses various methodological considerations and proposes a number of best practices for sea-level trend analysis.
+
+[Is er al een versnelde zeespiegelstijging?](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/200003084){target="_blank"} [@Dillingh2012]
+
+Samenvatting: In dit artikel wordt ingegaan op de vraag in hoeverre Nederland rekening moet houden met een versnelde zeespiegelstijging. Voor het ontwerpen van dijken, dammen, sluizen, stormvloedkeringen e.d. moet rekening gehouden worden met versnelde zeespiegelstijging vanwege de lange levensduur, grote investering en weinig flexibiliteit. Voor zandsuppleties wordt thans uitgegaan van een relatieve zeespiegelstijging (ten opzichte van de bovenkant van het pleistoceen) van 20 cm per eeuw. De afgelopen eeuw heeft een stijgsnelheid van 19 cm per eeuw laten zien. De koppeling van deze lineaire trendlijn aan het lage KNMI'06-scenario levert een stijging van ongeveer 23 cm per eeuw voor het heden op. Omdat een significante versnelling niet is aangetoond, is het advies om het huidige uitgangspunt van 20 cm per eeuw vooralsnog te handhaven. Over circa zes jaar (cyclus van de toetsing van de primaire waterkeringen) kan opnieuw worden bekeken of het suppletieprogramma aangepast moet worden aan nieuwe inzichten. Dat is een verantwoorde strategie vanwege de grote flexibiliteit van het suppletieprogramma.
 
 [Zeespiegelmonitor 2014 : rekenmethode voor huidige en toekomstige zeespiegelstijging](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000001063){target="_blank"}
 
 Samenvatting: Dit rapport beschrijft de methode om de huidige zeespiegel te beschrijven. De methode is veranderd ten opzichte van de vorige methode doordat het statistisch model gebruik maakt van de heranalyse van wind gegevens en rekening houdt met mogelijke niet-lineaire zeespiegelstijging. De methode combineert de voorspellingen van het statistische model op een gewogen manier met de schattingen uit het klimaat model. Hierdoor ontstaat een schatting van de zeespiegel die van huidig tot toekomstig consistent is en die waarschijnlijker is. De analyses van de zeespiegelstijging kengetallen kunnen elk jaar oppervlakkig bekeken worden, en elke vijf jaar in detail. Daarnaast adviseert dit rapport om de zeespiegel kengetallen in een van de bestaande viewers onder te brengen om de kennis te borgen.
 
-[Zeespiegelstijging in ontwerpnormen stormvloedkeringen : inventarisatie van zeespiegelstijging in ontwerpnormen van de Oosterscheldekering en de Maeslantkering](https://kennisbank.deltares.nl/Details/fullCatalogue/1000020898){target="_blank"}
-
-Samenvatting: De aanleiding voor voorliggend rapport is dat in de Tweede Kamer en in de media verschillende zeespiegelcijfers circuleren. Doelstelling van deze studie was te inventariseren hoe zeespiegelstijging is meegenomen in het ontwerp van de Oosterscheldekering en de Maeslantkering. Het onderzoek bestond uit een bureaustudie en semigestructureerde interviews met experts die betrokken zijn geweest bij het ontwerp van de Maeslantkering en de Oosterscheldekering. In het onderzoek zijn de snelheid van zeespiegelstijging, levensduur en toeslagwaarde geïnventariseerd. Daarbij is nadrukkelijk gekeken naar de uitgangspunten die zijn meegenomen in het ontwerp. Daarnaast is geanalyseerd of de toeslagwaarde op logische wijze uit de snelheid van de zeespiegelstijging en de levensduur volgt.
-
-[Visualizing changes of the Antarctic Ice Sheet](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000020844){target="_blank"}
-
-Samenvatting: This memo describes a new method to visualize data using tiled videomaps. These provide a zoomable video of the current (last 5 years) of ice loss at the area that is most relevant for the Netherlands. This results in an easy-to-understand visualization of some of the processes (glacier flow, sea-ice loss, fracturing) that contribute to the current mass loss We hope that this can contribute to ongoing discussions on the current state sea-level rise inducing processes.
-
-[The effect of the 18.6-year lunar nodal cycle on regional sea-level rise estimates](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/200002977){target="_blank"}
-
-[Trends in sea-level trend analysis](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/200002978){target="_blank"}
-
-[Is er al een versnelde zeespiegelstijging?](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/200003084){target="_blank"}
-
-Samenvatting: In dit artikel wordt ingegaan op de vraag in hoeverre Nederland rekening moet houden met een versnelde zeespiegelstijging. Voor het ontwerpen van dijken, dammen, sluizen, stormvloedkeringen e.d. moet rekening gehouden worden met versnelde zeespiegelstijging vanwege de lange levensduur, grote investering en weinig flexibiliteit. Voor zandsuppleties wordt thans uitgegaan van een relatieve zeespiegelstijging (ten opzichte van de bovenkant van het pleistoceen) van 20 cm per eeuw. De afgelopen eeuw heeft een stijgsnelheid van 19 cm per eeuw laten zien. De koppeling van deze lineaire trendlijn aan het lage KNMI'06-scenario levert een stijging van ongeveer 23 cm per eeuw voor het heden op. Omdat een significante versnelling niet is aangetoond, is het advies om het huidige uitgangspunt van 20 cm per eeuw vooralsnog te handhaven. Over circa zes jaar (cyclus van de toetsing van de primaire waterkeringen) kan opnieuw worden bekeken of het suppletieprogramma aangepast moet worden aan nieuwe inzichten. Dat is een verantwoorde strategie vanwege de grote flexibiliteit van het suppletieprogramma.
-
-[Frequently asked questions](https://www.deltares.nl/app/uploads/2019/03/FAQ-gemeten-en-geprojecteerde-zeespiegel-januari-2022.pdf){target="_blank"}
+[Frequently asked questions (FAQ)](https://www.deltares.nl/app/uploads/2019/03/FAQ-gemeten-en-geprojecteerde-zeespiegel-januari-2022.pdf){target="_blank"}
 
 ## Ad hoc vragen
 
@@ -116,7 +128,6 @@ Inmiddels heb ik mij verder in de materie verdiept, nadat ik mij na het lezen va
 :   
 
 Naast de bekende oorzaken van een knik (vulkaanuitbarsting, 1991, oostenwind 1996, nodaal getij) lijkt er de laatste jaren ook een administratieve fout in de bodemdaling te zijn opgetreden. Dit kwam naar voren door de individuele stations met het gemiddelde en hoofd principale component te vergelijken. Het lijkt erop dat bodemdaling in ieder geval Delfzijl niet goed doorgevoerd is. Delfzijl is in 1970 "losgekoppeld" van het NAP, in het HKV rapport staat dat in 3.2.3 beschreven. Daar zou het NAP vlak doorgetrokken moeten worden van buiten de bodemdalingskom naar het peilstation. Het zou kunnen zijn dat dat een aantal jaren niet gebeurd is. Rijkswaterstaat is dit nu aan het uitzoeken. Zullen we dit onderwerp doorspreken, zodra we een terugkoppeling van RWS hebben? Ik verwacht die de komende weken. We zijn nu bezig om een nieuwe update van de zeespiegelmonitor rapportage te prepareren. Die staat gepland voor eind van het jaar. Een korte update van mijn kant. We hebben deze situatie besproken met Rijkswaterstaat. Ze gaan een notitie opstellen waarin twee discrepanties behandeld worden. - Er zijn in het verleden voor sommige stations meerdere reeksen ingevoerd door verschillende organisatieonderdelen. Daardoor kon het voorkomen dat niet gevalideerde of gecorrigeerde data de gecorrigeerde data overschreef. - De aansluiting van het NAP in het getijstation van Delfzijl is een aantal jaar wel gemeten maar niet doorgevoerd. Voor beide aspecten komt mogelijk een correctie. Rijkswaterstaat is waarschijnlijk niet voor het verschijnen van ons rapport klaar met deze notitie. Daarom rekenen we voorlopig met de data zoals die nu zijn ontsloten. Wel nemen we in ons rapport een sectie op over de mogelijke consequenties van deze aanpassingen. Ook laten we een methode zien waarmee dit soort "discontinuïteiten" gevonden kunnen worden.
-
 
 ------------------------------------------------------------------------
 
@@ -225,7 +236,7 @@ Waarom zou er een knikpunt zijn, immers ZSS werd (zeker in de jaren 90) gedreven
 
 :   
 
-Het effect is wat lastig te reconstrueren. De uitbarsting vond net voor het "satelliettijdperk" plaats. Ik zag wel dat er een nieuw scenario in de CMIP6 scenario's zit, speciaal voor deze uitbarsting. In [^11-appendix-19] schrijven ze 5 tot 7&nbsp;mm zeespiegeldaling toe aan de afkoeling van de oceanen.
+Het effect is wat lastig te reconstrueren. De uitbarsting vond net voor het "satelliettijdperk" plaats. Ik zag wel dat er een nieuw scenario in de CMIP6 scenario's zit, speciaal voor deze uitbarsting. In [^11-appendix-19] schrijven ze 5 tot 7 mm zeespiegeldaling toe aan de afkoeling van de oceanen.
 
 [^11-appendix-19]: <https://www.nature.com/articles/srep31245>
 

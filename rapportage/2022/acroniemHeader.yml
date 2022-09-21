@@ -1,5 +1,8 @@
 ---
 acronyms:
+  loa_title: "Afkortingen"
+  include_unused: false
+  insert_loa: false
   keys:
     - shortname: AGRS
       longname: Actief GNSS Referentie Systeem

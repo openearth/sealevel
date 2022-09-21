@@ -70,7 +70,7 @@ opgenomen.
 
 Meestal kijken we naar zeespiegeltrends en naar veranderingen in de trends. Maar eigenlijk net zo interessant is hoe hoog de zeespiegel precies staat. Het nulniveau van het [NAP]{acronym-label="NAP" acronym-form="singular+short"} begon ooit als hoogwater in Amsterdam, toen stond het gemiddeld zeeniveau dus onder [NAP]{acronym-label="NAP" acronym-form="singular+short"} [@Veen1945]. Begin jaren 1980 was de zeespiegel gelijk aan het [NAP]{acronym-label="NAP" acronym-form="singular+short"} en tegenwoordig ligt [NAP]{acronym-label="NAP" acronym-form="singular+short"} onder het gemiddeld zeeniveau.
 
-## Versnelling? {#sec:versnelling-methods}
+## (DLB) Versnelling? {#sec:versnelling-methods}
 
 We gaan er niet vanuit dat de zeespiegel altijd de trend van de 20ste eeuw blijft volgen. Daarom geven we het model de mogelijkheid om een versnelde of vertraagde zeespiegel uit te rekenen met de optionele versnellingsparameter.
 
@@ -88,7 +88,7 @@ Naast de bepaling of er versnelling is die aansluit bij de literatuur gebruiken 
 
 Het getij, met name de nodale cyclus, zoals beschreven in paragraaf \@ref(getij), wordt meegenomen als gelinearizeerde amplitude en fase, in de vorm van een $u$ en $v$ component. Het is ook mogelijk om het equilibrium getij op te leggen. In Nederland komt het nodaal getij in de buurt van het equilibrium, maar aan andere kusten komen metingen en het equilibrium getij vooralsnog niet overeen [@Cherniawsky2010; @Baart2012e]. Met het oog op de generieke toepasbaarhied en totdat er uitsluitsel is vanuit de literatuur gaan we voorlopig nog uit van het geobserveerde getij.
 
-## (SM) Wind
+## (SM) (DLB) Wind
 
 Omdat de Nederlandse kust aan een continentaal plat ligt, waar de wind voor een grote opslingering kan zorgen, maken we gebruik van windgegevens. De heranalyses (een combinatie van modellen en historische gegevens) van de [NCEP]{acronym-label="NCEP" acronym-form="singular+short"} [@Kalnay1996], op basis van een punt op de Noordzee (lat: 52.38, lon: 3.75), worden gebruikt als basis voor de schatting van de windopzet. De maandgemiddelde Noord-Zuid en Oost-West component worden gebruikt. Ten opzichte van @Baart2015, waar deze methode in detail beschreven staat, worden de gegevens ongeroteerd gebruikt om de gegevens generieker toepasbaar te maken. Wind heranalyses zijn beschikbaar vanaf 1949.
 

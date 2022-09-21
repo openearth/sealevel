@@ -8,7 +8,7 @@ bookdown::gitbook:
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     download: ["pdf", "epub"]
   includes:
-    before_body: navbar/navbar.html
+    # before_body: navbar/navbar.html
     in_header: clickandzoom.html
   pandoc_args: 
     -   !expr acronymsdown::add_filter()

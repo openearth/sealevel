@@ -44,9 +44,9 @@ In @Dillingh2013 werden de huidige zeespiegelstand en de huidige zeespiegelstijg
 
 Er wordt in veel onderzoeksprogramma's en door verschillende instituten gerefereerd aan, of gebruikt gemaakt van de zeespiegel langs de Nederlandse kust zoals die in de Zeespiegelmonitor berekend wordt. We maken hier onderscheid onder:
 
-- Onderzoeksprogramma's, kennisprogramma's en onderzoeksprojecten: vaak meerjarige projecten of gebundelde projecten met als doel om kennis te vergroten/verdiepen
-- Instituten die betrokken zijn bij de onderzoeksactiviteiten
-- Dashboards: Visueel ingestelde informatiebronnen op internet die met als doel om kennis publiek te delen
+-   Onderzoeksprogramma's, kennisprogramma's en onderzoeksprojecten: vaak meerjarige projecten of gebundelde projecten met als doel om kennis te vergroten/verdiepen
+-   Instituten die betrokken zijn bij de onderzoeksactiviteiten
+-   Dashboards: Visueel ingestelde informatiebronnen op internet die met als doel om kennis publiek te delen
 
 **Programma's**
 
@@ -82,7 +82,6 @@ knitr::kable()
 
 -   European Environmental Agency (EEA) dashboard of [Global and European sea level rise](https://www.eea.europa.eu/ims/global-and-european-sea-level-rise)
 -   NASA Vital Signs of the Planet - [Sea Level](https://climate.nasa.gov/vital-signs/sea-level/)
-
 
 ```{r, eval=F}
 DiagrammeR::grViz("digraph {
@@ -141,12 +140,18 @@ Dit rapport heeft als doel de volgende centrale vraagstellingen te beantwoorden.
 
 **Missiegedreven beleid**
 
--   breidt de zeespiegelmonitor uit tot een globaal dekkend, lokaal toepasbare zeespiegelmonitor.
--   Kwaliteitsindicatoren, aansluiting bij internationale activiteiten. Modules voor signalen, kennis, indicatoren.
+(ref:vraag-globaal) breidt de zeespiegelmonitor uit tot een globaal dekkend, lokaal toepasbare zeespiegelmonitor.
+
+(ref:vraag-kwaliteitsindicatoren) Kwaliteitsindicatoren, aansluiting bij internationale activiteiten. Modules voor signalen, kennis, indicatoren.
+
+-   '(ref:vraag-globaal)'
+-   '(ref:vraag-kwaliteitsindicatoren)'
 
 **De boel onder controle?**
 
--   Voor welke zeespiegelstijging zijn de huidige Deltawerken ontworpen? Welke resterende zeespiegel is er over ten opzichte van het oorspronkelijke ontwerp, rekening houdend met bijgestelde normen? In hoeverre zijn de Deltawerken adaptief?
+(ref:vraag-ontwerpen) Voor welke zeespiegelstijging zijn de huidige Deltawerken ontworpen? Welke resterende zeespiegel is er over ten opzichte van het oorspronkelijke ontwerp, rekening houdend met bijgestelde normen? In hoeverre zijn de Deltawerken adaptief?
+
+-   '(ref:vraag-ontwerpen)'
 
 **Archivering**
 
@@ -154,40 +159,55 @@ Dit rapport heeft als doel de volgende centrale vraagstellingen te beantwoorden.
 
 **Doelmatigheid**
 
--   welke doelmatigheidsverliezen treden op bij het kustonderhoud als we overgaan op een categorische indeling van de zeespiegelstijging?
--   vergelijk de mitigatie en adaptatiekosten vanuit het perspectief van het Nederlands kustbeleid. Welke zeespiegelstijgingseffect verwachten we voor 2100 van de Nederlandse en toegezegde internationale mitigatieinspanningen. Wat zijn de kosten van adapatie van dezelfde zeespiegelstijging voor Nederland?
+<!-- -   welke doelmatigheidsverliezen treden op bij het kustonderhoud als we overgaan op een categorische indeling van de zeespiegelstijging? -->
+
+<!-- -   vergelijk de mitigatie en adaptatiekosten vanuit het perspectief van het Nederlands kustbeleid. Welke zeespiegelstijgingseffect verwachten we voor 2100 van de Nederlandse en toegezegde internationale mitigatieinspanningen. Wat zijn de kosten van adapatie van dezelfde zeespiegelstijging voor Nederland? -->
 
 **Alternatieve feiten**
 
 -   maak een factsheet met makkelijk overneembare quotes samen met de voorlichting van een van de ministers en verspreid deze onder de voorlichters.
--   Onderhoud FAQ.
+
+-   (ref:vraag-faq) Onderhoud FAQ.
 
 **Jaarlijkse zeespiegelmonitor**
 
--   Wat is de huidige stijging van de zeespiegel? Wat zijn de laatste ontwikkelingen op het gebied van de toestand van de globale en lokale zeespiegel?
+(ref:vraag-huidige-stijging) Wat is de huidige stijging van de zeespiegel? Wat zijn de laatste ontwikkelingen op het gebied van de toestand van de globale en lokale zeespiegel?
+
+-   '(ref:vraag-huidige-stijging)'
 
 **Gezamenlijkheid**
 
--   probeer afstemming of aansluiting te bereiken tussen de verschillende zeespiegelindicatoren voor bepaling van huidige zeespiegelstijging en versnellingsdetectie tussen Deltaprogramma, TNO, PBL en Deltares.
+(ref:vraag-afstemming-indicatoren) probeer afstemming of aansluiting te bereiken tussen de verschillende zeespiegelindicatoren voor bepaling van huidige zeespiegelstijging en versnellingsdetectie tussen Deltaprogramma, TNO, PBL en Deltares.
+
+-   '(ref:vraag-afstemming-indicatoren)'
 
 **Uitsplitsing oorzaken voor zeespiegelstijging**
 
--   probeer afstemming te bereiken tussen de verschillende methoden van het gezamenlijk presenteren van projecties en zeespiegelmetingen
--   voeg het effect van temperatuur en dichtheidsstromingen toe op basis van het HYCOM model.
--   stap over op het GTSM model als basis voor wind en stormopzet effecten.
--   Er zijn een aantal mogelijke bronnen van afsmelten op Antarctica. Wat is hun individuele bijdrage aan de stijging van de zeespiegel aan de Nederlandse kust. Welke moeten we "in de gaten houden"? Is er een effect van de geometrie veranderingen bij Antarctica op het getij bij Nederland?
+(ref:vraag-afstemming-oorzaken) probeer afstemming te bereiken tussen de verschillende methoden van het gezamenlijk presenteren van projecties en zeespiegelmetingen
+
+(ref:vraag-hycom) voeg het effect van temperatuur en dichtheidsstromingen toe op basis van het HYCOM model.
+
+(ref:vraag-gtsm) stap over op het GTSM model als basis voor wind en stormopzet effecten.
+
+(ref:vraag-antarctica) Er zijn een aantal mogelijke bronnen van afsmelten op Antarctica. Wat is hun individuele bijdrage aan de stijging van de zeespiegel aan de Nederlandse kust. Welke moeten we "in de gaten houden"? Is er een effect van de geometrie veranderingen bij Antarctica op het getij bij Nederland?
+
+-   '(ref:vraag-afstemming-oorzaken)'
+-   '(ref:vraag-hycom)'
+-   '(ref:vraag-gtsm)'
+-   '(ref:vraag-antarctica)'
 
 **Verbetering meetmethoden**
 
--   hoe kunnen we het Landelijk Meetnet Water op het gebied van relatieve zeespiegelstijging optimaliseren
+(ref:vraag-optimalisatie-meetnet) hoe kunnen we het Landelijk Meetnet Water op het gebied van relatieve zeespiegelstijging optimaliseren
+
+- '(ref:vraag-optimalisatie-meetnet)'
 
 ## Leeswijzer {#Leeswijzer}
 
-Merk op dat de paginanummers van bovenstaande vragen in de digitale versie van dit document voorzien zijn van een hyperlink. Hiermee kunt u klikken naar de juiste pagina. Dit geldt ook voor verwijzingen naar acroniemen waarmee u bij het overzicht van afkortingen kunt komen, te vinden in \@ref{acroniemen}. 
+Merk op dat de paginanummers van bovenstaande vragen in de digitale versie van dit document voorzien zijn van een hyperlink. Hiermee kunt u klikken naar de juiste pagina. Dit geldt ook voor verwijzingen naar acroniemen waarmee u bij het overzicht van afkortingen kunt komen, te vinden in \@ref{acroniemen}.
 
 Citaten in de vorm an [@Author1954] verwijzen naar een onbekende auteur (Unknown Author), bijvoorbeeld bij krantenberichten en verwijzingen naar kamerstukken. In dit document wordt de internationale getalsnotatie met een punt (.) als decimaalscheidingsteken gebruikt. Figuren overgenomen uit internationale publicaties of bedoeld voor internationale publicaties hebben Engelse assenlabels.
 
 ## Review {#Review}
 
 Beschrijving van reviewprocedure.
-
