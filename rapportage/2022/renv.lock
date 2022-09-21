@@ -79,6 +79,21 @@
       "Hash": "45f0398006e83a5b10b72a90663d8d8c",
       "Requirements": []
     },
+    "acronymsdown": {
+      "Package": "acronymsdown",
+      "Version": "0.11.1",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "rchaput",
+      "RemoteRepo": "acronymsdown",
+      "RemoteRef": "master",
+      "RemoteSha": "227b4d4407fa5268b647dd02196560fc52f67614",
+      "Hash": "6b8c92c60a1cfe69d171af8701951685",
+      "Requirements": [
+        "rmarkdown"
+      ]
+    },
     "askpass": {
       "Package": "askpass",
       "Version": "1.1",
