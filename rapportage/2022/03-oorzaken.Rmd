@@ -112,7 +112,10 @@ In het bovenste paneel van figuur \@ref(fig:global-budget) is te zien dat de ste
 
 Een nadere beschouwing van deze balans is uitgewerkt door een groep wetenschappers [@Cazenave2018] die zich daar als onderdeel van het \acr{WCRP} mee bezig hebben gehouden. Ze komen tot de conclusie dat de gemeten zeespiegeltrend 0.37 mm/ hoger is dan verwacht op basis van de boekhouding over de periode 1993 - 2017. Over deze periode schatten ze de bijdrage van toename van massa op 1.4mm/ en de toename door temperatuurstoename op 1.3mm/.
 
-```{r global-budget, fig.cap= 'FB: Bovenste paneel: uitsplitsing van globale zeespiegelstijging [GMSL]{acronym-label="GMSL" acronym-form="singular+short"} naar verschillende componenten ( *ocean*: oceaan massa, *steric* sterische bijdrage). Onderste paneel uitsplitsing van oceaan massa in oorsprong van Groenland en Antarctica. De seizoensvariatie is in beide figuren verwijderd .'}
+(ref:global-budget-label) FB: Bovenste paneel: uitsplitsing van globale zeespiegelstijging \acr{GMSL} naar verschillende componenten ( *ocean*: oceaan massa, *steric* sterische bijdrage). Onderste paneel uitsplitsing van oceaan massa in oorsprong van Groenland en Antarctica. De seizoensvariatie is in beide figuren verwijderd.
+
+
+```{r global-budget, fig.cap= '(ref:global-budget-label)'}
 
 knitr::include_graphics("figures/global-budget-noseason.png")
 ```
@@ -138,7 +141,9 @@ Langs de Nederlandse kust is de temperatuur niet gestegen tot 1990. Dit is te zi
 
 Voor de zeespiegelstijging aan de Nederlandse kust is het belangrijk om naar de globale zeewatertemperatuur te kijken. Als de temperatuur van alle oceanen in de wereld stijgt zorgt dat ook voor zeespiegelstijging in Nederland. Als alleen de Noordzee warmer wordt dan verdeelt dat water zich. Doordat de Noordzee ondiep is, is het effect van de uitzetting beperkt.
 
-```{r sea-surface-temperature, fig.cap= 'Zeespiegeloppervlakte temperatuur, globaal ([ERSST]{acronym-label="ERSST" acronym-form="singular+short"} v5) en in de Noordzee ([ERSST]{acronym-label="ERSST" acronym-form="singular+short"} v5 en [RWS]{acronym-label="RWS" acronym-form="singular+short"} stations) .', out.width='70%', fig.align='center'}
+(ref:sea-surface-temperature-label) Zeespiegeloppervlakte temperatuur, globaal \acr{ERSST} v5) en in de Noordzee \acr{ERSST} v5 en \acr{RWS} stations) .
+
+```{r sea-surface-temperature, fig.cap= '(ref:sea-surface-temperature-label)', out.width='70%', fig.align='center'}
 
 knitr::include_graphics("figures/sea-surface-temperature.png")
 ```
@@ -295,7 +300,9 @@ knitr::kable(getijFreq, align = "rcl", caption = "Frequenties van het getij [@Do
 
 De getijamplitude varieert langs de kust \@ref(fig:m2). De amplitude kan veranderen door geometrische veranderingen aan de kust, zoals bij de aanleg van de Maasvlakte 2 en bij de aanleg van de Afsluitdijk. Het getij in Nederland kan ook veranderen door zeespiegelstijging [@Pickering2017] of geometrische veranderingen elders op de wereld.
 
-```{r m2, fig.cap = 'Amplitude van M2 voor de verschillende getijstations. Het station van IJmuiden is verplaatst van Noordersluis (donar code: IJMDNDSS) naar Buitenhaven (IJMDBTHVN), deze curves sluiten op elkaar aan (bruin en paars).' }
+(\ref:m2-label) Amplitude van \acr{M2} voor de verschillende getijstations. Het station van IJmuiden is verplaatst van Noordersluis (donar code: IJMDNDSS) naar Buitenhaven (IJMDBTHVN), deze curves sluiten op elkaar aan (bruin en paars).
+
+```{r m2, fig.cap = '(\ref:m2-label)' }
 knitr::include_graphics("figures/tidal-trends.png")
 ```
 
