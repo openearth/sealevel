@@ -9,7 +9,16 @@ bibliography: [bib/book.bib, bib/bibhkv.bib, bib/R.bib, bib/sealevel.bib, bib/wi
 biblio-style: apalike
 link-citations: yes
 acronyms:
-    fromfile: acroniemHeader.yml
+  loa_title: "Lijst met afkortingen"
+  include_unused: false
+  insert_loa: false
+  insert_links: true
+  id_prefix: "acronyms_"
+  sorting: "alphabetical"
+  non_existing: "key"
+  style: "long-short"
+  fromfile:
+    - acroniemHeader.yml
 always_allow_html: true
 description: "Dit is de Zeespiegelmonitor. De Zeespiegelmonitor wordt gemaakt door Deltares met bijdragen van HKV en KNMI in opdracht van Rijkswaterstaat. "
 ---
@@ -30,4 +39,5 @@ description: "Dit is de Zeespiegelmonitor. De Zeespiegelmonitor wordt gemaakt do
 
 <!-- We adviseren om kritisch te kijken naar de discrepantie tussen de gemeten zeespiegel en de zeespiegelstijging die we in het verleden voor de toekomst geprojecteerd hebben. We kunnen beter gaan meten, bijvoorbeeld door alle getijstations met GNSS apparatuur uit te rusten. In de komende jaren zal gewerkt worden aan een betere ontsluiting van zeespiegelinformatie via de publieke kanalen van Rijkswaterstaat. -->
 
-<!-- \printacronyms -->
+
+\printacronyms
