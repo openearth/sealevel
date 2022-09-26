@@ -20,16 +20,16 @@ def linear_acceleration_model(df):
 
 
 # define the statistical model
-def quadratic_model(df, with_wind=True):
+def quadratic_model(df, with_wind=True, with_ar=True, start_acc=1890):
     """This model computes a parabolic linear fit. This corresponds to the hypothesis that sea-level is accelerating."""
     y = df['height']
     X = np.c_[
-        df['year']-1970,
-        (df['year'] - 1970) * (df['year'] - 1970),
-        np.cos(2*np.pi*(df['year']-1970)/18.613),
-        np.sin(2*np.pi*(df['year']-1970)/18.613)
+        df['year'],
+        (df['year']>=start_acc)*(df['year']-start_acc) * (df['year']-start_acc),
+        np.cos(2*np.pi*(df['year'])/18.613),
+        np.sin(2*np.pi*(df['year'])/18.613)
     ]
-    names = ['Constant', 'Trend', 'Acceleration', 'Nodal U', 'Nodal V']
+    names = ['Constant', 'Trend', f'Acceleration from {start_acc}', 'Nodal U', 'Nodal V']
     if with_wind:
         X = np.c_[
             X,
@@ -38,8 +38,14 @@ def quadratic_model(df, with_wind=True):
         ]
         names.extend(['Wind $u^2$', 'Wind $v^2$'])
     X = sm.add_constant(X)
-    model_quadratic = sm.GLSAR(y, X, rho=1)
-    fit = model_quadratic.iterative_fit(cov_type='HC0')
+    
+    if with_ar:
+        model = sm.GLSAR(y, X, missing='drop', rho=1)
+        fit = model.iterative_fit(cov_type='HC0')
+    else:
+        model = sm.OLS(y, X, missing='drop')
+        fit = model.fit(cov_type='HC0')
+    
     return fit, names
 
 
