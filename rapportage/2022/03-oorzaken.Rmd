@@ -1,56 +1,6 @@
 # Oorzaken zeespiegelverandering {#oorzaken}
 
-De zeespiegel wordt beïnvloed door verschillende processen die variëren in tijd en ruimte [zie bijvoorbeeld @Pickard2016 and @woodworth2019, @cazenave2022]. Een deel van de zeespiegelveranderingen aan de Nederlandse kust vindt zijn oorsprong in de globale processen, en een deel vindt zijn oorsprong in regionale (in de Noordzee) en lokale processen (langs de Nederlandse kust). Dit is weergegeven in figuur \@ref(fig:oorzaken). Dit overzicht sluit aan bij de indeling die het [IPCC]{acronym-label="IPCC" acronym-form="singular+short"} gebruikt [@IPCC2021]. Zie @Gregory2019 voor een overzicht van de terminologie. In dit rapport maken we, waar mogelijk, gebruik van actuele gemeten gegevens, bij voorkeur op basis van publiek beschikbare gegevensbronnen.
-
-
-```{r oorzaken, fig.cap= "Overzicht van oorzaken van de lokale relatieve zeespiegelstijging. Tijdschalen in de orde van jaren tot decaden. Links de globale processen doorvertaald naar rechts, de lokale processen."}
-
-# knitr::include_graphics("figures/oorzaken.png")
-
-# https://rich-iannone.github.io/DiagrammeR/graphviz_and_mermaid.html
-
-DiagrammeR::grViz("digraph {
-
-  graph [overlap = true, fontsize = 10, layout = dot, rankdir = LR]
-  
-  node [shape = rectangle,
-      style = filled,
-      color = DarkSeaGreen2,
-      label = '']
-      
-  Ant [label = 'Antarctica']
-  Groen [label = 'Groenland']
-  Glet [label =  'Gletsjers']
-  Landijs [label = 'Landijs']
-  LandWater [label= 'Land-water opslag']
-  OceaanMas [label = 'Oceaan \n massa']
-  Dichtheid [label = 'Oceaan dichtheid \n']
-  GravRot [label = 'Gravitatatie en \nrotatie effecten']
-  CircDichtheid [label = 'Oceaan circulatie en \ndichtheidsvariaties']
-  GIA [label = ['Postglaciale opheffing']
-  BodDal [label = 'Vertical bodembeweging']
-  Wind [label = 'Wind en luctdruk']
-  Getij [label = 'Getij']
-  
-  node [shape = rectangle,
-      style = filled,
-      color = LightSteelBlue2,
-      label = '']
-  
-  OceaanVol [label = 'Wereldgemiddelde zeespiegel']    
-  RegZS [label = 'Regionale \n zeespiegel']
-  LokRelZS [label = 'Lokale \n relatieve \n zeespiegel']
-  
-  Ant->Landijs  Groen->Landijs  Glet->Landijs
-  Landijs->OceaanMas LandWater->OceaanMas
-  OceaanMas->OceaanVol Dichtheid->OceaanVol
-  GravRot->RegZS  OceaanVol->RegZS  CircDichtheid->RegZS GIA > RegZS
-  RegZS->LokRelZS  BodDal->LokRelZS  Wind->LokRelZS  Getij->LokRelZS
-  
-  }",
-  width = 800)
-
-```
+De zeespiegel wordt beïnvloed door verschillende processen die variëren in tijd en ruimte [zie bijvoorbeeld @Pickard2016 and @woodworth2019, @cazenave2022]. Een deel van de zeespiegelveranderingen aan de Nederlandse kust vindt zijn oorsprong in de globale processen. Een ander deel vindt zijn oorsprong in regionale (in de Noordzee) en lokale processen (langs de Nederlandse kust). Dit is weergegeven in figuur \@ref(fig:oorzaken). Dit overzicht sluit aan bij de indeling die het [IPCC]{acronym-label="IPCC" acronym-form="singular+short"} gebruikt [@IPCC2021]. Zie @Gregory2019 voor een overzicht van de terminologie. In dit rapport maken we, waar mogelijk, gebruik van actuele gemeten gegevens, bij voorkeur op basis van publiek beschikbare gegevensbronnen.
 
 ```{r oorzaken, fig.cap= "Overzicht van oorzaken van de lokale relatieve zeespiegelstijging. De groene onderdelen komen in dit hoofdstuk aan bod. Tijdschalen in de orde van jaren tot decaden. Links de globale oorzaken doorvertaald naar rechts, de lokale oorzaken."}
 
@@ -106,14 +56,14 @@ DiagrammeR::grViz("digraph {
 
 ```
 
-Naast de fysische oorzaken zijn er diverse methodologische keuzes die verschillen in de hoogte van de zeespiegel kunnen veroorzaken. De diverse meetmethode hebben onnauwkeurigheden en de beperkte historische dekking van de metingen kan voor vertekening zorgen. De invloed van regionale en lokale aspecten van de zeespiegel varieert per gebied. De Noordzee is onderdeel van het continentaal plat van Europa en is daardoor relatief ondiep. Door deze eigenschap zijn het getij en windopzet de belangrijkste processen die bijdragen aan variaties in de zeespiegel langs de Nederlandse kust op de tijdschaal van jaren tot decaden.
+Naast de fysische oorzaken zijn er diverse methodologische keuzes die verschillen in de hoogte van de zeespiegel kunnen veroorzaken. Er zijn onnauwkeurigheden in de diverse meetmethode. Daarnaast kan de beperkte historische dekking van de metingen voor vertekening zorgen. De invloed van regionale en lokale aspecten van de zeespiegel varieert per gebied. De Noordzee is onderdeel van het continentaal plat van Europa en is daardoor relatief ondiep. Hierdoor zijn op de tijdschaal van jaren tot decaden, het getij en windopzet de belangrijkste processen die bijdragen aan variaties in de regionale zeespiegel langs de Nederlandse kust.
 
-Wereldwijd wordt doorgaans gekeken naar de absolute zeespiegelstijging. De term absolute zeespiegel wordt gebruikt voor de hoogte ten opzichte van de geoïde, het vlak dat het water zou volgen als er geen wind, getij en stroming zouden zijn in de oceaan ==check==. Lokaal is vooral relatieve zeespiegelstijging interessant, de combinatie van bodembeweging en absolute zeespiegelstijging.
+Wereldwijd wordt doorgaans gekeken naar de absolute zeespiegelstijging. De term absolute zeespiegel wordt gebruikt voor de hoogte ten opzichte van de geoïde, het vlak dat het water zou volgen als er geen wind, getij en stroming zouden zijn in de oceaan. Lokaal is de relatieve zeespiegelstijging, de combinatie van bodembeweging en absolute zeespiegelstijging, vaak meer relevant. 
+
 ## Definitie zeespiegelstand
+Voor we de stijging van de zeespiegel kunnen definiëren moeten we eerst de zeespiegelstand definiëren. Om de zeespiegelstand te definiëren maken we doorgaans gebruik van een "gemiddelde zeespiegel". Omdat de zeespiegel van minuut tot minuut en van uur tot uur varieert middelen we de zeespiegel vaak eerst uit over een bepaalde periode (maand of jaar). De zeespiegelstand van uur tot uur noemen we de waterstand of waterhoogte. Als we alleen zeespiegelstand of zeespiegel noemen bedoelen we doorgaans de gemiddelde zeespiegelstand. Er zijn twee definities voor de gemiddelde zeespiegel in gebruik. Dit komt omdat er twee locaties zijn waar we de zeespiegel meten, aan de kust en op de oceanen en zeeën.
 
-Voor we de stijging van de zeespiegel kunnen definiëren moeten we eerst de zeespiegelstand definieren. Om de zeespiegelstand te definieren maken we doorgaans gebruik van een "gemiddelde zeespiegel". Omdat de zeespiegel van minuut tot minuut en van uur tot uur varieert middelen we de zeespiegel vaak eerst uit over een bepaalde periode (maand of jaar). De zeespiegelstand van uur tot uur noemen we de waterstand of waterhoogte. Als we alleen zeespiegelstand of zeespiegel noemen bedoelen we doorgaans de gemiddelde zeespiegelstand. Er zijn twee definities voor de gemiddelde zeespiegel in gebruik. Dit komt omdat er twee locaties zijn waar we de zeespiegel meten, aan de kust en op de oceanen en zeeën.
-
-Aan de kust wordt de zeespiegel gemeten ten op zichte van een vast kenmerk. In Nederland is dat ten opzichte van de \acr{NAP} bouten. Omdat de zeespiegel kan veranderen door aanpassing van het land of aanpassing van het volume van het water noemen we dit ook wel relatieve zeespiegelstand. De Intergovernmental Oceanografysiche Commissie heeft procedures beschreven om van metingen van een getijdestations tot een zeespiegelstand te komen.
+Aan de kust wordt de zeespiegel gemeten ten opzichte van een vast kenmerk. In Nederland is dat ten opzichte van de \acr{NAP} bouten. Omdat de zeespiegel kan veranderen door aanpassing van het land of aanpassing van het volume van het water noemen we dit ook wel relatieve zeespiegelstand. De Intergovernmental Oceanografysiche Commissie heeft procedures beschreven om van metingen van een getijdestations tot een zeespiegelstand te komen.
 
 De tweede manier om de zeespiegelstand te bepalen is ten opzichte van de geoïde en te meten met satellieten. Door de hoogte van het zeespiegeloppervlak te meten over alle oceanen kan de globaal gemiddelde zeespiegel worden bepaald. Het is niet makkelijk om de zeespiegel netjes te refereren aan de geoïde. Daarom worden ook wel zeespiegelanomaliteiten gebruikt. Zeespiegelanomaliteiten zijn zeespiegelstanden uitgedrukt ten opzichte van gemiddelde zeespiegelstanden over een eerdere periode [@Author2022b].
 
@@ -125,12 +75,11 @@ Er zijn verschillende methoden om aspecten van de zeespiegelstijging te kwantifi
 
 Boekhouden
 
-:   In deze aanpak probeert men op grote schaal een balans op te stellen van verschillende componenten die bijdragen aan een fenomeen. Ook voor zeespiegelstijging worden er budgetten opgesteld. Het resultaat n deze aanpak is antwoorden op vragen als, waar komt de meeste eespiegelstijging vandaan, van Antarctica of van Groenland? Met een egeven lijstje oorzaken, kan er gekeken worden welke bijdragen elke grootte hebben. Men maakt gebruik van beschrijvende statistiek n bij voorkeur van gemeten data.
-
+:   In deze methode probeert men op grote schaal een balans op te stellen van verschillende componenten die bijdragen aan een fenomeen. Ook voor zeespiegelstijging worden er budgetten opgesteld. Het resultaat n deze aanpak is antwoorden op vragen als, waar komt de meeste zeespiegelstijging vandaan, van Antarctica of van Groenland? Met een gegeven lijstje oorzaken, kan er gekeken worden welke bijdragen elke grootte hebben. Men maakt gebruik van beschrijvende statistiek en bij voorkeur van gemeten data.
 
 Data science
 
-:   De data science aanpak richt zich meer op het detecteren en inschatten van veranderingen en het vergelijken van verschillende theorieën. Is er een versnelling zichtbaar in het afkalven en smelten van ijs op Antarctica? Welk deel van de trend is lange en welk deel is korte termijn? Men maakt gebruik van exploratieve, lerende en generatieve modellen. Dit gebeurt op basis van gemeten data en gesimuleerde data.
+:   De methode op basis van data science richt zich meer op het detecteren en inschatten van veranderingen en het vergelijken van verschillende theorieën. Is er een versnelling zichtbaar in het afkalven en smelten van ijs op Antarctica? Welk deel van de trend is lange en welk deel is korte termijn? Men maakt gebruik van exploratieve, lerende en generatieve modellen. Dit gebeurt op basis van gemeten data en gesimuleerde data.
 
 Simuleren
 
@@ -138,7 +87,7 @@ Simuleren
 
 De uitdaging in het kwantificeren van de zeespiegel is om spaarzaam een verzameling van processen te kiezen waar rekening mee gehouden wordt. Alle processen tegelijk beschouwen is niet behapbaar, conceptueel, qua data beschikbaarheid en rekentechnisch.
 
-Dit rapport gebruikt alle drie de aanpakken. In de beschrijving van de globale zeespiegel ligt de nadruk wat meer op de boekhoud aanpak. Voor de bepaling van de huidige zeespiegel wordt gebruik gemaakt van data science en geassimileerde heranalyses.
+Dit rapport maakt gebruikt van alle drie de methoden. In de beschrijving van de globale zeespiegel ligt de nadruk wat meer op de boekhoud aanpak. Voor de bepaling van de huidige zeespiegel wordt gebruik gemaakt van data science en geassimileerde heranalyses.
 
 ## Mondiale zeespiegelstijging {#boekhouding}
 Absolute zeespiegelstijging wordt grotendeels veroorzaakt door twee componenten [Zie bijvoorbeeld @Chambers2017]: de totale hoeveelheid water in de oceaan (toename van massa) of in de dichtheid van het water (toename van volume). De globale zeespiegelveranderingen (gemiddeld over alle oceanen)  Beide componenten zorgen ervoor dat het oceaanvolume toeneemt.
@@ -148,10 +97,9 @@ Dichtheid
 Massa
 :   De massa van de oceaanwater neemt toe door een toename van de totale hoeveelheid water in de oceaan. De massa kan toenemen door bijvoorbeeld het smelten van gletsjers en ijskappen (landijs) en veranderingen in opslag van land-water. 
 
-Een overzicht van de uitsplitsing van de globale zeespiegelstijging, over de periode 1990-2017 is te vinden in [2](#fig:global-budget){reference-type="ref" reference="fig:global-budget"} . Deze uitsplitsing wordt gebruikt om te kijken of de verschillende metingen met elkaar in overeenstemming zijn. In dit geval zijn de zeespiegelmetingen op basis van de verschillende altimetrie satellieten (TOPEX/Poseidon, [JASON]{acronym-label="JASON" acronym-form="singular+short"} 1,2,3) vergeleken [@Zlotnicki2016] met de oceaan massa op basis van de [GRACE]{acronym-label="GRACE" acronym-form="singular+short"}-missie [@Watkins2015] en de sterische informatie op basis van de [Argo]{acronym-label="Argo" acronym-form="singular+short"} dataset [@Llovel2014]. Sterisch slaat op de verandering in krachten tussen moleculen door temperatuursverandering (thermosterisch) of veranderingen in de de saliniteit, het zoutgehalte in water (halosterische effect). Om de grafieken op elkaar aan te laten sluiten worden diverse correcties en filters toegepast. In [2](#fig:global-budget){reference-type="ref" reference="fig:global-budget"} zijn bijvoorbeeld de seizoenseffecten verwijderd, de data is gefilterd met een lopend gemiddelde, zodat deze er wat minder grillig uitzien. Er is een correctie doorgevoerd voor de [GIA]{acronym-label="GIA" acronym-form="singular+short"}. De oceaanbodem zakt waardoor het oceaanvolume toeneemt. Bij een constant zeeniveau stijgt na het toepassen van deze correctie de globale zeespiegel met 0.3mm/. Er zijn goede metingen van ijsmassaveranderingen beschikbaar sinds de start van de [GRACE]{acronym-label="GRACE" acronym-form="singular+short"} missie in 2002. De globale dekking van sterische effecten, op basis van het [Argo]{acronym-label="Argo" acronym-form="singular+short"} programma begint in 2004.
+Een overzicht van de uitsplitsing van de globale zeespiegelstijging, over de periode 1990-2017 is te vinden in [2](#fig:global-budget){reference-type="ref" reference="fig:global-budget"}. Deze uitsplitsing wordt gebruikt om te kijken of de verschillende metingen met elkaar in overeenstemming zijn. In dit geval zijn de zeespiegelmetingen op basis van de verschillende altimetrie satellieten (TOPEX/Poseidon, [JASON]{acronym-label="JASON" acronym-form="singular+short"} 1,2,3) vergeleken [@Zlotnicki2016] met de oceaan massa op basis van de [GRACE]{acronym-label="GRACE" acronym-form="singular+short"}-missie [@Watkins2015] en de sterische informatie op basis van de [Argo]{acronym-label="Argo" acronym-form="singular+short"} dataset [@Llovel2014]. Sterisch slaat op de verandering in dichtheid door temperatuursverandering (thermosterisch) of veranderingen in het zoutgehalte in water (halosterische effect). Om de grafieken op elkaar aan te laten sluiten worden diverse correcties en filters toegepast. In [2](#fig:global-budget){reference-type="ref" reference="fig:global-budget"} zijn bijvoorbeeld de seizoenseffecten verwijderd, de data is gefilterd met een lopend gemiddelde, zodat deze er wat minder grillig uitzien. Er is een correctie doorgevoerd voor de [GIA]{acronym-label="GIA" acronym-form="singular+short"}. De oceaanbodem zakt waardoor het oceaanvolume toeneemt. Bij een constant zeeniveau stijgt na het toepassen van deze correctie de globale zeespiegel met 0.3mm/. Er zijn goede metingen van ijsmassaveranderingen beschikbaar sinds de start van de [GRACE]{acronym-label="GRACE" acronym-form="singular+short"} missie in 2002. De globale dekking van sterische effecten, op basis van het [Argo]{acronym-label="Argo" acronym-form="singular+short"} programma begint in 2004.
 
-In het bovenste paneel van figuur \@ref(fig:global-budget) is te zien dat de sterische component (tot 2000m diep) en de toename van de oceaan massa samen gelijk zijn aan de geobserveerde zeespiegelstijging. Vanaf 2004 komt ongeveer een derde van dezeespiegelstijging door veranderingen in dichtheid (sterisch component) en twee derde de toename van massa van de oceaan. Het onderste paneel van figuur \@ref(fig:global-budget) laat zien dat de toename van massa met name komt door het afsmelten en afkalven van het ijs op Groenland.
-Een nadere beschouwing van deze balans is uitgewerkt door een groep wetenschappers [@Cazenave2018] die zich daar als onderdeel van het [WCRP]{acronym-label="WCRP" acronym-form="singular+short"} mee bezig hebben gehouden. Ze komen tot de conclusie dat de gemeten zeespiegeltrend 0.37 mm/ hoger is dan verwacht op basis van de boekhouding over de periode 1993 - 2017. Over deze periode schatten ze de bijdrage van toename van massa op 1.4mm/ en de toename door temperatuurstoename op 1.3mm/.
+In het bovenste paneel van figuur \@ref(fig:global-budget) is te zien dat de sterische component (tot 2000m diep) en de toename van de oceaan massa samen gelijk zijn aan de geobserveerde zeespiegelstijging. Vanaf 2004 komt ongeveer een derde van de zeespiegelstijging door veranderingen in dichtheid (sterisch component) en twee derde de toename van massa van de oceaan. Het onderste paneel van figuur \@ref(fig:global-budget) laat zien dat de toename van massa met name komt door het afsmelten en afkalven van het ijs op Groenland. Een nadere beschouwing van deze balans is uitgewerkt door een groep wetenschappers [@Cazenave2018] die zich daar als onderdeel van het [WCRP]{acronym-label="WCRP" acronym-form="singular+short"} mee bezig hebben gehouden. Ze komen tot de conclusie dat de gemeten zeespiegeltrend 0.37 mm/ hoger is dan verwacht op basis van de boekhouding over de periode 1993 - 2017. Over deze periode schatten ze de bijdrage van toename van massa op 1.4mm/ en de toename door temperatuurstoename op 1.3mm/.
 ===Volgens @Horwath2022 zijn veranderingen in dichtheid en massa verantwoordelijk voor, respectievelijk, 38% en 57% van de mondiale zeespiegelstijging van 3 millimeter per jaar. 
 Een nadere beschouwing van deze balans is uitgewerkt door een groep wetenschappers [@Cazenave2018] die zich daar als onderdeel van het [WCRP]{acronym-label="WCRP" acronym-form="singular+short"} mee bezig hebben gehouden. Ze komen tot de conclusie dat de gemeten zeespiegeltrend 0.37 mm/ hoger is dan verwacht op basis van de boekhouding over de periode 1993 - 2017. Over deze periode schatten ze de bijdrage van toename van massa op 1.4mm/ en de toename door temperatuurstoename op 1.3mm/.=== 
 
@@ -170,7 +118,7 @@ Het is duidelijk dat de zeespiegel in de 20e eeuw sneller steeg dan enkele honde
 knitr::include_graphics("figures/postglacial.png")
 ```
 ### Veranderingen in dichtheid {#temperatuur}
-Een belangrijke factor in de trend van de zeespiegel is de temperatuur van de oceanen. Als de temperatuur stijgt, stijgt de zeespiegel doordat warmer water een lagere dichtheid heeft en dus meer massa. Zoet water heeft de hoogste dichtheid bij 4°C, hoe zouter het water hoe lager de temperatuur met de hoogste dichtheid [@Caldwell1978]. Van de temperatuur van het oppervlakte van de oceaan zijn lange meetreeksen en heranalyses beschikbaar [@Huang2017]. Uit deze reeks blijkt dat de temperatuur van oceaan, nadat deze in de kleine ijstijd flink was gezakt [@Voosen2017], weer aan het stijgen is [4](#fig:sst){reference-type="ref" reference="fig:sst"}.
+Een belangrijke factor in de trend van de zeespiegel is de temperatuur van de oceanen. Als de temperatuur stijgt, stijgt de zeespiegel doordat warmer water een lagere dichtheid heeft en dus meer massa. Zoet water heeft de hoogste dichtheid bij 4°C, maar hoe zouter het water hoe lager de temperatuur met de hoogste dichtheid [@Caldwell1978]. Van de temperatuur van het oppervlakte van de oceaan zijn lange meetreeksen en heranalyses beschikbaar [@Huang2017]. Uit deze reeks blijkt dat de temperatuur van oceaan, nadat deze in de kleine ijstijd flink was gezakt [@Voosen2017], weer aan het stijgen is [4](#fig:sst){reference-type="ref" reference="fig:sst"}.
 Langs de Nederlandse kust is de temperatuur niet gestegen tot 1990. Dit is te zien in de heranalyses van de oppervlaktetemperatuur uit [ERSST]{acronym-label="ERSST" acronym-form="singular+short"}, versie 5. De Noordzee is begin jaren 1990 met ongeveer een graad gestegen (blauwe lijn in onderste subfiguur in [4](#fig:sst){reference-type="ref" reference="fig:sst"}), [voor discussie zie @Emeis2015]. De metingen van het [LMW]{acronym-label="LMW" acronym-form="singular+short"} starten na deze veranderingen.
 Voor de zeespiegelstijging aan de Nederlandse kust is het belangrijk om naar de globale zeewatertemperatuur te kijken. Als de temperatuur van alle oceanen in de wereld stijgt zorgt dat ook voor zeespiegelstijging in Nederland. Doordat de Noordzee ondiep is, is het effect van de uitzetting beperkt.
 (ref:sea-surface-temperature-label) Zeespiegeloppervlakte temperatuur, globaal \acr{ERSST} v5) en in de Noordzee \acr{ERSST} v5 en \acr{RWS} stations) .
@@ -178,7 +126,8 @@ Voor de zeespiegelstijging aan de Nederlandse kust is het belangrijk om naar de 
 knitr::include_graphics("figures/sea-surface-temperature.png")
 ```
 
-Voor het berekenen van de toename van de volume is niet de temperatuur van het oceaanoppervlak van belang, maar de oceaantemperatuur over de hele diepte van de oceaan. Om de temperauur in de diepe oceanen beter in kaart te brengen is begin van de eeuw het [Argo]{acronym-label="Argo" acronym-form="singular+short"} programma opgezet, een mondiaal netwerk van 3900 boeien. Deze boeien kunnen naar beneden duiken en zo de zoutgradiënt, druk en temperatuur meten over de bovenste 2000m van de oceaan. Er wordt gewerkt aan de uitbreiding tot 6000m diep [@Jayne2017], zie ook @Talley2016 voor een overzicht van metingen van schepen. Op basis van deze data wordt een schatting gemaakt van de veranderingen in dichtheid [@Roemmich2009] en deze wordt beschikbaar gesteld in een dataset. Op basis van de combinatie van zeespiegelmetingen, zwaartekrachtmetingen en dichtheid is de conclusie getrokken dat de diepe oceaan, dieper dan 2000 meter, niet opwarmt [@Llovel2014]. schatten de bijdrage van de diepe oceaan aan de zeespiegelstijging op ongeveer 0.1mm/. De schatting van de zeespiegelbijdrage van de bovenste 2000m bedraagt 1.1mm/ op basis van data van [@Llovel2014; @Roemmich2009], zoals weergegeven in [2](#sec:boekhouding){reference-type="ref" reference="sec:boekhouding"}.
+Voor het berekenen van de toename van de volume is niet de temperatuur van het oceaanoppervlak van belang, maar de temperatuur over de hele diepte van de oceaan. Om de temperauur in de diepe oceanen beter in kaart te brengen is begin van de eeuw het [Argo]{acronym-label="Argo" acronym-form="singular+short"} programma opgezet, een mondiaal netwerk van 3900 boeien. Deze boeien kunnen naar beneden duiken en zo de zoutgradiënt, druk en temperatuur meten over de bovenste 2000m van de oceaan. Er wordt gewerkt aan de uitbreiding tot 6000m diep [@Jayne2017], zie ook @Talley2016 voor een overzicht van metingen van schepen. Op basis van deze data wordt een schatting gemaakt van de veranderingen in dichtheid [@Roemmich2009] en deze wordt beschikbaar gesteld in een dataset. Op basis van de combinatie van zeespiegelmetingen, zwaartekrachtmetingen en dichtheid is de conclusie getrokken dat de diepe oceaan, dieper dan 2000 meter, niet opwarmt [@Llovel2014]. schatten de bijdrage van de diepe oceaan aan de zeespiegelstijging op ongeveer 0.1mm/. De schatting van de zeespiegelbijdrage van de bovenste 2000m bedraagt 1.1mm/ op basis van data van [@Llovel2014; @Roemmich2009], zoals weergegeven in [2](#sec:boekhouding){reference-type="ref" reference="sec:boekhouding"}.
+
 ### (SM) Massaveranderingen, gletsjers, landijs en zeeijs
 !!!(ontbrekende tekst) liet zien dat ongeveer 1.8 mm/ van de globale zeespiegelstijging kan worden toegeschreven aan veranderingen in massa. Voorbeelden van processen die bijdragen aan veranderingen in oceaanmassa zijn:
 -   Afvoer van land (rivieren, ijsmassa's, gletsjers, grondwateronttrekkingen)
@@ -207,14 +156,14 @@ knitr::include_graphics("figures/ice-trend.png")
 ```
 
 ## Regionale and lokale processen
-De voorgaande secties bespraken verschillende oorzaken die ervoor zorgen dat de globale zeespiegel stijgt. Dat betekent echter niet dat overal op de aarde de zeespiegel even snel stijgt. Integendeel, er zijn plekken op de wereld waar de relatieve zeespiegel daalt, bijvoorbeeld in Scandinavïe, en er zijn plekken op de wereld waar de zeespiegel veel sneller stijgt dan in Nederland, bijvoorbeeld ten oosten van de Filipijnen [7](#fig:regional-trends){reference-type="ref" reference="fig:regional-trends"}. De processen die de zeespiegel regionaal (de Noordzee versus andere zeeën) beïnvloeden zijn gravitatie effecten, oceaancirculatie en luchtdrukverschillen [zie bijvoorbeeld @Stammer2013]. Processen die de zeespiegel lokaal (langs de Nederlandse kust) beïnvloeden zijn wind opzet en het getij. Daarnaast kunnen lokale bodembewegingen voor verschillen ten opzichte van het wereldwijde gemiddelde zorgen. Ook voor het land achter de kust ook de absolute bodemdaling van belang om te bepalen hoe de overstromingsgevoeligheid toe neemt.
+De voorgaande secties bespraken verschillende oorzaken die ervoor zorgen dat de globale zeespiegel stijgt. De zeespiegel stijgt echter niet overal op aarde even snel. Integendeel, er zijn plekken op de wereld waar de relatieve zeespiegel daalt, bijvoorbeeld in Scandinavïe, en er zijn plekken op de wereld waar de zeespiegel veel sneller stijgt dan het wereldwijdegemiddelde, bijvoorbeeld ten oosten van de Filipijnen [7](#fig:regional-trends){reference-type="ref" reference="fig:regional-trends"}. De processen die de zeespiegel regionaal (de Noordzee versus andere zeeën) beïnvloeden zijn gravitatie effecten, oceaancirculatie en luchtdrukverschillen [zie bijvoorbeeld @Stammer2013]. Processen die de zeespiegel lokaal (langs de Nederlandse kust) beïnvloeden zijn wind opzet en het getij. Daarnaast kunnen lokale bodembewegingen voor verschillen ten opzichte van het wereldwijde gemiddelde zorgen. Ook voor het land achter de kust ook de absolute bodemdaling van belang om te bepalen hoe de overstromingsgevoeligheid toe neemt.
 ```{r sea-level-trends, fig.cap= "Overzicht van zeespiegel trends op basis van satellietmetingen (1993-2014).", fig.show='hold' }
 require(png)
 knitr::include_graphics("figures/sea-level-trends.png")
 knitr::include_graphics("figures/sea-level-trends-legend.png", dpi = 450)
 ```
 ### (SM) Gravitatie {#sec:gravitatie}
-Als gevolg van het zelfgravitatie effect wordt de massa van smeltende ijskappen verdeelt zich niet gelijkmatig over de oceaan, Het water in de oceaan wordt door de zwaartekracht naar een op het land liggende ijsmassa toe getrokken, waardoor het zeeniveau nabij een ijskap relatief hoog is. Wanneer het landijs (deels) smelt zorgt dit voor een lokale afname in zwaartekracht waardoor de aantrekende werking op het water is de oceaan afneemt en zal dalen. Het water verder weg van de ijskap zal wel stijgen maar minder dan het wereldwijde gemiddelde, terwijl ver weg van de ijskap de stijging groter is dan het wereldwijde gemiddelde vanwege de conservatie van massa. 
+Als gevolg van het zelfgravitatie effect wordt de massa van smeltende ijskappen verdeelt zich niet gelijkmatig over de oceaan, Het water in de oceaan wordt door de zwaartekracht naar een op het land liggende ijsmassa toe getrokken, waardoor het zeeniveau nabij een ijskap relatief hoog is. Wanneer het landijs (deels) smelt zorgt dit voor een lokale afname in zwaartekracht waardoor de aantrekkende werking op het water is de oceaan afneemt en zal dalen. Het water verder weg van de ijskap zal wel stijgen maar minder dan het wereldwijde gemiddelde, terwijl ver weg van de ijskap de stijging groter is dan het wereldwijde gemiddelde vanwege de conservatie van massa. 
 
 Figure [8](#fig:self-gravitation){reference-type="ref" reference="fig:self-gravitation"}. laat het geobserveerde effect van de herverdeling van het huidig smeltende ijs zien [@Hsu2017].Hierin is te zien dat Nederland gunstig ligt ten opzichte van het huidig smeltende ijs van Groenland, en van ijskappen en gletsjers. Dat zorgt ervoor dat het smeltende ijs nu voor een zeespiegelstijging van ongeveer 0.9mm/ zorgt aan de Nederlandse kust terwijl het globaal gemiddeld 1.8mm/ is. Het meest ongunstig liggen Ivoorkust, Indonesië en Papoea-Nieuw-Guinea en de Noordkust van Australië
 
@@ -228,7 +177,6 @@ Het inzicht dat smelwater zich niet uniform verdeelt over de wereld ontstond in 
 knitr::include_graphics("figures/self-gravitation.png")
 ```
 
-
 ### (SM) Circulaties {#sec:circulaties}
 Regionale verschillen in zeespiegel onstaan ook door redistributie of ocean water massa door oceaancirculaties. Oceaancirculatie,weegegeven in figuur \@ref(fig:ocean-current), wordt gedreven door verschillen in temperatuur, saliniteit, het corioliseffect en de kracht van de wind op het oppervlak van de oceaan.
 (ref:ocean-current-label) De golfstroom voert warm water van de Golf van Mexico naar West Europa, op basis van het \acr{ECCO} 2 model, visualisatie NASA/Goddard Space Flight Center Scientific Visualization Studio.
@@ -236,7 +184,9 @@ Regionale verschillen in zeespiegel onstaan ook door redistributie of ocean wate
 knitr::include_graphics("figures/ocean_current.png")
 ```
 Een van de variaties in de circulatie wordt aangemerkt als de [AMO]{acronym-label="AMO" acronym-form="singular+short"} [@Schlesinger1994]. Deze oscillatie is gedefinieerd als de multidecadale variatie in de temperatuur van de Noord Atlantische Oceaan. Op dit moment is de [AMO]{acronym-label="AMO" acronym-form="singular+short"} index hoger dan gemiddeld \@ref(fig:amo). De temperatuur van de Noord Atlantische Oceaan is dus nu hoger dan gemiddeld [@McCarthy2015]. Deze circulaties zorgen niet rechtstreeks voor een hogere zeespiegel. Ze kunnen wel zorgen voor meer of minder stormen en een ander golfklimaat. Er zijn aanwijzingen dat we overgaan naar een negatieve [AMO]{acronym-label="AMO" acronym-form="singular+short"} [@Smeed2014]. Een lokale variant van een circulatie is de [ROFI]{acronym-label="ROFI" acronym-form="singular+short"} [@Boer2009], de zoetwaterpluim uit de Rijn die de stroming rond het zuidelijk deel van de Hollandse kust beïnvloedt.
-```{r amo, fig.cap='Atlantische Multidecadale Oscilllatie, een hoge waarde hangt samen met een warme Noord Atlantische Oceaan, data: [NOAA]{acronym-label="NOAA" acronym-form="singular+short"}.'}knitr::include_graphics("figures/amo.png")
+
+```{r amo, fig.cap='Atlantische Multidecadale Oscilllatie, een hoge waarde hangt samen met een warme Noord Atlantische Oceaan, data: [NOAA]{acronym-label="NOAA" acronym-form="singular+short"}.'}
+knitr::include_graphics("figures/amo.png")
 ```
 
 ### (SM) Luchtdruk {#sec:luchtdruk}
@@ -244,6 +194,7 @@ De zeespiegel veranderd ook in reactie op een verandering in luchtdruk. Als er r
 
 ### (SM) Getij {#sec:getij}
 Het zeeoppervlak varieert door veranderingen van de aantrekkingskracht veroorzaakt door verandering van de posities van de aarde, de maan en de zon. Dit resulteert in zes verschillende frequenties [1](#tab:getij-frequenties){reference-type="ref" reference="tab:getij-frequenties"} die samengesteld tot een variabele waterstand leiden, het getij. Deze frequenties beïnvloeden de waterstand in verschillende boventonen (dubbeldaags getij) en modulaties (spring-doodtij cyclus). In de context van klimaatcycli kent men nog drie langere periodes, bekend als de Milankovich termen [@Munk2002].
+
 ::: {#tab:getij-frequenties}
 ```{r}
 getijFreq <- tibble(
@@ -305,10 +256,10 @@ De getijamplitude varieert langs de kust \@ref(fig:m2). De amplitude kan verande
 ```{r m2, fig.cap = '(\ref:m2-label)' }
 knitr::include_graphics("figures/tidal-trends.png")
 ```
+
 De belangrijkste getijcomponenten, bijvoorbeeld bij Hoek van Holland: \acr{M2}, \acr{M4}, \acr{S2}, \acr{O1}, \acr{N2}, \acr{MS4}, \acr{MU2}, \acr{L2}, \acr{MN4}, \acr{K1}, hebben frequenties in de orde van dagen en maanden, welke in de jaargemiddelde zeestanden zijn uitgemiddeld. Van de langjarige getijcomponenten heeft vooral de nodale cyclus van 18.613 jaar een effect op de gemiddelde zeespiegel. Er is discussie over hoe het nodaal getij de zeespiegel precies beïnvloedt [bijvoorbeeld @Hansen2016] omdat de manifestatie van het getij in metingen niet altijd overeenkomt met de theorie.
 
 ### Bodemdaling {#sec:bodemdaling}
-
 Al sinds we begonnen zijn met waterstandsmetingen is de vraag welk deel van de veranderingen bodemdaling en welk deel van de veranderingen absolute zeespiegelstijging is. Om de vraag te beantwoorden moeten we weten welke daling heeft plaatsgevonden in de verschillende lagen van de bodem en ten opzichte van welke bodemlaag we de zeespiegel meten. De eerste vraag wordt in deze paragraaf beantwoord. De tweede vraag in paragraaf \@ref(verticale-referentie).
 
 Tegenwoordig maken we onderscheid tussen de termen 'absolute zeespiegelstijging' en de term 'relatieve zeespiegelstijging'. Met absolute zeespiegelstijging bedoelen we de zeespiegelstijging ten opzichte van de geoïde. Met relatieve zeespiegel bedoelen we de combinatie van absolute zeespiegelstijging en absolute bodemdaling. Het is net zo logisch, en vroeger ook gebruikelijk [@Veen1945 zie bijvoorbeeld], om dit relatieve bodemdaling te noemen. Zowel de zakking van de bodem als de stijging van de zeespiegel hebben hetzelfde effect, dat het land ten opzichte van de zeespiegel daalt. In slechts 12% van de delta's is absolute zeespiegelstijging het grootste probleem. Het afknijpen van de sediment toevoer is in de meeste delta's een groter probleem [@Ericson2006]. In verstedelijkte delta's is het winnen van gas en water onder de eigen bodem een veel voorkomende oorzaak van de relatieve zeespiegelstijging [zie bijvoorbeeld @Abidin2011].
