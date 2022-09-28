@@ -1,15 +1,10 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
 
-
-# Toepassingen
-
-```{r, include=FALSE}
-
-knitr::opts_chunk$set(
-	echo = FALSE,
-	message = FALSE,
-	warning = FALSE
-)
-```
+# Toepassingen {#toepassingen}
 
 Dit hoofdstuk is een update en ingekorte versie van het rapport in de
 bijlage.
@@ -89,20 +84,20 @@ onderhoud van de kust wordt gebruikt.
 Sinds 2001 wordt jaarlijks gemiddeld 12 Mm^3^ zand gesuppleerd langs de
 Nederlandse kust. Dit is de richtwaarde uit de 3e Kustnota die in de
 uitvoering van het beleid in het programma Kustlijnzorg is overgenomen.
-[DG]{acronym-label="DG" acronym-form="singular+short"} Water en Bodem
-neemt op basis van het beleidsadvies in 2020 en op basis van inzichten
-uit het programma Kustgenese 2.0 een beslissing over het benodigde
-suppletievolume voor de jaren daarna. Kustfundament, zeespiegelstijging
-en suppletievolume zijn direct gekoppeld aan elkaar. De basis voor het
-huidige suppletievolume is een rapport uit het jaar 2000. Mulder (2000)
-stelt dat de totale suppletiebehoefte bij gelijkblijvende trend in de
-zeespiegelstijging van 20 cm/eeuw wordt geschat op gemiddeld 12 Mm^3^
-per jaar (met een maximum van 16 miljoen Mm^3^ per jaar). In het
-geschatte volume is niet alleen rekening gehouden met zandverlies van
-het kustfundament, maar ook dat van de Waddenzee en de Westerschelde.
-Basisuitgangspunt bij de bepaling van het suppletievolume is de aanname
-dat de sedimentvraag van de kust op lange termijn bepaald wordt door het
-oppervlak van het zanddelende kustsysteem.
+\acr{DG} Water en Bodem neemt op basis van het beleidsadvies in 2020 en
+op basis van inzichten uit het programma Kustgenese 2.0 een beslissing
+over het benodigde suppletievolume voor de jaren daarna. Kustfundament,
+zeespiegelstijging en suppletievolume zijn direct gekoppeld aan elkaar.
+De basis voor het huidige suppletievolume is een rapport uit het jaar
+2000. Mulder (2000) stelt dat de totale suppletiebehoefte bij
+gelijkblijvende trend in de zeespiegelstijging van 20 cm/eeuw wordt
+geschat op gemiddeld 12 Mm^3^ per jaar (met een maximum van 16 miljoen
+Mm^3^ per jaar). In het geschatte volume is niet alleen rekening
+gehouden met zandverlies van het kustfundament, maar ook dat van de
+Waddenzee en de Westerschelde. Basisuitgangspunt bij de bepaling van het
+suppletievolume is de aanname dat de sedimentvraag van de kust op lange
+termijn bepaald wordt door het oppervlak van het zanddelende
+kustsysteem.
 
 Naam
 
@@ -115,8 +110,7 @@ Definitie
 
 Grootheid
 
-:   Waterstand ten opzichte van [NAP]{acronym-label="NAP"
-    acronym-form="singular+short"}
+:   Waterstand ten opzichte van \acr{NAP}
 
 Toepassing
 
@@ -140,23 +134,21 @@ Literatuur
 
 ## Delfstoffenwinning
 
-Het [EZK]{acronym-label="EZK" acronym-form="singular+short"} heeft in
-2015 [TNO]{acronym-label="TNO" acronym-form="singular+short"} verzocht
-advies uit te brengen over het voor de delfstoffenwinning onder de
-Waddenzee met ingang van 2016 te hanteren beleidsscenario voor de
-zeespiegelstijging. Het gaat hier om gaswinningen die worden toegestaan
-voor een duur van enkele tientallen jaren, waarbij tussentijds ingrijpen
-mogelijk is, als dit nodig zou blijken te zijn. De ruimte voor winning
-wordt mede bepaald door de snelheid van de zeespiegelstijging. Het
-betreffende beleidsscenario wordt elke 5 jaar geactualiseerd op basis
-van recente inzichten.
+Het \acr{EZK} heeft in 2015 \acr{TNO} verzocht advies uit te brengen
+over het voor de delfstoffenwinning onder de Waddenzee met ingang van
+2016 te hanteren beleidsscenario voor de zeespiegelstijging. Het gaat
+hier om gaswinningen die worden toegestaan voor een duur van enkele
+tientallen jaren, waarbij tussentijds ingrijpen mogelijk is, als dit
+nodig zou blijken te zijn. De ruimte voor winning wordt mede bepaald
+door de snelheid van de zeespiegelstijging. Het betreffende
+beleidsscenario wordt elke 5 jaar geactualiseerd op basis van recente
+inzichten.
 
-Het [TNO]{acronym-label="TNO" acronym-form="singular+short"} heeft dit
-uitgewerkt in een advies [@Kroon2016] om rekening te houden met zowel
-een trend als een versnelling in de relatieve zeespiegelstijging.
-[EZK]{acronym-label="EZK" acronym-form="singular+full"} hanteert bij
-haar besluitvorming een gebruiksruimte (meegroeivermogen minus het deel
-hiervan dat dient ter compensatie van de stijgende zeespiegel) van 5mm/.
+Het \acr{TNO} heeft dit uitgewerkt in een advies [@Kroon2016] om
+rekening te houden met zowel een trend als een versnelling in de
+relatieve zeespiegelstijging. \acr{EZK} hanteert bij haar besluitvorming
+een gebruiksruimte (meegroeivermogen minus het deel hiervan dat dient
+ter compensatie van de stijgende zeespiegel) van 5mm/.
 
 Naam
 
@@ -182,7 +174,7 @@ Oorsprong
 
 Producent
 
-:   [TNO]{acronym-label="TNO" acronym-form="singular+short"}
+:    \acr{TNO}
 
 Gebruiker
 
@@ -207,8 +199,8 @@ met een stijging van de zeespiegel voor de komende vijftig jaar van
 0.30m, wat overeenkomt met het midden scenario uit de 3e Kustnota. Voor
 de opvolgende periode van 50 jaar is er ruimte gereserveerd om de kruin
 van de zeewering nog eens met 0.50m te verhogen. Het is dus een adaptief
-ontwerp. De Maasvlakte 2 ligt op 5 m boven [NAP]{acronym-label="NAP"
-acronym-form="singular+short"} achter de zeewering.
+ontwerp. De Maasvlakte 2 ligt op 5 m boven \acr{NAP} achter de
+zeewering.
 
 Adaptief ontwerpen is niet nieuw. Ook bij bijvoorbeeld de
 Oosterscheldekering is rekening gehouden dat de bovenkant vervangen moet
@@ -266,8 +258,7 @@ Literatuur
 
 ## Toetsing/beoordeling
 
-In [WBI]{acronym-label="WBI" acronym-form="singular+short"}
-[@Infrastructuur-en-Milieu2016] zijn de toeslagen voor
+In \acr{WBI} [@Infrastructuur-en-Milieu2016] zijn de toeslagen voor
 getijhoogwaterstijging (omschreven als "zeespiegelrijzing en lokale
 effecten") bepaald voor de periode 1985-2023 op basis van een
 statistische analyse van tijdreeksen van hoogwaterstanden tot en met
@@ -328,12 +319,11 @@ dat meer dan de helft van Nederland onder zeespiegel ligt (bijv. RWS
 2016, Koenders 2015, OECD 2014). Dit percentage is al geruime tijd in
 gebruik (bijvoorbeeld Prillevitz 1966). Dit percentage bleek niet
 correct toen het in het IPCC (2007) rapport terecht kwam en dit rapport
-grondig werd gecontroleerd (Vrij Nederland 2010). Het PBL, die de
-bijdrage had geleverd aan de IPCC, schreef een correctie [@PBL2010].
-Hierin gaven ze aan dat het percentage van Nederland onder zeespiegel
-niet 55% maar 26% had moeten zijn. Dit is eigenlijk ook niet het
-percentage onder zeeniveau, maar onder [NAP]{acronym-label="NAP"
-acronym-form="singular+short"}.
+grondig werd gecontroleerd (Vrij Nederland 2010). Het \acr{PBL}, die de
+bijdrage had geleverd aan de \acr{IPCC}, schreef een correctie
+[@PBL2010]. Hierin gaven ze aan dat het percentage van Nederland onder
+zeespiegel niet 55% maar 26% had moeten zijn. Dit is eigenlijk ook niet
+het percentage onder zeeniveau, maar onder \acr{NAP}.
 
 Wat misschien wel de belangrijkste conclusie van deze indicator is is
 dat afgezien van het gebruik in internationale profilering de indicator
@@ -374,8 +364,7 @@ Context
 
 Producent
 
-:   Onbekend, correctie door [PBL]{acronym-label="PBL"
-    acronym-form="singular+short"}
+:   Onbekend, correctie door \acr{PBL}
 
 Gebruiker
 
@@ -411,10 +400,9 @@ Waterschappen leggen in de Keur en in de Legger vast wat de specifieke
 invulling is.
 
 Voor een voorbeeld van de implementatie hiervan beschouwen we de
-beschermingszones bij Callantsoog in [HHNK]{acronym-label="HHNK"
-acronym-form="singular+short"}. Er zijn twee beschermingszones A en B.
-Beschermingszone A ligt naast de primaire kering (zie
-[2](#fig:reservering){reference-type="ref"
+beschermingszones bij Callantsoog in \acr{HHNK}. Er zijn twee
+beschermingszones A en B. Beschermingszone A ligt naast de primaire
+kering (zie [2](#fig:reservering){reference-type="ref"
 reference="fig:reservering"}).
 
 ```{r, fig.show='hold', out.width='50%', fig.cap="Beschermingszones Callantsoog"}
@@ -429,8 +417,7 @@ Naam
 Definitie
 
 :   Zeespiegel uit scenario maal twee + 10% wind. Gecombineerd met
-    [MorphAn]{acronym-label="MorphAn" acronym-form="singular+short"}
-    berekening.
+    \acr{MorphAn} berekening.
 
 Toepassing
 
@@ -450,10 +437,8 @@ Context
 
 Instituut
 
-:   Unie van Waterschappen (Keur/Legger), Deltares
-    ([MorphAn]{acronym-label="MorphAn" acronym-form="singular+short"}),
-    [KNMI]{acronym-label="KNMI" acronym-form="singular+short"}
-    scenario's
+:   Unie van Waterschappen (Keur/Legger), Deltares (\acr{MorphAn}),
+    \acr{KNMI} scenario's
 
 Gebruiker
 
@@ -462,6 +447,58 @@ Gebruiker
 verantwoording
 
 :   [@Author2012]
+
+## Signalering {#sec:signalering}
+
+Het Deltaprogramma gebruikt adaptief deltamanagement in haar taak om
+Nederland te beschermen tegen overstromingen, en te zorgen voor
+voldoende zoet water. Om adaptief te kunnen reageren wordt de "Meten,
+Weten, Handelen" methodiek gehanteerd. Bij nieuwe externe
+ontwikkelingen, zoals een versnelde zeespiegel, kan er een signaal
+afgegegeven worden. Elke zes jaar worden de indicatoren en de doelen
+opnieuw vastgesteld. De methodiek voor de signalering van versnelde
+zeespiegel moet nog ontwikkeld worden.
+
+Naam
+
+:   Signalering zeespiegelversnelling
+
+Definitie
+
+:   Onbepaald
+
+Grootheid
+
+:   Zeespiegelversnelling
+
+Type
+
+:   Planvorming
+
+Toepassing
+
+:   Adaptatief deltamanagement
+
+Oorsprong
+
+:   Deltaprogramma
+
+Context
+
+:   Deze indicator wordt beschreven in de
+    [@Infrastructuur-en-Waterstaat2018].
+
+Producent
+
+:   Kennisprogramma zeespiegelstijging
+
+Gebruiker
+
+:   Deltacommisaris
+
+Verantwoording
+
+:   Er is nog geen vastgelegde methodiek.
 
 ## Trends in toepassingen van de zeespiegel {#sec:toepassing-trends}
 

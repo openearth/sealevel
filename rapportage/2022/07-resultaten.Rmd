@@ -1,15 +1,6 @@
 
-# Resultaten
+# Resultaten {#resultaten}
 
-```{r, include=FALSE}
-
-knitr::opts_chunk$set(
-	echo = FALSE,
-	message = FALSE,
-	warning = FALSE,
-	fig.align = 'center'
-)
-```
 
 In \@ref(methoden) hebben we vastgesteld hoe de 'huidige zeespiegel' kan
 worden uitgerekend. In dit hoofdstuk wordt de huidige zeespiegel voor de
@@ -28,7 +19,7 @@ In \@ref(fig:huidige-zeespiegel) is de huidige zeespiegel uitgezet tegen
 de tijd. De huidige zeespiegel is voor 2017 vastgesteld op 6cm boven
 [NAP]{acronym-label="NAP" acronym-form="singular+short"}. Voor het jaar
 2017 bedraagt de relatieve zeespiegelstijging langs de Nederlandse kust
-1.86 \\pm 0.12 mm/ oftwel 18.6 \\pm 1.2 cm/ . Deze trend is berekend
+1.86 \\pm 0.12&nbsp;mm oftwel 18.6 \\pm 1.2&nbsp;cm/ . Deze trend is berekend
 over de periode 1890 tot en met 2017. Dit beantwoordt
 [$$question:stijging$$](#question:stijging){reference-type="ref"
 reference="question:stijging"}, hoe snel de zeespiegel op dit moment
@@ -46,9 +37,9 @@ knitr::include_graphics("figures/slr_mean_linear.png")
 ```
 
 De schatting is dat het nodaal getij een amplitude heeft van 11 \\pm
-5.8 mm, iets hoger dan, maar niet significant afwijkend van het
+5.8&nbsp;mm, iets hoger dan, maar niet significant afwijkend van het
 equilibrium getij. In jaren met veel kustgerichte wind, vanuit het
-westen, staat de zeespiegel 10 \\pm 2 mm hoger per m^2^/s^2^ extra
+westen, staat de zeespiegel 10 \\pm 2&nbsp;mm hoger per m^2^/s^2^ extra
 jaargemiddelde wind. Als tijdens een storm het water 3 dagen lang 1.22m
 hoger staat dan stijgt de gemiddelde zeespiegel voor dat jaar met 1cm.
 De parameters van de vergelijking staan uitgewerkt in
@@ -75,9 +66,9 @@ acronym-form="singular+short"} vergelijking wel een beter model. Zoals
 beschreven in \@ref(versnelling-methods) kiezen we op basis van de
 combinatie van deze twee criteria voor het model zonder versnelling. Het
 model met een acceleratie term laat een vertraagde zeespiegel zien
-(-0.0001 \\pm 0.004 mm/^2^). Het model met een knik in 1993 laat een
-hogere zeespiegel zien 2.4mm/ na 1993 dan ervoor 1.8mm/, een extra 0.63
-\\pm 0.75 mm/.
+(-0.0001 \\pm 0.004&nbsp;mm^2^). Het model met een knik in 1993 laat een
+hogere zeespiegel zien 2.4mm na 1993 dan ervoor 1.8mm, een extra 0.63
+\\pm 0.75&nbsp;mm.
 
 Dit beantwoordt
 [$$question:versnelling$$](#question:versnelling){reference-type="ref"
@@ -96,14 +87,14 @@ instantaan optreedt. Dit sluit aan bij een deel van de literatuur over
 
 In [2](#fig:mcmc_before_after){reference-type="ref"
 reference="fig:mcmc_before_after"} zien we dat het meest waarschijnlijke
-knikpunt te vinden is in 1994 en dat de trend na de knik 0.6mm/ hoger is
+knikpunt te vinden is in 1994 en dat de trend na de knik 0.6mm hoger is
 dan er voor. Dit vinden we ook als we het gebroken trend model toepassen
 met de trendbreuk vastgesteld op 1993. Dit is vooral toe te schrijven
 aan de extreem lage zeespiegelstand in 1996.
 
-![Huidige zeespiegel voor en na het meest waarschijnlijke knikpunt. De
-blauwe curve zijn de metingen, rode curve het gefitte
-model.](mcmc_before_after){#fig:mcmc_before_after width="\\linewidth"}
+<!-- ![Huidige zeespiegel voor en na het meest waarschijnlijke knikpunt. De -->
+<!-- blauwe curve zijn de metingen, rode curve het gefitte -->
+<!-- model.](mcmc_before_after){#fig:mcmc_before_after width="\\linewidth"} -->
 
 De a-posteriori kansverdeling van het knikpunt en de trends voor en na
 zijn te vinden in
@@ -111,7 +102,7 @@ zijn te vinden in
 reference="fig:mcmc_switch"}. Hierin kunnen we aflezen dat het meest
 waarschijnlijke knikpunt in 1994 lag. De kansverdelingen van de trend
 voor en na overlappen dusdanig dat we concluderen dat de trend voor en
-na niet anders zijn. Als de trend na nog 0.5mm/ toeneemt dan zou deze nu
+na niet anders zijn. Als de trend na nog 0.5mm toeneemt dan zou deze nu
 al significant zijn geweest. Datzelfde geldt als deze trendverandering
 nog 20 jaar doorzet en een verschil maakt van 2.5 cm. Hoe meer metingen
 we verzamelen, hoe smaller het interval wordt. Ook het beter verklaren
@@ -122,16 +113,16 @@ versnellingsdetectie doen toenemen.
 De frequentistische manier om de kans op versnelling uit de drukken is
 door middel van een power analyse [@Cohen1988]. Omdat er al veel
 variantie verklaard is heeft een klein effect al een grote kans om op
-dit moment gevonden te worden. Een extra 0.2mm/ zeespiegelstijging, wat
+dit moment gevonden te worden. Een extra 0.2mm zeespiegelstijging, wat
 overenkomt met 0.2% extra verklaarde variantie, zou er voor zorgen dat
 de kans nu 50% zou zijn dat een versnelling was gedetecteerd. Als de
-zeespiegel 0.5mm/ extra was gestegen (overeenkomstig met een $R^2$ van
+zeespiegel 0.5mm extra was gestegen (overeenkomstig met een $R^2$ van
 0.913 ten opzichte van de huidige 0.909), dan was de kans meer dan 80%
 dat we nu een significante versnelling hadden gezien. Het huidige
 breekpunt model verklaart slechts 0.1% extra variantie omdat vooral
 variantie verschuift (door de lagere zeespiegel in begin jaren 1990).
 
-![image](mcmc_aposteriori){width="\\linewidth"}
+<!-- ![image](mcmc_aposteriori){width="\\linewidth"} -->
 
 ## Per station {#per-station}
 
@@ -157,18 +148,62 @@ knitr::include_graphics("figures/slr_6stations.png")
 
 
 
-::: {#tab:trends}
-| Station          | Trend $$mm/$$ | Std. fout | Niveau in 1970 $$mm$$ | Std. fout |
-|:-----------------|--------------:|----------:|----------------------:|----------:|
-| Vlissingen       |           2.1 |      0.07 |                   -97 |       5.7 |
-| Hoek van Holland |           2.3 |      0.06 |                   -45 |       6.6 |
-| IJmuiden         |           2.1 |      0.08 |                   -74 |       5.9 |
-| Den Helder       |           1.4 |      0.06 |                  -101 |       4.9 |
-| Harlingen        |           1.3 |      0.07 |                   -38 |       6.3 |
-| Delfzijl         |           1.9 |      0.08 |                   -18 |       5.6 |
+```{r}
+# Beter: script obv data op github
 
-: Zeespiegeltrends per station.
-:::
+zeespiegelTrends <- tibble(
+  station = c("Vlissingen"  ,     
+              "Hoek van Holland" ,
+              "IJmuiden"        , 
+              "Den Helder"    ,   
+              "Harlingen"    ,    
+              "Delfzijl"         ),
+  `Trend (mm)` = c(2.1,
+                   2.3,
+                   2.1,
+                   1.4,
+                   1.3,
+                   1.9),
+  `Std. fout` = c(0.07,
+                  0.06,
+                  0.08,
+                  0.06,
+                  0.07,
+                  0.08),
+  `Niveau in 1970 (mm)` = c( -97,
+                           -45,
+                           -74,
+                           -101,
+                           -38,
+                           -18),
+  `Std. fout2` = c( 5.7,
+                   6.6,
+                   5.9,
+                   4.9,
+                   6.3,
+                   5.6
+  )
+)
+
+knitr::kable(zeespiegelTrends, align = "lrrrr", caption = "Zeespiegeltrends per station.")
+
+```
+
+
+<!-- ::: {#tab:trends} -->
+<!-- | Station          | Trend $$mm$$ | Std. fout | Niveau in 1970 $$mm$$ | Std. fout | -->
+<!-- |:-----------------|--------------:|----------:|----------------------:|----------:| -->
+<!-- | Vlissingen       |           2.1 |      0.07 |                   -97 |       5.7 | -->
+<!-- | Hoek van Holland |           2.3 |      0.06 |                   -45 |       6.6 | -->
+<!-- | IJmuiden         |           2.1 |      0.08 |                   -74 |       5.9 | -->
+<!-- | Den Helder       |           1.4 |      0.06 |                  -101 |       4.9 | -->
+<!-- | Harlingen        |           1.3 |      0.07 |                   -38 |       6.3 | -->
+<!-- | Delfzijl         |           1.9 |      0.08 |                   -18 |       5.6 | -->
+
+<!-- : Zeespiegeltrends per station. -->
+<!-- ::: -->
+
+(FB) check text en figuur
 
 In [4](#fig:residuals){reference-type="ref" reference="fig:residuals"}
 worden de residuen, het onverklaarde restdeel, weergegeven van de
@@ -186,16 +221,19 @@ principale componenten analyse blijkt dat 96% van de variantie van de
 jaargemiddelden door een enkele principale component kan worden
 samengevat, dus dat de stations grotendeels hetzelfde signaal meten.
 
-![Residuen, het niet verklaarde deel van de jaarlijkse metingen per
-station. In de onderste figuure is de [NAO]{acronym-label="NAO"
-acronym-form="singular+short"} weergegeven, data van
-[NOAA]{acronym-label="NOAA"
-acronym-form="singular+short"}.](residuals){#fig:residuals
-width="\\linewidth"}
+<!-- ![Residuen, het niet verklaarde deel van de jaarlijkse metingen per -->
+<!-- station. In de onderste figuure is de [NAO]{acronym-label="NAO" -->
+<!-- acronym-form="singular+short"} weergegeven, data van -->
+<!-- [NOAA]{acronym-label="NOAA" -->
+<!-- acronym-form="singular+short"}.](residuals){#fig:residuals -->
+<!-- width="\\linewidth"} -->
 
 Er zijn verschillende oorzaken die deze verschillen tussen de stations
 kunnen verklaren. De beschouwing van deze oorzaken is te vinden in
 \@ref(verschillen).
+
+## Controles en validatie {#controles-en-validatie}
+
 
 ## Bodemdaling of zeespiegelstijging? {#bodemdaling-result}
 
@@ -212,14 +250,13 @@ behandeld is als de bodemdaling na 1973 op basis van [@Jong1973 punt 5].
 
 Daarmee komen we tot de uitsplitsing tussen de verschillende absolute
 bodemdaling- en zeespiegelcomponenten per station, zoals weegegeven in
-[2](#tab:bodemdaling-per-station){reference-type="ref"
-reference="tab:bodemdaling-per-station"}.
+tabel \@ref(tab:bodemdaling-per-station).
 
 ::: {#tab:bodemdaling-per-station}
 |                  |                       |           |         |          |          |
 |:-----------------|----------------------:|----------:|--------:|---------:|---------:|
 | Station          | Tectoniek + Isostasie | Winningen |   Bodem | Relatief | Absoluut |
-|                  |                $$cm$$ |    $$cm$$ | $$mm/$$ |  $$mm/$$ |  $$mm/$$ |
+|                  |                $$cm$$ |    $$cm$$ | $$mm$$ |  $$mm$$ |  $$mm$$ |
 | Vlissingen       |                  -2.4 |       0.0 |   -0.24 |      2.1 |      1.9 |
 | Hoek van Holland |                  -3.7 |        -1 |   -0.47 |      2.3 |      1.8 |
 | IJmuiden         |                   5.0 |       0.0 |    -0.5 |      2.1 |      1.6 |
@@ -242,7 +279,7 @@ de peilbout bij het station was losgekoppeld van het
 [NAP]{acronym-label="NAP" acronym-form="singular+short"}. De bodemdaling
 door gaswinning bij Hoek van Holland is aanzienlijk lager, maar kan wel
 verklaren waarom de gemeten zeespiegelstijging daar altijd wat hoger is
-geweest. In totaal is de bijdrage van de bodemdaling ongeveer 0.45 mm/
+geweest. In totaal is de bijdrage van de bodemdaling ongeveer 0.45 mm
 [@Hijma2018].
 
 Dit beantwoordt
@@ -250,7 +287,7 @@ Dit beantwoordt
 reference="question:bodemdaling"} hoe we absolute bodemdaling en
 absolute zeespiegelstijging kunnen uitsplitsen. $$answer:bodemdaling$$
 
-## Scenario's versus de huidige zeespiegel {#sec:scenarios}
+## (SM) Scenario's versus de huidige zeespiegel {#sec:scenarios}
 
 Zoals we in \@ref(toepassingen) gezien hebben zijn er
 zeespiegelindicatoren gebaseerd op alleen metingen (trends,
@@ -269,8 +306,8 @@ rijksoverheid).
 Scenario
 
 :   $4300$ een plausibele toekomstige ontwikkeling, zoals gebruikt door
-    het [KNMI]{acronym-label="KNMI" acronym-form="singular+short"} en
-    het [IPCC]{acronym-label="IPCC" acronym-form="singular+short"}: 'Het
+    het \acr{KNMI} en
+    het \acr{IPCC}: 'Het
     zou kunnen dat ...'
 
 Projectie
@@ -283,44 +320,39 @@ Verwachting
 
 :   $20100$ een meest waarschijnlijke toekomst (deterministisch of
     probabilistisch), bijvoorbeeld een weersverwachting, zoals gebruikt
-    door [KNMI]{acronym-label="KNMI" acronym-form="singular+short"} en
-    door [RWS]{acronym-label="RWS" acronym-form="singular+short"}, wordt
+    door \acr{KNMI} en
+    door \acr{RWS}, wordt
     vaak gebruikt voor de nabije toekomst. 'We hebben geschat dat ...'
 
 Voorspelling
 
 :   $818$ een verwachting met grote zekerheid, bijvoorbeeld
-    getijvoorspellingen, zoals gebruikt door [RWS]{acronym-label="RWS"
-    acronym-form="singular+short"}. 'Het zal zo zijn dat ...'
+    getijvoorspellingen, zoals gebruikt door \acr{RWS}. 'Het zal zo zijn dat ...'
 
 Andere gebruikte termen, buiten het domein van de zeespiegel, zijn
-ramingen (4400) (bijvoorbeeld [CPB]{acronym-label="CPB"
-acronym-form="singular+short"}, [@Mooij2003]) en wat algemener prognoses
+ramingen (4400) (bijvoorbeeld \acr{CPB}, [@Mooij2003]) en wat algemener prognoses
 (2670) en vooruitzichten (1120). Projecties worden ook gebruikt als term
 voor een naar de toekomst doorgetrokken trend, zoals gebruikt door
-[CBS]{acronym-label="CBS" acronym-form="singular+short"}.
+\acr{CBS}.
 
 In Nederland wordt doorgaans gebruik gemaakt van de zogenaamde
-[KNMI]{acronym-label="KNMI" acronym-form="singular+short"} scenario's
+\acr{KNMI} scenario's
 [@Hurk2014]. Het zijn representaties van een plausibele toekomstige
 ontwikkeling, op basis van paden gedefinïeerd door
-[IPCC]{acronym-label="IPCC" acronym-form="singular+short"} [@IPCC2013].
+\acr{IPCC} [@IPCC2013].
 De paden zijn gebaseerd op een mogelijke toekomstige ontwikkeling van
 emissie gecombineerd met een verhaallijn [@Moss2010].
 
 Hier laten we zien hoe de zeespiegelscenario's aansluiten bij de
 metingen die sinds de doorrekening van de door klimaatverandering
 gedreven zeespiegelprojecties zijn uitgevoerd. Hierbij moet met een
-aantal aspecten rekening gehouden worden. Visueel weergegeven in
-[5](#fig:scenario-correction){reference-type="ref"
-reference="fig:scenario-correction"}.
+aantal aspecten rekening gehouden worden. Visueel weergegeven in figuur \@ref(fig:scenario-correction).
 
 Epoch
 
 :   De zeespiegelscenario's zijn relatief ten opzichte van de gemiddelde
     zeespiegelstand over de periode 1986 tot 2005. De zeespiegel was
-    toen al 2 cm boven [NAP]{acronym-label="NAP"
-    acronym-form="singular+short"}, dus de scenario's moeten, indien
+    toen al 2 cm boven \acr{NAP}, dus de scenario's moeten, indien
     gepresenteerd samen met getijstations beginnen bij 2cm in 1990.
 
 Absoluut
@@ -328,14 +360,13 @@ Absoluut
 :   De zeespiegelscenario's hebben betrekking op de absolute zeespiegel.
     Als we deze willen vergelijken met de getijdestations moeten we, of
     van de metingen de bodemdaling af halen, of bij de scenario's de
-    bodemdaling optellen. In
-    [6](#fig:metingen-scenarios){reference-type="ref"
-    reference="fig:metingen-scenarios"} doen we het laatste, omdat we
+    bodemdaling optellen. In figuur \@ref(fig:metingen-scenarios)
+    doen we het laatste, omdat we
     hier kijken vanuit de toepassing aan de kust.
 
 Natuurlijke variatie
 
-:   De zeespiegelscenario's gaan uit van veranderingen ten op zichte van
+:   De zeespiegelscenario's gaan uit van veranderingen ten opzichte van
     de referentieperiode. Variaties binnen een klimaatperiode, denk aan
     verschillen van jaar tot jaar door luchtdruk en stormen, zijn niet
     opgenomen. De jaargemiddelde zeespiegel varieert met een bandbreedte
@@ -360,7 +391,7 @@ Versnelling
 <!-- getijdestations.](scenarios-with-correction){#fig:scenario-correction -->
 <!-- width="1\\linewidth"} -->
 
-(ref:scenario-correction-caption) Toegepaste correcties om [KNMI]{acronym-label="KNMI" acronym-form="singular+short"} 2014 zeespiegelscenario's [@Hurk2014] vergelijkbaar te maken met relatieve zeespiegelstijging van de getijdestations. 
+(ref:scenario-correction-caption) Toegepaste correcties om \acr{KNMI} 2014 zeespiegelscenario's [@Hurk2014] vergelijkbaar te maken met relatieve zeespiegelstijging van de getijdestations. 
 
 ```{r, fig.cap="(ref:scenario-correction-caption)"}
 
@@ -382,8 +413,7 @@ nu gehanteerd wordt, de hand aan de (gas en zout)kraan houden.
 In \@ref(fig:metingen-scenarios) zien we dat als we rekening met
 bovenstaande aspecten dat de huidige zeespiegel nu aan de onderkant ligt
 van het laagste scenario. De zeespiegel aan de Nederlandse kust is dus
-minder gestegen dan waar in de twee [KNMI]{acronym-label="KNMI"
-acronym-form="singular+short"} scenario's van uit werd gegaan. Dit
+minder gestegen dan waar in de twee \acr{KNMI} scenario's van uit werd gegaan. Dit
 betekent niet dat de scenario's niet klopppen, het waren immers studies
 die mogelijke toekomstige condities berekenden (het zou kunnen dat, met
 de kennis van toen).
@@ -409,9 +439,7 @@ in de zeespiegelprojecties.
 <!-- bepalen.](scenarios-with-ci){#fig:metingen-scenarios -->
 <!-- width="1\\linewidth"} -->
 
-(ref:metingen-scenarios-caption) Vergelijking tussen metingen en zeespiegelscenario's van [@Hurk2014], inclusief bodemdaling. De bandbreedte van de KNMI scenario's is
-gebaseerd op een polynome fit door de 90% percentielen van de ensemble
-members. De betrouwbaarheids (donkergroen) en predictieintervallen
+(ref:metingen-scenarios-caption) Vergelijking tussen metingen en zeespiegelscenario's van [@Hurk2014], inclusief bodemdaling. De bandbreedte van de KNMI scenario's is gebaseerd op een polynome fit door de 90% percentielen van de ensemble members. De betrouwbaarheids- (donkergroen) en predictieintervallen
 (lichtgroen) van de trend van de huidige zeespiegel zijn gebaseerd op de
 95% percentielen van de verdeling van de standaardfout en standaardafwijking van het gebruikte model om de zeespiegelstijging te bepalen.
 
@@ -421,13 +449,12 @@ knitr::include_graphics("figures/scenarios-with-ci.png")
 ```
 
 
-De constatering dat het lage [KNMI]{acronym-label="KNMI"
-acronym-form="singular+short"} scenario het beste bij de huidige
+De constatering dat het lage \acr{KNMI} scenario het beste bij de huidige
 zeespiegelstijging aansluit beantwoordt
 [$$question:aansluiten$$](#question:aansluiten){reference-type="ref"
 reference="question:aansluiten"}. $$answer:aansluiten$$
 
-## Nederland versus buurlanden {#nl-vs-northsea}
+## (SM) Nederland versus buurlanden {#nl-vs-northsea}
 
 Naast Nederland hebben ook de andere landen die aan de Noordzee liggen
 een historie van metingen van de zeespiegel. De stations laten een
@@ -444,7 +471,7 @@ knitr::include_graphics("figures/multiple-stations.png")
 
 ```
 
-## Nederland versus globaal {#sec:nl-vs-globaal}
+## (SM) Nederland versus globaal {#sec:nl-vs-globaal}
 
 Als we de Nederlandse zeespiegel vergelijken met de globale zeespiegel
 dan kunnen we kijken naar de globale zeespiegelstijging zoals deze aan
@@ -465,11 +492,11 @@ waarop deze reconstructies worden gemaakt. Recente voorbeelden van
 reconstructies zijn @Hay2015, en @Frederikse2018 en [@Jevrejeva2014].
 
 De meeste reconstructies komen er op uit dat de zeespiegel in de 20e
-eeuw gemiddeld steeg in het bereik 1.4 mm/--2.0 mm/. Er zijn ook
+eeuw gemiddeld steeg in het bereik 1.4&nbsp;mm--2.0&nbsp;mm. Er zijn ook
 reconstructies die een knikpunt leggen in de jaren 1990, bijvoorbeeld
-@Dangendorf2017 komen uit op 1.1mm/ over de periode 1900-1990. De
+@Dangendorf2017 komen uit op 1.1mm over de periode 1900-1990. De
 hoogste snelheden ziet men in de jaren 30 en 40 van de 20ste eeuw en in
-de laatste 20 jaar. Ook @Jevrejeva2014 vinden een recente versnelling.
+de laatste 20 jaar. Ook @Jevrejeva2014 vinden een recente versnelling. ?????
 vonden de recente versnelling niet terug toen ze naar individuele
 stations keken.
 
@@ -496,10 +523,10 @@ Samengevat kunnen we stellen dat over de 20ste eeuw, de
 zeespiegelstijging langs de Nederlandse kust aan de onderkant ligt van
 de globale schattingen. De zeespiegelstijging ligt over de periode
 1993-2017 ook lager dan globaal. Op basis van de knik aanpak komen we op
-een absolute zeespiegelstijging van $2.4 - 0.45 = 1.95$mm/ over de
-periode 1993-2017. De 0.45mm/ is de eerder genoemde
+een absolute zeespiegelstijging van $2.4 - 0.45 = 1.95$mm over de
+periode 1993-2017. De 0.45mm is de eerder genoemde
 bodemdalingcomponenten met uitzondering van de daling van Hoek van
-Holland door winning. De globale cijfers zijn in de orde van 3mm/. Deze
+Holland door winning. De globale cijfers zijn in de orde van 3mm. Deze
 worden gevonden op basis van satellietmetingen [zie bijvoorbeeld
 @Watson2015] en in reconstructies van getijstations [@Jevrejeva2014].
 
@@ -566,28 +593,26 @@ Zowel het toevoegen van de autocorrelatieterm als de correctie voor
 heteroskedasticiteit heeft geen effect op de schattingen van de huidige
 zeespiegel, alleen op de standaardfouten.
 
-## Heranalyses voor wind en getij {#sec:dcsm}
+## (SM) (to methods) Heranalyses voor wind en getij {#sec:dcsm}
 
 In de bijlage in \@ref(frederikse) is onderzocht of het gebruik van
-stormopzetten uit [GTSM]{acronym-label="GTSM"
-acronym-form="singular+short"} van toegevoegde waarde is voor het
+stormopzetten uit \acr{GTSM} van toegevoegde waarde is voor het
 bepalen van de zeespiegelstijging. Als test zijn de berekende
 stormopzetten, berekend per station en over de stations gemiddeld, aan
 het model toegevoegd. Deze beogen dezelfde fysica te beschrijven als de
 wind op de Noordzee. Beide aanpakken laten goede resultaten zien over de
 periode (1979-2014) \@ref(fig:wind-versus-surge). Voorlopig zijn de resultaten van
-[GTSM]{acronym-label="GTSM" acronym-form="singular+short"} voor deze
+\acr{GTSM} voor deze
 periode beschikbaar. De windreeksen zijn beschikbaar vanaf het jaar
 1949. Doordat de stormopzetten nog niet actueel (binnen 6 maanden na
 afloop van een jaar) beschikbaar zijn gaat de voorkeur voor deze versie
 van de Zeespiegelmonitor nog uit naar het gebruik van de gemeten
-windsnelheden. De [GTSM]{acronym-label="GTSM"
-acronym-form="singular+short"} aanpak is iets beter in het beschrijven
+windsnelheden. De \acr{GTSM} aanpak is iets beter in het beschrijven
 van de extreemste jaren, zoals 1996. Daarom zal op de
-[GTSM]{acronym-label="GTSM" acronym-form="singular+short"} overgestapt
+\acr{GTSM} overgestapt
 worden zodra de heranalyses actueel beschikbaar zijn.
 
-(ref:wind-versus-surge-caption) Huidige zeespiegelstijging volgens het lineaire model met [GTSM]{acronym-label="GTSM" acronym-form="singular+short"} en met geobserveerde wind. De trend is gefit op de jaargemiddelde waarden voor de 6 stations.
+(ref:wind-versus-surge-caption) Huidige zeespiegelstijging volgens het lineaire model met \acr{GTSM} en met geobserveerde wind. De trend is gefit op de jaargemiddelde waarden voor de 6 stations.
 
 ```{r wind-versus-surge, fig.cap= "(ref:wind-versus-surge-caption)"}
 

@@ -1,36 +1,43 @@
---- 
+---
 title: "Zeespiegelmonitor"
 author: "Deltares"
-date: "`r Sys.Date()`"
+# date: "`r Sys.Date()`"
 # site: bookdown::bookdown_site
 documentclass: book
-bibliography: [bib/book.bib, bib/bibhkv.bib, bib/R.bib, bib/sealevel.bib]
+site: bookdown::bookdown_site
+bibliography: [bib/book.bib, bib/bibhkv.bib, bib/R.bib, bib/sealevel.bib, bib/willems.bib]
 biblio-style: apalike
 link-citations: yes
-description: "Dit is de Zeespiegelmonitor. De Zeespiegelmonitor wordt gemaakt door Deltares met bijdragen van HKV in opdracht van Rijkswaterstaat. "
+acronyms:
+  loa_title: "Lijst met afkortingen"
+  include_unused: false
+  insert_loa: false
+  insert_links: true
+  id_prefix: "acronyms_"
+  sorting: "alphabetical"
+  non_existing: "key"
+  style: "long-short"
+  fromfile:
+    - acroniemHeader.yml
+always_allow_html: true
+description: "Dit is de Zeespiegelmonitor. De Zeespiegelmonitor wordt gemaakt door Deltares met bijdragen van HKV en KNMI in opdracht van Rijkswaterstaat. "
 ---
 
-# Samenvatting (DIT IS NOG DE 2018 VERSIE. AANPASSEN) {#samenvatting}
- 
-Dit rapport beschrijft de onderzoeksresultaten van de zeespiegelmonitoring onderzoeksagenda 2016-2018. In de afgelopen drie jaar is gewerkt om beter inzicht te krijgen in de metingen van de zeespiegel langs de Nederlandse kust. 
+# Samenvatting (AANPASSEN) {#samenvatting}
 
-\begin{equation} 
-  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
-  (\#eq:test)
-\end{equation} 
- 
-De zeespiegel stijgt langs de Nederlandse kust minder snel dan in de rest van de wereld. Om beter inzicht te krijgen in  de  oorzaak  hiervan  hebben  we  de  zeespiegel  verder ontrafeld.  Door  een  combinatie  van  data-science, modelberekeningen en archiefonderzoek zijn we to verschillende nieuwe inzichten gekomen.  
- 
-De   relatieve   zeespiegelstijging   is   in   verschillende   componenten   ontbonden.   We   zien   dat   van   de   huidige zeespiegelstijging van 18.6 centimeter per eeuw 4.5 centimeter bestaat uit bodemdaling, gemeten over de periode 1890 tot en met 2017. In 1993 zijn we de zeespiegel ook gaan meten met satellieten. Hierdoor wordt de globale zeespiegelstijging  ingeschat  op  32cm/eeuw  over  de  periode  1993-2017.  De belangrijkste  verklaring  waarom  we maar zo weinig zien van de globale zeespiegelstijging is omdat Nederland op een van de meest gunstige plekken ter wereld ligt, 9cm/eeuw is niet bij Nederland terecht gekomen, maar rond de evenaar. Een ander deel van de verklaring is dat globale trends over verschillende periodes niet “volume behoudend” worden berekend.  
- 
-Veel  van  de  variatie  van  jaar  tot  jaar  is  toe  te  schrijven  aan  de  opstuwende  kracht  van  stormen.  We  hebben gekeken  of  het  effect  van  stormen  op  de  kust  beter  kunnen  inschatten.  Door  rekening  te  houden  met  wind, luchtdruk  en  langjarig  getij  kunnen  we  de  stijging  van  de  zeespiegel  betrouwbaar  vaststellen  en  snel  zien  of  de zeespiegelstijging veranderd.  
- 
-De  zeespiegel  langs  de  Nederlandse  kust  is  niet  versneld.  Dit  hadden  we  wel  verwacht  op  basis  van  oude projecties.   Dit   is   belangrijk   in   de   context   van   welk   zeespiegelindicator   gebruikt   wordt   voor   verschillende toepassingen. De stijging van de Nederlandse zeespiegel wordt onder andere gebruikt om te bepalen hoeveel met 
-hoeveel  zand  de  kust  versterkt  moet  worden.  We  adviseren  om  de  huidige  zeespiegelstijging  te  gebruiken  voor toepassingen tot maximaal 15 jaar vooruit. Dit sluit aan bij het advies van de adviescommissie van het Expertise Netwerk Water. Voor ontwerpen, beheersvragen en planologische vragen met een langere zichtduur adviseren we 
-om op scenario gebaseerde projecties worden gebruikt.  
- 
-Uit de analyse van de historie van het NAP is naar voren gekomen dat de nulpalen van Delfzijl in 1973 uit het NAP zijn gehaald. Hierdoor is de bodemdaling bij Delfzijl niet in de gemiddelde zeespiegel opgenomen. Wel is hierdoor onopgemerkt  gebleven  dat  de  zeespiegel  door  de  gaswinning  23cm  extra  is  gestegen  bovenop  de  gemiddelde 
-zeespiegelstijging van 19cm per eeuw in Delfzijl. Dit onderschrijft de relevantie van periodiek onderzoek naar de reproduceerbaarheid  van  de  verschillende  bronnen  die  we  gebruiken  om  beslissingen  te  nemen  over  het Nederlands kustbeleid.  
- 
-We adviseren om kritisch te kijken naar de discrepantie tussen de gemeten zeespiegel en de zeespiegelstijging die we in het verleden voor de toekomst geprojecteerd hebben. We kunnen beter gaan meten, bijvoorbeeld door alle getijstations  met  GNSS  apparatuur  uit  te  rusten.  In  de  komende  jaren  zal  gewerkt  worden  aan  een  betere 
-ontsluiting van zeespiegelinformatie via de publieke kanalen van Rijkswaterstaat. 
+<!-- Dit rapport beschrijft de onderzoeksresultaten van de zeespiegelmonitoring onderzoeksagenda 2016-2018. In de afgelopen drie jaar is gewerkt om beter inzicht te krijgen in de metingen van de zeespiegel langs de Nederlandse kust. -->
+
+<!-- De zeespiegel stijgt langs de Nederlandse kust minder snel dan in de rest van de wereld. Om beter inzicht te krijgen in de oorzaak hiervan hebben we de zeespiegel verder ontrafeld. Door een combinatie van data-science, modelberekeningen en archiefonderzoek zijn we tot verschillende nieuwe inzichten gekomen. -->
+
+<!-- De relatieve zeespiegelstijging is in verschillende componenten ontbonden. We zien dat van de huidige zeespiegelstijging van 18.6 centimeter per eeuw 4.5 centimeter bestaat uit bodemdaling, gemeten over de periode 1890 tot en met 2017. In 1993 zijn we de zeespiegel ook gaan meten met satellieten. Hierdoor wordt de globale zeespiegelstijging ingeschat op 32cm/eeuw over de periode 1993-2017. De belangrijkste verklaring waarom we maar zo weinig zien van de globale zeespiegelstijging is omdat Nederland op een van de meest gunstige plekken ter wereld ligt, 9cm/eeuw is niet bij Nederland terecht gekomen, maar rond de evenaar. Een ander deel van de verklaring is dat globale trends over verschillende periodes niet "volume behoudend" worden berekend. -->
+
+<!-- Veel van de variatie van jaar tot jaar is toe te schrijven aan de opstuwende kracht van stormen. We hebben gekeken of het effect van stormen op de kust beter kunnen inschatten. Door rekening te houden met wind, luchtdruk en langjarig getij kunnen we de stijging van de zeespiegel betrouwbaar vaststellen en snel zien of de zeespiegelstijging veranderd. -->
+
+<!-- De zeespiegel langs de Nederlandse kust is niet versneld. Dit hadden we wel verwacht op basis van oude projecties. Dit is belangrijk in de context van welk zeespiegelindicator gebruikt wordt voor verschillende toepassingen. De stijging van de Nederlandse zeespiegel wordt onder andere gebruikt om te bepalen hoeveel met hoeveel zand de kust versterkt moet worden. We adviseren om de huidige zeespiegelstijging te gebruiken voor toepassingen tot maximaal 15 jaar vooruit. Dit sluit aan bij het advies van de adviescommissie van het Expertise Netwerk Water. Voor ontwerpen, beheersvragen en planologische vragen met een langere zichtduur adviseren we om op scenario gebaseerde projecties worden gebruikt. -->
+
+<!-- Uit de analyse van de historie van het NAP is naar voren gekomen dat de nulpalen van Delfzijl in 1973 uit het NAP zijn gehaald. Hierdoor is de bodemdaling bij Delfzijl niet in de gemiddelde zeespiegel opgenomen. Wel is hierdoor onopgemerkt gebleven dat de zeespiegel door de gaswinning 23cm extra is gestegen bovenop de gemiddelde zeespiegelstijging van 19cm per eeuw in Delfzijl. Dit onderschrijft de relevantie van periodiek onderzoek naar de reproduceerbaarheid van de verschillende bronnen die we gebruiken om beslissingen te nemen over het Nederlands kustbeleid. -->
+
+<!-- We adviseren om kritisch te kijken naar de discrepantie tussen de gemeten zeespiegel en de zeespiegelstijging die we in het verleden voor de toekomst geprojecteerd hebben. We kunnen beter gaan meten, bijvoorbeeld door alle getijstations met GNSS apparatuur uit te rusten. In de komende jaren zal gewerkt worden aan een betere ontsluiting van zeespiegelinformatie via de publieke kanalen van Rijkswaterstaat. -->
+
+
+\printacronyms
