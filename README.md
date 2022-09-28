@@ -28,7 +28,12 @@ conda config --set channel_priority strict
 conda install --file requirements.txt
 ```
 
+Additionally, you will also need to compile some local packages located in the `slr` directory.
 
+```
+cd slr
+make install
+```
 
 # Running the notebook
 You can run the notebook in either jupyter notebook or jupyterlab. To start jupyter notebook. From the main level of the repository start `jupyter notebook` and browse through the notebooks folders. The main notebook is `dutch-sea-level-monitor.ipynb`.
