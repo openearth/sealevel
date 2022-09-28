@@ -10,7 +10,7 @@ require(readxl)
 
 In dit rapport wordt de actuele stand en stijging van de zeespiegel langs de Nederlandse kust beschreven. Deze huidige zeespiegel is belangrijk voor het Nederlandse kustbeleid. De Nederlandse kust is fundamenteel voor onze veiligheid, drinkwatervoorziening, ecologie en recreatie.
 
-Het handhaven van de kustlijn en het handhaven van het kustfundament zijn twee belangrijke pijlers van het landelijke kustbeleid. Het kustfundament is het deel van de kust dat van belang is als drager vanfuncties in het kustgebied. Het landelijke kustbeleid is geformuleerd in de 3e Kustnota [@rws2000], Nota Ruimte[@rws2004], het Nationaal Waterplan [@rws2008], de Nationale Visie Kust en Beslissing Zand [@IenM2013; @IenM2014]. Er wordtgehandhaafd door morfologische interventies in de vorm van zandsuppleties.
+Het handhaven van de kustlijn en het handhaven van het kustfundament zijn twee belangrijke pijlers van het landelijke kustbeleid. Het kustfundament is het deel van de kust dat van belang is als drager van functies in het kustgebied. Het landelijke kustbeleid is geformuleerd in de 3e Kustnota [@rws2000], Nota Ruimte[@rws2004], het Nationaal Waterplan [@rws2008], de Nationale Visie Kust en Beslissing Zand [@IenM2013; @IenM2014]. Er wordt gehandhaafd door morfologische interventies in de vorm van zandsuppleties.
 
 Het benodigde zandvolume wordt in essentie bepaald door het oppervlak van een deel van het kustfundament maal de zeespiegelstijging. Voor elke millimeter per jaar zeespiegelstijging wordt 7 miljoen \si{\m^3} gesuppleerd [@Ronde2008]. Er wordt naar gestreefd het gehele kustfundament, inclusief de landzijde mee te laten groeien [@rws2008].
 
