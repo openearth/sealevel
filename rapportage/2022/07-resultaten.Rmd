@@ -184,7 +184,11 @@ zeespiegelTrends <- tibble(
                    5.6
   )
 )
+```
 
+
+
+```{r zeespiegeltrends}
 knitr::kable(zeespiegelTrends, align = "lrrrr", caption = "Zeespiegeltrends per station.")
 
 ```
