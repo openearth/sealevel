@@ -5,7 +5,7 @@ author: "Deltares"
 # site: bookdown::bookdown_site
 documentclass: book
 site: bookdown::bookdown_site
-bibliography: sealevel_combined.bib #[bib/book.bib, bib/bibhkv.bib, bib/R.bib, bib/sealevel.bib, bib/willems.bib]
+bibliography: bib/sealevel_combined.bib #[bib/book.bib, bib/bibhkv.bib, bib/R.bib, bib/sealevel.bib, bib/willems.bib]
 biblio-style: apalike
 link-citations: yes
 acronyms:
