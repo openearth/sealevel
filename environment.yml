@@ -19,3 +19,7 @@ dependencies:
   - ipywidgets
   - jupyterlab
   - notebook
+  - ipython
+  - xarray
+  - dask
+  - cmcrameri
