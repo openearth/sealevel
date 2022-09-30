@@ -173,7 +173,7 @@ Dit rapport heeft als doel de volgende centrale vraagstellingen te beantwoorden.
 
 (ref:vraag-huidige-stijging) Wat is de huidige stijging van de zeespiegel? Wat zijn de laatste ontwikkelingen op het gebied van de toestand van de globale en lokale zeespiegel?
 
--   '(ref:vraag-huidige-stijging)'
+-   '(ref:vraag-stijging)'
 
 **Gezamenlijkheid**
 

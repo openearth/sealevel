@@ -4,15 +4,15 @@ In \@ref(methoden) hebben we vastgesteld hoe de 'huidige zeespiegel' kan worden 
 
 ## De huidige zeespiegel {#huidige}
 
-!!! Dit wordt ge-updatet met de nieuwe informatie. Overweeg om automatisch informatie op te halen uit notebooks voor jaarlijkse update.
+!!! *Dit wordt ge-updatet met de nieuwe informatie. Overweeg om automatisch informatie op te halen uit notebooks voor jaarlijkse update.*
 
 In \@ref(fig:huidige-zeespiegel) is de huidige zeespiegel uitgezet tegen de tijd. De huidige zeespiegel is voor 2017 vastgesteld op 6cm boven \acr{NAP}. Voor het jaar 2017 bedraagt de relatieve zeespiegelstijging langs de Nederlandse kust $1.86 \pm 0.12mm$ oftewel $18.6 \pm 1.2\,cm$ . Deze trend is berekend over de periode 1890 tot en met 2017. Dit beantwoordt de [vraag](ref:question-stijging) , hoe snel de zeespiegel op dit moment stijgt. {#answer-stijging}
 
 De zeespiegel heeft in 2017 zijn hoogste stand ooit gemeten bereikt. Kort gezegd komt dit doordat het voor het eerst sinds lange tijd weer flink heeft gestormd in combinatie met een opgaand nodaal getij en de gestegen zeespiegel.
 
-(ref:huidige-zeespiegel-caption) Huidige zeespiegelstijging langs de Nederlandse kust op basis van het gemiddelde van de zes hoofdstations, zie ook \@ref(fig:metingen-scenarios) voor alleen de lineaire component. De rode lijn laat de curve zien met gemiddelde wind. De blauwe lijn laat de curve zien gecorrigeerd voor de wind data uit de heranalyses. 
+(ref:huidige-zeespiegel-label) Huidige zeespiegelstijging langs de Nederlandse kust op basis van het gemiddelde van de zes hoofdstations, zie ook \@ref(fig:metingen-scenarios) voor alleen de lineaire component. De rode lijn laat de curve zien met gemiddelde wind. De blauwe lijn laat de curve zien gecorrigeerd voor de wind data uit de heranalyses. 
 
-```{r huidige-zeespiegel, fig.cap= "(ref:huidige-zeespiegel-caption)"}
+```{r huidige-zeespiegel, fig.cap= "(ref:huidige-zeespiegel-label)"}
 knitr::include_graphics("figures/slr_mean_linear.png")
 ```
 
