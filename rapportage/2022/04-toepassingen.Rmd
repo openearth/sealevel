@@ -175,7 +175,7 @@ Oorsprong
 
 Producent
 
-:   \acr{TNO}
+:   TNO
 
 Gebruiker
 
