@@ -6,7 +6,7 @@ rmd_files: [
   "04-toepassingen.Rmd",
   "05-metingen.Rmd",
   "06-methoden.Rmd",
-  # "07-resultaten.Rmd",
+  "07-resultaten.Rmd",
   "08-discussie.Rmd",
   "09-conclusies.Rmd",
   "10-references.Rmd",
