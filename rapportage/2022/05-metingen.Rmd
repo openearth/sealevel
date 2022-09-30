@@ -113,15 +113,7 @@ Dan nog een uitzondering voor het station van Delfzijl. In de vorige paragraaf b
 
 ### NAP historie {#nap-historie}
 
-Vanuit de historie van [NAP]{acronym-label="NAP" acronym-form="singular+short"} merken hebben we een overzicht gemaakt van de hoogtes van de merken. Deze overzichten zijn niet bedoeld om de bodemdaling absoluut vast te stellen maar te verifïeren dat Delfzijl wel en Hoek van Holland niet van het [NAP]{acronym-label="NAP" acronym-form="singular+short"} zijn losgekoppeld. In [2](#fig:nulpalen){reference-type="ref" reference="fig:nulpalen"} is een overzicht weergegeven van de Nulpalen in de buurt van de getijdestations. Hierin is te zien dat de nulpalen allemaal van hoogte zijn veranderd in de revisie, de [NAP]{acronym-label="NAP" acronym-form="singular+short"} correctie in 2005. Een deel van de hoogtes in het archief is reviseerd. Daarnaast is te zien dat de nulpaal van Delfzijl is losgekoppeld van het [NAP]{acronym-label="NAP" acronym-form="singular+short"}. De hoogte is niet constant. Ten slotte zien we dat de hoogte van Den Helder is aangepast tussen de vierde en vijfde waterpassing. Het is onduidelijk waarom.
-
-In [3](#fig:nap-history){reference-type="ref" reference="fig:nap-history"} zien we dat de peilmerken in de buurt van de nulpaal van Hoek van Holland van hoogte veranderen. Dit laat zien dat niet alle peilmerken een vaste hoogte hebben gehad. We zien dat de punten dalen. Dit zou logischerwijs bodemdaling tussen de hoogte van de nulpaal en de hoogte van de peilmerken moeten zijn.
-
-```{r nulpalen, fig.cap="Overzicht van de historie van de NAP merken in de buurt van de meetstations. Relatief ten opzichte van de eerste meting. (nulpalen)" }
-knitr::include_graphics("figures/nulpalen.png")
-```
-
-
+Vanuit de historie van [NAP]{acronym-label="NAP" acronym-form="singular+short"} merken hebben we een overzicht gemaakt van de hoogtes van de merken. In [3](#fig:nap-history){reference-type="ref" reference="fig:nap-history"} zien we dat de nulpaal bij het peilstation van Delfzijl zakt ten opzichte van het [NAP]{acronym-label="NAP" acronym-form="singular+short"}. De overige stations zijn grotendeels onveranderd ten opzichte van het [NAP]{acronym-label="NAP" acronym-form="singular+short"}-vlak. De grootste afwijking zijn te herleiden tot de herziening van het [NAP]{acronym-label="NAP" acronym-form="singular+short"}-vlak in 2005. 
 
 ```{r satellieten, fig.cap="Overzicht van de historie van de NAP merken in de buurt van de meetstations over de hele periode van beschikbare gegevens." }
 knitr::include_graphics("figures/nap-history.png")
