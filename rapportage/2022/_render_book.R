@@ -13,10 +13,23 @@ file.remove("_main.md")
 # Fedors bibliography synchroniseren wanneer nodig.
 # download.file("https://raw.githubusercontent.com/SiggyF/bibliography/master/bibliography.bib", destfile = "bib/sealevel.bib")
 
+sealevelbib <- bibtex::read.bib("bib/sealevel.bib")
+bibtex::write.bib(sealevelbib, "bib/sealevel.bib", )
 # render to format specified in _output.yml
-bookdown::render_book(file.path("index.Rmd"), output_dir = "docs",
-                      output_format = NULL, 
-                      new_session = F)
+
+make_book <- function(subdir) { 
+  
+  origwd <- getwd()
+  setwd(file.path(origwd, subdir))
+  on.exit(setwd(origwd))
+  bookdown::render_book(input='_bookdown.yml', config_file='_bookdown.yml')
+}
+
+make_book("rapportage/2022")
+
+# bookdown::render_book(file.path("index.Rmd"), output_dir = "docs",
+#                       output_format = NULL, 
+#                       new_session = F)
 
 # standard pdf
 # options(tinytex.verbose = TRUE)

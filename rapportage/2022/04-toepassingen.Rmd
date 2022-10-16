@@ -6,8 +6,9 @@ editor_options:
 
 # Toepassingen {#toepassingen}
 
-Dit hoofdstuk is een update en ingekorte versie van het rapport in de
-bijlage.
+<!-- Dit hoofdstuk is een update en ingekorte versie van het rapport in de -->
+
+<!-- bijlage. -->
 
 Traditioneel worden de waterstandsmetingen vooral toegepast in de
 scheepvaart. Met name de tijdstippen van het getij zijn belangrijk om te
@@ -91,8 +92,8 @@ zeespiegelstijging en suppletievolume zijn direct gekoppeld aan elkaar.
 De basis voor het huidige suppletievolume is een rapport uit het jaar
 2000. Mulder (2000) stelt dat de totale suppletiebehoefte bij
 gelijkblijvende trend in de zeespiegelstijging van 20 cm/eeuw wordt
-geschat op gemiddeld 12 Mm^3^ per jaar (met een maximum van 16 miljoen
-Mm^3^ per jaar). In het geschatte volume is niet alleen rekening
+geschat op gemiddeld 12 Mm^3^/jaar (met een maximum van 16 miljoen
+Mm^3^/jaar). In het geschatte volume is niet alleen rekening
 gehouden met zandverlies van het kustfundament, maar ook dat van de
 Waddenzee en de Westerschelde. Basisuitgangspunt bij de bepaling van het
 suppletievolume is de aanname dat de sedimentvraag van de kust op lange
@@ -174,7 +175,7 @@ Oorsprong
 
 Producent
 
-:    \acr{TNO}
+:   TNO
 
 Gebruiker
 
@@ -307,7 +308,7 @@ Verantwoording
     Dillingh (teruggaand tot vaststelling basispeilen in 1985) WBI2017:
     Chbab (2015)
 
-## Percentage onder zeeniveau {#sec:perc-below-sl}
+## Percentage onder zeeniveau {#perc-below-sl}
 
 In ruimtelijke-ordeningsvraagstukken speelt de vraag waar we kunnen
 wonen, bouwen en verbouwen. Vaak wordt Nederland geprezen omdat we ons
@@ -375,7 +376,7 @@ Verantwoording
 :   Er is geen publicatie waar het getal wordt uitgerekend. Er is geen
     methode beschreven.
 
-## Zeespiegel over 200 jaar {#sec:200jaar}
+## Zeespiegel over 200 jaar {#200jaar}
 
 In de 3e Kustnota is gedefinieerd dat extra ruimte moet worden
 gereserveerd voor uitbreiding van de kustbescherming. Het gaat hier om
@@ -448,7 +449,7 @@ verantwoording
 
 :   [@Author2012]
 
-## Signalering {#sec:signalering}
+## Signalering {#signalering}
 
 Het Deltaprogramma gebruikt adaptief deltamanagement in haar taak om
 Nederland te beschermen tegen overstromingen, en te zorgen voor
@@ -500,7 +501,7 @@ Verantwoording
 
 :   Er is nog geen vastgelegde methodiek.
 
-## Trends in toepassingen van de zeespiegel {#sec:toepassing-trends}
+## Trends in toepassingen van de zeespiegel {#toepassing-trends}
 
 Uit de workshop in november 2016 bleek dat er een aantal ontwikkellingen
 zijn in het gebruik van indicatoren. Zo werd besproken dat er meer

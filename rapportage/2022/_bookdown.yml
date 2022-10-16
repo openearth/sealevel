@@ -1,16 +1,17 @@
 book_filename: "zeespiegelmonitor"
-# rmd_files: [
-#   "01-inleiding.Rmd",
-#   "03-oorzaken.Rmd",
-#   "04-toepassingen.Rmd",
-#   "05-metingen.Rmd",
-#   "06-methoden.Rmd",
-#   "07-resultaten.Rmd",
-#   "08-discussie.Rmd",
-#   "09-conclusies.Rmd",
-#   "10-references.Rmd",
-#   "11-appendix.Rmd",
-#   ] 
+rmd_files: [
+  "index.Rmd",
+  "01-inleiding.Rmd",
+  "03-oorzaken.Rmd",
+  "04-toepassingen.Rmd",
+  "05-metingen.Rmd",
+  "06-methoden.Rmd",
+  "07-resultaten.Rmd",
+  "08-discussie.Rmd",
+  "09-conclusies.Rmd",
+  "10-references.Rmd",
+  "11-appendix.Rmd",
+  ]
 delete_merged_file: true
 before_chapter_script: _common.R
 language:
