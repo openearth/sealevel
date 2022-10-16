@@ -13,8 +13,8 @@ def make_wind_df(lat_i=53, lon_i=3, product="NCEP1", local=True):
     src_dir = slr.get_src_dir()
     if product == "NCEP1":
         # the following url's are not available during a government shutdown
-        u_file = "http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis.derived/surface_gauss/uwnd.10m.mon.mean.nc"
-        v_file = "http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis.derived/surface_gauss/vwnd.10m.mon.mean.nc"
+        u_file = "https://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis.derived/surface_gauss/uwnd.10m.mon.mean.nc"
+        v_file = "https://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis.derived/surface_gauss/vwnd.10m.mon.mean.nc"
 
         if local:
             u_file = pathlib.Path(
