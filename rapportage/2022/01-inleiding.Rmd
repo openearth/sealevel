@@ -140,7 +140,7 @@ Dit rapport heeft als doel de volgende centrale vraagstellingen te beantwoorden.
 
 **Missiegedreven beleid**
 
-(ref:vraag-globaal) breidt de zeespiegelmonitor uit tot een globaal dekkend, lokaal toepasbare zeespiegelmonitor.
+(ref:vraag-globaal) breid de zeespiegelmonitor uit tot een globaal dekkend, lokaal toepasbare zeespiegelmonitor.
 
 (ref:vraag-kwaliteitsindicatoren) Kwaliteitsindicatoren, aansluiting bij internationale activiteiten. Modules voor signalen, kennis, indicatoren.
 
@@ -190,6 +190,9 @@ Dit rapport heeft als doel de volgende centrale vraagstellingen te beantwoorden.
 (ref:vraag-gtsm) stap over op het GTSM model als basis voor wind en stormopzet effecten.
 
 (ref:vraag-antarctica) Er zijn een aantal mogelijke bronnen van afsmelten op Antarctica. Wat is hun individuele bijdrage aan de stijging van de zeespiegel aan de Nederlandse kust. Welke moeten we "in de gaten houden"? Is er een effect van de geometrie veranderingen bij Antarctica op het getij bij Nederland?
+
+(ref:vraag-bodemdaling) Bij een globaal dekkend model moet ook de bodemdaling globaal meegenomen worden. Binnen Nederland vindt differentiele bodemdaling plaats langs de kust, zowel door geologische bodemdaling als door winning. Deze zou apart per hoofdgetijdenstation meegenomen moeten worden.
+
 
 -   '(ref:vraag-afstemming-oorzaken)'
 -   '(ref:vraag-hycom)'
