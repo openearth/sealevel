@@ -1,155 +1,167 @@
 [
-    {
-        "id": 20,
-        "name": "Vlissingen",
-        "msl-rlr": 6976,
-        "msl-nap": 46,
-        "nap-rlr": 6930,
-        "alpha": 118,
-        "ddl_id": "VLISSGN",
-        "location": "Vlissingen",
-        "psmsl_id": 20,
-        "foundation_low": -17.6,
-        "station_low": 2.5,
-        "station_high": 9,
-        "summary": "This station is located at a quay in Vlissingen, near the outer harbour. The foundation is a steel sheet pile reaching to a depth of -17.6m NAP, having a width of 2.2m (outer width). Inside this pile are the measurement instruments. The under water chamber is sealed of with a concrete slab reaching from -4.0 m NAP to -5.0 m NAP. The station has a GPS (GNSS) device attached.",
-        "img": "http://www.openearth.nl/sealevel/static/images/VLISSGN.jpg",
-        "nulpaal": {
-            "id": "000A4068"
-        },
-        "links": [
-            {
-                "href": "http://gnss1.tudelft.nl/dpga/station/Vlissingen.html",
-                "name": "GNSS info"
-            }
-        ]
+  {
+    "id": 20,
+    "name": "Vlissingen",
+    "msl-rlr": 6976,
+    "msl-nap": 46,
+    "nap-rlr": 6930,
+    "alpha": 118,
+    "ddl_id": "VLISSGN",
+    "location": "Vlissingen",
+    "psmsl_id": 20,
+    "foundation_low": -17.6,
+    "station_low": 2.5,
+    "station_high": 9,
+    "latitude": 51.442904,
+    "longitude": 3.597324,
+    "summary": "This station is located at a quay in Vlissingen, near the outer harbour. The foundation is a steel sheet pile reaching to a depth of -17.6m NAP, having a width of 2.2m (outer width). Inside this pile are the measurement instruments. The under water chamber is sealed of with a concrete slab reaching from -4.0 m NAP to -5.0 m NAP. The station has a GPS (GNSS) device attached.",
+    "img": "http://www.openearth.nl/sealevel/static/images/VLISSGN.jpg",
+    "nulpaal": {
+      "id": "000A4068"
     },
-    {
-        "id": 22,
-        "name": "Hoek van Holland",
-        "msl-rlr": 6987,
-        "msl-nap": 114,
-        "nap-rlr": 6873,
-        "alpha": 117,
-        "ddl_id": "HOEKVHLD",
-        "location": "Hoek van Holland",
-        "psmsl_id": 22,
-        "foundation_low": -3.3,
-        "station_low": 5.27,
-        "station_high": 9.05,
-        "summary": "The station in Hoek van Holland is located beside the Nieuwe Waterweg near the river mouth into the North Sea. The reference pole is situated outside the main building on the main land. The main building is connected to the main land by a steel bridge. The foundation of the main building is on steel poles. The building is a concrete structure reaching to a depth of -3.0 m NAP. This entire thing is enough for the measurement instruments to be placed inside. And the underwater chamber is then, in contrary to the other stations within the main building. The entire concrete structure has a foundation of multiple sheet piles. These are 8 concrete plates (8-sided) with a length of 14.1m. ",
-        "img": "http://www.openearth.nl/sealevel/static/images/HOEKVHLD.jpg",
-        "nulpaal": {
-            "id": "000A4021",
-            "length": 28.35,
-            "foot": -23.7,
-            "head": 4.65
-        },
-        "links": [
-            {
-                "href": "http://geodesy.unr.edu/NGLStationPages/stations/HOEK.sta",
-                "name": "GNSS Analysis Nevada, nearby station"
-            }
-        ]
+    "links": [
+      {
+        "href": "http://gnss1.tudelft.nl/dpga/station/Vlissingen.html",
+        "name": "GNSS info"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Hoek van Holland",
+    "msl-rlr": 6987,
+    "msl-nap": 114,
+    "nap-rlr": 6873,
+    "alpha": 117,
+    "ddl_id": "HOEKVHLD",
+    "location": "Hoek van Holland",
+    "psmsl_id": 22,
+    "foundation_low": -3.3,
+    "station_low": 5.27,
+    "station_high": 9.05,
+    "latitude": 51.977536,
+    "longitude": 4.119752,
+    "summary": "The station in Hoek van Holland is located beside the Nieuwe Waterweg near the river mouth into the North Sea. The reference pole is situated outside the main building on the main land. The main building is connected to the main land by a steel bridge. The foundation of the main building is on steel poles. The building is a concrete structure reaching to a depth of -3.0 m NAP. This entire thing is enough for the measurement instruments to be placed inside. And the underwater chamber is then, in contrary to the other stations within the main building. The entire concrete structure has a foundation of multiple sheet piles. These are 8 concrete plates (8-sided) with a length of 14.1m. ",
+    "img": "http://www.openearth.nl/sealevel/static/images/HOEKVHLD.jpg",
+    "nulpaal": {
+      "id": "000A4021",
+      "length": 28.35,
+      "foot": -23.7,
+      "head": 4.65
     },
-    {
-        "id": 23,
-        "name": "Den Helder",
-        "msl-rlr": 6962,
-        "msl-nap": 16,
-        "nap-rlr": 6946,
-        "alpha": 107,
-         "ddl_id": "DENHDR",
-        "location": "Den Helder",
-        "psmsl_id": 23,
-        "foundation_low": -5,
-        "station_low": 5,
-        "station_high": 8.47,
-        "summary": "This station is located in the dike of Den Helder. The station has a pipe through the dike towards the sea for the measurement of the water level. The inlet of this pipe is at -3.25m NAP. There is a seperate construction for the ventilation of the main building. Furthermore the peilbout is located outside the main building at the opposite side of the dike. The main construction has a foundation of steel sheet pilings forming a rectangle around the measurement instruments. Between -4 and -5 m depth concrete seals of the underwater chamber. ",
-        "img": "http://www.openearth.nl/sealevel/static/images/DENHDR.jpg",
-        "nulpaal": {
-            "id": "000A4036",
-            "length": 17.5,
-            "foot": -12.23,
-            "head": 5.27
-        },
-        "links": []
+    "links": [
+      {
+        "href": "http://geodesy.unr.edu/NGLStationPages/stations/HOEK.sta",
+        "name": "GNSS Analysis Nevada, nearby station"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Den Helder",
+    "msl-rlr": 6962,
+    "msl-nap": 16,
+    "nap-rlr": 6946,
+    "alpha": 107,
+    "ddl_id": "DENHDR",
+    "location": "Den Helder",
+    "psmsl_id": 23,
+    "foundation_low": -5,
+    "station_low": 5,
+    "station_high": 8.47,
+    "latitude": 52.963769,
+    "longitude": 4.743801,
+    "summary": "This station is located in the dike of Den Helder. The station has a pipe through the dike towards the sea for the measurement of the water level. The inlet of this pipe is at -3.25m NAP. There is a seperate construction for the ventilation of the main building. Furthermore the peilbout is located outside the main building at the opposite side of the dike. The main construction has a foundation of steel sheet pilings forming a rectangle around the measurement instruments. Between -4 and -5 m depth concrete seals of the underwater chamber. ",
+    "img": "http://www.openearth.nl/sealevel/static/images/DENHDR.jpg",
+    "nulpaal": {
+      "id": "000A4036",
+      "length": 17.5,
+      "foot": -12.23,
+      "head": 5.27
     },
-    {
-        "id": 24,
-        "name": "Delfzijl",
-        "msl-rlr": 6953,
-        "msl-nap": 130,
-        "nap-rlr": 6823,
-        "alpha": 117,
-        "ddl_id": "DELFZL",
-        "location": "Delfzijl",
-        "psmsl_id": 24,
-        "foundation_low": -20,
-        "station_low": 1.85,
-        "station_high": 10.18,
-        "summary": "The tidal measurement station in Delfzijl is located in the harbour of Delfzijl. Category 'Peilmeetstation'. The station has a main building with a foundation on a steel round pole (inner width = 2.3m, outer width 2.348m) reaching to a depth of -20m NAP. The Building is placed in the harbour and is connected to the main land by means of a steel stairs towards a quay. Which has also a foundation on steel poles. Peilbout is inside the construction attached to the wall. Every ten minutes the water level relative to NAP is measured. Between -4 and -5 m depth concrete seals of the underwater chamber. ",
-        "img": "http://www.openearth.nl/sealevel/static/images/DELFZL.jpg",
-        "nulpaal": {
-            "id": "000A4041"
-        },
-        "links": [
-            {
-                "href": "http://geodesy.unr.edu/NGLStationPages/stations/DZYL.sta",
-                "name": "GNSS Analysis Nevada, nearby station"
-            }
-        ]
+    "links": []
+  },
+  {
+    "id": 24,
+    "name": "Delfzijl",
+    "msl-rlr": 6953,
+    "msl-nap": 130,
+    "nap-rlr": 6823,
+    "alpha": 117,
+    "ddl_id": "DELFZL",
+    "location": "Delfzijl",
+    "psmsl_id": 24,
+    "foundation_low": -20,
+    "station_low": 1.85,
+    "station_high": 10.18,
+    "latitude": 53.326526,
+    "longitude": 6.933405,
+    "summary": "The tidal measurement station in Delfzijl is located in the harbour of Delfzijl. Category 'Peilmeetstation'. The station has a main building with a foundation on a steel round pole (inner width = 2.3m, outer width 2.348m) reaching to a depth of -20m NAP. The Building is placed in the harbour and is connected to the main land by means of a steel stairs towards a quay. Which has also a foundation on steel poles. Peilbout is inside the construction attached to the wall. Every ten minutes the water level relative to NAP is measured. Between -4 and -5 m depth concrete seals of the underwater chamber. ",
+    "img": "http://www.openearth.nl/sealevel/static/images/DELFZL.jpg",
+    "nulpaal": {
+      "id": "000A4041"
     },
-    {
-        "id": 25,
-        "name": "Harlingen",
-        "msl-rlr": 7024,
-        "msl-nap": 110,
-        "nap-rlr": 6914,
-        "alpha": 108,
-        "ddl_id": "HARLGN",
-        "location": "Harlingen",
-        "psmsl_id": 25,
-        "foundation_low": -5.4,
-        "station_low": 5.55,
-        "station_high": 8.54,
-        "summary": "The tidal station in Harlingen is located in a harbour on top of a boulevard. A pipe is going from the station at a depth of -2.56m NAP towards the sea. The inlet of the pipe is protected by a construction, so as to reduce the variations by the wave impact. The Main building has a foundation of a steel sheet pilings construction (rectangle inner dimensions 2.53 by 2.27m^2) surrounding the measurement instruments.",
-        "img": "http://www.openearth.nl/sealevel/static/images/HARLGN.jpg",
-        "nulpaal": {
-            "id": "000A4020",
-            "length": 28,
-            "foot": -22,
-            "head": 6
-        },
-        "links": []
+    "links": [
+      {
+        "href": "http://geodesy.unr.edu/NGLStationPages/stations/DZYL.sta",
+        "name": "GNSS Analysis Nevada, nearby station"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Harlingen",
+    "msl-rlr": 7024,
+    "msl-nap": 110,
+    "nap-rlr": 6914,
+    "alpha": 108,
+    "ddl_id": "HARLGN",
+    "location": "Harlingen",
+    "psmsl_id": 25,
+    "foundation_low": -5.4,
+    "station_low": 5.55,
+    "station_high": 8.54,
+    "latitude": 53.175689,
+    "longitude": 5.411273,
+    "summary": "The tidal station in Harlingen is located in a harbour on top of a boulevard. A pipe is going from the station at a depth of -2.56m NAP towards the sea. The inlet of the pipe is protected by a construction, so as to reduce the variations by the wave impact. The Main building has a foundation of a steel sheet pilings construction (rectangle inner dimensions 2.53 by 2.27m^2) surrounding the measurement instruments.",
+    "img": "http://www.openearth.nl/sealevel/static/images/HARLGN.jpg",
+    "nulpaal": {
+      "id": "000A4020",
+      "length": 28,
+      "foot": -22,
+      "head": 6
     },
-    {
-        "id": 32,
-        "name": "IJmuiden",
-        "msl-rlr": 7014,
-        "msl-nap": 64,
-        "nap-rlr": 6950,
-        "alpha": 110,
-        "ddl_id": "IJMDBTHVN",
-        "location": "IJmuiden",
-        "psmsl_id": 32,
-        "foundation_low": -13,
-        "station_low": 4.2,
-        "station_high": 10.35,
-        "summary": "IJmuiden is located on the northern part of the marina in IJmuiden, near a breakwater. The main building is situated in the water and is connected by a steel stairs and bridge with the main land. The foundation of this building consists out a round steel sheet pile. The under water chamber is closed of with a concrete slab between -3.75m NAP and - 4.5m NAP. The sheet pile is extended to a depth of -13m NAP. IJmuiden has a GPS (GNSS) station attached to it.",
-        "img": "http://www.openearth.nl/sealevel/static/images/IJMDBTHVN.jpg",
-        "nulpaal": {
-            "id": "000A4049"
-        },
-        "links": [
-            {
-                "href": "http://gnss1.tudelft.nl/dpga/station/Ijmuiden.html",
-                "name": "GNSS info"
-            },
-            {
-                "href": "http://geodesy.unr.edu/NGLStationPages/stations/IJMU.sta",
-                "name": "GNSS Analysis Nevada"
-            }
-        ]
-    }
+    "links": []
+  },
+  {
+    "id": 32,
+    "name": "IJmuiden",
+    "msl-rlr": 7014,
+    "msl-nap": 64,
+    "nap-rlr": 6950,
+    "alpha": 110,
+    "ddl_id": "IJMDBTHVN",
+    "location": "IJmuiden",
+    "psmsl_id": 32,
+    "foundation_low": -13,
+    "station_low": 4.2,
+    "station_high": 10.35,
+    "latitude": 52.461978,
+    "longitude": 4.556043,
+    "summary": "IJmuiden is located on the northern part of the marina in IJmuiden, near a breakwater. The main building is situated in the water and is connected by a steel stairs and bridge with the main land. The foundation of this building consists out a round steel sheet pile. The under water chamber is closed of with a concrete slab between -3.75m NAP and - 4.5m NAP. The sheet pile is extended to a depth of -13m NAP. IJmuiden has a GPS (GNSS) station attached to it.",
+    "img": "http://www.openearth.nl/sealevel/static/images/IJMDBTHVN.jpg",
+    "nulpaal": {
+      "id": "000A4049"
+    },
+    "links": [
+      {
+        "href": "http://gnss1.tudelft.nl/dpga/station/Ijmuiden.html",
+        "name": "GNSS info"
+      },
+      {
+        "href": "http://geodesy.unr.edu/NGLStationPages/stations/IJMU.sta",
+        "name": "GNSS Analysis Nevada"
+      }
+    ]
+  }
 ]
