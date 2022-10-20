@@ -1,0 +1,143 @@
+# Acroniemen
+
+```{r setupAcroniemen"}
+require(tidyverse)
+```
+
+<!-- Proposed way to handle acronyms in Rmarkdown -->
+<!-- https://github.com/rchaput/acronymsdown  -->
+<!-- see last chunk for conversion to yaml -->
+
+
+```{r acroniemenTabel"}
+
+acroniemen <- 
+  tribble(
+    ~shortname, ~longname,
+ "AR", "Autoregressie",
+ "Argo", "Argo, vernoemd naar schip uit de Griekse mythologie",
+ "AGRS", "Actief GNSS Referentie Systeem",
+ "AHN", "Actueel Hoogtebestand Nederland",
+ "AIC", "Akaike Informatie Criterium, (een maat voor de goodness-of-fit van een model)",
+ "AMO", "Atlantic Multidecadal Oscillation",
+ "AVISO", "Archiving, Validation and Interpretation of Satellite Oceanographic data",
+ "BKL", "Basis KustLijn",
+ "BRK", "Basisregistratie Kadaster",
+ "BGT", "Basisregistratie Grootschalige Topografie",
+ "BMA", "Bayesian Model Averaging",
+ "CIV", "Centrale Informatievoorziening",
+ "CBS", "Centraal Bureau voor de Statistiek",
+ "CPB", "Centraal Plan Bureau",
+ "CSIRO", "Commonwealth Scientific and Industrial Research Organisation",
+ "DCSM", "Dutch Continental Shelf Model",
+ "DG", "Directoraat-generaal",
+ "DNM", "Digitale Niveau Meter",
+ "EGM2008", "Earth Gravitational Model 2008",
+ "EGM96", "Earth Gravitational Model 1996",
+ "ECCO", "Estimating the Circulation and Climate of the Ocean",
+ "ERSST", "Extended Reconstructed Sea Surface Temperature",
+ "ETRS89", "European Terrestrial Reference System 1989",
+ "ENSO", "El Niño–Southern Oscillation",
+ "EZK", "Ministerie van Economische Zaken en Klimaat",
+ "GIA", "Glacial Isostatic Adjustment, postglaciale opheffing",
+ "GLOSSIS", "Global Storm Surge Forecasting and Information System",
+ "GLM", "Generalized Linear Model",
+ "GMSL", "Global Mean Sea Level, globaal gemiddeld zeeniveau",
+ "GNSS", "Global Navigation Satellite System",
+ "GODAS", "Global Ocean Data Assimilation System",
+ "GPS", "Global Positioning System",
+ "GRACE", "Gravity Recovery and Climate Experiment",
+ "GRACE-FO", "Gravity Recovery and Climate Experiment Follow-on",
+ "GTSM", "Global Tidal Surge Model",
+ "GTSR", "Global Tidal Surge Reanalysis",
+ "HAC", "Heteroskedasticity and Autocorrelation Consistent",
+ "HKV", "HKV lijn in water",
+ "HHNK", "Hoogheemraadschap Hollands Noorderkwartier",
+ "IB", "Inverse Barometer",
+ "IHM", "InformatieHuis Marien",
+ "IHO", "International Hydrographic Organization",
+ "IHW", "InformatieHuis Water",
+ "IPCC", "Intergovernmental Panel on Climate Change",
+ "IV", "Informatie Voorziening",
+ "IaaS", "Infrastructure as a Service",
+ "IenW", "Ministerie van Infrastructuur en Water",
+ "IOOS", "Integrated Ocean Observing System",
+ "JASON", "Joint Altimetry Satellite Oceanography Network",
+ "K1", "Lunar diurnal constituent",
+ "KNMI", "Koninklijk Nederlands Meteorologisch Instituut",
+ "KPP", "Kennis voor Primaire Processen",
+ "L2", "Smaller lunar elliptic semidiurnal constituent",
+ "LAT", "Lowest Astronomical Tide",
+ "LMW", "Landelijk Meetnet Water",
+ "LOESS", "LOcal regrESSion (a later generalization of LOWESS)",
+ "LOWESS", "Locally weighted scatterplot smoothing",
+ "LSTM", "Long Short-Term Memory",
+ "M2", "Principal lunar semidiurnal constituent",
+ "M4", "Shallow water overtides of principal lunar constituent",
+ "MAP", "Maximum A Posteriori",
+ "MCMC", "Markov chain Monte Carlo",
+ "MorphAn", "Morphological Analysis",
+ "MWP", "Meltwater Pulse",
+ "MDN", "Mixture density networks",
+ "MN4", "Shallow water quarter diurnal constituent",
+ "MS4", "Shallow water quarter diurnal constituent",
+ "MSL", "Mean Sea Level",
+ "MSLA", "Monthly mean climatology maps of Sea Level Anomalies",
+ "MLLW", "Mean Lower Low Water. The average of the lower low water height of each tidal day observed over the National Tidal Datum Epoch. https://tidesandcurrents.noaa.gov/datum_options.html",
+ "MLW", "Mean Low Water.  The average of all the low water heights observed over the National Tidal Datum Epoch. https://tidesandcurrents.noaa.gov/datum_options.html",
+ "MU2", "Variational constituent",
+ "N2", "Larger lunar elliptic semidiurnal constituent",
+ "NAP", "Normaal Amsterdams Peil",
+ "NAO", "North Atlantic Oscillation",
+ "NASA", "National Aeronautics and Space Administration",
+ "NCAR", "National Center for Atmospheric Research",
+ "NCEP", "National Centers for Environmental Prediction",
+ "NCG", "Nederlands Centrum voor Geodesie en Geo-informatica",
+ "NLGEO2004", "Nederlands Geoïdemodel 2004",
+ "NOAA", "National Oceanic and Atmospheric Administration",
+ "NWP", "Nationaal Water Plan",
+ "O1", "Lunar diurnal constituent",
+ "OGC", "Open Geospatial Consortium",
+ "PGB", "Postglaciale bodembeweging",
+ "PBL", "Planbureau voor de Leefomgeving",
+ "PSMSL", "Permanent Service for Mean Sea Level",
+ "PVDA", "Partij van de Arbeid",
+ "PaaS", "Platform as a Service",
+ "RCP", "Representative Concentration Pathway",
+ "RD", "Rijksdriehoeksstelsel",
+ "ROFI", "Region Of Freshwater Influence",
+ "RLR", "Revised Local Reference",
+ "RMS", "Root Mean Square",
+ "RWS", "Rijkswaterstaat",
+ "S2", "Principal solar semidiurnal constituent",
+ "SaaS", "Software as a Service",
+ "SLF", "Sea Level Fingerprint",
+ "STL", "Seasonal Decomposition of Time Series by Loess",
+ "TGBM", "Tide Gauge Benchmark",
+ "TNO", "Nederlandse Organisatie voor Toegepast Natuurwetenschappelijk Onderzoek",
+ "WBI", "Wettelijke BeoordelingsInstrumentarium",
+ "WCRP", "World Climate Research Programme",
+ "WGS84", "World Geodetic System 1984"
+  )
+
+knitr::kable(acroniemen, caption = "Lijst met gebruikte acroniemen")
+```
+
+
+```{r eval=FALSE, include=FALSE}
+
+# Voor verwerking als in https://github.com/rchaput/acronymsdown is een yaml header nodig
+# Dit komt volgens mij al dicht in de buurt
+
+library(yaml)
+
+acrYmlHeader <- as.yaml(list(acronyms = list(key = t(split(acroniemen, acroniemen$shortname)))))
+cat(acrYmlHeader)
+# Bijna goed.. indent mist nog
+
+write_lines(acrYmlHeader, "acroniemHeader.yml")
+
+
+```
+
+

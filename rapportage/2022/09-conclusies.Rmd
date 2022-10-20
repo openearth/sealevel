@@ -1,0 +1,172 @@
+# Conclusies
+
+## Antwoorden
+
+Dit rapport beschrijft een nieuwe versie en actualisatie van de huidige
+zeespiegelstijging ten behoeve het suppletieprogramma
+([\[question:suppletie\]](#question:suppletie){reference-type="ref"
+reference="question:suppletie"}, beantwoord in
+[\[chap:methode\]](#chap:methode){reference-type="ref"
+reference="chap:methode"}). Deze methode laat zien dat de zeespiegel,
+over de periode 1890 tot en met 2017, met een snelheid van 18.6cm/ is
+gestegen tot 6cm boven [NAP]{acronym-label="NAP"
+acronym-form="singular+short"}
+([\[question:stijging\]](#question:stijging){reference-type="ref"
+reference="question:stijging"} in
+[\[sec:huidige\]](#sec:huidige){reference-type="ref"
+reference="sec:huidige"}). Er is er geen sprake van een versnelde
+zeespiegel langs de Nederlandse kust
+([\[question:versnelling\]](#question:versnelling){reference-type="ref"
+reference="question:versnelling"}, beantwoord in
+[\[sec:versnelling-results\]](#sec:versnelling-results){reference-type="ref"
+reference="sec:versnelling-results"}).
+
+Een deel (4.5cm/) van de gemeten zeespiegelstijging langs de kust komt
+door bodemdaling. Dit rapport maakt een beter onderscheid naar de
+verschillende bodemdalingscomponenten
+([\[question:bodemdaling\]](#question:bodemdaling){reference-type="ref"
+reference="question:bodemdaling"}, beantwoord in
+\@ref(bodemdaling-result)).
+
+Doordat de zeespiegel niet sneller is gaan stijgen en doordat de
+zeespiegelstijging voor een deel uit bodemdaling bestaat is de huidige
+zeespiegelstijging lager dan het laagste [KNMI]{acronym-label="KNMI"
+acronym-form="singular+short"} 2014 scenario. Het laagste scenario sluit
+dus het beste aan
+([\[question:aansluiten\]](#question:aansluiten){reference-type="ref"
+reference="question:aansluiten"}, beantwoord in
+[\[sec:scenarios\]](#sec:scenarios){reference-type="ref"
+reference="sec:scenarios"}).
+
+Er zijn verschillen waar we in detail naar hebben gekeken. De
+zeespiegelstijging verschilt tussen de zes hoofdstations en de
+Nederlandse zeespiegelstijging is niet gelijk aan de globale
+zeespiegelstijging. De stations langs de Nederlandse kust verschillen
+van elkaar omdat de absolute zeespiegelstijging niet gelijk is langs de
+kust ([\[question:variatie\]](#question:variatie){reference-type="ref"
+reference="question:variatie"}, beantwoord in
+[\[sec:verschillen\]](#sec:verschillen){reference-type="ref"
+reference="sec:verschillen"}). De stijging wijkt af van de globale
+zeespiegelstijging omdat Nederland gunstig ligt ten opzichte van het
+smeltend ijs en omdat het volume van de dalende oceaanbodem bij de
+zeespiegelstijging wordt opgeteld
+([\[question:verschil\]](#question:verschil){reference-type="ref"
+reference="question:verschil"}, beantwoord in
+[\[sec:versnelling-discussie\]](#sec:versnelling-discussie){reference-type="ref"
+reference="sec:versnelling-discussie"}).
+
+Verschillende toepassingen maken gebruik van diverse indicatoren van de
+zeespiegel, stand of stijging, met of zonder bodemdaling, met
+verschillende zichtduren en voor verschillende type toepassingen
+(ontwerp, beheer, beoordeling en planvorming). Er is geen aansluiting
+tussen de toepassingen
+([\[question:toepassingen\]](#question:toepassingen){reference-type="ref"
+reference="question:toepassingen"}, beantwoord in
+[\[sec:toepassing\]](#sec:toepassing){reference-type="ref"
+reference="sec:toepassing"}).
+
+## Aanbevelingen
+
+Het bij elkaar brengen van inzichten over bodemdaling en
+zeespiegelstijging leert ons dat in Delfzijl een grote relatieve
+zeespiegelstijging heeft plaatsgevonden zonder dat dit uit de
+meetreeksen bleek. Vanuit dit oogpunt adviseren we om bodemdaling en
+zeespiegelstijging altijd bij elkaar meten en te modelleren. Dit kan
+door elk station met een [GNSS]{acronym-label="GNSS"
+acronym-form="singular+short"} uit te rusten en deze gegevens ook te
+analyseren.
+
+Een deel van de conclusies was eerder, eenduidiger en makkelijker te
+trekken als de documenten en gegevens van [RWS]{acronym-label="RWS"
+acronym-form="singular+short"} vollediger en opener publiek beschikbaar
+waren. We adviseren om de historische gegevens en documenten van
+[RWS]{acronym-label="RWS" acronym-form="singular+short"} beter te
+ontsluiten.
+
+Uit
+\@ref(reproduceerbaarheid-monitor) nemen we het advies over om
+de verschillende kenmerkende waarden (bijv. gemiddelde scheve opzet,
+jaarmaxima, getijamplitudes en fases, extreme waarde verdelingen) te
+controleren op i) Mate van documentatie, ii) Traceerbaarheid, iii)
+Overdraagbaarheid, iv) Herhaalbaarheid, en v) Herleidbaarheid. Dit kan
+opgepakt worden in de context van de verbetering van de ontsluiting.
+
+Het delen van data is in de zeespiegelwereld steeds meer gemeengoed
+geworden, maar het delen van code en gebruik van versiebeheer om de
+traceerbaarheid te vergroten nog niet. In
+\@ref(reproduceerbaarheid-monitor),\@ref(reproduceerbaarheid-projecties)
+ en \@ref(frederikse) wordt daarom geadviseerd om software code,
+data en modellen beter beschikbaar te stellen, inclusief
+kwaliteitscontroles (reviews, validaties, testen). De code van de
+zeespiegelmonitor is beschikbaar onder @Baart2017.
+
+In \@ref(frederikse) werd voorgesteld om naast de huidige methode
+ook recoonstructies te gebruiken van getij en windopzet. Hierbij is het
+belangrijk dat van de modellen \acr{GTSM}] en \acr{DCSM} geactualiseerde
+heranalyses met ruime temporele dekking beschikbaar zijn.
+
+Er is veel variatie tussen de verschillende toepassingen van de
+zeespiegelkengetallen. De gebruikte methoden zijn niet altijd
+consistent. Voor toepassingen aan de kust wordt soms gebruik gemaakt van
+absolute zeespiegelstijging, terwijl de relatieve zeespiegelstijging
+(inclusief bodemdaling) relevant is. We adviseren om deze indicatoren
+beter op elkaar af te stemmen.
+
+De huidige zeespiegelstijging in deze methode is geschikt voor
+toepassingen op de termijn tot 15 vooruit, een halve klimaattijdschaal,
+bijvoorbeeld voor ontwerpen met een korte levensduur, kustbeheer en
+beoordeling (indien frequent genoeg). Gebruik klimaatscenario's voor
+langere tijdschalen, met name ontwerpen met een levensduur van langer
+dan 15 en voor planvorming.
+
+Er zijn veel alternatieve feiten in omloop rond de zeespiegel. Dat maakt
+het voor het publiek lastig om goed inzicht te hebben in de huidige
+toestand van Nederland in de context van het water. We adviseren
+[RWS]{acronym-label="RWS" acronym-form="singular+short"} om de
+publieksgerichte informatie te intensiveren met een nadruk op
+consistentie en volledigheid.
+
+## Vervolgonderzoek
+
+Het onderzoek naar zeespiegel heeft een enorme vlucht genomen. Per jaar
+verschijnen er nu op basis van schattingen van Web of Science bijna 4000
+wetenschappelijke papers met de zeespiegel als onderwerp. Dit was in het
+jaar 2000 nog 1300 en in 1980 verschenen 49 papers. Paradoxaal lijken
+deze inspanningen niet te leiden tot een scherper beeld van de
+zeespiegel, integendeel. Er is sprake van wat te boek staat als
+'negative learning' [@Oppenheimer2008]. Over de 20e eeuw lopen de
+schattingen steeds meer uiteen. Ook de recente ontwikkeling van steeds
+hogere extreme zeespiegelscenario's worden als zodanig geduid
+[@Garner2018]. Het is daarom belangrijk om opportuun en kritisch te zijn
+in het bepalen van toekomstige onderzoeksinspanningen.
+
+Thema's die al in regelmatig worden onderzocht zijn zeespiegelbudgetten
+(globaal en regionaal), reconstructies (globaal), trend methodes,
+schattingen van de sterische (globaal en regionaal) en massa componenten
+(globaal en regionaal) en aansluiting tussen metingen en scenario's
+(globaal).
+
+Voor de schatting van de Nederlandse zeespiegel is het vooral relevant
+om degelijke globaal toepasbaar maar lokaal verfijnde heranalyses te
+hebben van de lokale componenten van de variaties in de zeespiegel. We
+hebben nu een verbeterde versie van de bodemdaling componenten. De
+heranalyse die het meest van de zeespiegelvariaties kan verklaren
+beschrijft de historie van getij en wind. Deze zijn in het kader van het
+Copernicus programma in de maak. Deze zouden nog verder verfijnd kunnen
+worden. Indien de heranalyses van sterische componenten, zoals
+\acr{GODAS} [@Behringer2004] over met een grotere tijdsspanne en hogere resolutie
+(kilometers) beschikbaar komen zijn deze ook te overwegen om op te
+nemen.
+
+Scenario's uit het verleden liggen boven de geobserveerde Nederlandse
+zeespiegelstijging. Dat noopt tot een methodologische reflectie. In de
+dagelijkse water- en weersvoorspellingen laten we de berekening alvast
+een tijdje draaien zodat we deze kunnen laten bijsturen door de
+metingen. Daarnaast is het tegenwoordig standaard om van de modellen een
+voorspelkracht (Skill Score) uit te rekenen om een indruk te geven van
+de waarde van het de uitkomst. In de operationele weervoorspellingen
+[@Bauer2015], kustmodellen [@Baart2015a], overstromingsmodellen
+[@Teng2017] en hydrologisch modellen [@Liu2012] heeft dit tot een
+kwaliteitsimpuls geleid. We raden aan om deze innovaties ook in de
+klimaatscenario aanpak door te voeren.
+

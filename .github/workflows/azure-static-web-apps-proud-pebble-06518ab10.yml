@@ -20,14 +20,17 @@ jobs:
           submodules: true
       - uses: r-lib/actions/setup-r@v1
       - uses: r-lib/actions/setup-pandoc@v1
+      - name: Install libcurl
+        run: sudo apt install -y libcurl4-openssl-dev
       - name: Install rmarkdown
-        run: Rscript -e 'install.packages(c("rmarkdown","bookdown"))'
+        run: Rscript -e 'install.packages(c("renv"))'
       - name: Render Book
-        run: Rscript -e 'bookdown::render_book("rapportage/2022/index.Rmd")'
+        run: Rscript -e 'renv::restore(); bookdown::render_book("index.Rmd")'
+        working-directory: rapportage/2022
       - uses: actions/upload-artifact@v1
         with:
           name: _book
-          path: _book/
+          path: rapportage/2022/_book/
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -39,7 +42,7 @@ jobs:
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "/" # App source code path
           api_location: "" # Api source code path - optional
-          output_location: "_book" # Built app content directory - optional
+          output_location: "rapportage/2022/_book"
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:

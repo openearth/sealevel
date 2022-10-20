@@ -1,0 +1,48 @@
+---
+title: "voorbeelden"
+output: bookdown::html_document2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE) # code standaard weergeven
+```
+
+# First level header
+
+## Second header level
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+knitr::kable(summary(cars), caption = "Dit is een genummerde tabel met een header, en met ID = 'cars'. De code wordt weergegeven. ")
+```
+
+You can refer to tables in this way (figuur \@ref(tab:cars)).
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE, fig.cap="Dit is een genummerde figuur met een caption. De code wordt niet weergegeven. "}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. You can refer to figures in this way (figuur \@ref(fig:pressure)). You can also refer to equations, ex equation \@ref(eq:test). 
+
+## Including numbered Equations
+
+\begin{equation} 
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  (\#eq:test)
+\end{equation} 
+ 
+## unnumbered equations
+
+$$f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}$$
+
+## Inline equations
+
+Voor het opnemen van vergelijkingen $\mu p^k$ in een zin. 
+
