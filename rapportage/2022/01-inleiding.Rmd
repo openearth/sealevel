@@ -136,7 +136,42 @@ DiagrammeR::grViz("digraph {
 
 ## Onderzoeksvragen {#onderzoeksvragen}
 
+<<<<<<< HEAD
 Dit rapport heeft als doel om een overzicht te geven van het onderzoek dat in de afgelopen jaren is gedaan in het kader van het onderzoek Kustbeleid. Vanaf 2018 is er richting gegeven aan dit onderzoek vanuit een met de opdrachtgevers afgestemde onderzoeksagenda. In dit rapport worden de volgende centrale vraagstellingen beantwoord.Veel van deze onderzoeken zijn ook als aparte memo's of rapporten gepresenteerd, zie \@ref(bijlagerapporten).
+=======
+Dit rapport heeft als doel de volgende centrale vraagstellingen te beantwoorden. Daarnaast zijn er andere onderzoeksvragen beantwoord in diverse memo's, in bijlage \@ref(bijlagerapporten).
+
+**Missiegedreven beleid**
+
+(ref:vraag-globaal) breid de zeespiegelmonitor uit tot een globaal dekkend, lokaal toepasbare zeespiegelmonitor.
+
+(ref:vraag-kwaliteitsindicatoren) Kwaliteitsindicatoren, aansluiting bij internationale activiteiten. Modules voor signalen, kennis, indicatoren.
+
+-   '(ref:vraag-globaal)'
+-   '(ref:vraag-kwaliteitsindicatoren)'
+
+**De boel onder controle?**
+
+(ref:vraag-ontwerpen) Voor welke zeespiegelstijging zijn de huidige Deltawerken ontworpen? Welke resterende zeespiegel is er over ten opzichte van het oorspronkelijke ontwerp, rekening houdend met bijgestelde normen? In hoeverre zijn de Deltawerken adaptief?
+
+-   '(ref:vraag-ontwerpen)'
+
+**Archivering**
+
+-   Stel een archiveringsplan op om historische gegevens en documenten omtrent de zeespiegelmetingen beter te borgen. Voer archivering uit en beschrijf de resultaten van de archivering (blog post, nieuwsbericht).
+
+**Doelmatigheid**
+
+<!-- -   welke doelmatigheidsverliezen treden op bij het kustonderhoud als we overgaan op een categorische indeling van de zeespiegelstijging? -->
+
+<!-- -   vergelijk de mitigatie en adaptatiekosten vanuit het perspectief van het Nederlands kustbeleid. Welke zeespiegelstijgingseffect verwachten we voor 2100 van de Nederlandse en toegezegde internationale mitigatieinspanningen. Wat zijn de kosten van adapatie van dezelfde zeespiegelstijging voor Nederland? -->
+
+**Alternatieve feiten**
+
+-   maak een factsheet met makkelijk overneembare quotes samen met de voorlichting van een van de ministers en verspreid deze onder de voorlichters.
+
+-   (ref:vraag-faq) Onderhoud FAQ.
+>>>>>>> 3acc47fcef3434b03a2a6d3d84e07089245ce428
 
 **Jaarlijkse zeespiegelmonitor**
 
@@ -159,6 +194,9 @@ Dit rapport heeft als doel om een overzicht te geven van het onderzoek dat in de
 (ref:vraag-gtsm) stap over op het GTSM model als basis voor wind en stormopzet effecten.
 
 (ref:vraag-antarctica) Er zijn een aantal mogelijke bronnen van afsmelten op Antarctica. Wat is hun individuele bijdrage aan de stijging van de zeespiegel aan de Nederlandse kust. Welke moeten we "in de gaten houden"? Is er een effect van de geometrie veranderingen bij Antarctica op het getij bij Nederland?
+
+(ref:vraag-bodemdaling) Bij een globaal dekkend model moet ook de bodemdaling globaal meegenomen worden. Binnen Nederland vindt differentiele bodemdaling plaats langs de kust, zowel door geologische bodemdaling als door winning. Deze zou apart per hoofdgetijdenstation meegenomen moeten worden.
+
 
 -   '(ref:vraag-afstemming-oorzaken)'
 -   '(ref:vraag-hycom)'
