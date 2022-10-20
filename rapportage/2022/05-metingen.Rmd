@@ -33,7 +33,7 @@ De bekende eigenschappen van de constructie van de stations worden in onderstaan
 knitr::include_graphics("figures/VLISSGN.jpg")
 ```
 
-Dit station ligt aan de kade in Vlissingen (51.44210°N, 3.59610°O), nabij de buitenhaven. Het fundament is een stalen damwand met een diepte van -17.6m NAP, en een breedte van 2.2m. Binnen deze damwand liggen de meetinstrumenten. De onderwater kamer is een afgesloten betonnen plaat die zich bevindt op -4.0m \acr{NAP} tot -5.0m NAP. Het station heeft een \acr{GNSS}. Tijdens de storm van 1953 overstroomde de kade waarop het station staat. Hiervan zijn [filmbeelden](https://www.youtube.com/watch?v=bMhM449AarI) beschikbaar.
+Dit station ligt aan de kade in Vlissingen (51.44210°N, 3.59610°O), nabij de buitenhaven. Het fundament is een stalen damwand tot een diepte van -17.6m NAP, en een breedte van 2.2m. Binnen deze damwand liggen de meetinstrumenten. De onderwaterkamer is een afgesloten betonnen plaat die zich bevindt op -4.0m \acr{NAP} tot -5.0m NAP. Het station heeft een \acr{GNSS}. Tijdens de storm van 1953 overstroomde de kade waarop het station staat. Hiervan zijn [filmbeelden](https://www.youtube.com/watch?v=bMhM449AarI) beschikbaar. Er is eind 2006 een GNSS-ontvanger geplaatst.
 
 ### Hoek van Holland
 
@@ -41,7 +41,7 @@ Dit station ligt aan de kade in Vlissingen (51.44210°N, 3.59610°O), nabij de b
 knitr::include_graphics("figures/HOEKVHLD.jpg")
 ```
 
-Het station in Hoek van Holland ligt naast de Nieuwe Waterweg bij de monding van de rivier. De referentiepaal bevindt zich buiten het hoofdgebouw op het vaste land. Het hoofdgebouw is verbonden met het vaste land door een stalen brug. De basis van het hoofdgebouw ligt op stalen palen. Het gebouw is een betonconstructie met een diepte tot -3.0m NAP, hierin bevinden zich de meetinstrumenten. De peilkelder bevindt zich in het hoofdgebouw. De gehele betonconstructie heeft een fundering van meerdere damwanden. Dit zijn 8 betonnen platen (8-zijdig) met een lengte van 14.1 m. De nabijgelegen nulpaal van 28.35m is geplaatst op een diepte van 23.5m. Dit station is door gaswinning 2 centimeter verzakt [@Hijma2018] op basis van een schatting van de winningsschotel. Deze verzakking zit al in de metingen doordat het \acr{NAP} peilmerk hier niet voor is gecorrigeerd, zoals bij Delfzijl wel het geval is. In de buurt van het station is een \acr{GNSS} station geplaatst.
+Het station in Hoek van Holland ligt naast de Nieuwe Waterweg bij de monding van de rivier. De referentiepaal bevindt zich buiten het hoofdgebouw op het vaste land. Het hoofdgebouw is verbonden met het vaste land door een stalen brug. De basis van het hoofdgebouw ligt op stalen palen. Het gebouw is een betonconstructie met een diepte tot -3.0m NAP, hierin bevinden zich de meetinstrumenten. De peilkelder bevindt zich in het hoofdgebouw. De gehele betonconstructie heeft een fundering van meerdere damwanden. Dit zijn 8 betonnen platen (8-zijdig) met een lengte van 14.1 m. De nabijgelegen nulpaal van 28.35m lengte is geplaatst op een diepte van 23.5m. Dit station is door gaswinning 2 centimeter verzakt [@Hijma2018] op basis van een schatting van de winningsschotel. Deze verzakking zit al in de metingen doordat het \acr{NAP} peilmerk hier niet voor is gecorrigeerd, zoals bij Delfzijl wel het geval is. In de buurt van het station is een \acr{GNSS} station geplaatst en in 2022 is op het gebouw een ontvanger geplaatst. 
 
 ### IJmuiden
 
