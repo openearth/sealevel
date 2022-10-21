@@ -1,6 +1,6 @@
 ---
 title: "Zeespiegelmonitor"
-author: "Deltares"
+author: "Deltares, KNMI, HKV"
 # date: "`r Sys.Date()`"
 # site: bookdown::bookdown_site
 documentclass: book
