@@ -92,7 +92,7 @@ Dit rapport maakt gebruikt van alle drie de methoden. In de beschrijving van de 
 
 ## Mondiale zeespiegelstijging {#boekhouding}
 
-Absolute zeespiegelstijging wordt grotendeels veroorzaakt door twee componenten [Zie bijvoorbeeld @Chambers2017]: de totale hoeveelheid water in de oceaan (toename van massa) of in de dichtheid van het water (toename van volume). De globale zeespiegelveranderingen (gemiddeld over alle oceanen) Beide componenten zorgen ervoor dat het oceaanvolume toeneemt.
+Absolute zeespiegelstijging wordt grotendeels veroorzaakt door twee componenten [Zie bijvoorbeeld @Chambers2017]: de totale hoeveelheid water in de oceaan (toename van massa) of in de dichtheid van het water (toename van volume). Beide componenten zorgen ervoor dat het oceaanvolume toeneemt.
 
 Dichtheid
 
@@ -137,7 +137,7 @@ Voor het berekenen van de toename van de volume is niet de temperatuur van het o
 
 ### (SM) Massaveranderingen, gletsjers, landijs en zeeijs
 
-!!!(ontbrekende tekst) liet zien dat ongeveer 1.8 mm van de globale zeespiegelstijging kan worden toegeschreven aan veranderingen in massa. Voorbeelden van processen die bijdragen aan veranderingen in oceaanmassa zijn:
+De globale zeespiegelveranderingen (gemiddeld over alle oceanen) liet zien dat ongeveer 1.8 mm van de globale zeespiegelstijging kan worden toegeschreven aan veranderingen in massa. Voorbeelden van processen die bijdragen aan veranderingen in oceaanmassa zijn:
 
 -   Afvoer van land (rivieren, ijsmassa's, gletsjers, grondwateronttrekkingen)
 -   Veranderingen in opslag van water op land - Smelten van gletsjers en landijs
