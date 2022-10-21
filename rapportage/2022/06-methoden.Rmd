@@ -1,6 +1,4 @@
----
 
----
 
 # Methoden (met alle basisinformatie; verwijzing naar 2015 expliciet toevoegen) {#methoden}
 
