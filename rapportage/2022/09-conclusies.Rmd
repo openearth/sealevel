@@ -21,7 +21,7 @@ reference="question:versnelling"}, beantwoord in
 [\[sec:versnelling-results\]](#sec:versnelling-results){reference-type="ref"
 reference="sec:versnelling-results"}).
 
-Een deel (4.5cm/) van de gemeten zeespiegelstijging langs de kust komt
+Een deel (4.5cm/eeuw) van de gemeten zeespiegelstijging langs de kust komt
 door bodemdaling. Dit rapport maakt een beter onderscheid naar de
 verschillende bodemdalingscomponenten
 ([\[question:bodemdaling\]](#question:bodemdaling){reference-type="ref"
@@ -71,10 +71,8 @@ Het bij elkaar brengen van inzichten over bodemdaling en
 zeespiegelstijging leert ons dat in Delfzijl een grote relatieve
 zeespiegelstijging heeft plaatsgevonden zonder dat dit uit de
 meetreeksen bleek. Vanuit dit oogpunt adviseren we om bodemdaling en
-zeespiegelstijging altijd bij elkaar meten en te modelleren. Dit kan
-door elk station met een [GNSS]{acronym-label="GNSS"
-acronym-form="singular+short"} uit te rusten en deze gegevens ook te
-analyseren.
+zeespiegelstijging altijd bij elkaar te meten en te modelleren. Nu elk station met een [GNSS]{acronym-label="GNSS"
+acronym-form="singular+short"} is uitgerust, is het erg belangrijk dat deze data ook geanalyseerd gaat worden. In principe zal dit opgepakt worden binnen de Bodemdalingsmonitor.
 
 Een deel van de conclusies was eerder, eenduidiger en makkelijker te
 trekken als de documenten en gegevens van [RWS]{acronym-label="RWS"
