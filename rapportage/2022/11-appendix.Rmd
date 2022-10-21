@@ -1,10 +1,11 @@
-# (APPENDIX) Appendix {.unnumbered}
 
-## Rapporten en memo's {#bijlagerapporten}
+# (APPENDIX) Appendix {-} 
+
+# Rapporten en memo's {#bijlagerapporten}
 
 [Zeespiegelstijging in ontwerpnormen stormvloedkeringen : inventarisatie van zeespiegelstijging in ontwerpnormen van de Oosterscheldekering en de Maeslantkering](https://kennisbank.deltares.nl/Details/fullCatalogue/1000020898){target="_blank"} [@Oerlemans2022]
 
-Samenvatting: De aanleiding voor voorliggend rapport is dat in de Tweede Kamer en in de media verschillende zeespiegelcijfers circuleren. Doelstelling van deze studie was te inventariseren hoe zeespiegelstijging is meegenomen in het ontwerp van de Oosterscheldekering en de Maeslantkering. Het onderzoek bestond uit een bureaustudie en semigestructureerde interviews met experts die betrokken zijn geweest bij het ontwerp van de Maeslantkering en de Oosterscheldekering. In het onderzoek zijn de snelheid van zeespiegelstijging, levensduur en toeslagwaarde geïnventariseerd. Daarbij is nadrukkelijk gekeken naar de uitgangspunten die zijn meegenomen in het ontwerp. Daarnaast is geanalyseerd of de toeslagwaarde op logische wijze uit de snelheid van de zeespiegelstijging en de levensduur volgt.
+Samenvatting: Doelstelling van deze studie was te inventariseren hoe zeespiegelstijging is meegenomen in het ontwerp van de Oosterscheldekering en de Maeslantkering. Het onderzoek bestond uit een bureaustudie en semigestructureerde interviews met experts die betrokken zijn geweest bij het ontwerp van de Maeslantkering en de Oosterscheldekering. In het onderzoek zijn de snelheid van zeespiegelstijging, levensduur en toeslagwaarde geïnventariseerd. Daarbij is nadrukkelijk gekeken naar de uitgangspunten die zijn meegenomen in het ontwerp. Daarnaast is geanalyseerd of de toeslagwaarde op logische wijze uit de snelheid van de zeespiegelstijging en de levensduur volgt.
 
 [Advies kenmerkende waarden kust : overzicht zeespiegelindicatoren](https://kennisbank.deltares.nl/Details/fullCatalogue/70785){target="_blank"} [@Nicolai2020a]
 
