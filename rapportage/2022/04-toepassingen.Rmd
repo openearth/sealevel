@@ -91,47 +91,58 @@ over het benodigde suppletievolume voor de jaren daarna. Kustfundament,
 zeespiegelstijging en suppletievolume zijn direct gekoppeld aan elkaar.
 De basis voor het huidige suppletievolume is een rapport uit het jaar
 2000. Mulder (2000) stelt dat de totale suppletiebehoefte bij
-gelijkblijvende trend in de zeespiegelstijging van 20 cm/eeuw wordt
-geschat op gemiddeld 12 Mm^3^/jaar (met een maximum van 16 miljoen
-Mm^3^/jaar). In het geschatte volume is niet alleen rekening
-gehouden met zandverlies van het kustfundament, maar ook dat van de
-Waddenzee en de Westerschelde. Basisuitgangspunt bij de bepaling van het
+gelijkblijvende trend in de zeespiegelstijging van 20 $cm/eeuw$ wordt
+geschat op gemiddeld 12 $Mm^3/jaar$ (met een maximum van 16 miljoen
+Mm^3^/jaar). In het geschatte volume is niet alleen rekening gehouden
+met zandverlies van het kustfundament, maar ook dat van de Waddenzee en
+de Westerschelde. Basisuitgangspunt bij de bepaling van het
 suppletievolume is de aanname dat de sedimentvraag van de kust op lange
 termijn bepaald wordt door het oppervlak van het zanddelende
 kustsysteem.
 
-Naam
+|            |                                                                               |
+|-------------------------------------|-----------------------------------|
+| Naam       | Huidige zeespiegelstijging                                                    |
+| Definitie  | De langjarige trend in de jaargemiddelde zeespiegel voor de zes hoofdstations |
+| Grootheid  | Waterstand ten opzichte van \acr{NAP}                                         |
+| Toepassing | Beheer en onderhoud Kust                                                      |
+| Oorsprong  | 3e Kustnota (2000)                                                            |
+| Producent  | Deltares                                                                      |
+| Gebruiker  | Rijkswaterstaat                                                               |
+| Literatuur | Mulder (2000), [@Dillingh2010], [@Ronde2014], [@Baart2015]                                                              |
 
-:   Huidige zeespiegelstijging
+<!-- Naam -->
 
-Definitie
+<!-- :   Huidige zeespiegelstijging -->
 
-:   De langjarige trend in de jaargemiddelde zeespiegel voor de zes
-    hoofdstations.
+<!-- Definitie -->
 
-Grootheid
+<!-- :   De langjarige trend in de jaargemiddelde zeespiegel voor de zes -->
+<!--     hoofdstations. -->
 
-:   Waterstand ten opzichte van \acr{NAP}
+<!-- Grootheid -->
 
-Toepassing
+<!-- :   Waterstand ten opzichte van \acr{NAP} -->
 
-:   Beheer en onderhoud Kust
+<!-- Toepassing -->
 
-Oorsprong
+<!-- :   Beheer en onderhoud Kust -->
 
-:   3e Kustnota (2000)
+<!-- Oorsprong -->
 
-Producent
+<!-- :   3e Kustnota (2000) -->
 
-:   Deltares
+<!-- Producent -->
 
-Gebruiker
+<!-- :   Deltares -->
 
-:   Rijkswaterstaat, programma Kustlijnzorg, programma Kustgenese
+<!-- Gebruiker -->
 
-Literatuur
+<!-- :   Rijkswaterstaat, programma Kustlijnzorg, programma Kustgenese -->
 
-:   Mulder (2000), [@Dillingh2010], [@Ronde2014], [@Baart2015]
+<!-- Literatuur -->
+
+<!-- :   Mulder (2000), [@Dillingh2010], [@Ronde2014], [@Baart2015] -->
 
 ## Delfstoffenwinning
 
@@ -390,7 +401,7 @@ Kustnota stelt verder strenge voorwaarden aan bebouwing langs de kust.
 Zo moet rekening worden gehouden met de planologische reservering, zijn
 harde elementen in de afslagzone en reserveringsstrook die het wezen van
 de flexibele kust aantasten niet toegestaan en mag nieuwe bebouwing geen
-belemmering vormen voor het proces van afslag. Dit is onlangs nog eens
+belemmering vormen voor het proces van afslag. Dit is
 bekrachtigd in het voorlopige Kustpact. De waterschappen hebben het
 begrip reserveringszone (ook wel vrijwaringszone genoemd) hernoemd naar
 "profiel van vrije ruimte" en gesteld dat het het deel van de zone is
