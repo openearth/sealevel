@@ -320,13 +320,13 @@ knitr::kable(
 
 De invloed van autocompactie en tektoniek, langs de Nederlandse kust, worden door @Hijma2017 geschat op minder dan 0.1mm/. De bijdrage van isostasie is groter in Noord Nederland (0.3 mm/jaar--0.7 mm/jaar) dan in Zuid Nederland (0.2 mm/jaar--0.5 mm/jaar), zoals te zien in figuur \@ref(fig:bodemdaling-isostasie). De gevolgen van zout en gaswinning staan weergegeven in figuur \@ref(fig:bodemdaling-winningen). Tot nu toe zijn het vooral de gaswinningen die voor een aanzienlijke bodemdaling hebben gezorgd.
 
-```{r bodemdaling-isostasie, fig.cap="Bodemdaling door tektoniek en isostasie, uit [@Hijma2018]."}
-knitr::include_graphics("figures/bodemdaling-isostasie.png")
+```{r bodemdaling-isostasie, fig.cap="Bodemdaling door tektoniek en isostasie, uit [@Hijma2022]."}
+knitr::include_graphics("figures/Totgeol100yr_v3.png")
 ```
 
-```{r bodemdaling-winningen, fig.cap="Bodemdaling door winningen (verleden, verwacht), uit [@Hijma2018]", fig.show='hold', out.width='50%'}
-knitr::include_graphics("figures/bodemdaling_winning.png")
-knitr::include_graphics("figures/bodemdaling_winning_verwacht.png")
+```{r bodemdaling-winningen, fig.cap="Bodemdaling door winningen (verleden, verwacht), uit [@Hijma2022]", fig.show='hold', out.width='50%'}
+knitr::include_graphics("figures/Gaswinningpre2017_v2.png")
+knitr::include_graphics("figures/Gaswinningpre2018_50_v1.png")
 ```
 
 Een andere manier om de bodemdaling te bepalen is om de zeespiegel zowel relatief als absoluut te bepalen. Dit wordt gedaan door de getijstations met \acr{GNSS} apparatuur uit te rusten. Hiermee kan de verandering ten opzichte van de peilbout bepaald worden, maar ook ten opzichte van de geoïde. De hoofdstations van IJmuiden en Vlissingen stations zijn nu uitgerust met \acr{GNSS}. In de buurt van Hoek van Holland en Delfzijl zijn \acr{GNSS} stations geplaatst. De eerste resultaten van de uitgebreide analyse van deze gegevens worden volgend jaar verwacht. De gegevens zijn ook opgenomen in internationale datasets. Het kadaster zal de gegevens in September 2019 als open data beschikbaar maken. Naast het vaststellen van de bodemdaling voor de verschillende lagen in de bodem is het ook nodig om te bepalen ten opzichte waarvan we meten. Dit wordt uitgebreid beschreven in paragraaf \@ref(nulpaal). Sinds 1958 meten we de zeespiegelstijging ten opzichte van de diepte van de nulpalen. Hoe diep de nulpalen zijn gefundeerd staat beschreven in het overzicht van de hoofdstations in paragraaf \@ref(station-overzicht). Simpel samengevat zeggen we doorgaans dat ze gefundeerd zijn op het Pleistoceen. Voor 1958 zullen de merken minder diep zijn gefundeerd en deels in het Holoceen (van de ijstijd tot nu) gefundeerd zijn. In de periode 1890-1958 zal dus ook nog een deel van bodemdaling van de Holocene afzettingen zitten. Een overzicht van de bodemdalingscomponenten per station staan in tabel \@ref(tab:bodemdaling-per-station). Nu we bepaald hebben welke bodemdalingprocessen plaatsvinden in de verschillende lagen en ten opzichte van welke diepte we hebben gemeten kunnen we vaststellen welke bodemdalingscomponent in de relatieve zeespiegelstijging zit. We gaan er van uit dat de tektonische bodembeweging, de isostatische bodembeweging en, met uitzondering van Delfzijl, de bodembeweging door winningen onderdeel uitmaken van de relatieve zeespiegelstijging zoals deze langs de Nederlandse kust wordt gemeten.
