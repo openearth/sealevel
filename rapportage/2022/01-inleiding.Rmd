@@ -203,6 +203,7 @@ Dit rapport heeft als doel de volgende centrale vraagstellingen te beantwoorden.
 -   '(ref:vraag-hycom)'
 -   '(ref:vraag-gtsm)'
 -   '(ref:vraag-antarctica)'
+-   '(ref:vraag-bodemdaling)'
 
 **Verbetering meetmethoden**
 
