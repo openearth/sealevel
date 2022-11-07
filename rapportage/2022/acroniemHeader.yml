@@ -1,6 +1,8 @@
 ---
 acronyms:
   keys:
+    - shortname: 20CR
+      longname: 20th Century (Climate) Reanalysis
     - shortname: AGRS
       longname: Actief GNSS Referentie Systeem
     - shortname: AHN
