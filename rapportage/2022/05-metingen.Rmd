@@ -123,7 +123,7 @@ In [3](#fig:nap-history){reference-type="ref" reference="fig:nap-history"} zien 
 knitr::include_graphics("figures/nap-history.png")
 ```
 
-## (SM) Satellietmeting van de zeehoogte
+## (SM) Satellietmeting van de zeehoogte {#satellietmetingen}
 
 Deze sectie geeft een overzicht van satellietmetingen van de zeehoogte (altimetrie). De altimetrie satellieten zijn begonnen met meten in 1992, met de lancering van de TOPEX/Poseidon satelliet. Over de afgelopen decennia is met meerdere satellieten de zeehoogte vastgesteld. De satellieten beschikken over een radar altimeter waarmee de zeehoogte wordt vastgesteld.
 
