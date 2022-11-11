@@ -2,6 +2,28 @@
 
 In de voorgaande hoofdstukken hebben we gekeken naar de oorzaken van zeespiegelstijging, de toepassingen in het Nederlands beleid en hebben we de actuele of huidige zeespiegelstand en -stijging bepaald. In deze context is er nog een aantal punten die relevant zijn om te bespreken.
 
+## Toepassingsbereik van de methode
+
+Is de gebruikte methode doelmatig voor het beoogde gebruik? Hiervoor is het nodig om de methode op te splitsen in de verschillende onderdelen. 
+
+Er is gekozen voor de hoofdstations langs de Nederlandse kust, omdat deze het beste de relatieve zeespiegel aangeven voor onze kust. Satellietgegevens hebben een grotere ruimtelijke dekking, maar zijn niet gedetailleerd genoeg in de kustzone (zie paragraaf \@ref(satellietmetingen)). Van het hoofdstation Delfzijl is gebleken dat er een achterstand is in de verticale correcties t.o.v. \acr{NAP}. Daarom is dit station niet meegenomen in de hoofdresultaten (hoofstuk \@ref(resultaten)). 
+
+Volgens de criteria die we hanteren voor modelkeuze is met het \acr{AIC} principe een keuze gemaakt voor het ... model. Dit is het meest geschikte model voor schatting van de huidige zeespiegel, en de zeespiegelstijging over de afgelopen periode.
+
+Een correctie voor stormopzet en -afzet is gedaan met behulp van het GTSM model. Deze methode is zeer geschikt om het effect van wind op de zeespiegel te schatten in de periode van 1979 tot nu. Voor eerdere jaren kan het effect van wind geschat worden met een correlatieve methode (paragraaf \@ref(methoden-wind)).  
+
+Voor kustonderhoud via zandsuppletie: Ja
+
+Voor budgettering op middellange termijn (10-15 jaar vooruit): Nee
+
+Voor signalering of de zeespiegel versnelt: alleen historisch
+
+
+
+
+
+
+
 ## (SD) Versnelling {#versnelling-discussie}
 
 De zeespiegel aan de Nederlandse kust stijgt. We zien geen noemenswaardige versnelling. Dat roept bij menigeen vragen op als:
@@ -70,7 +92,7 @@ In de toekomst, als de gegevens bij de kust nauwkeuriger worden, zullen we gelei
 
 Om deze transitie goed uit te voeren is het belangrijk dat we een ruime periode van dubbeluitgevoerde metingen hebben inclusief de aansluiting op globale en lokale hoogtereferentiesystemen. Voorlopig zijn lokale metingen ten opzichte van waterpassingen nauwkeuriger. De [GNSS]{acronym-label="GNSS" acronym-form="singular+short"} hoogtes zijn onnauwkeuriger te meten en maken gebruik van een quasi-geoïde.
 
-## Verschillen binnen Nederland {#sec:verschillen}
+## Verschillen binnen Nederland {#verschillen}
 
 Zowel de zeespiegelstand (hoe hoog ligt de lijn) als de zeespiegelstijging (hoe steil is de lijn) varïeren langs de Nederlandse kust. Daarvoor zijn verschillende mogelijke oorzaken waarvan we er een aantal hebben teruggezien.
 
@@ -98,4 +120,4 @@ De belangrijkste conclusie is dat de zeespiegel langs de Nederlandse kust niet u
 
 Van de bekende interventies zien we de aanleg van de Afsluitdijk terug in Den Helder. De grootste effecten van veranderingen aan de kust zien we terug in getijamplitudes [@Hollebrandse2005]. Het bepalen van de effecten van de aanleg van objecten op basis van alleen tijdseries is een beetje koffiedik kijken. Als er een verandering optreedt kort na een interventie is dat nog niet zeker een causaal verband. De verandering had niet moeten optreden als de interventie niet uitgevoerd was, en dat weten we niet. Daarom is het beter om dit soort analyses uit te voeren door een combinatie van effect studies met modellen en verificatie met metingen.
 
-Dit overwegende komen we tot de conclusie dat de oorzaken van de verschillen in trends tussen de stations het meest waarschijnlijk hun oorsprong vinden in absolute zeespiegelvariaties. De verschillen in absolute waarden kunnen veroorzaakt zijn door de methodiek van de nulpalen en de vaststelling van het \acr{NAP}. Nu alle stations uitgerust zijn met \acr{GNSS}-ontvangers komt hier op niet al te lange termijn uitsluitsel over. Dit beantwoordt [$$question:variatie$$](#question:variatie){reference-type="ref" reference="question:variatie"}, waarom de stations langs de Nederlandse kust van elkaar verschillen. $$answer:variatie$$
+Dit overwegende komen we tot de conclusie dat de oorzaken van de verschillen in trends tussen de stations het meest waarschijnlijk hun oorsprong vinden in absolute zeespiegelvariaties. De verschillen in absolute waarden kunnen veroorzaakt zijn door de methodiek van de nulpalen en de vaststelling van het \acr{NAP}. Nu alle stations uitgerust zijn met \acr{GNSS}-ontvangers komt hier op niet al te lange termijn uitsluitsel over.
