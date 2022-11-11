@@ -29,11 +29,11 @@ toepassing wordt een overzicht gegeven van de volgende aspecten.
 
 Definitie
 
-:   de wijze waarop het is opgeschreven en de interpretatie
+:   de wijze waarop de toepassing is opgeschreven en de interpretatie
 
 Grootheid
 
-:   hoogwater, laagwater, gemiddelde waterstand
+:   bijvoorbeeld hoogwater, laagwater, gemiddelde waterstand
 
 Categorie
 
@@ -65,9 +65,8 @@ Verantwoording
 
 ## Kustbeheer
 
-Zoals in de besproken heeft de overheid zich als taak gesteld om de
-kustlijn en het kustfundament dynamisch te handhaven. In het kader van
-de vergelijking werken we hier de verschillende aspecten verder uit.
+De overheid heeft zich als taak gesteld om de
+kustlijn en het kustfundament dynamisch te handhaven. We werken hier de verschillende aspecten verder uit.
 
 Het handhaven gebeurt in de vorm van zandsuppleties. Het
 beleidsuitgangspunt is dat geen structurele erosie van de kustlijn
@@ -79,7 +78,7 @@ Visie Kust, 2013; Beslissing Zand, 2014; Suppletieprogramma
 Kustlijnzorg; 2015). Het benodigde zandvolume om mee te groeien wordt
 voor een belangrijk deel bepaald als het product van 'het oppervlak van
 het kustfundament' en 'de actuele zeespiegelstijging'. De trend in de
-actuele zeespiegelstijging is dus de indicator die voor het beheer en
+actuele zeespiegel is dus de indicator die voor het beheer en
 onderhoud van de kust wordt gebruikt.
 
 Sinds 2001 wordt jaarlijks gemiddeld 12 Mm^3^ zand gesuppleerd langs de
@@ -154,7 +153,7 @@ tientallen jaren, waarbij tussentijds ingrijpen mogelijk is, als dit
 nodig zou blijken te zijn. De ruimte voor winning wordt mede bepaald
 door de snelheid van de zeespiegelstijging. Het betreffende
 beleidsscenario wordt elke 5 jaar geactualiseerd op basis van recente
-inzichten.
+inzichten. Er is tevens een door \{EZK} een uitwerking gemaakt voor het eventueel aanpassen van de winning in geval van crisis, [het bescherm- en herstelplan gas](https://open.overheid.nl/repository/ronl-c696bb3e-b8a9-411f-aabd-f539bc0ebed2/1/pdf/Bescherm%20en%20Herstelplan%20Gas.pdf). 
 
 Het \acr{TNO} heeft dit uitgewerkt in een advies [@Kroon2016] om
 rekening te houden met zowel een trend als een versnelling in de

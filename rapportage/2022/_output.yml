@@ -22,7 +22,7 @@ bookdown::bs4_book:
   # includes:
   #   before_body: navbar/navbar.html
   #   in_header: clickandzoom.html
-  # css: ["navbar/navbar.css", "style/deltares.css"]
+  # css: ["navbar/navbar.css", "style/deltares.css", "style.css", "draft.css"]
   pandoc_args: !expr acronymsdown::add_filter()
 bookdown::pdf_book:
   includes:

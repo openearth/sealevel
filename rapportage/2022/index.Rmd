@@ -1,15 +1,14 @@
 ---
 title: "Zeespiegelmonitor"
 author: "Deltares, KNMI, HKV"
-# date: "`r Sys.Date()`"
-# site: bookdown::bookdown_site
+date: "`r Sys.Date()`"
 documentclass: book
 site: bookdown::bookdown_site
-bibliography: [bib/book.bib, bib/bibhkv.bib, bib/R.bib, bib/sealevel.bib, bib/willems.bib]#, bib/Hijma_refs.bib]
+bibliography: [bib/book.bib, bib/bibhkv.bib, bib/R.bib,  bib/willems.bib, bib/sealevel.bib] #bib/sealevel.bib,
 biblio-style: apalike
 link-citations: yes
 acronyms:
-  loa_title: "Lijst met afkortingen"
+  loa_title: "Lijst met afkortingen {#lijst-met-afkortingen}"
   include_unused: false
   insert_loa: false
   insert_links: true
@@ -23,7 +22,7 @@ always_allow_html: true
 description: "Dit is de Zeespiegelmonitor. De Zeespiegelmonitor wordt gemaakt door Deltares met bijdragen van HKV en KNMI in opdracht van Rijkswaterstaat. "
 ---
 
-# Samenvatting (AANPASSEN) {#samenvatting}
+# Samenvatting {#samenvatting}
 
 <!-- Dit rapport beschrijft de onderzoeksresultaten van de zeespiegelmonitoring onderzoeksagenda 2016-2018. In de afgelopen drie jaar is gewerkt om beter inzicht te krijgen in de metingen van de zeespiegel langs de Nederlandse kust. -->
 
@@ -39,5 +38,7 @@ description: "Dit is de Zeespiegelmonitor. De Zeespiegelmonitor wordt gemaakt do
 
 <!-- We adviseren om kritisch te kijken naar de discrepantie tussen de gemeten zeespiegel en de zeespiegelstijging die we in het verleden voor de toekomst geprojecteerd hebben. We kunnen beter gaan meten, bijvoorbeeld door alle getijstations met GNSS apparatuur uit te rusten. In de komende jaren zal gewerkt worden aan een betere ontsluiting van zeespiegelinformatie via de publieke kanalen van Rijkswaterstaat. -->
 
+\printacronyms 
 
-\printacronyms
+
+<!-- {#lijst-met-afkortingen} -->

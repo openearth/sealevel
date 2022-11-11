@@ -1,7 +1,238 @@
 
 # (APPENDIX) Appendix {-} 
 
+
+
+# Raakvlakken {#app-raakvlakken}
+
+Er wordt in veel onderzoeksprogramma's en door verschillende instituten gerefereerd aan, of gebruikt gemaakt van de zeespiegel langs de Nederlandse kust zoals die in de Zeespiegelmonitor berekend wordt. We maken hier onderscheid onder:
+
+-   Onderzoeksprogramma's, kennisprogramma's en onderzoeksprojecten: vaak meerjarige projecten of gebundelde projecten met als doel om kennis te vergroten/verdiepen
+-   Instituten die betrokken zijn bij de onderzoeksactiviteiten
+-   Dashboards: Visueel ingestelde informatiebronnen op internet die met als doel om kennis publiek te delen
+
+Een actuele lijst met raakvlakken staat in appendix \@ref(app-raakvlakken).
+
+
+**Programma's**
+
+```{r programmas, eval=F, include=FALSE}
+
+# poging om tabel vanuit Excel in te lezen. Werkt niet goed met de links in de tabel in combinatie met het goed uitlijnen. 
+# 
+
+programmas <- read_excel("../../data/deltares/intern/raakvlakken.xlsx", sheet = "listProjects")
+
+if(knitr::is_html_output()){
+programmas %>% 
+  mutate(
+    programma = paste0("[", programma, "]", "(", URL, ")")
+    ) %>% replace(is.na(.), "") %>%
+  select(programma, relatie, indicator) %>%
+  knitr::kable(caption = "Onderzoeksprogramma's en projecten die raken aan de Zeespiegelmonitor.")
+}
+
+if(knitr::is_latex_output()){
+programmas %>%
+    mutate(test = paste0("\\href{http://", URL, "}{", programma, "}")) %>%
+    select(programma, relatie, indicator) %>%
+    knitr::kable("latex", escape = F, booktabs = T, caption = "Onderzoeksprogramma's en projecten die raken aan de Zeespiegelmonitor.")
+}
+
+
+```
+
+-   [Onderzoek bodemdaling](https://www.tno.nl/nl/aandachtsgebieden/energietransitie/expertisegroepen/geomodelling/bodemdaling-in-nederland/)
+-   [Onderzoeksprogramma Kustgenese](https://www.helpdeskwater.nl/onderwerpen/waterveiligheid/kust/kustgenese-2-0/)
+-   [Onderzoeksprogramma BenO Kust](https://publicwiki.deltares.nl/pages/viewpage.action?pageId=131138795)
+-   [Kennisprogramma Zeespiegelstijging (KPZSS)](https://www.deltaprogramma.nl/deltaprogramma/kennisontwikkeling-en-signalering/zeespiegelstijging)
+    -   [KP ZSS- Spoor I - Zeespiegelstijging en Antarctica]()
+    -   [KP ZSS- Spoor II - Systeemverkenningen](https://www.rijkswaterstaat.nl/water/waterbeheer/bescherming-tegen-het-water/maatregelen-om-overstromingen-te-voorkomen/kennisprogramma-zeespiegelstijging/index.aspx)
+    -   [KP ZSS- Spoor III - Signaleringsmethodiek]()
+    -   [KP ZSS- Spoor IV - Langetermijnopties](https://www.deltaprogramma.nl/deltaprogramma/kennisontwikkeling-en-signalering/zeespiegelstijging/spoor-4)
+    -   [KP ZSS- Spoor V - Implementatiestrategie]()
+-   [Hoogwaterbeschermingsprogramma (HWBP)](https://www.hwbp.nl/projecten)
+
+**Instituten**
+
+-   [NIOZ](https://www.nioz.nl/en)
+-   [Universiteit Utrecht](https://www.uu.nl/onderzoek)
+-   [TU Delft](https://www.tudelft.nl/onderzoek)
+-   [KNMI](https://www.knmi.nl/)
+-   [Deltares](https://www.deltares.nl/nl/)
+-   [TNO](https://www.tno.nl/nl/)
+-   [PBL](https://www.pbl.nl/)
+
+**Dashboards** gericht op de Nederlandse zeespiegel
+
+-   Compendium voor de leefomgeving - Klimaatverandering dashboard - [Zeespiegelstijging langs de Nederlandse kust en mondiaal, 1890-2018](https://www.clo.nl/indicatoren/nl0229-zeespiegelstand-nederland-en-mondiaal)
+-   Zeespiegelmonitor dashboard - [Gemeten en geprojecteerde zeespiegel langs de Nederlandse kust](https://deltares.shinyapps.io/sealevelFlexDashboard/)
+-   KNMI - [Klimaatverandering dashboard - Zeespiegel](https://www.knmi.nl/klimaatdashboard)
+-   Deltaprogramma [signaaldashboard - zeespiegel](https://www.deltaprogramma.nl/deltaprogramma/kennisontwikkeling-en-signalering/signaalgroep/signaaldashboard/zeespiegel)
+-   [Bodemdalingsmonitor](https://puc.overheid.nl/rijkswaterstaat/doc/PUC_695110_31/1/)
+
+**Mondiale dashboards**
+
+-   European Environmental Agency (EEA) dashboard of [Global and European sea level rise](https://www.eea.europa.eu/ims/global-and-european-sea-level-rise)
+-   NASA Vital Signs of the Planet - [Sea Level](https://climate.nasa.gov/vital-signs/sea-level/)
+
+```{r, eval=F}
+DiagrammeR::grViz("digraph {
+
+  graph [overlap = true, fontsize = 10, layout = dot, rankdir = LR]
+  
+  node [shape = rectangle,
+      style = filled,
+      color = DarkSeaGreen2,
+      label = '']
+      
+  Huidig [label = 'huidige ZSS']
+  Zeespiegel [label = 'Zeespiegel']
+  Projectie [label = 'Projecties ~ 100 j']
+  Hoogwater [label = 'Hoogwaters']
+
+  node [shape = rectangle,
+      style = filled,
+      color = LightSteelBlue2,
+      label = '']
+  
+  ZSM [label =  'Zeespiegelmonitor']
+  Klimadash [label = 'Klimaatdashboard']
+  BOI [label = 'Programma BOI']
+  KennisZSSI [label = 'Kennisprogramma ZSS spoor I']
+  KennisZSSII [label = 'Kennisprogramma ZSS spoor II']
+  KennisZSSIII [label = 'Kennisprogramma ZSS spoor III']
+  KennisZSSIV [label = 'Kennisprogramma ZSS spoor IV']
+  
+
+  
+  # edge definitions with the node IDs
+  
+  ZSM->Huidig 
+  Huidig->Zeespiegel
+  Klimadash->Projectie
+  BOI->Hoogwater
+  KennisZSSI->
+  KennisZSSII->
+  KennisZSSIII->
+  KennisZSSIV->
+  
+  }",
+  width = 800)
+```
+
+<!-- ### Internationaal -->
+
+<!-- *   [The Intergovernmental Panel on Climate Change (IPCC)](https://www.ipcc.ch/) -->
+
+<!-- *   [The Permanent Service for Mean Sea Level (PSMSL)](https://psmsl.org/data/) -->
+
+# Onderzoeksvragen {#app-onderzoeksvragen}
+
+**Jaarlijkse zeespiegelmonitor**
+
+(ref:vraag-huidige-stijging) Wat is de huidige stijging van de zeespiegel? Wat zijn de laatste ontwikkelingen op het gebied van de toestand van de globale en lokale zeespiegel?
+
+-   '(ref:vraag-faq)'
+-   '(ref:vraag-stijging)'
+
+**Gezamenlijkheid**
+
+(ref:vraag-afstemming-indicatoren) Probeer afstemming of aansluiting te bereiken tussen de verschillende zeespiegelindicatoren voor bepaling van huidige zeespiegelstijging en versnellingsdetectie tussen Deltaprogramma, TNO, PBL en Deltares.
+
+-   '(ref:vraag-afstemming-indicatoren)'
+
+**Uitsplitsing oorzaken voor zeespiegelstijging**
+
+(ref:vraag-afstemming-oorzaken) probeer afstemming te bereiken tussen de verschillende methoden van het gezamenlijk presenteren van projecties en zeespiegelmetingen
+
+(ref:vraag-hycom) voeg het effect van temperatuur en dichtheidsstromingen toe op basis van het HYCOM model.
+
+(ref:vraag-gtsm) stap over op het GTSM model als basis voor wind en stormopzet effecten.
+
+(ref:vraag-antarctica) Er zijn een aantal mogelijke bronnen van afsmelten op Antarctica. Wat is hun individuele bijdrage aan de stijging van de zeespiegel aan de Nederlandse kust. Welke moeten we "in de gaten houden"? Is er een effect van de geometrie veranderingen bij Antarctica op het getij bij Nederland?
+
+(ref:vraag-bodemdaling) Bij een globaal dekkend model moet ook de bodemdaling globaal meegenomen worden. Binnen Nederland vindt differentiele bodemdaling plaats langs de kust, zowel door geologische bodemdaling als door winning. Deze zou apart per hoofdgetijdenstation meegenomen moeten worden.
+
+-   '(ref:vraag-afstemming-oorzaken)'
+-   '(ref:vraag-hycom)'
+-   '(ref:vraag-gtsm)'
+-   '(ref:vraag-antarctica)'
+<!-- -   '(ref:vraag-bodemdaling)' -->
+
+**Verbetering meetmethoden**
+
+(ref:vraag-optimalisatie-meetnet) Hoe kunnen we het Landelijk Meetnet Water op het gebied van relatieve zeespiegelstijging optimaliseren
+
+-   '(ref:vraag-optimalisatie-meetnet)'
+
+**Missiegedreven beleid**
+
+(ref:vraag-globaal) Breidt de zeespiegelmonitor uit tot een globaal dekkend, lokaal toepasbare zeespiegelmonitor.
+
+(ref:vraag-kwaliteitsindicatoren) Kwaliteitsindicatoren, aansluiting bij internationale activiteiten. Modules voor signalen, kennis, indicatoren.
+
+-   '(ref:vraag-globaal)' <!-- -   '(ref:vraag-kwaliteitsindicatoren)' -->
+
+**De boel onder controle?**
+
+(ref:vraag-ontwerpen) Voor welke zeespiegelstijging zijn de huidige Deltawerken ontworpen? Welke resterende zeespiegel is er over ten opzichte van het oorspronkelijke ontwerp, rekening houdend met bijgestelde normen? In hoeverre zijn de Deltawerken adaptief?
+
+-   '(ref:vraag-ontwerpen)'
+
+**Archivering**
+
+(ref:vraag-archivering) Stel een archiveringsplan op om historische gegevens en documenten omtrent de zeespiegelmetingen beter te borgen. Voer archivering uit en beschrijf de resultaten van de archivering.
+
+<!-- opnemen in discussie: veel documentatie verwerkt in NAP info (bodemdaling) en Waterinfo-extra (zeespiegelproducten) -->
+
+-   '(ref:vraag-archivering)'
+
 # Rapporten en memo's {#bijlagerapporten}
+
+In het kader van de ontwikkeling van de Zeespiegelmonitor voor de komende jaren zijn in 2022 twee workshops gehouden met als doel om de methoden en onderzoeksvragen binnen de Zeespiegelmonitor voor de komende jaren op een breed gedragen manier vast te leggen. De uitkomsten zijn gebruikt in de rapportage, en komen voornamelijk terug in hoofdstukken \@ref(methoden) en \@ref(vervolgonderzoek). 
+
+**Aantekeningen workshop Zeespiegelmonitor methodiek**
+
+```{r, results='asis'}
+
+if(knitr::is_html_output()){
+  '<object data="documents/11208038-000-ZKS-0004_v0.1-Workshop Zeespiegelmethodiek verslag final.pdf" type="application/pdf" width="100%" height="700px">
+    <embed src="documents/11208038-000-ZKS-0004_v0.1-Workshop Zeespiegelmethodiek verslag final.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="documents/11208038-000-ZKS-0004_v0.1-Workshop Zeespiegelmethodiek verslag final.pdf">Download PDF</a>.</p>
+    </embed>
+</object>'
+} else {
+  cat(
+    "\\includepdf[pages=-]{documents/11208038-000-ZKS-0004_v0.1-Workshop Zeespiegelmethodiek verslag final.pdf}"
+  )
+}
+```
+
+
+
+
+
+**Aantekeningen workshop onderzoeksagenda 2023-2025**
+
+
+```{r, results='asis'}
+
+if(knitr::is_html_output()){
+  '<object data="documents/11208038-000-ZKS-0002_v0.1-Workshop Onderzoeksagenda ZSM verslag final.pdf" type="application/pdf" width="100%" height="700px">
+    <embed src="documents/11208038-000-ZKS-0002_v0.1-Workshop Onderzoeksagenda ZSM verslag final.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="documents/11208038-000-ZKS-0002_v0.1-Workshop Onderzoeksagenda ZSM verslag final.pdf">Download PDF</a>.</p>
+    </embed>
+</object>'
+} else {
+  cat(
+    "\\includepdf[pages=-]{documents/11208038-000-ZKS-0002_v0.1-Workshop Onderzoeksagenda ZSM verslag final.pdf}"
+  )
+}
+```
+
+
+
 
 [Zeespiegelstijging in ontwerpnormen stormvloedkeringen : inventarisatie van zeespiegelstijging in ontwerpnormen van de Oosterscheldekering en de Maeslantkering](https://kennisbank.deltares.nl/Details/fullCatalogue/1000020898){target="_blank"} [@Oerlemans2022]
 
@@ -53,7 +284,7 @@ Samenvatting: Dit rapport beschrijft de methode om de huidige zeespiegel te besc
 
 [Frequently asked questions (FAQ)](https://www.deltares.nl/app/uploads/2019/03/FAQ-gemeten-en-geprojecteerde-zeespiegel-januari-2022.pdf){target="_blank"}
 
-## Ad hoc vragen
+# Ad hoc vragen
 
 Vanuit verschillende organisaties, het publieke debat en soms ook van geïnteresseerde burgers komen regelmatig vragen over de zeespiegel(stijging) bij Deltares terecht. Hieronder is een overzicht van deze vragen van de laatste 2 jaar, en het indertijd gegeven antwoord.
 
@@ -475,7 +706,7 @@ Context en duiding graag even afstemmen met Willem. Merk op dat PBL ook een dash
 
 [^11-appendix-41]: <https://www.clo.nl/indicatoren/nl0229-zeespiegelstand-nederland-en-mondiaal>
 
-## Datasets
+# Datasets
 
 De actuele versie van gegevens per station staat op Github (<https://github.com/openearth/sealevel/blob/master/data/deltares/results/dutch-sea-level-monitor-export-stations-2022-01-14.csv>).
 
