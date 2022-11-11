@@ -1,5 +1,6 @@
 # Don't checkin project file
 rapportage/2022/2022.Rproj
+_book
 .Rhistory
 
 # data
