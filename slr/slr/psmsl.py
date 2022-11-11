@@ -94,12 +94,23 @@ def get_data_with_wind(
     df["t"] = year2date(df.year, dtype=wind_df.index.dtype)
     df["alpha"] = station["alpha"]
     df = df.set_index("t")
+
     # merge the wind and water levels
     if "monthly" in dataset_name:
-        merged = pd.merge(df, wind_df, how="left", left_index=True, right_index=True)
+        merged = pd.merge(
+            df,
+            wind_df,
+            how="left",
+            left_index=True,
+            right_index=True,
+        )
     else:
         merged = pd.merge(
-            df, annual_wind_df, how="left", left_index=True, right_index=True
+            df,
+            annual_wind_df,
+            how="left",
+            left_index=True,
+            right_index=True,
         )
     merged = compute_u2v2(merged, wind_df)
 
