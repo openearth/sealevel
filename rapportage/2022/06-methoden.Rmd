@@ -99,7 +99,9 @@ We gaan er niet vanuit dat de zeespiegel altijd een lineaire trend zal blijven v
 
 Om de versnelling van de zeespiegel te beschrijven zijn er in de literatuur verschillende varianten in omloop. Deze worden hieronder schematisch weergegeven en beschreven.  
 
-![Schematische weergave van verschillende versnellingen](figures/accelerations.png)
+```{r accelerations, fig.cap="Schematische weergave van de verschillende modelvarianten om de zeespiegelstijging te schatten. " }
+knitr::include_graphics("figures/accelerations.png")
+```
 
 1. Een lineaire aanpak gaat ervan uit dat de versnelling afwezig is. Deze methode wordt toegepast door NOAA voor [historische reeksen](https://tidesandcurrents.noaa.gov/sltrends/mslUSTrendsTable.html). 
 2.  Een kwadratische versnelling. Dit is de gebruikelijke [@Jevrejeva2014; @Church2011] en formele manier om de versnelling mee te nemen. De methode bevat naast een parameter voor de lineaire trend in de zeespiegelstijging een extra parameter voor de versnelling in de zeespiegelstijging (zie \@ref(eq:trend)). Op de significantie van deze parameter wordt statistisch getoetst. Deze methode wordt weergegeven met vergelijking \@ref(eq:quadratictrend).
@@ -113,6 +115,7 @@ De uiteindelijke modelkeuze (welk model is beter?) vindt plaats op twee criteria
 6. Een methode met meer vrijheidsgraden en wat exploratiever van aard. De parameters worden gebaseerd op "expert judgement" en "trial en error" @Cleveland1994. Het voordeel van deze methode is dat deze de mogelijkheid open laat van een meer varierende de trend over tijd. Het nadeel is dat deze methode door het grotere aantal vrijheidsgraden ook wat meer kan "wapperen", vooral aan het uiteinde. Dat wil zeggen dat de trend aan het eind van de reeks, met nieuwe data, snel van richtingscoefficient kan veranderen. 
 
 Naast de bepaling met lineaire modellen om een versnelling is die aansluit bij de literatuur gebruiken we ook nog een andere methode om een schatting van de versnelling te maken. Dat doen we voor de gebroken lineaire aanpak (methode 3) met behulp een Bayesiaanse aanpak. Met een Bayesiaanse aanpak kunnen we het ook het moment van een mogelijk breekpunt bepalen. Hier gaan we ervan uit dat dat tussen 1900 en ligt 2000. Er is een trend voor en een trend na het breekpunt. Deze aanpak staat bekend als een \acr{MCMC} analyse [vergelijk de 'coal mine' case study uit @Salvatier2016]. Deze methode stelt vast of er een significante knik is, wanneer die knik het meest waarschijnlijk plaats vond (\acr{MAP}) en of we een knik hadden gevonden als die er wel geweest was. 
+
 # TODO: ref naar TUD -> Dit is ook vergelijkbaar met de gekozen aanpak door [ref] 
 
 ## Getij {#methode-getij}
