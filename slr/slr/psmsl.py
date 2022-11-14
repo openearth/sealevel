@@ -1,8 +1,14 @@
 import io
 import datetime
+import zipfile
+import functools
 
 import numpy as np
 import pandas as pd
+import requests
+
+import slr
+import slr.wind
 
 
 def missing2nan(value, missing=-99999):
@@ -52,33 +58,10 @@ def get_data(zf, station, dataset_name):
     return df
 
 
-def compute_u2v2(df, wind_df):
-    """compute the u2 and v2 based on the direction and alpha"""
-
-    # convert alpha to radians and from North 0, CW to 0 east, CW
-    # x * pi / 180
-    alpha_in_rad = np.deg2rad(90 - df["alpha"])
-    direction_in_rad = np.arctan2(df["v"], df["u"])
-    # these were used in intermediate reports
-    df["u2main"] = (wind_df["speed"] ** 2) * np.cos(direction_in_rad - alpha_in_rad)
-    df["u2perp"] = (wind_df["speed"] ** 2) * np.sin(direction_in_rad - alpha_in_rad)
-    # the squared wind speed components along and perpendicular to the coastline
-    df["u2main"].fillna(df["u2main"].mean(), inplace=True)
-    df["u2perp"].fillna(df["u2perp"].mean(), inplace=True)
-    # we now switched to the signed mean (sometimes the wind comes from the north/east)
-    df["u2"] = df["u"] ** 2 * np.sign(df["u"])
-    df["v2"] = df["v"] ** 2 * np.sign(df["v"])
-    df["u2"].fillna(df["u2"].mean(), inplace=True)
-    df["v2"].fillna(df["v2"].mean(), inplace=True)
-
-    return df
-
-
-def get_data_with_wind(
-    station, dataset_name, wind_df, annual_wind_df, zipfiles, url_names
-):
+def get_data_with_wind(station, dataset_name, wind_df, annual_wind_df, zipfiles):
     """get data for the station (pandas record) from the dataset (url)"""
     info = dict(dataset_name=dataset_name, id=station.name)
+    url_names = get_url_names()
     bytes = zipfiles[dataset_name].read(url_names[dataset_name].format(**info))
     df = pd.read_csv(
         io.BytesIO(bytes),
@@ -91,7 +74,7 @@ def get_data_with_wind(
     )
     df["station"] = station.name
     # store time as t
-    df["t"] = year2date(df.year, dtype=wind_df.index.dtype)
+    df["t"] = year2date(df.year, dtype="<M8[ns]")
     df["alpha"] = station["alpha"]
     df = df.set_index("t")
 
@@ -112,12 +95,64 @@ def get_data_with_wind(
             left_index=True,
             right_index=True,
         )
-    merged = compute_u2v2(merged, wind_df)
+    merged = slr.wind.compute_u2v2(merged, wind_df)
 
     return merged
 
 
-def get_station_list(zf, dataset_name="rlr_annual"):
+def get_psmsl_urls(local):
+    src_dir = slr.get_src_dir()
+    psmsl_urls_remote = {
+        "met_monthly": "http://www.psmsl.org/data/obtaining/met.monthly.data/met_monthly.zip",
+        "rlr_monthly": "http://www.psmsl.org/data/obtaining/rlr.monthly.data/rlr_monthly.zip",
+        "rlr_annual": "http://www.psmsl.org/data/obtaining/rlr.annual.data/rlr_annual.zip",
+    }
+    psmsl_data_dir = src_dir / "data" / "psmsl"
+    psmsl_urls_local = {
+        "met_monthly": psmsl_data_dir / "met_monthly.zip",
+        "rlr_monthly": psmsl_data_dir / "rlr_monthly.zip",
+        "rlr_annual": psmsl_data_dir / "rlr_annual.zip",
+    }
+    if local:
+        psmsl_urls = psmsl_urls_local
+    else:
+        psmsl_urls = psmsl_urls_remote
+    return psmsl_urls
+
+
+def get_url_names():
+    url_names = {
+        "datum": "{dataset_name}/RLR_info/{id}.txt",
+        "diagram": "{dataset_name}/RLR_info/{id}.png",
+        "url": "http://www.psmsl.org/data/obtaining/rlr.diagrams/{id}.php",
+        "rlr_monthly": "{dataset_name}/data/{id}.rlrdata",
+        "rlr_annual": "{dataset_name}/data/{id}.rlrdata",
+        "met_monthly": "{dataset_name}/data/{id}.metdata",
+        "doc": "{dataset_name}/docu/{id}.txt",
+        "contact": "{dataset_name}/docu/{id}_auth.txt",
+    }
+    return url_names
+
+
+def get_zipfiles(local=True):
+
+    zipfiles = {}
+
+    psmsl_urls = get_psmsl_urls(local=local)
+
+    for dataset_name, psmsl_url in psmsl_urls.items():
+        if local:
+            zf = zipfile.ZipFile(psmsl_url)
+        else:
+            resp = requests.get(psmsl_url)
+            # we can read the zipfile
+            stream = io.BytesIO(resp.content)
+            zf = zipfile.ZipFile(stream)
+        zipfiles[dataset_name] = zf
+    return zipfiles
+
+
+def get_station_list(zf, dataset_name="rlr_annual", local=True):
     # this list contains a table of
     # station ID, latitude, longitude, station name, coastline code, station code, and quality flag
     csvtext = zf.read("{}/filelist.txt".format(dataset_name))
@@ -129,4 +164,34 @@ def get_station_list(zf, dataset_name="rlr_annual"):
         converters={"name": str.strip, "quality": str.strip},
     )
     stations = stations.set_index("id")
+
+    # each station has a number of files that you can look at.
+    # here we define a template for each filename
+
+    # stations that we are using for our computation
+    # define the name formats for the relevant files
+    url_names = get_url_names()
+
+    # add url's
+    def get_url(station, dataset_name):
+        """return the url of the station information (diagram and datum)"""
+        info = dict(dataset_name=dataset_name, id=station.name)
+        url = url_names["url"].format(**info)
+        return url
+
+    psmsl_urls = get_psmsl_urls(local)
+    for dataset_name in psmsl_urls:
+        # fill in the dataset parameter using the global dataset_name
+        f = functools.partial(get_url, dataset_name=dataset_name)
+        # compute the url for each station
+        stations[dataset_name] = stations.apply(f, axis=1)
+
     return stations
+
+
+def get_main_stations():
+    src_dir = slr.get_src_dir()
+    main_stations_path = src_dir / "data" / "deltares" / "main_stations.json"
+    main_stations = pd.read_json(main_stations_path)
+    main_stations = main_stations.set_index("id")
+    return main_stations
