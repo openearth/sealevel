@@ -5,6 +5,11 @@ import netCDF4
 import numpy as np
 import pandas as pd
 
+import windrose
+import cmocean
+import matplotlib.colors
+import matplotlib.pyplot as plt
+
 import slr
 
 
@@ -99,11 +104,11 @@ def make_wind_df(lat_i=53, lon_i=3, product="NCEP1", local=True):
     return wind_df
 
 
-def make_annual_wind_df(wind_df):
+def make_annual_wind_df(monthly_wind_df):
     """Compute annual averaged wind dataset from monthly wind dataset"""
 
     # label set to xxxx-01-01 of the current year
-    annual_wind_df = wind_df.groupby(pd.Grouper(freq="1Y", label="left")).mean()
+    annual_wind_df = monthly_wind_df.groupby(pd.Grouper(freq="1Y", label="left")).mean()
     annual_wind_df.index = annual_wind_df.index + datetime.timedelta(days=1)
     annual_wind_df["speed"] = np.sqrt(
         annual_wind_df["u"] ** 2 + annual_wind_df["v"] ** 2
@@ -133,33 +138,64 @@ def combine_linear_scaling(df1, df2):
     return combined_df
 
 
-def get_annual_wind_products(reference_point_wind=None):
+def add_u2v2(wind_df):
+    """compute and add the u2 and v2 (signed squared wind)"""
+
+    # we now switched to the signed mean (sometimes the wind comes from the north/east)
+    wind_df["u2"] = wind_df["u"] ** 2 * np.sign(wind_df["u"])
+    wind_df["v2"] = wind_df["v"] ** 2 * np.sign(wind_df["v"])
+    wind_df["u2"].fillna(wind_df["u2"].mean(), inplace=True)
+    wind_df["v2"].fillna(wind_df["v2"].mean(), inplace=True)
+
+    return wind_df
+
+
+def compute_coastal_directions(df, wind_df):
+    """compute the wind in coastal directions"""
+    # convert alpha to radians and from North 0, CW to 0 east, CW
+    # x * pi / 180
+    alpha_in_rad = np.deg2rad(90 - df["alpha"])
+    direction_in_rad = np.arctan2(df["v"], df["u"])
+    # these were used in intermediate reports
+    df["u2main"] = (wind_df["speed"] ** 2) * np.cos(direction_in_rad - alpha_in_rad)
+    df["u2perp"] = (wind_df["speed"] ** 2) * np.sin(direction_in_rad - alpha_in_rad)
+    # the squared wind speed components along and perpendicular to the coastline
+    df["u2main"].fillna(df["u2main"].mean(), inplace=True)
+    df["u2perp"].fillna(df["u2perp"].mean(), inplace=True)
+
+    return df
+
+
+def get_wind_products(reference_point_wind=None):
     """create a list of all the wind products"""
     if reference_point_wind is None:
         reference_point_wind = {"lat": 53, "lon": 3}
 
-    wind_products = {}
-    wind_products["NCEP1"] = slr.wind.make_wind_df(
+    monthly_wind_products = {}
+    monthly_wind_products["NCEP1"] = slr.wind.make_wind_df(
         product="NCEP1",
         lat_i=reference_point_wind["lat"],
         lon_i=reference_point_wind["lon"],
     )
-    wind_products["20CR"] = slr.wind.make_wind_df(
+    monthly_wind_products["20CR"] = slr.wind.make_wind_df(
         product="20CR",
         lat_i=reference_point_wind["lat"],
         lon_i=reference_point_wind["lon"],
     )
-    wind_products["Combined"] = slr.wind.combine_linear_scaling(
-        wind_products["20CR"], wind_products["NCEP1"]
+    monthly_wind_products["Combined"] = slr.wind.combine_linear_scaling(
+        monthly_wind_products["20CR"], monthly_wind_products["NCEP1"]
     )
+    for product, wind_df in monthly_wind_products.items():
+        monthly_wind_products[product] = add_u2v2(wind_df)
+
     annual_wind_products = {}
-    for product, wind_df in wind_products.items():
+    for product, wind_df in monthly_wind_products.items():
         annual_wind_products[product] = slr.wind.make_annual_wind_df(wind_df)
-    return wind_products, annual_wind_products
+    return monthly_wind_products, annual_wind_products
 
 
 def get_gtsm_df():
-    # TODO: add gtsm here.
+    """get the annual gtsm surge estimates per station"""
     src_dir = slr.get_src_dir()
     gtsm_df = pd.read_csv(
         src_dir
@@ -172,25 +208,3 @@ def get_gtsm_df():
     gtsm_df = gtsm_df.drop(columns=["Unnamed: 0"])
     gtsm_df["year"] = gtsm_df.t.dt.year
     return gtsm_df
-
-
-def compute_u2v2(df, wind_df):
-    """compute the u2 and v2 based on the direction and alpha"""
-
-    # convert alpha to radians and from North 0, CW to 0 east, CW
-    # x * pi / 180
-    alpha_in_rad = np.deg2rad(90 - df["alpha"])
-    direction_in_rad = np.arctan2(df["v"], df["u"])
-    # these were used in intermediate reports
-    df["u2main"] = (wind_df["speed"] ** 2) * np.cos(direction_in_rad - alpha_in_rad)
-    df["u2perp"] = (wind_df["speed"] ** 2) * np.sin(direction_in_rad - alpha_in_rad)
-    # the squared wind speed components along and perpendicular to the coastline
-    df["u2main"].fillna(df["u2main"].mean(), inplace=True)
-    df["u2perp"].fillna(df["u2perp"].mean(), inplace=True)
-    # we now switched to the signed mean (sometimes the wind comes from the north/east)
-    df["u2"] = df["u"] ** 2 * np.sign(df["u"])
-    df["v2"] = df["v"] ** 2 * np.sign(df["v"])
-    df["u2"].fillna(df["u2"].mean(), inplace=True)
-    df["v2"].fillna(df["v2"].mean(), inplace=True)
-
-    return df

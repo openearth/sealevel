@@ -58,8 +58,18 @@ def get_data(zf, station, dataset_name):
     return df
 
 
-def get_data_with_wind(station, dataset_name, wind_df, annual_wind_df, zipfiles):
+def get_data_with_wind(
+    station, dataset_name, zipfiles, monthly_wind_df=None, annual_wind_df=None
+):
     """get data for the station (pandas record) from the dataset (url)"""
+    if "monthly" in dataset_name:
+        assert (
+            monthly_wind_df is not None
+        ), "for monthly dataset, please pass the monthly_wind_df argument"
+    if "annual" in dataset_name:
+        assert (
+            annual_wind_df is not None
+        ), "for annual dataset, please pass the annual_wind_df argument"
     info = dict(dataset_name=dataset_name, id=station.name)
     url_names = get_url_names()
     bytes = zipfiles[dataset_name].read(url_names[dataset_name].format(**info))
@@ -82,7 +92,7 @@ def get_data_with_wind(station, dataset_name, wind_df, annual_wind_df, zipfiles)
     if "monthly" in dataset_name:
         merged = pd.merge(
             df,
-            wind_df,
+            monthly_wind_df,
             how="left",
             left_index=True,
             right_index=True,
@@ -95,7 +105,15 @@ def get_data_with_wind(station, dataset_name, wind_df, annual_wind_df, zipfiles)
             left_index=True,
             right_index=True,
         )
-    merged = slr.wind.compute_u2v2(merged, wind_df)
+    # fill in missing wind
+    merged["u"] = merged["u"].fillna(merged["u"].mean())
+    merged["v"] = merged["v"].fillna(merged["v"].mean())
+    merged["u2"] = merged["u2"].fillna(merged["u2"].mean())
+    merged["v2"] = merged["v2"].fillna(merged["v2"].mean())
+
+    # recompute speed and direction
+    merged["speed"] = np.sqrt(merged["u"] ** 2 + merged["v"] ** 2)
+    merged["direction"] = np.mod(np.angle(merged["u"] + merged["v"] * 1j), 2 * np.pi)
 
     return merged
 
@@ -195,3 +213,36 @@ def get_main_stations():
     main_stations = pd.read_json(main_stations_path)
     main_stations = main_stations.set_index("id")
     return main_stations
+
+
+def get_data_for_stations(
+    selected_stations, local=True, wind_product="NCEP1", reference_point_wind=None
+):
+    zipfiles = get_zipfiles(local=local)
+
+    monthly_wind_products, annual_wind_products = slr.wind.get_wind_products(
+        reference_point_wind=reference_point_wind
+    )
+
+    annual_wind_df = annual_wind_products[wind_product]
+    monthly_wind_df = monthly_wind_products[wind_product]
+    gtsm_df = slr.wind.get_gtsm_df()
+
+    # get data for all stations
+    for dataset_name in get_psmsl_urls(local=local):
+        f = functools.partial(
+            # this  function  fills in missing wind with nan
+            slr.psmsl.get_data_with_wind,
+            dataset_name=dataset_name,
+            # don't include year otherwise we get year_x and year_y
+            monthly_wind_df=monthly_wind_df.drop(columns=["year"]),
+            annual_wind_df=annual_wind_df.drop(columns=["year"]),
+            zipfiles=zipfiles,
+        )
+        # look up the data for each station
+        selected_stations[dataset_name] = [
+            f(station) for _, station in selected_stations.iterrows()
+        ]
+
+    selected_stations
+    return selected_stations
