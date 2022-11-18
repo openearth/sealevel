@@ -42,68 +42,57 @@ Voorliggend rapport heeft ook als doel een overzicht te geven van het onderzoek 
 
 Dit rapport heeft als doel om een overzicht te geven van het onderzoek dat in de afgelopen jaren is gedaan in het kader van het onderzoek Kustbeleid. Vanaf 2018 is er richting gegeven aan dit onderzoek vanuit een met de opdrachtgevers afgestemde onderzoeksagenda. In dit rapport worden deze centrale vraagstellingen beantwoord. 
 
-### Jaarlijkse zeespiegelmonitor
+**Jaarlijkse zeespiegelmonitor**
 
-Wat is de huidige stijging van de zeespiegel? Wat zijn de laatste ontwikkelingen op het gebied van de toestand van de globale en lokale zeespiegel?
+*   Wat is de huidige stijging van de zeespiegel? Wat zijn de laatste ontwikkelingen op het gebied van de toestand van de globale en lokale zeespiegel?
 
-:   Deze vraag wordt beantwoord in paragraaf \@ref(huidige)
+> Deze vraag wordt beantwoord in paragraaf \@ref(huidige)
 
-*Uitsplitsing oorzaken voor zeespiegelstijging*
+**Uitsplitsing oorzaken voor zeespiegelstijging**
 
-Probeer afstemming te bereiken tussen de verschillende methoden van het gezamenlijk presenteren van projecties en zeespiegelmetingen
+*   Probeer afstemming te bereiken tussen de verschillende methoden van het gezamenlijk presenteren van projecties en zeespiegelmetingen
 
-:   Deze vraag wordt beantwoord in de memo [Methode voor visualisatie van tijdreeksen en scenario's voor zeespiegelstijging (concept versie voor discussie)](https://kennisbank.deltares.nl/Details/fullCatalogue/1000020941){target="_blank"}
+Deze vraag wordt beantwoord in de memo [Methode voor visualisatie van tijdreeksen en scenario's voor zeespiegelstijging (concept versie voor discussie)](https://kennisbank.deltares.nl/Details/fullCatalogue/1000020941){target="_blank"}
 
 <!-- (ref:vraag-hycom) voeg het effect van temperatuur en dichtheidsstromingen toe op basis van het HYCOM model. -->
 
-Stap over op het GTSM model als basis voor wind en stormopzet effecten.
+*   Stap over op het GTSM model als basis voor wind en stormopzet effecten.
 
-:   Deze methode wordt verder uitgelegd in paragraaf \@ref(methoden-wind), de resultaten worden gepresenteerd in paragraaf \@ref(huidige).
+Deze methode wordt verder uitgelegd in paragraaf \@ref(methoden-wind), de resultaten worden gepresenteerd in paragraaf \@ref(huidige).
 
+*   Er zijn een aantal mogelijke bronnen van afsmelten op Antarctica. Wat is hun individuele bijdrage aan de stijging van de zeespiegel aan de Nederlandse kust. Welke moeten we "in de gaten houden"? Is er een effect van de geometrie veranderingen bij Antarctica op het getij bij Nederland?
 
-Er zijn een aantal mogelijke bronnen van afsmelten op Antarctica. Wat is hun individuele bijdrage aan de stijging van de zeespiegel aan de Nederlandse kust. Welke moeten we "in de gaten houden"? Is er een effect van de geometrie veranderingen bij Antarctica op het getij bij Nederland?
-
-:   De uitwerking hiervan staat in de memo ["Visualizing changes of the Antarctic Ice Sheet"](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000020844){target="_blank"} [@Baart2020]
+De uitwerking hiervan staat in de memo ["Visualizing changes of the Antarctic Ice Sheet"](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000020844){target="_blank"} [@Baart2020]
 
 <!-- *   Bij een globaal dekkend model moet ook de bodemdaling globaal meegenomen worden. Binnen Nederland vindt differentiele bodemdaling plaats langs de kust, zowel door geologische bodemdaling als door winning. Deze zou apart per hoofdgetijdenstation meegenomen moeten worden. -->
 
+**Verbetering meetmethoden**
 
-*Verbetering meetmethoden*
+*   Hoe kunnen we het Landelijk Meetnet Water op het gebied van relatieve zeespiegelstijging optimaliseren
 
-Hoe kunnen we het Landelijk Meetnet Water op het gebied van relatieve zeespiegelstijging optimaliseren
+De uitvoering van deze vraag is uiteindelijk binnen een ander project opgepakt. Een aanbeveling was om de verticale nauwkeurigheid te verhogen door het plaatsen van \acr{GNSS}. Meer informatie over de verticale referentie van meetstations staat in hoofdstuk \@ref(metingen) en verder. 
 
-:   De uitvoering van deze vraag is uiteindelijk binnen een ander project opgepakt. Een aanbeveling was om de verticale nauwkeurigheid te verhogen door het plaatsen van \acr{GNSS}. Meer informatie over de verticale referentie van meetstations staat in hoofdstuk \@ref(metingen) en verder. 
+**Gezamenlijkheid**
 
-*Gezamenlijkheid*
+*   Probeer afstemming of aansluiting te bereiken tussen de verschillende zeespiegelindicatoren voor bepaling van huidige zeespiegelstijging en versnellingsdetectie tussen Deltaprogramma, TNO, PBL en Deltares.
 
-Probeer afstemming of aansluiting te bereiken tussen de verschillende zeespiegelindicatoren voor bepaling van huidige zeespiegelstijging en versnellingsdetectie tussen Deltaprogramma, TNO, PBL en Deltares.
+De resultaten hiervan worden gepresenteerd in de memo [Advies kenmerkende waarden kust : overzicht zeespiegelindicatoren](https://kennisbank.deltares.nl/Details/fullCatalogue/70785){target="_blank"} [@Nicolai2020a]
 
-:   De resultaten hiervan worden gepresenteerd in de memo [Advies kenmerkende waarden kust : overzicht zeespiegelindicatoren](https://kennisbank.deltares.nl/Details/fullCatalogue/70785){target="_blank"} [@Nicolai2020a]
+**De boel onder controle?**
 
-<!-- *Missiegedreven beleid* -->
+*   Voor welke zeespiegelstijging zijn de huidige Deltawerken ontworpen? Welke resterende zeespiegel is er over ten opzichte van het oorspronkelijke ontwerp, rekening houdend met bijgestelde normen? In hoeverre zijn de Deltawerken adaptief?
 
-<!-- Breidt de zeespiegelmonitor uit tot een globaal dekkend, lokaal toepasbare zeespiegelmonitor. -->
+Een uitwerking van deze vraag staat in de memo [Zeespiegelstijging in ontwerpnormen stormvloedkeringen : inventarisatie van zeespiegelstijging in ontwerpnormen van de Oosterscheldekering en de Maeslantkering](https://kennisbank.deltares.nl/Details/fullCatalogue/1000020898){target="_blank"} [@Oerlemans2022]
 
-<!-- :   In de Zeespiegelmonitor wordt de zeespiegel en trends uitgerekend voor alle stations die aangesloten zijn bij \acr{GLOSS}. De resultaten zijn niet in het rapport verwerkt, maar zijn beschikbaar via een [rekendocument](). -->
+**Archivering**
 
-*De boel onder controle?*
+*   Stel een archiveringsplan op om historische gegevens en documenten omtrent de zeespiegelmetingen beter te borgen. Voer archivering uit en beschrijf de resultaten van de archivering.
 
-Voor welke zeespiegelstijging zijn de huidige Deltawerken ontworpen? Welke resterende zeespiegel is er over ten opzichte van het oorspronkelijke ontwerp, rekening houdend met bijgestelde normen? In hoeverre zijn de Deltawerken adaptief?
-
-:   Een uitwerking van deze vraag staat in de memo [Zeespiegelstijging in ontwerpnormen stormvloedkeringen : inventarisatie van zeespiegelstijging in ontwerpnormen van de Oosterscheldekering en de Maeslantkering](https://kennisbank.deltares.nl/Details/fullCatalogue/1000020898){target="_blank"} [@Oerlemans2022]
-
-*Archivering*
-
-Stel een archiveringsplan op om historische gegevens en documenten omtrent de zeespiegelmetingen beter te borgen. Voer archivering uit en beschrijf de resultaten van de archivering.
-
-:   Er lopen met Rijkswaterstaat verschillende trajecten om documentatie te verwerken over de zeespiegelmetingen, zie voor meer informatie paragraaf \@ref(archivering)
-
-<!-- opnemen in discussie: veel documentatie verwerkt in NAP info (bodemdaling) en Waterinfo-extra (zeespiegelproducten) -->
-
+Er lopen met Rijkswaterstaat verschillende trajecten om documentatie te verwerken over de zeespiegelmetingen, zie voor meer informatie paragraaf \@ref(archivering)
 
 ## Leeswijzer {#Leeswijzer}
 
-Dit rapport behandelt in detail de resultaten van de Zeespiegelmonitor. Actuele resultaten zijn te vinden in een jaarlijks bijgewerkte [rekendocument](https://github.com/openearth/sealevel/blob/master/notebooks/dutch-sea-level-monitor.ipynb). Dit rapport geeft uitleg bij de methodiek (hoofdstuk \@ref(methoden)), en vat de resultaten op een meer overkoepelend niveau weer (hoofdstuk \@ref(resultaten)).
+Dit rapport behandelt in detail de resultaten van de Zeespiegelmonitor. Actuele resultaten zijn te vinden in een jaarlijks bijgewerkt [rekendocument](https://github.com/openearth/sealevel/blob/master/notebooks/dutch-sea-level-monitor.ipynb). Dit rapport geeft uitleg bij de methodiek (hoofdstuk \@ref(methoden)), en vat de resultaten op een meer overkoepelend niveau weer (hoofdstuk \@ref(resultaten)).
 
 Een deel van het onderzoek binnen het Zeespiegelmonitorproject is gepubliceerd in aparte memo's en rapporten. Samenvattingen en links naar de originele rapporten zijn te vinden in de Appendix \@ref(bijlagerapporten)
 

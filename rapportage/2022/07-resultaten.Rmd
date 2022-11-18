@@ -1,66 +1,25 @@
 # Resultaten {#resultaten}
 
-Voor het presenteren van de uiteindelijke resultaten zijn de volgende keuzes gemaakt betreffende methodiek. 
+In \@ref(methoden) hebben we vastgesteld hoe de 'huidige zeespiegel' kan worden uitgerekend. In dit hoofdstuk wordt de huidige zeespiegel voor de periode xxxx-2021 vastgesteld volgens de voorkeursmethode. Op basis van deze methode wordt de zeespiegel de komende 3 jaren vastgesteld en beschikbaar gemaakt via een update van bijbehorend interactieve rekendocument . Deze update vindt doorgaans plaats in juli of eerder zodra de gegevens van de heranalyses en jaargemiddelde metingen beschikbaar zijn.
 
-Delfzijl keuze
+De voorkeursmethode maakt gebruik van:
 
-Delfzijl weglaten leidt tot informatieverlies.
-Delfzijl meenemen leidt tot een fout (verwijzen naar HKV rapport)
+-   het gemiddelde over 5 hoofdstations
+-   GTSM voor wind/surge correctie
+-   Gegeneraliseerd lineair model voor bepaling van versnelling met drie varianten
+    -   lineair
+    -   gebroken lineair
+    -   gebroken kwadratisch
 
-Op dit moment kiezen we voor "Delfzijl weglaten". 
-
-Optimale keuze is "gecorrigeerde waarden Delfzijl meenemen". De correctie wordt begin 2023 verwacht. 
-
-
-
-Wind
-GTSM is meest betrouwbaar, maar is het kortst. 
-
-Windcorrelatiemethode kan niet goed omgaan met oostenwind. Kan dus niet goed omgaan met stormafzet. GTSM wel
-GTSM is additief (opknipbaar).
-20CR is het langst maar het minst nauwkeurig.
-NCEP is korter, kwalitatief beter, maar minder goed dan 
-
-
-
-Modelkeuze
-
-LOESS is descriptief
-Visueel maken wat elk model doet (schematisch). 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-In \@ref(methoden) hebben we vastgesteld hoe de 'huidige zeespiegel' kan worden uitgerekend. In dit hoofdstuk wordt de huidige zeespiegel voor de periode 1890-2017 vastgesteld. Op basis van deze methode wordt de zeespiegel de komende 3 jaren vastgesteld en beschikbaar gemaakt via een update van bijbehorend interactieve rekendocument . Deze update vindt doorgaans plaats in juli of eerder zodra de gegevens van de heranalyses en jaargemiddelde metingen beschikbaar zijn.
+De andere varianten (stations, windcorrectie, model) worden in de Appendix getoond.
 
 ## De huidige zeespiegel {#huidige}
 
 !!! *Dit wordt ge-updatet met de nieuwe informatie. Overweeg om automatisch informatie op te halen uit notebooks voor jaarlijkse update.*
 
-In \@ref(fig:huidige-zeespiegel) is de huidige zeespiegel uitgezet tegen de tijd. De huidige zeespiegel is voor 2017 vastgesteld op 6cm boven \acr{NAP}. Voor het jaar 2017 bedraagt de relatieve zeespiegelstijging langs de Nederlandse kust $1.86 \pm 0.12mm/jaar$ oftewel $18.6 \pm 1.2\,cm/eeuw$ . Deze trend is berekend over de periode 1890 tot en met 2017. Dit beantwoordt de vraag, hoe snel de zeespiegel op dit moment stijgt.
+In \@ref(fig:huidige-zeespiegel) is de huidige zeespiegel uitgezet tegen de tijd. De huidige zeespiegel is voor 2021 vastgesteld op 6cm boven \acr{NAP}. Voor het jaar 2017 bedraagt de relatieve zeespiegelstijging langs de Nederlandse kust $x.xx \pm x.xxmm/jaar$ oftewel $xx.x \pm x.x\,cm/eeuw$ . Deze trend is berekend over de periode xxxx tot en met 2021 Dit beantwoordt de vraag, hoe snel de zeespiegel op dit moment stijgt.
 
-De zeespiegel heeft in 2017 zijn hoogste stand ooit gemeten bereikt. Kort gezegd komt dit doordat het voor het eerst sinds lange tijd weer flink heeft gestormd in combinatie met een opgaand nodaal getij en de gestegen zeespiegel.
+De zeespiegel heeft in 2020 zijn hoogste stand ooit gemeten bereikt. Kort gezegd komt dit doordat het dat jaar flink heeft gestormd in combinatie met een opgaand nodaal getij en de gestegen zeespiegel.
 
 (ref:huidige-zeespiegel-label) Huidige zeespiegelstijging langs de Nederlandse kust op basis van het gemiddelde van de zes hoofdstations, zie ook \@ref(fig:metingen-scenarios) voor alleen de lineaire component. De rode lijn laat de curve zien met gemiddelde wind. De blauwe lijn laat de curve zien gecorrigeerd voor de wind data uit de heranalyses.
 
@@ -104,10 +63,9 @@ $Wind_{v^2}$ & 1.58 & 2.66 & 0.55\
 
 Of er een versnelling is stellen we vast door de modellen met versnelling (met acceleratieterm en met knik en de combinatie daarvan) te vergelijken met het model zonder versnelling. Deze analyse is uitgevoerd voor het gemiddelde van alle hoofdstations minus Delfzijl. De reden hiervan is beschreven in paragraaf \ref(------).
 
-Geen van de versnellingsmodellen zijn een significante verbetering ten opzichte van het model zonder versnelling. Dat wil zeggen dat we onder de aanname dat er geen versnelling is een acceleratie of knik hadden verwacht zo groot als we die gezien hebben. De versnellingsmodellen zijn vanuit de \acr{AIC} vergelijking wel een beter model. Zoals beschreven in \@ref(versnelling-methods) kiezen we op basis van de combinatie van deze twee criteria voor het model zonder versnelling. 
+Geen van de versnellingsmodellen zijn een significante verbetering ten opzichte van het model zonder versnelling. Dat wil zeggen dat we onder de aanname dat er geen versnelling is een acceleratie of knik hadden verwacht zo groot als we die gezien hebben. De versnellingsmodellen zijn vanuit de \acr{AIC} vergelijking wel een beter model. Zoals beschreven in \@ref(versnelling-methods) kiezen we op basis van de combinatie van deze twee criteria voor het model zonder versnelling.
 
-!!! Bijwerken
-Het model met een acceleratie term laat een vertraagde zeespiegel zien ($-0.0001 \pm 0.004\,mm^{2}$). Het model met een knik in 1993 laat een hogere zeespiegel zien 2.4mm na 1993 dan ervoor 1.8mm, een extra $0.63 \pm 0.75\,mm$.
+!!! Bijwerken Het model met een acceleratie term laat een vertraagde zeespiegel zien ($-0.0001 \pm 0.004\,mm^{2}$). Het model met een knik in 1993 laat een hogere zeespiegel zien 2.4mm na 1993 dan ervoor 1.8mm, een extra $0.63 \pm 0.75\,mm$.
 
 Dit beantwoordt de vraag, of er sprake is van een versnelling van de zeespiegel langs de Nederlandse kust.
 
@@ -117,11 +75,17 @@ Dit beantwoordt de vraag, of er sprake is van een versnelling van de zeespiegel 
 
 <!-- In \@ref(fig:mcmc_before_after) zien we dat het meest waarschijnlijke knikpunt te vinden is in 1994 en dat de trend na de knik 0.6mm hoger is dan er voor. Dit vinden we ook als we het gebroken trend model toepassen met de trendbreuk vastgesteld op 1993. Dit is vooral toe te schrijven aan de extreem lage zeespiegelstand in 1996. -->
 
-<!-- <!-- ![Huidige zeespiegel voor en na het meest waarschijnlijke knikpunt. De --> -->
+<!-- <!-- ![Huidige zeespiegel voor en na het meest waarschijnlijke knikpunt. De -->
 
-<!-- <!-- blauwe curve zijn de metingen, rode curve het gefitte --> -->
+--\>
 
-<!-- <!-- model.](mcmc_before_after){#fig:mcmc_before_after width="\\linewidth"} --> -->
+<!-- <!-- blauwe curve zijn de metingen, rode curve het gefitte -->
+
+--\>
+
+<!-- <!-- model.](mcmc_before_after){#fig:mcmc_before_after width="\\linewidth"} -->
+
+--\>
 
 <!-- De a-posteriori kansverdeling van het knikpunt en de trends voor en na zijn te vinden in \@ref(fig:mcmc_switch). Hierin kunnen we aflezen dat het meest waarschijnlijke knikpunt in 1994 lag. De kansverdelingen van de trend voor en na overlappen dusdanig dat we concluderen dat de trend voor en na niet anders zijn. Als de trend na nog 0.5mm toeneemt dan zou deze nu al significant zijn geweest. Datzelfde geldt als deze trendverandering nog 20 jaar doorzet en een verschil maakt van 2.5 cm. Hoe meer metingen we verzamelen, hoe smaller het interval wordt. Ook het beter verklaren van de residuen, door de windeffecten met \acr{GTSM} te schatten, zal de kans op versnellingsdetectie doen toenemen. -->
 
@@ -250,7 +214,7 @@ In Delfzijl is, sinds in 1963 Nederland aan het gas werd aangesloten, de bodem m
 
 Dit beantwoordt de vraag hoe we absolute bodemdaling en absolute zeespiegelstijging kunnen uitsplitsen.
 
-## (SM) Scenario's versus de huidige zeespiegel {#sec:scenarios}
+## (SM) Scenario's versus de huidige zeespiegel {#scenarios}
 
 Zoals we in \@ref(toepassingen) gezien hebben zijn er zeespiegelindicatoren gebaseerd op alleen metingen (trends, gemiddelden), de combinatie van modellen en metingen (heranalyses) en indicatoren op basis van toekomstscenario's die berekend worden met modellen. In deze sectie kijken we naar de aansluiting tussen (toekomst)scenario's en metingen.
 
@@ -405,4 +369,3 @@ Omdat de zeespiegel van vorig jaar informatie bevat die gebruikt kan worden om e
 De variantie van de residuen is afhankelijk van de verklarende variabelen (meer residu bij veel wind). Voor het herkennen van een trendbreuk is het belangrijk dat de trendparameter zo betrouwbaar mogelijk wordt geschat. De standaardfouten zijn daarom op robuuste wijze geschat via de zogenaamde [HAC]{acronym-label="HAC" acronym-form="singular+short"} estimator [@Zeileis2004] .
 
 Zowel het toevoegen van de autocorrelatieterm als de correctie voor heteroskedasticiteit heeft geen effect op de schattingen van de huidige zeespiegel, alleen op de standaardfouten.
-

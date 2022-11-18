@@ -141,6 +141,8 @@ DiagrammeR::grViz("digraph {
 
 # Rapporten en memo's {#bijlagerapporten}
 
+## Producten over de laatste periode (2019-2022)
+
 In het kader van de ontwikkeling van de Zeespiegelmonitor voor de komende jaren zijn in 2022 twee workshops gehouden met als doel om de methoden en onderzoeksvragen binnen de Zeespiegelmonitor voor de komende jaren op een breed gedragen manier vast te leggen. De uitkomsten zijn gebruikt in de rapportage, en komen voornamelijk terug in hoofdstukken \@ref(methoden) en \@ref(vervolgonderzoek). 
 
 
@@ -181,8 +183,6 @@ if(knitr::is_html_output()){
 ```
 
 
-
-
 [Zeespiegelstijging in ontwerpnormen stormvloedkeringen : inventarisatie van zeespiegelstijging in ontwerpnormen van de Oosterscheldekering en de Maeslantkering](https://kennisbank.deltares.nl/Details/fullCatalogue/1000020898){target="_blank"} [@Oerlemans2022]
 
 Samenvatting: Doelstelling van deze studie was te inventariseren hoe zeespiegelstijging is meegenomen in het ontwerp van de Oosterscheldekering en de Maeslantkering. Het onderzoek bestond uit een bureaustudie en semigestructureerde interviews met experts die betrokken zijn geweest bij het ontwerp van de Maeslantkering en de Oosterscheldekering. In het onderzoek zijn de snelheid van zeespiegelstijging, levensduur en toeslagwaarde geïnventariseerd. Daarbij is nadrukkelijk gekeken naar de uitgangspunten die zijn meegenomen in het ontwerp. Daarnaast is geanalyseerd of de toeslagwaarde op logische wijze uit de snelheid van de zeespiegelstijging en de levensduur volgt.
@@ -214,6 +214,8 @@ Samenvatting: Op dit moment hebben slechts enkele experts het overzicht over wel
 [Visualizing changes of the Antarctic Ice Sheet](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000020844){target="_blank"} [@Baart2020]
 
 Samenvatting: This memo describes a new method to visualize data using tiled videomaps. These provide a zoomable video of the current (last 5 years) of ice loss at the area that is most relevant for the Netherlands. This results in an easy-to-understand visualization of some of the processes (glacier flow, sea-ice loss, fracturing) that contribute to the current mass loss We hope that this can contribute to ongoing discussions on the current state sea-level rise inducing processes.
+
+## Oudere producten relevant voor deze Zeespiegelmonitor
 
 [The effect of the 18.6-year lunar nodal cycle on regional sea-level rise estimates](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/200002977){target="_blank"} [@Baart2012e]
 
@@ -724,4 +726,7 @@ In de uitvoering van de methodiek van de Zeespiegelmonitor is in het verleden al
 
 in [NAPinfo](https://maps.rijkswaterstaat.nl/geoweb55/index.html?viewer=NAPinfo) wordt de actuele en historische posities van alle nulpalen vastgelegd. 
 
-[Waterinfo-extra](https://waterinfo-extra.rws.nl/monitoring/waterkwantiteit/) 
+[Waterinfo-extra](https://waterinfo-extra.rws.nl/monitoring/waterkwantiteit/) is de omgeving van Rijkswaterstaat voor ontsluiting van watergerelateerde gegevens en informatie, voor zover deze niet in de primaire systemen beschikbaar wordt gemaakt. Rijkswaterstaat werkt aan het publiceren van de jaargemiddelde waterstanden voor de hoofdstations in deze omgeving, inclusief de informatie om deze gegevens te duiden.
+
+[Waterinfo]()
+
