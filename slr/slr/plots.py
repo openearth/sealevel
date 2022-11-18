@@ -1,3 +1,5 @@
+import datetime
+
 import pyproj
 import numpy as np
 import pandas as pd
@@ -12,6 +14,8 @@ import cmocean
 import matplotlib.colors
 import matplotlib.pyplot as plt
 import seaborn as sns
+
+import slr.models
 
 
 WEBMERCATOR = pyproj.Proj("epsg:3857")
@@ -168,3 +172,144 @@ def wind_trends(annual_wind_products, gtsm_df):
     axes[1].set_ylabel("Surge height [m]")
     axes[1].set_xlabel("Year")
     return fig
+
+
+def timeseries_plot(selected_stations, mean_df, dataset_name):
+    # show all the stations, including the mean
+    title = "Sea-surface height for Dutch tide gauges [{year_min:.0f} - {year_max:.0f}]".format(
+        year_min=mean_df.year.min(), year_max=mean_df.year.max()
+    )
+    fig = bokeh.plotting.figure(
+        title=title, x_range=(1860, 2020), plot_width=900, plot_height=400
+    )
+    colors = list(bokeh.palettes.Accent7)
+    # no yellow
+    del colors[3]
+    for color, (id_, station) in zip(colors, selected_stations.iterrows()):
+        data = station[dataset_name]
+        fig.circle(
+            data.year,
+            data.height,
+            color=color,
+            legend_label=station["name"],
+            alpha=0.5,
+            line_width=1,
+        )
+    fig.line(
+        mean_df.year,
+        mean_df.height,
+        line_width=1,
+        alpha=0.7,
+        color="black",
+        legend_label="Mean",
+    )
+    fig.legend.location = "bottom_right"
+    fig.yaxis.axis_label = "waterlevel [mm] above NAP"
+    fig.xaxis.axis_label = "year"
+    fig.legend.click_policy = "hide"
+    return fig
+
+
+def surge_vs_waterlevel(selected_stations):
+    fig, axes = plt.subplots(figsize=(13, 8), nrows=2, sharex=True, sharey=True)
+    for _, station in selected_stations.iterrows():
+        monthly_df = station["rlr_monthly"].query("year >= 1979")
+        axes[0].plot(monthly_df.index, monthly_df["height"], label=station["name"])
+        axes[1].plot(
+            monthly_df.index,
+            monthly_df["height"] - (monthly_df["surge"] * 1000),
+            label=station["name"],
+        )
+    axes[0].set_xlim(datetime.datetime(2000, 1, 1), datetime.datetime(2022, 1, 1))
+    axes[0].legend(loc="lower left")
+    axes[0].set_title("Water level")
+    axes[1].set_title("Water level - surge")
+    axes[1].legend(loc="lower left")
+
+
+def wind_vs_no_wind(
+    mean_df, quantity, yname, linear_with_wind_fit, linear_without_wind_fit
+):
+    """plot the model with wind vs model without wind."""
+    fig = bokeh.plotting.figure(x_range=(1860, 2020), plot_width=900, plot_height=400)
+    fig.circle(
+        mean_df.year,
+        mean_df[quantity],
+        line_width=1,
+        legend_label=yname,
+        color="black",
+        alpha=0.5,
+    )
+    fig.line(
+        linear_with_wind_fit.model.exog[:, 1] + 1970,
+        linear_with_wind_fit.predict(),
+        line_width=3,
+        alpha=0.5,
+        legend_label="Current sea level, corrected for wind influence",
+    )
+    fig.line(
+        linear_without_wind_fit.model.exog[:, 1] + 1970,
+        linear_without_wind_fit.predict(),
+        line_width=3,
+        legend_label="Current sea level, not corrected for wind influence",
+        color="green",
+        alpha=0.5,
+    )
+    fig.legend.location = "top_left"
+    fig.yaxis.axis_label = "waterlevel [mm] above N.A.P."
+    fig.xaxis.axis_label = "year"
+    fig.legend.click_policy = "hide"
+    return fig
+
+
+def station_comparison_linear_vs_broken_linear(
+    selected_stations, quantity, yname, with_wind, dataset_name
+):
+    p = bokeh.plotting.figure(x_range=(1860, 2020), plot_width=900, plot_height=400)
+    colors = bokeh.palettes.Accent6
+
+    for color, (name, station) in zip(colors, selected_stations.iterrows()):
+        df = station[dataset_name]
+        df = df[df.year >= 1890]
+        fit, linear_names = slr.models.linear_model(
+            df, with_wind=with_wind, quantity=quantity
+        )
+        p.circle(
+            station[dataset_name].year,
+            station[dataset_name][quantity],
+            alpha=0.1,
+            color=color,
+        )
+
+    # loop again so we have the lines on top
+    for color, (name, station) in zip(colors, selected_stations.iterrows()):
+        df = station[dataset_name][station[dataset_name].year >= 1890]
+        fit, linear_names = slr.models.linear_model(
+            df, with_wind=with_wind, quantity=quantity
+        )
+        p.line(
+            fit.model.exog[:, 1] + 1970,
+            fit.predict(),
+            line_width=3,
+            alpha=0.8,
+            legend_label=station["name"],
+            color=color,
+        )
+    for color, (name, station) in zip(colors, selected_stations.iterrows()):
+        df = station[dataset_name][station[dataset_name].year >= 1890]
+        fit, linear_names = slr.models.broken_linear_model(
+            df, with_wind=with_wind, quantity=quantity
+        )
+        p.line(
+            fit.model.exog[:, 1] + 1970,
+            fit.predict(),
+            line_width=1,
+            alpha=0.8,
+            legend_label=station["name"] + " broken linear",
+            color=color,
+        )
+
+    p.legend.click_policy = "hide"
+    p.xaxis.axis_label = "Time"
+    p.yaxis.axis_label = yname
+    return p
