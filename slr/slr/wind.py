@@ -11,6 +11,7 @@ import matplotlib.colors
 import matplotlib.pyplot as plt
 
 import slr
+import slr.utils
 
 
 def make_wind_df(lat_i=53, lon_i=3, product="NCEP1", local=True):
@@ -194,10 +195,10 @@ def get_wind_products(reference_point_wind=None):
     return monthly_wind_products, annual_wind_products
 
 
-def get_gtsm_df():
-    """get the annual gtsm surge estimates per station"""
+def get_gtsm_dfs():
+    """get the monthly and annual gtsm surge estimates per station"""
     src_dir = slr.get_src_dir()
-    gtsm_df = pd.read_csv(
+    annual_gtsm_df = pd.read_csv(
         src_dir
         / "data"
         / "deltares"
@@ -205,6 +206,20 @@ def get_gtsm_df():
         / "gtsm_surge_annual_mean_main_stations.csv",
         converters={"t": pd.to_datetime},
     )
-    gtsm_df = gtsm_df.drop(columns=["Unnamed: 0"])
-    gtsm_df["year"] = gtsm_df.t.dt.year
-    return gtsm_df
+    annual_gtsm_df = annual_gtsm_df.drop(columns=["Unnamed: 0"])
+    annual_gtsm_df["year"] = annual_gtsm_df.t.dt.year
+
+    monthly_gtsm_df = pd.read_csv(
+        src_dir
+        / "data"
+        / "deltares"
+        / "gtsm"
+        / "gtsm_surge_monthly_mean_main_stations.csv",
+        converters={"t": pd.to_datetime},
+    )
+    monthly_gtsm_df = monthly_gtsm_df.drop(columns=["Unnamed: 0"])
+    # compute year fraction
+    monthly_gtsm_df["year"] = [
+        slr.utils.datetime2year(dt) for dt in monthly_gtsm_df["t"]
+    ]
+    return monthly_gtsm_df, annual_gtsm_df
