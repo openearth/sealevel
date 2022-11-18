@@ -105,6 +105,7 @@ def get_data_with_wind(
             left_index=True,
             right_index=True,
         )
+
     # fill in missing wind
     merged["u"] = merged["u"].fillna(merged["u"].mean())
     merged["v"] = merged["v"].fillna(merged["v"].mean())
@@ -202,7 +203,7 @@ def get_station_list(zf, dataset_name="rlr_annual", local=True):
         # fill in the dataset parameter using the global dataset_name
         f = functools.partial(get_url, dataset_name=dataset_name)
         # compute the url for each station
-        stations[dataset_name] = stations.apply(f, axis=1)
+        stations[dataset_name + "_url"] = stations.apply(f, axis=1)
 
     return stations
 
@@ -215,7 +216,7 @@ def get_main_stations():
     return main_stations
 
 
-def get_data_for_stations(
+def add_series_to_stations(
     selected_stations, local=True, wind_product="NCEP1", reference_point_wind=None
 ):
     zipfiles = get_zipfiles(local=local)
@@ -226,7 +227,7 @@ def get_data_for_stations(
 
     annual_wind_df = annual_wind_products[wind_product]
     monthly_wind_df = monthly_wind_products[wind_product]
-    gtsm_df = slr.wind.get_gtsm_df()
+    monthly_gtsm_df, annual_gtsm_df = slr.wind.get_gtsm_dfs()
 
     # get data for all stations
     for dataset_name in get_psmsl_urls(local=local):
@@ -244,5 +245,109 @@ def get_data_for_stations(
             f(station) for _, station in selected_stations.iterrows()
         ]
 
-    selected_stations
+    # add surge to stations annual data
+    rlr_annual_dfs = []
+    rlr_monthly_dfs = []
+    met_monthly_dfs = []
+    for idx, station in selected_stations.iterrows():
+        annual_df = station["rlr_annual"]
+        assert (
+            station.ddl_id in annual_gtsm_df["ddl_id"].values
+        ), f"ddl_id ({station.ddl_id}) of station: {station.name} not in gtsm"
+        # add gtsm
+        annual_df = pd.merge(
+            annual_df,
+            annual_gtsm_df[annual_gtsm_df.ddl_id == station["ddl_id"]].set_index(
+                "year"
+            )[["surge"]],
+            left_on="year",
+            right_index=True,
+            how="left",
+        )
+        annual_df["surge"] = annual_df["surge"].fillna(annual_df["surge"].mean())
+        rlr_annual_dfs.append(annual_df)
+
+        # Add gtsm to monthly data
+        rlr_monthly_df = station["rlr_monthly"]
+        monthly_gtsm_df_i = monthly_gtsm_df[
+            monthly_gtsm_df["ddl_id"] == station["ddl_id"]
+        ]
+        rlr_monthly_df = pd.merge(
+            rlr_monthly_df,
+            monthly_gtsm_df_i[["t", "surge"]],
+            left_index=True,
+            right_on="t",
+            how="left",
+        )
+        rlr_monthly_df = rlr_monthly_df.set_index("t")
+        rlr_monthly_df["surge"] = rlr_monthly_df["surge"].fillna(
+            rlr_monthly_df["surge"].mean()
+        )
+        rlr_monthly_dfs.append(rlr_monthly_df)
+
+        # also for the metric data
+
+        met_monthly_df = station["met_monthly"]
+        monthly_gtsm_df_i = monthly_gtsm_df[
+            monthly_gtsm_df["ddl_id"] == station["ddl_id"]
+        ]
+        met_monthly_df = pd.merge(
+            met_monthly_df,
+            monthly_gtsm_df_i[["t", "surge"]],
+            left_index=True,
+            right_on="t",
+            how="left",
+        )
+        met_monthly_df = met_monthly_df.set_index("t")
+        met_monthly_df["surge"] = met_monthly_df["surge"].fillna(
+            met_monthly_df["surge"].mean()
+        )
+        met_monthly_dfs.append(met_monthly_df)
+
+    selected_stations["rlr_annual"] = rlr_annual_dfs
+    selected_stations["rlr_monthly"] = rlr_monthly_dfs
+    selected_stations["met_monthly"] = met_monthly_dfs
+
+    return selected_stations
+
+
+def add_aggregated_stations(selected_stations):
+    """add the aggregated stations to the list, note that the psmsl_ids are hard coded."""
+    aggregated_stations = [
+        {
+            "ddl_id": "NL",
+            "name": "Netherlands",
+            "psmsl_id": 10000,
+            "idx": [20, 22, 23, 24, 25, 32],
+        },
+        {
+            "ddl_id": "NL-DELFZL",
+            "name": "Netherlands (without Delfzijl)",
+            "psmsl_id": 10001,
+            "idx": [20, 22, 23, 25, 32],
+        },
+    ]
+
+    frames = [selected_stations]
+    for aggregated_station in aggregated_stations:
+        sub_selection = selected_stations.loc[aggregated_station["idx"]]
+        row = {
+            "name_rws": aggregated_station["name"],
+            "name": aggregated_station["name"],
+            "ddl_id": aggregated_station["ddl_id"],
+            "location": aggregated_station["name"],
+            "id": aggregated_station["psmsl_id"],
+        }
+        for dataset_name in ["rlr_annual", "rlr_monthly", "met_monthly"]:
+            data_per_station = pd.concat(sub_selection[dataset_name].tolist())
+            grouped = data_per_station[["year", "height", "u2", "v2", "surge"]].groupby(
+                "t"
+            )
+            mean_df = grouped.mean().reset_index()
+            # # filter out non-trusted part (before NAP, also with some missing stations)
+            mean_df = mean_df[mean_df["year"] >= 1890].copy()
+            row[dataset_name] = mean_df
+
+        frames.append(pd.DataFrame([pd.Series(row, name=row["id"])]))
+    selected_stations = pd.concat(frames)
     return selected_stations
