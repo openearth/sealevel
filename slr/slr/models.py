@@ -21,7 +21,7 @@ def quadratic_model(
     # regression terms
     X = np.c_[linear_term, quadratic_term]
     names = [
-        "Constant (in year {epoch})",
+        f"Constant (in year {epoch})",
         "Trend",
         "Acceleration",
     ]
@@ -73,7 +73,7 @@ def broken_quadratic_model(
     # regression terms
     X = np.c_[linear_term, quadratic_term]
     names = [
-        "Constant (in year {start_acceleration})",
+        f"Constant (in year {start_acceleration})",
         "Trend",
         f"Acceleration from {start_acceleration}",
     ]
@@ -153,3 +153,23 @@ def linear_model(df, with_wind=True, with_ar=True, quantity="height"):
         model = sm.OLS(y, X, missing="drop")
         fit = model.fit(cov_type="HC0")
     return fit, names
+
+
+def tide_effect(fit, names):
+
+    # Nodal parameters should be stored as x2, x3 in the fit
+    u_index = names.index('Nodal U')
+    v_index = names.index('Nodal V')
+
+    u_name = fit.model.exog_names[u_index]
+    v_name = fit.model.exog_names[v_index]
+
+
+    # Extract parameters  and input parameters of the linear model for tide
+    exog_u = fit.model.exog[:, u_index]
+    param_u = fit.params[u_name]
+    exog_v = fit.model.exog[:, v_index]
+    param_v = fit.params[v_name]
+
+    sea_surface_height_due_to_tide = exog_u * param_u + exog_v * param_v
+    return sea_surface_height_due_to_tide
