@@ -1,8 +1,64 @@
+import pandas as pd
+
 import ipywidgets
 import IPython.display
 
+def fits_to_fits_df(fits):
+    """add information to a list of fits and convert it to data frame"""
+    for row in fits:
+        row['aic'] = row['fit'].aic
+        row['F'] = row['fit'].fvalue
+        row['df_model'] = row['fit'].df_model
+        row['prediction'] = row['fit'].get_prediction()
+
+    for row in fits:
+        # does this model have tide included
+        has_tide = 'Nodal U' in row['names'] and 'Nodal V' in row['names']
+        row['has_tide'] = has_tide
+
+        # does this model have wind included
+        has_wind = 'Wind $u^2$' in row['names'] and 'Wind $v^2$' in row['names']
+        row['has_wind'] = has_wind
+
+
+    # add exogenuous table, this column will be added later (dataframe in dataframe should be added as a column)
+    exogs = []
+    # add prediction with mean wind and tide
+    for row in fits:
+        # lookup the values that were used for this prediction
+        exog_df = pd.DataFrame(
+            row['fit'].model.exog,
+            columns=row['names']
+        )
+        exogs.append(exog_df)
+
+        if row['has_tide']:
+            exog_mean_tide_df = exog_df.copy()
+            exog_mean_tide_df['Nodal U'] = exog_mean_tide_df['Nodal U'].mean()
+            exog_mean_tide_df['Nodal V'] = exog_mean_tide_df['Nodal V'].mean()
+            row['prediction_mean_tide'] = row['fit'].get_prediction(exog=exog_mean_tide_df)
+        if row['has_wind']:
+            exog_mean_wind_df = exog_df.copy()
+            exog_mean_wind_df['Wind $u^2$'] = exog_mean_wind_df['Wind $u^2$'].mean()
+            exog_mean_wind_df['Wind $v^2$'] = exog_mean_wind_df['Wind $v^2$'].mean()
+            row['prediction_mean_wind'] = row['fit'].get_prediction(exog=exog_mean_wind_df)
+        if row['has_wind'] and row['has_tide']:
+            # set both wind and tide to mean/0
+            exog_mean_tide_mean_wind_df = exog_df.copy()
+            exog_mean_tide_mean_wind_df['Nodal U'] = 0
+            exog_mean_tide_mean_wind_df['Nodal V'] = 0
+            exog_mean_tide_mean_wind_df['Wind $u^2$'] = exog_mean_tide_mean_wind_df['Wind $u^2$'].mean()
+            exog_mean_tide_mean_wind_df['Wind $v^2$'] = exog_mean_tide_mean_wind_df['Wind $v^2$'].mean()
+            row['prediction_mean_tide_mean_wind'] = row['fit'].get_prediction(exog=exog_mean_tide_mean_wind_df)
+
+
+    fits_df = pd.DataFrame(fits)
+    fits_df['exog'] = exogs
+
+    return fits_df
 
 def side_by_side_tables(tables):
+    """show jupyter notebook tables side by side"""
     widgets = []
     for row in tables:
         widget = ipywidgets.widgets.Output()
@@ -10,7 +66,7 @@ def side_by_side_tables(tables):
             table = row["table"]
             styled = (
                 table.style.set_caption(row["title"])
-                .format({"height": "{:.1f}", "height-surge": "{:.1f}"})
+                .format({"height": "{:.1f}", "height - surge": "{:.1f}"})
                 .format_index(lambda v: v.strftime("%Y"))
             )
             IPython.display.display(styled)
@@ -50,13 +106,10 @@ def top_n_tables(selected_stations, top_n=7):
             station_tables_waterlevel.append(row)
     for _, station in selected_stations.iterrows():
         annual_df = station["rlr_annual"]
-        annual_df["height-surge"] = annual_df["height"] - (
-            (annual_df["surge"] - annual_df["surge"].mean() * 1000)
-        )
         top_surge = (
-            annual_df.sort_values("height-surge", ascending=False)
+            annual_df.sort_values("height - surge", ascending=False)
             .reset_index()
-            .set_index("t")[["height-surge"]]
+            .set_index("t")[["height - surge"]]
             .head(n=top_n)
         )
         row = {
