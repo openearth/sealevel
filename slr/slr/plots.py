@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 
 import bokeh
+import bokeh.palettes
 import bokeh.plotting
 import bokeh.tile_providers
 
@@ -119,31 +120,31 @@ def surge_vs_wind(gtsm_df, annual_wind_df):
     wind_gtsm_df.plot.scatter(
         "u",
         "v",
-        c=wind_gtsm_df["surge"],
+        c=wind_gtsm_df["surge_mm"],
         cmap=matplotlib.cm.RdYlBu,
         ax=axes[0],
-        vmin=-0.1,
-        vmax=0.1,
+        vmin=-0.1 * 1000,
+        vmax=0.1 * 1000,
     )
 
     axes[0].grid(True)
     axes[0].set_title(f"Surge height as a function of u,v")
-    axes[0].set_ylim(-1, 4)
-    axes[0].set_xlim(-1, 4)
+    # axes[0].set_ylim(-1, 4)
+    # axes[0].set_xlim(-1, 4)
     axes[1].plot(
         wind_gtsm_stations_df["speed"],
-        wind_gtsm_stations_df["surge"],
+        wind_gtsm_stations_df["surge_mm"],
         "g.",
         alpha=0.5,
         label="stations",
     )
     axes[1].plot(
-        wind_gtsm_df["speed"], wind_gtsm_df["surge"], "ko", label="NL", alpha=0.5
+        wind_gtsm_df["speed"], wind_gtsm_df["surge_mm"], "ko", label="NL", alpha=0.5
     )
-    axes[1].set_xlim(-1, 4)
-    axes[1].set_ylim(-0.05, 0.15)
+    # axes[1].set_xlim(-1, 4)
+    # axes[1].set_ylim(-0.05 * 1000, 0.15 * 1000)
     axes[1].set_xlabel(f"Wind speed [m/s]")
-    axes[1].set_ylabel("Surge height [m]")
+    axes[1].set_ylabel("Surge height [mm]")
     axes[1].set_title("Surge height as a function of windspeed")
     axes[1].legend()
     return fig
@@ -164,7 +165,7 @@ def wind_trends(annual_wind_products, gtsm_df):
             scatter_kws=dict(alpha=0.3),
         )
     g = sns.regplot(
-        x="year", y="surge", data=gtsm_df.query('name=="NL"'), ax=axes[1], lowess=lowess
+        x="year", y="surge_mm", data=gtsm_df.query('name=="NL"'), ax=axes[1], lowess=lowess
     )
     axes[0].set_xlabel("")
     axes[0].set_ylabel("Wind speed [m/s]")
@@ -217,7 +218,7 @@ def surge_vs_waterlevel(selected_stations):
         axes[0].plot(monthly_df.index, monthly_df["height"], label=station["name"])
         axes[1].plot(
             monthly_df.index,
-            monthly_df["height"] - (monthly_df["surge"] * 1000),
+            monthly_df["height"] - (monthly_df["surge_mm"]),
             label=station["name"],
         )
     axes[0].set_xlim(datetime.datetime(2000, 1, 1), datetime.datetime(2022, 1, 1))
@@ -313,3 +314,136 @@ def station_comparison_linear_vs_broken_linear(
     p.xaxis.axis_label = "Time"
     p.yaxis.axis_label = yname
     return p
+
+
+def sea_level_due_to_tide(mean_df, fit, names):
+    """show sea level due to tide"""
+
+    u_index = names.index('Nodal U')
+    v_index = names.index('Nodal V')
+
+    # Extract parameters  and input parameters of the linear model for tide
+    exog_u = fit.model.exog[:, u_index]
+    exog_v = fit.model.exog[:, v_index]
+
+    sea_surface_height_due_to_tide = slr.models.tide_effect(fit=fit, names=names)
+
+    # This should show a cos (u) and sine (v) function with 1 period
+    fig, axes = plt.subplots(ncols=2, figsize=(13, 6))
+    ax = axes[0]
+    ax.plot(mean_df['year'], exog_u, label='nodal u')
+    ax.plot(mean_df['year'], exog_v, label='nodal v')
+    ax.legend()
+    ax.set_ylabel('Nodal tide factor [-]')
+    ax.set_xlim(1970, 1990)
+    ax = axes[1]
+    ax.plot(mean_df['year'], sea_surface_height_due_to_tide, label='sea surface height due to tide [mm]')
+    ax.set_ylabel('sea surface height due to tide [mm]')
+
+    return fig
+
+
+
+def wind_anomaly_vs_surge_anomaly(mean_df, fit, names):
+    """return an overview of wind and surge anomalies"""
+    wind_effect, wind_anomaly = slr.wind.compute_wind_effect_and_anomaly(fit, names)
+
+    fig, axes = plt.subplots(figsize=(13, 8), nrows=2, gridspec_kw=dict(height_ratios=(3, 1)), sharex=True)
+
+    axes[0].plot(mean_df.year, mean_df.height, 'k.', alpha=0.5, label='Measured')
+    axes[0].plot(mean_df.year, mean_df.height - wind_effect, 'g-.', alpha=0.5, label='Measured - wind')
+    axes[0].plot(mean_df.year, mean_df['height - surge'], 'r-.', alpha=0.5, label='Measured - surge')
+
+    axes[0].plot(mean_df.year, mean_df.height - wind_anomaly, 'g-', alpha=0.5, label='Measured - wind anomaly')
+    axes[0].plot(mean_df.year, mean_df['height - surge anomaly'], 'r-', alpha=0.5, label='Measured - surge anomaly')
+    axes[0].set_title(f'Measured sea level vs wind effect vs surge')
+    axes[0].legend(loc='best')
+    axes[0].set_xlabel('Year')
+    axes[0].set_ylabel(f'Annual mean sea level for Dutch stations) [mm]')
+    axes[1].plot(mean_df.year, (mean_df['surge_mm'] - mean_df['surge_mm'].mean()), label='surge anomaly')
+    axes[1].plot(mean_df.year, wind_anomaly, label='wind anomaly')
+    axes[1].set_ylabel('Anomaly [mm]')
+    axes[1].legend()
+    return fig
+
+
+
+def model_compare_plot(mean_df, fits_df, quantity):
+    colors = bokeh.palettes.Category10[10]
+
+    fig = bokeh.plotting.figure(x_range=(1860, 2020), plot_width=900, plot_height=400)
+
+    fits_df = fits_df.set_index('name')
+
+    linear_with_wind_fit = fits_df.loc['linear_with_wind', 'fit']
+    linear_with_wind_names = fits_df.loc['linear_with_wind', 'names']
+    linear_with_wind_confidence_interval = fits_df.loc['linear_with_wind', 'prediction'].conf_int(obs=False)
+    linear_with_wind_prediction_interval = fits_df.loc['linear_with_wind', 'prediction'].conf_int(obs=True)
+    linear_with_mean_wind = fits_df.loc['linear_with_wind', 'prediction_mean_wind'].predicted_mean
+    linear_with_mean_wind_confidence_interval = fits_df.loc['linear_with_wind', 'prediction_mean_wind'].conf_int(obs=False)
+    linear_with_mean_wind_prediction_interval = fits_df.loc['linear_with_wind', 'prediction_mean_wind'].conf_int(obs=True)
+
+    linear_without_wind_fit = fits_df.loc['linear_without_wind', 'fit']
+    broken_linear_fit = fits_df.loc['broken_linear', 'fit']
+    quadratic_fit = fits_df.loc['quadratic', 'fit']
+    broken_quadratic_fit = fits_df.loc['broken_quadratic', 'fit']
+
+
+
+    wind_effect, wind_anomaly = slr.wind.compute_wind_effect_and_anomaly(fit=linear_with_wind_fit, names=linear_with_wind_names)
+
+    fig.circle(mean_df.year, mean_df["height"], line_width=3, legend_label=f'Observed sea surface height', color='black', alpha=0.5)
+    fig.circle(mean_df.year,  mean_df["height"] - wind_anomaly, line_width=3, legend_label=f'Observed height - wind anomaly', color='green', alpha=0.5)
+    fig.circle(mean_df.year,  mean_df["height - surge anomaly"], line_width=3, legend_label=f'Observed height - surge anomaly', color='red', alpha=0.5)
+
+    fig.circle(mean_df.year,  mean_df["height - surge"], line_width=3, legend_label=f'Observed height - surge', color='red', alpha=0.1)
+    fig.circle(mean_df.year,  mean_df["height"] - wind_effect, line_width=3, legend_label=f'Observed height - wind', color='green', alpha=0.1)
+
+    # obser
+    fig.line(mean_df.year, linear_with_wind_fit.predict(), line_width=3, legend_label='Linear (with wind)', color=colors[0])
+    fig.patch(
+        np.r_[mean_df.year[::-1], mean_df.year],
+        np.r_[linear_with_wind_confidence_interval[::-1, 0], linear_with_wind_confidence_interval[:, 1]],
+        color=colors[0],
+        alpha=0.3,
+        legend_label='Linear (with wind)'
+    )
+    fig.patch(
+        np.r_[mean_df.year[::-1], mean_df.year],
+        np.r_[linear_with_wind_prediction_interval[::-1, 0], linear_with_wind_prediction_interval[:, 1]],
+        color=colors[0],
+        alpha=0.1,
+        legend_label='Linear (with wind)'
+    )
+
+    fig.line(mean_df.year, linear_with_mean_wind, line_width=3, color=colors[2], legend_label='Linear (mean wind, 0 tide)')
+    fig.patch(
+        np.r_[mean_df.year[::-1], mean_df.year],
+        np.r_[linear_with_mean_wind_confidence_interval[::-1, 0], linear_with_mean_wind_confidence_interval[:, 1]],
+        color=colors[2],
+        alpha=0.3,
+        legend_label='Linear (mean wind, 0 tide)'
+    )
+    fig.patch(
+        np.r_[mean_df.year[::-1], mean_df.year],
+        np.r_[linear_with_mean_wind_prediction_interval[::-1, 0], linear_with_mean_wind_prediction_interval[:, 1]],
+        color=colors[2],
+        alpha=0.1,
+        legend_label='Linear (mean wind, 0 tide)'
+    )
+
+    # alternative models
+
+    fig.line(mean_df.year, linear_without_wind_fit.predict(), line_width=3, legend_label='Linear (no wind)', color=colors[1])
+    fig.line(mean_df.year, broken_linear_fit.predict(), line_width=3, color=colors[3], legend_label='Broken')
+    fig.line(mean_df.year, quadratic_fit.predict(), line_width=3, color=colors[4], legend_label='Quadratic')
+    fig.line(mean_df.year, broken_quadratic_fit.predict(), line_width=3, color=colors[5], legend_label='Broken quadratic')
+
+    fig.line(mean_df.year, mean_df[quantity].rolling(18, center=True).mean(), line_width=3, color=colors[6], legend_label='Rolling 18 year mean (centered)')
+    fig.line(mean_df.year, mean_df[quantity].rolling(7, center=True).mean(), line_width=3, color=colors[7], legend_label='Rolling 7 year mean (centered)')
+
+    fig.legend.location = "top_left"
+    fig.yaxis.axis_label = 'waterlevel [mm] above N.A.P.'
+    fig.xaxis.axis_label = 'year'
+    fig.legend.click_policy = "hide"
+    return fig
