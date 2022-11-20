@@ -222,4 +222,28 @@ def get_gtsm_dfs():
     monthly_gtsm_df["year"] = [
         slr.utils.datetime2year(dt) for dt in monthly_gtsm_df["t"]
     ]
+
+    # add unit suffix (m -> mm * 1000)
+    annual_gtsm_df['surge_mm'] = annual_gtsm_df['surge'] * 1000
+
+    monthly_gtsm_df['surge_mm'] = monthly_gtsm_df['surge'] * 1000
+
+    # explicit use mm
+    annual_gtsm_df = annual_gtsm_df.drop(columns=["surge"])
+    monthly_gtsm_df = monthly_gtsm_df.drop(columns=["surge"])
+
     return monthly_gtsm_df, annual_gtsm_df
+
+
+def compute_wind_effect_and_anomaly(fit, names):
+    """compute the wind and anomaly effect for the model"""
+    u2_index = names.index('Wind $u^2$')
+    v2_index = names.index('Wind $v^2$')
+    u2_name = fit.model.exog_names[u2_index]
+    v2_name = fit.model.exog_names[v2_index]
+    u2 = fit.model.exog[:, u2_index]
+    v2 = fit.model.exog[:, v2_index]
+
+    wind_effect = fit.params.loc[u2_name] * u2 + fit.params.loc[v2_name] * v2
+    wind_anomaly = wind_effect - wind_effect.mean()
+    return wind_effect, wind_anomaly
