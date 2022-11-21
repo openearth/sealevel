@@ -117,14 +117,15 @@ def surge_vs_wind(gtsm_df, annual_wind_df):
         right_on="t",
         how="right",
     )
+
     wind_gtsm_df.plot.scatter(
         "u",
         "v",
         c=wind_gtsm_df["surge_mm"],
         cmap=matplotlib.cm.RdYlBu,
         ax=axes[0],
-        vmin=-0.1 * 1000,
-        vmax=0.1 * 1000,
+        vmin=-400,
+        vmax=400,
     )
 
     axes[0].grid(True)
@@ -150,27 +151,26 @@ def surge_vs_wind(gtsm_df, annual_wind_df):
     return fig
 
 
-def wind_trends(annual_wind_products, gtsm_df):
+def wind_trends(annual_wind_products, gtsm_df, start_year=1979, lowess=False):
     """show a figure with wind trends for all products"""
     fig, axes = plt.subplots(figsize=(13, 8), nrows=2, sharex=True)
-    lowess = False
     for product, annual_wind_df in annual_wind_products.items():
         g = sns.regplot(
             x="year",
             y="speed",
-            data=annual_wind_df,
+            data=annual_wind_df.query(f'year >= {start_year}'),
             lowess=lowess,
             ax=axes[0],
             label=f"{product}",
             scatter_kws=dict(alpha=0.3),
         )
     g = sns.regplot(
-        x="year", y="surge_mm", data=gtsm_df.query('name=="NL"'), ax=axes[1], lowess=lowess
+        x="year", y="surge_mm", data=gtsm_df.query('name=="NL"').query(f'year >= {start_year}'), ax=axes[1], lowess=lowess
     )
     axes[0].set_xlabel("")
     axes[0].set_ylabel("Wind speed [m/s]")
     axes[0].legend(loc="best")
-    axes[1].set_ylabel("Surge height [m]")
+    axes[1].set_ylabel("Surge height [mm]")
     axes[1].set_xlabel("Year")
     return fig
 
@@ -226,6 +226,9 @@ def surge_vs_waterlevel(selected_stations):
     axes[0].set_title("Water level")
     axes[1].set_title("Water level - surge")
     axes[1].legend(loc="lower left")
+    axes[0].set_ylabel('Monthly water level [mm]')
+    axes[1].set_ylabel('Monthly water level - surge [mm]')
+    axes[1].set_xlabel('Year')
 
 
 def wind_vs_no_wind(
