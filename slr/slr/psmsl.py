@@ -342,6 +342,7 @@ def add_aggregated_stations(selected_stations):
             "name": aggregated_station["name"],
             "ddl_id": aggregated_station["ddl_id"],
             "location": aggregated_station["name"],
+            "psmsl_id": aggregated_station["psmsl_id"],
             "id": aggregated_station["psmsl_id"],
         }
         for dataset_name in ["rlr_annual", "rlr_monthly", "met_monthly"]:
@@ -353,6 +354,7 @@ def add_aggregated_stations(selected_stations):
             # # filter out non-trusted part (before NAP, also with some missing stations)
             mean_df = mean_df[mean_df["year"] >= 1890].copy()
             surge = mean_df['surge_mm']
+            mean_df['station'] = aggregated_station['psmsl_id']
             # recompute the surge and anomalies
             surge = surge.fillna(surge.mean())
             mean_df['height - surge'] = mean_df['height'] - surge
