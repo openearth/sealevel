@@ -135,7 +135,7 @@ knitr::include_graphics("figures/sea-surface-temperature.png")
 
 Voor het berekenen van de toename van de volume is niet de temperatuur van het oceaanoppervlak van belang, maar de temperatuur over de hele diepte van de oceaan. Om de temperauur in de diepe oceanen beter in kaart te brengen is begin van de eeuw het \acr{Argo} programma opgezet, een mondiaal netwerk van duizenden boeien waar [ook Nederland aan bijdraagt](https://www.knmiprojects.nl/projects/argo-netherlands). Deze boeien kunnen naar beneden duiken en zo de zoutgradiënt, druk en temperatuur meten over de bovenste 2000m van de oceaan. Er wordt gewerkt aan de uitbreiding tot 6000m diep [@Jayne2017], zie ook @Talley2016 voor een overzicht van metingen van schepen. Op basis van deze data wordt een schatting gemaakt van de veranderingen in dichtheid [@Roemmich2009] en deze wordt beschikbaar gesteld in een dataset. Op basis van de combinatie van zeespiegelmetingen, zwaartekrachtmetingen en dichtheid is de conclusie getrokken dat de diepe oceaan, dieper dan 2000 meter, niet opwarmt [@Llovel2014]. schatten de bijdrage van de diepe oceaan aan de zeespiegelstijging op ongeveer 0.1mm. De schatting van de zeespiegelbijdrage van de bovenste 2000m bedraagt 1.1mm op basis van data van [@Llovel2014; @Roemmich2009], zoals weergegeven in \@ref(boekhouding).
 
-### (SM) Massaveranderingen, gletsjers, landijs en zeeijs {#massaverandering}
+### Massaveranderingen, gletsjers, landijs en zeeijs {#massaverandering}
 
 De globale zeespiegelveranderingen (gemiddeld over alle oceanen) liet zien dat ongeveer 1.8 /jaarm van de globale zeespiegelstijging kan worden toegeschreven aan veranderingen in massa. Voorbeelden van processen die bijdragen aan veranderingen in oceaanmassa zijn:
 
@@ -181,7 +181,7 @@ knitr::include_graphics("figures/sea-level-trends.png")
 knitr::include_graphics("figures/sea-level-trends-legend.png", dpi = 450)
 ```
 
-### (SM) Gravitatie {#gravitatie}
+### Gravitatie {#gravitatie}
 
 Als gevolg van het zelfgravitatie effect wordt de massa van smeltende ijskappen niet gelijkmatig over de oceaan verdeeld, Het water in de oceaan wordt door de zwaartekracht naar een op het land liggende ijsmassa toe getrokken, waardoor het zeeniveau nabij een ijskap relatief hoog is. Wanneer het landijs (deels) smelt zorgt dit voor een lokale afname in zwaartekracht waardoor de aantrekkende werking op het water is de oceaan afneemt en zal dalen. Het water verder weg van de ijskap zal wel stijgen maar minder dan het wereldwijde gemiddelde, terwijl ver weg van de ijskap de stijging groter is dan het wereldwijde gemiddelde vanwege het behoud van massa.
 
@@ -198,7 +198,7 @@ Deze onderverdeling komt grotendeels overeen met de verwachte vingerafdrukken [z
 knitr::include_graphics("figures/self-gravitation.png")
 ```
 
-### (SM) Circulaties {#sec:circulaties}
+### Circulaties {#sec:circulaties}
 
 Regionale verschillen in zeespiegel onstaan ook door redistributie of ocean water massa door oceaancirculaties. Oceaancirculatie,weergegeven in figuur \@ref(fig:ocean-current), wordt gedreven door verschillen in temperatuur, saliniteit, het corioliseffect en de kracht van de wind op het oppervlak van de oceaan.
 
@@ -218,7 +218,7 @@ knitr::include_graphics("figures/amo.png")
 
 ```
 
-### (SM) Luchtdruk {#luchtdruk}
+### Luchtdruk {#luchtdruk}
 
 De zeespiegel verandert ook in reactie op een verandering in luchtdruk. Als er ruimtelijk luchtdruk verschillen ontstaan, dan stijgt de zeespiegel op de plek met de laagste luchtdruk terwijl in een gebied met hoge luchtdruk het zeeoppervlak naar beneden wordt gedrukt [@Dickman1988]. Dit heet het inverse barometer effect waarbij de zeespiegel stijgt met 1 cm bij een daling van 1 millibar [@Wunsch,1997]. Er is conservatie of massa, dus ruimtelijke gemiddeld is er geen verandering in zeespiegel. Het effect is relatief klein, maar niet verwaarloosbaar in gebieden met een lage breedtegraad als Nederland.Dit effect vindt ook plaats tijdens een storm waar een gebied met lage luchtdruk voor extra stormopzet zorgt. Er kunnen ook variaties over langere termijn optreden. Een bekend fenomeen is de \acr{NAO}. Bij een hoge \acr{NAO}, wat overeenkomt met een lage atmosferische druk, staat de zeespiegel op de Noord Atlantische Oceaan wat hoger.
 
@@ -226,7 +226,7 @@ De zeespiegel verandert ook in reactie op een verandering in luchtdruk. Als er r
 
 Lokaal en incidenteel wordt de zeespiegel beinvloed door wind [@VanDantzig1960]. Aan de Nederlandse kust leidt harde wind uit het westen tot noorden tot een verhoogde zeespiegel (windopzet) ten opzichte van het gemiddelde, tegengestelde wind leidt tot een verlaagde zeespiegel (). Een analyse voor de Wadenzee en aangrenzende Noordzee wordt veel van het windeffect verklaard met de west-oost component [@Gerkema2017. Windopzet kan incidenteel enkele meters bedragen. Het effect hiervan op de jaargemiddelde zeespiegel is in de orde van enkele centimeters.
 
-### (SM) Getij {#getij}
+### Getij {#getij}
 
 Het zeeoppervlak varieert door veranderingen van de aantrekkingskracht veroorzaakt door verandering van de posities van de aarde, de maan en de zon. Dit resulteert in zes verschillende frequenties tabel \@ref(tab:getij-frequenties) die samengesteld tot een variabele waterstand leiden, het getij. Deze frequenties beïnvloeden de waterstand in verschillende boventonen (dubbeldaags getij) en modulaties (spring-doodtij cyclus). In de context van klimaatcycli kent men nog drie langere periodes, bekend als de Milankovich termen [@Munk2002].
 

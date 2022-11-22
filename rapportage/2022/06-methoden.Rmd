@@ -46,13 +46,13 @@ Van Station Delfzijl is het onzeker of de vertikale positie de laatste 10-15 jaa
 
 > Delfzijl is het enige hoofdgetijdenstation waarvan de nulpaal niet tot het primaire meetnet behoort. Dit komt doordat de olie, gas en zoutwinning hebben geresulteerd in onstabiele merken in het grootste deel van Friesland en Groningen, waardoor deze niet deel uitmaken van het primaire net. Dit betekent dat Delfzijl alleen met secundaire waterpassingen wordt ingemeten. Omdat Delfzijl tot een zakkingsgevoelig gebied behoort, worden eens per 5 jaar secundaire waterpassingen uitgevoerd in dit gebied. Tijdens deze waterpassingen worden zowel de nulpaal en de M-bout ingemeten. De laatste jaren zijn hoogtewijzingen bij Delfzijl echter niet goed doorgevoerd voor de waterstandsmetingen. De laatste hoogtewijziging van de nulpaal bij Delfzijl is doorgevoerd in 2013 (hoogte=4,247 m+NAP), terwijl de laatste regionale waterpassing in 2018 (hoogte=4,220 m+NAP) is uitgevoerd (Kremers, 2021 & Alberts, 2020). Ook zijn er in de periode 2015-2020 geen B0-correcties geweest, omdat de maximale geconstateerde afwijking 3 mm was. Echter worden de B0-metingen ten opzichte van de M-bout ingemeten, maar de M-bout wordt nu niet jaarlijks ingemeten ten opzichte van de nulpaal. Dit is wel noodzakelijk omdat de nulpaal en de M-bout onafhankelijk van elkaar bewegen.
 
-Rijkswaterstaat heeft begin 2022 geconstateerd dat een inhaalslag nodig is voor de verticale correctie van Delfzijl. Deze wordt begin 2023 verwacht. Vanwege deze onzekerheid berekenen we de zeespiegel en -stijging ook op basis van het gemiddelde van wlleen de 5 andere hoofdstations. Het weglaten van gegevens van Delfzijl leidt tot informatieverlies, maar het meenemen van dit station zou kunnen leiden tot fouten. We kiezen hier voor het vermijden van fouten. Zogauw er gecorrigeerde waarden voor Delfzijl beschikbaar zijn, kan de analyse met alle zes hoofdstations herhaald worden. De verwachting is dat dit in de eerste helft van 2023 gebeurt (mondelinge communicatie, Rijkswaterstaat). 
+Rijkswaterstaat heeft begin 2022 geconstateerd dat een inhaalslag nodig is voor de verticale correctie van Delfzijl. Deze wordt begin 2023 verwacht. Vanwege deze onzekerheid berekenen we de zeespiegel en -stijging ook op basis van het gemiddelde van wlleen de 5 andere hoofdstations. Het weglaten van gegevens van Delfzijl leidt tot informatieverlies, maar het meenemen van dit station zou kunnen leiden tot fouten. We kiezen hier voor het vermijden van fouten. Zogauw er gecorrigeerde waarden voor Delfzijl beschikbaar zijn, kan de analyse met alle zes hoofdstations herhaald worden. De verwachting is dat dit in de eerste helft van 2023 gebeurt (mondelinge communicatie, Rijkswaterstaat).
 
 Een andere bron van gegevens zijn altimetriemetingen via satellieten. Voor de Noordzee zijn sinds 1993 gegevens beschikbaar gegrid tot een resolutie van een kwart lengte- en breedtegraad. Deze gegevens worden gebruikt ter verificatie van het absolute deel van de zeespiegelstijging en als bron voor de recente globale zeespiegelstijging. Meer informatie staat in paragraaf \@(satellietmetingen).
 
 Voor de huidige zeespiegel wordt het gemiddelde van de hoofdstations Vlissingen, Hoek van Holland, IJmuiden, Den Helder en Harlingen gebruikt.
 
-### Wind
+### Wind {#data-wind}
 
 Bij het berekenen van de huidige zeespiegel wordt gecorrigeerd voor wind en stormopzet (zie paragraaf \@ref(methoden-wind)). Hiervoor worden verschillende gegevensbronnen gebruikt. Voor correctie naar optredende wind worden twee verschillende heranalyses gebruikt, \acr{NCEP} en \acr{20CR}:
 
@@ -75,7 +75,7 @@ Ook wordt de wind en opzetcorrectie afgeleid uit het \acr{GTSM} model. Informati
 
 Vanuit de literatuur is geen sterke consensus over welke periode gebruikt wordt om over te rapporteren als het gaat om de zeespiegel. In de metingen van getijstations wordt een meetperiode van 60 jaar als kort gezien [@Douglas2001]. In de metingen van satellieten worden veranderingen in de tijdsspanne van 5 jaar apart benoemd [@Cazenave2018].
 
-De gegevens van de getijstations zijn beschikbaar in verschillende temporele resoluties, variërend van jaarlijks tot gegevens per minuut. Voor het bepalen van de gemiddelde zeespiegel wordt de jaarlijks gemiddelde zeewaterstand per kuststation gebruikt. De belangrijkste cyclus in de waterstanden is de 18.613 jarige nodale cyclus. Seizoenseffecten (behalve wind en surge, waarvoor gecorrigeerd wordt) met een kortere schaal hebben geen significant effect op het jaargemiddelde. PSMSL stelt ook reeksen van de maandgemiddelde zeewaterstanden beschikbaar. Deze reeksen vertonen meer variatie en leveren voor de statistische analyse van de trend in de actuele zeespiegelstijging geen additionele inzichten op. Zie ook de gedetailleerde uitsplitsing per station in het rekendocument .
+De gegevens van de getijstations zijn beschikbaar in verschillende temporele resoluties, variërend van jaarlijks tot gegevens per minuut. Voor het bepalen van de gemiddelde zeespiegel wordt de jaarlijks gemiddelde zeewaterstand per kuststation gebruikt. De belangrijkste cyclus in de waterstanden is de 18.613 jarige nodale cyclus. Seizoenseffecten worden veroorzaakt door seizoensgedrag in zowel wind, luchtdruk als temperatuur/dichtheid. PSMSL stelt ook reeksen van de maandgemiddelde zeewaterstanden beschikbaar. Deze reeksen vertonen meer variatie en leveren voor de statistische analyse van de trend in de actuele zeespiegelstijging geen additionele inzichten op. Zie ook de gedetailleerde uitsplitsing per station in het [rekendocument](). In de resultatensectie \@ref(seizoenen) wordt het seizoenspatroon met en zonder opzetcorrectie getoond.
 
 ## Welke termen?
 
@@ -95,35 +95,37 @@ De versnelling is optioneel (zie sectie \@ref(versnelling-methods). In \@ref(eq:
 
 Meestal kijken we naar zeespiegeltrends en naar veranderingen in de trends. Maar eigenlijk net zo interessant is hoe hoog de zeespiegel precies staat. Het nulniveau van het \acr{NAP} begon ooit als hoogwater in Amsterdam, toen stond het gemiddeld zeeniveau dus onder \acr{NAP} [@Veen1945]. Begin jaren 1980 was de zeespiegel gelijk aan het \acr{NAP} en tegenwoordig ligt \acr{NAP} onder het gemiddeld zeeniveau.
 
-### (DLB) Versnelling? {#versnelling-methods}
+### Versnelling? {#versnelling-methods}
 
 We gaan er niet vanuit dat de zeespiegel altijd een lineaire trend zal blijven volgen. Daarom geven we het model de mogelijkheid om een versnelde of vertraagde zeespiegel uit te rekenen met de optionele versnellingsparameter.
 
-Om de versnelling van de zeespiegel te beschrijven zijn er in de literatuur verschillende varianten in omloop. Deze worden hieronder schematisch weergegeven en beschreven.  
+Om de versnelling van de zeespiegel te beschrijven zijn er in de literatuur verschillende varianten in omloop. Deze worden hieronder schematisch weergegeven en beschreven.
 
 ```{r accelerations, fig.cap="Schematische weergave van de verschillende modelvarianten om de zeespiegelstijging te schatten. " }
 knitr::include_graphics("figures/accelerations.png")
 ```
 
-1. Een *lineaire* aanpak gaat ervan uit dat de versnelling afwezig is. Deze methode wordt toegepast door NOAA voor [historische reeksen](https://tidesandcurrents.noaa.gov/sltrends/mslUSTrendsTable.html). 
+1.  Een *lineaire* aanpak gaat ervan uit dat de versnelling afwezig is. Deze methode wordt toegepast door NOAA voor [historische reeksen](https://tidesandcurrents.noaa.gov/sltrends/mslUSTrendsTable.html).
 2.  Een *kwadratische versnelling*. Dit is de gebruikelijke [@Jevrejeva2014; @Church2011] en formele manier om de versnelling mee te nemen. De methode bevat naast een parameter voor de lineaire trend in de zeespiegelstijging een extra parameter voor de versnelling in de zeespiegelstijging (zie \@ref(eq:trend)). Op de significantie van deze parameter wordt statistisch getoetst. Deze methode wordt weergegeven met vergelijking \@ref(eq:quadratictrend).
 3.  De *gebroken lineaire* methode gaat ervan uit dat de zeespiegelstijging abrupt versneld is. Een abrupte versnelling kan optreden als een groot gebied tegelijk boven het 0 punt komt te liggen. In de praktijk wordt het ook gebruikt om een aparte trend uit te rekenen voor het satelliettijdperk. Sinds 1993 (na de lancering van de [TOPEX/Poseidon](https://eospso.nasa.gov/missions/topexposeidon) satelliet) meten we de zeespiegel ook met satellieten . De satellietmetingen laten een hogere zeespiegelstijging zien dan de gemeten waterstanden in het getijstationtijdperk ('tide gauge era'). Hierbij wordt 1993 vaakgenoemd als de start van de versnelde zeespiegel [bijvoorbeeld @Stocker2013]. Om goede vergelijkingen te maken is het daarom nodig om ook voor deze periode een trend te bepalen. In deze methode kan de trendparameter vanaf het jaar 1993 wijzigen. Op de significantie van de trendbreuk wordt statistisch getoetst. Dit gebroken trendmodel wordt weergegeven in vergelijking \@ref(eq:brokentrend).
-4.  De *gebroken kwadratische* versnelling gaat er van uit dat de zeespiegel in de jaren 60 van de vorige eeuw is gaan versnellen op de manier die hierboven is beschreven bij punt 2. Voor 1960 wordt een lineaire toename aangenomen. De reden om de versnelling in 1960 in te laten gaan is omdat dit samenvalt met een meetbare toename van de [warmte-inhoud van de oceanen](https://www.epa.gov/climate-indicators/climate-change-indicators-ocean-heat). Dit gebroken trendmodel wordt weergegeven in vergelijking \@ref(eq:brokenquadratic).
+4.  De *gebroken kwadratische* versnelling gaat er van uit dat de zeespiegel in de jaren 60 van de vorige eeuw is gaan versnellen als gevolg van de verhoogde uitstoot van broeikasgassen na de tweede wereldoorlog (Slangen et al. 2016, Dangendorf et al. 2019). Met een geavanceerd statische methode is dit ook gevonden door Keizer et al (submitted). Voor toepassing hier wordt vóór 1960 een lineaire toename aangenomen. De versnelling vanaf 1960 wordt berekend op de manier die hierboven is beschreven bij de kwadratische versnelling. Dit gebroken trendmodel wordt weergegeven in vergelijking \@ref(eq:brokenquadratic).
 
-De uiteindelijke modelkeuze (welk model is beter?) vindt plaats op twee criteria. Er moet sprake zijn van een significante acceleratie of deceleratie en er moet sprake zijn van een beter model. Dat laatste wordt vastgesteld met behulp van het \acr{AIC}, waarbij een afweging wordt gemaakt tussen de complexiteit en de toegevoegde waarde.
+Global sea level rise accelerated from the 1960th as a result of the sharp increase in greenhouse gas emissions after the 2nd world war (Slangen et al. 2016, Dangendorf et al. 2019). Using a sophisticated statistical method this is also what is found along the Dutch coast (Keizer et al. submitted). This is why we test a model with an acceleration term from 1960.
 
-5. Een andere methode is om een *discontinue lineaire* trend te berekenen. Door over aparte perioden trends uit te rekenen krijg je trends waarvan de intercepts niet aansluit op de vorige periode. Dit is de methode zoals gebruikt in het laatste [IPCC rapport](https://www.ipcc.ch/report/ar6/wg1/chapter/chapter-9/). Hierbij worden trends over verschillende perioden apart uitgerekend. 
-6. *Lokaal polynoom* is een methode met meer vrijheidsgraden en wat exploratiever van aard. De parameters worden gebaseerd op "expert judgement" en "trial en error" @Cleveland1994. Het voordeel van deze methode is dat deze de mogelijkheid open laat van een meer varierende de trend over tijd. Het nadeel is dat deze methode door het grotere aantal vrijheidsgraden ook wat meer kan "wapperen", vooral aan het uiteinde. Dat wil zeggen dat de trend aan het eind van de reeks, met nieuwe data, snel van richtingscoefficient kan veranderen. 
+De uiteindelijke modelkeuze (welk model is beter?) vindt plaats op twee criteria. Er moet sprake zijn van een significante acceleratie of deceleratie en er moet sprake zijn van een beter model. Dat laatste wordt vastgesteld met behulp van het \acr{AIC}, waarbij een afweging wordt gemaakt tussen de complexiteit en de toegevoegde waarde. Het \acr{AIC} criterium is een afweging op basis van de statische eigenschappen van de verschillende modellen. Het doet geen uitspraak over de juistheid van onderliggende fysische processen.
 
-Naast de bepaling met lineaire modellen om een versnelling die aansluit bij de literatuur gebruiken we ook nog een andere methode om een schatting van de versnelling te maken. Dat doen we voor de gebroken lineaire aanpak (methode 3) met behulp een Bayesiaanse aanpak. Met een Bayesiaanse aanpak kunnen we het ook het moment van een mogelijk breekpunt bepalen. Hier gaan we ervan uit dat dat tussen 1900 en ligt 2000. Er is een trend voor en een trend na het breekpunt. Deze aanpak staat bekend als een \acr{MCMC} analyse [vergelijk de 'coal mine' case study uit @Salvatier2016]. Deze methode stelt vast of er een significante knik is, wanneer die knik het meest waarschijnlijk plaats vond (\acr{MAP}) en of we een knik hadden gevonden als die er wel geweest was. 
+5.  Een andere methode is om een *discontinue lineaire* trend te berekenen. Door over aparte perioden trends uit te rekenen krijg je trends waarvan de intercepts niet aansluit op de vorige periode. Dit is de methode zoals gebruikt in het laatste [IPCC rapport](https://www.ipcc.ch/report/ar6/wg1/chapter/chapter-9/). Hierbij worden trends over verschillende perioden apart uitgerekend.
+6.  *Lokaal polynoom* is een methode met meer vrijheidsgraden en wat exploratiever van aard. De parameters worden gebaseerd op "expert judgement" en "trial en error" @Cleveland1994. Het voordeel van deze methode is dat deze de mogelijkheid open laat van een meer varierende de trend over tijd. Het nadeel is dat deze methode door het grotere aantal vrijheidsgraden ook wat meer kan "wapperen", vooral aan het uiteinde. Dat wil zeggen dat de trend aan het eind van de reeks, met nieuwe data, snel van richtingscoefficient kan veranderen.
 
-# TODO: ref naar TUD -> Dit is ook vergelijkbaar met de gekozen aanpak door [ref] 
+Naast de bepaling met lineaire modellen om een versnelling die aansluit bij de literatuur gebruiken we ook nog een andere methode om een schatting van de versnelling te maken. Dat doen we voor de gebroken lineaire aanpak (methode 3) met behulp een Bayesiaanse aanpak. Met een Bayesiaanse aanpak kunnen we het ook het moment van een mogelijk breekpunt bepalen. Hier gaan we ervan uit dat dat tussen 1900 en ligt 2000. Er is een trend voor en een trend na het breekpunt. Deze aanpak staat bekend als een \acr{MCMC} analyse [vergelijk de 'coal mine' case study uit @Salvatier2016]. Deze methode stelt vast of er een significante knik is, wanneer die knik het meest waarschijnlijk plaats vond (\acr{MAP}) en of we een knik hadden gevonden als die er wel geweest was.
+
+NOG TOEVOEGEN: VERWIJZING NAAR STUDIES TU EN KNMI
 
 ## Getij {#methode-getij}
 
 Het getij, met name de nodale cyclus, zoals beschreven in paragraaf \@ref(getij), wordt meegenomen als gelinearizeerde amplitude en fase, in de vorm van een $u$ en $v$ component. Het is ook mogelijk om het equilibrium getij [@Baart2012e] op te leggen . In Nederland komt het nodaal getij in de buurt van het equilibrium, maar aan andere kusten komen metingen en het equilibrium getij vooralsnog niet overeen [@Cherniawsky2010; @Baart2012e]. Met het oog op de generieke toepasbaarhied en totdat er uitsluitsel is vanuit de literatuur gaan we voorlopig nog uit van het geobserveerde getij.
 
-## (SM) (DLB) Wind {#methoden-wind}
+## Wind {#methoden-wind}
 
 Omdat de Nederlandse kust aan een continentaal plat ligt, waar de wind voor een grote opslingering kan zorgen, maken we gebruik van windgegevens. De heranalyses (een combinatie van modellen en historische gegevens) van de \acr{NCEP} [@Kalnay1996], op basis van een punt op de Noordzee (lat: 52.38, lon: 3.75), worden gebruikt als basis voor de schatting van de windopzet. De maandgemiddelde Noord-Zuid en Oost-West component worden gebruikt. Ten opzichte van @Baart2015, waar deze methode in detail beschreven staat, worden de gegevens ongeroteerd gebruikt om de gegevens generieker toepasbaar te maken. Wind heranalyses zijn beschikbaar vanaf 1949.
 
@@ -161,7 +163,6 @@ h_t &=& \beta_{constante} + \beta_{trend} t + versnelling?  \notag \\
 &+& \beta_{wind_{u}} u\left|u\right|(t) + \beta_{wind_{v}} v\left|v\right|(t) + \varphi h(t-1) + \epsilon_{t} (\#eq:gedetailleerdevergelijking)
 \end{align}
 ```
-
 Hierbij is $h_t$ de zeewaterstand is in jaar $t$, $\beta_{constante}$ is het niveau van de basis zeespiegel in de epoch 1970. gedefinieerd. Parameter $\beta_{trend}$ beschrijft de lineare stijging, dat is het aantal eenheden (bijvoorbeeld millimeter) waarmee de zeespiegel ieder jaar stijgt. De amplitude en fase van het 18,613-jarige nodale getij volgen uit de schattingen van de modelparameters $\beta_{nodal_{u}}$ en $\beta_{nodal_{v}}$, [zie @Baart2012e voor details]. De parameters $\beta_{wind_{u}}$ en $\beta_{wind_{v}}$ representeren de invloed van de wind en de daarmee samenhangende luchtdruk. De term $\varphi$ is de autocorrelatie met de zeespiegelstand van het voorgaande jaar. Voor de term $versnelling?$ kan voor de kwadratische versnelling de volgende term ingevuld worden:
 
 ```{=tex}
@@ -170,7 +171,6 @@ Hierbij is $h_t$ de zeewaterstand is in jaar $t$, $\beta_{constante}$ is het niv
   (\#eq:quadratictrend)
 \end{equation}
 ```
-
 Voor de term $versnelling?$ kan in vergelijking \@ref(eq:gedetailleerdevergelijking) de volgende term ingevuld worden in het geval van gebroken lineaire trend:
 
 ```{=tex}
@@ -179,7 +179,6 @@ Voor de term $versnelling?$ kan in vergelijking \@ref(eq:gedetailleerdevergelijk
   (\#eq:brokentrend)
 \end{equation}
 ```
-
 Voor de term $versnelling?$ kan in vergelijking \@ref(eq:gedetailleerdevergelijking) de volgende term ingevuld worden in het geval van gebroken kwadratische trend:
 
 ```{=tex}
