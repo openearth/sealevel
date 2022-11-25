@@ -259,12 +259,14 @@ def add_series_to_stations(
             annual_df,
             annual_gtsm_df[annual_gtsm_df.ddl_id == station["ddl_id"]].set_index(
                 "year"
-            )[["surge"]],
+            )[["surge_mm"]],
             left_on="year",
             right_index=True,
             how="left",
         )
-        annual_df["surge"] = annual_df["surge"].fillna(annual_df["surge"].mean())
+        annual_df["surge_mm"] = annual_df["surge_mm"].fillna(annual_df["surge_mm"].mean())
+        annual_df["height - surge"] = annual_df['height'] - annual_df["surge_mm"]
+        annual_df["height - surge anomaly"] = annual_df['height'] - (annual_df["surge_mm"] - annual_df["surge_mm"].mean())
         rlr_annual_dfs.append(annual_df)
 
         # Add gtsm to monthly data
@@ -274,15 +276,17 @@ def add_series_to_stations(
         ]
         rlr_monthly_df = pd.merge(
             rlr_monthly_df,
-            monthly_gtsm_df_i[["t", "surge"]],
+            monthly_gtsm_df_i[["t", "surge_mm"]],
             left_index=True,
             right_on="t",
             how="left",
         )
         rlr_monthly_df = rlr_monthly_df.set_index("t")
-        rlr_monthly_df["surge"] = rlr_monthly_df["surge"].fillna(
-            rlr_monthly_df["surge"].mean()
+        rlr_monthly_df["surge_mm"] = rlr_monthly_df["surge_mm"].fillna(
+            rlr_monthly_df["surge_mm"].mean()
         )
+        rlr_monthly_df["height - surge"] = rlr_monthly_df['height'] - rlr_monthly_df["surge_mm"]
+        rlr_monthly_df["height - surge anomaly"] = rlr_monthly_df['height'] - (rlr_monthly_df["surge_mm"] - rlr_monthly_df["surge_mm"].mean())
         rlr_monthly_dfs.append(rlr_monthly_df)
 
         # also for the metric data
@@ -293,15 +297,17 @@ def add_series_to_stations(
         ]
         met_monthly_df = pd.merge(
             met_monthly_df,
-            monthly_gtsm_df_i[["t", "surge"]],
+            monthly_gtsm_df_i[["t", "surge_mm"]],
             left_index=True,
             right_on="t",
             how="left",
         )
         met_monthly_df = met_monthly_df.set_index("t")
-        met_monthly_df["surge"] = met_monthly_df["surge"].fillna(
-            met_monthly_df["surge"].mean()
+        met_monthly_df["surge_mm"] = met_monthly_df["surge_mm"].fillna(
+            met_monthly_df["surge_mm"].mean()
         )
+        met_monthly_df["height - surge"] = met_monthly_df['height'] - met_monthly_df["surge_mm"]
+        met_monthly_df["height - surge anomaly"] = met_monthly_df['height'] - (met_monthly_df["surge_mm"] - met_monthly_df["surge_mm"].mean())
         met_monthly_dfs.append(met_monthly_df)
 
     selected_stations["rlr_annual"] = rlr_annual_dfs
@@ -336,16 +342,23 @@ def add_aggregated_stations(selected_stations):
             "name": aggregated_station["name"],
             "ddl_id": aggregated_station["ddl_id"],
             "location": aggregated_station["name"],
+            "psmsl_id": aggregated_station["psmsl_id"],
             "id": aggregated_station["psmsl_id"],
         }
         for dataset_name in ["rlr_annual", "rlr_monthly", "met_monthly"]:
             data_per_station = pd.concat(sub_selection[dataset_name].tolist())
-            grouped = data_per_station[["year", "height", "u2", "v2", "surge"]].groupby(
+            grouped = data_per_station[["year", "height", "u2", "v2", "surge_mm"]].groupby(
                 "t"
             )
             mean_df = grouped.mean().reset_index()
             # # filter out non-trusted part (before NAP, also with some missing stations)
             mean_df = mean_df[mean_df["year"] >= 1890].copy()
+            surge = mean_df['surge_mm']
+            mean_df['station'] = aggregated_station['psmsl_id']
+            # recompute the surge and anomalies
+            surge = surge.fillna(surge.mean())
+            mean_df['height - surge'] = mean_df['height'] - surge
+            mean_df['height - surge anomaly'] = mean_df['height'] - (surge - surge.mean())
             row[dataset_name] = mean_df
 
         frames.append(pd.DataFrame([pd.Series(row, name=row["id"])]))
