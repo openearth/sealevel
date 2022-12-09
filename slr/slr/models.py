@@ -110,7 +110,8 @@ def broken_linear_model(
     y = df[quantity]
     X = np.c_[
         df["year"] - 1970,
-        (df["year"] > 1993) * (df["year"] - 1993),
+        # 1991 -> 0, 1992 -> 0, 1993 -> 0, 1994 -> 1, 1995, 4, etc...,
+        (df["year"] >= 1993) * (df["year"] - 1993),
         np.cos(2 * np.pi * (df["year"] - 1970) / 18.613),
         np.sin(2 * np.pi * (df["year"] - 1970) / 18.613),
     ]
@@ -158,12 +159,11 @@ def linear_model(df, with_wind=True, with_ar=True, quantity="height"):
 def tide_effect(fit, names):
 
     # Nodal parameters should be stored as x2, x3 in the fit
-    u_index = names.index('Nodal U')
-    v_index = names.index('Nodal V')
+    u_index = names.index("Nodal U")
+    v_index = names.index("Nodal V")
 
     u_name = fit.model.exog_names[u_index]
     v_name = fit.model.exog_names[v_index]
-
 
     # Extract parameters  and input parameters of the linear model for tide
     exog_u = fit.model.exog[:, u_index]
