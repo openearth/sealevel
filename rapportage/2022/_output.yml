@@ -15,6 +15,7 @@ bookdown::gitbook:
     -   !expr acronymsdown::add_filter()
     -   --wrap=none
     -   --top-level-division=chapter
+bookdown::word_document2: default 
 bookdown::bs4_book:
   theme:
     primary: "#982a31"

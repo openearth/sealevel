@@ -8,7 +8,7 @@ bibliography: [bib/book.bib, bib/bibhkv.bib, bib/R.bib,  bib/willems.bib, bib/se
 biblio-style: apalike
 link-citations: yes
 acronyms:
-  loa_title: "Lijst met afkortingen {#lijst-met-afkortingen}"
+  loa_title: "Lijst met afkortingen"
   include_unused: false
   insert_loa: false
   insert_links: true
