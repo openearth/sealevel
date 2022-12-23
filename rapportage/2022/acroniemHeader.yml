@@ -49,7 +49,9 @@ acronyms:
       longname: Earth Gravitational Model 1996
     - shortname: ENSO
       longname: El Niño–Southern Oscillation
-    - shortname: ERSST
+    - shortname: ENW
+      longname: Expertisenetwerk Waterveiligheid
+    - shortname: ETRS89
       longname: Extended Reconstructed Sea Surface Temperature
     - shortname: ETRS89
       longname: European Terrestrial Reference System 1989

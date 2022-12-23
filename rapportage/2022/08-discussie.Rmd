@@ -20,15 +20,15 @@ Een huidige zeespiegelstand op zichzelf is niet geschikt voor beoordelingen van 
 
 De verschillende indicatoren gerelateerd aan zeespiegel en/of getij (kenmerkende waarden) voor de Nederlandse kust en gebruikte methodiek, voor zover bekend, is binnen de zeespiegelmonitor op een rijtje gezet in @Nicolai2020a.
 
-## Versnelling {#versnelling-discussie}
+## Waarom nu een versnelling {#versnelling-discussie}
 
-De zeespiegel aan de Nederlandse kust stijgt, en is versneld. Het gebroken lineaire model is dit jaar het model dat het beste de metingen beschrijft. Dit is het eerste jaar dat dit gebeurt, voorheen was er geen reden om het lineair stijgende model te verwerpen. Hiervoor zijn twee oorzaken aan te wijzen:
+De zeespiegel aan de Nederlandse kust stijgt, en is versneld. Het gebroken lineaire model is nu significant beter dan het tot nu toe gebruikte linearire model, ook als rekening gehouden wordt met het verschil in vrijheidsgraden. Dit is het eerste jaar dat dit binnen de Zeespiegelmonitor geconstateerd wordt, voorheen was er geen reden om het lineair stijgende model te verwerpen. Hiervoor zijn twee oorzaken aan te wijzen:
 
-1.  Er zijn meer metingen bijgekomen. Daardoor kunnen we zekerder vaststellen dat er sprake is van een trendbreuk. Deze trendbreuk constateerden we al eerder maar was toen niet significant.  
+1.  Er zijn meer metingen bijgekomen, namelijk die van de laatste jaren. Deze metingen liggen, na correctie voor wind en getij, zo hoog dat we moeten vaststellen dat er nu sprake is van een trendbreuk. Deze trendbreuk constateerden we al eerder maar was toen niet significant.
 
-2.  We zijn overgegaan op een windopzetcorrectie met het GTSM model. Het voordeel hiervan is dat we beter de windopzet kunnen beschrijven voor situaties met oostenwind. Het nadeel is dat we hierdoor over een kortere periode de windopzet kunnen berekenen. Voor 1979 nemen we aan dat de windopzet gemiddeld was.    
+2.  We zijn overgegaan op een windopzetcorrectie met het \acr{GTSM} model. Het voordeel hiervan is dat de correctie onafhankelijk geschat wordt. Het \acr{GTSM} model beschrijft ook beter de windopzet voor situaties met oostenwind dan de hiervoor gebruikte methode. Het nadeel is dat het \acr{GTSM} model voor een kortere periode beschikbaar is. Vóór 1979 nemen we aan dat de windopzet gemiddeld was.
 
-Een versnelde zeespiegel aan de Nederlandse kust is met een andere methodiek al aangetoond door [@Steffelbauer; @Keizer2022]. 
+Een versnelde zeespiegel aan de Nederlandse kust is met andere methodieken aangetoond door [@Steffelbauer; @Keizer2022].
 
 @Keizer2022 onderzocht de trend in zeespiegelstijging over een lange terijn met een geavanceerd statistische methode. Voor correctie door windopzet is de \acr{20CR} heranalyse gebruikt. De \acr{20CR} heranalyse is een mondiale heranalyse over een lange periode, en daardoor geschikt voor grootschalige klimaatvragen. Na een correctie van de zeespiegel voor de lange termijn windveranderingen is de zeespiegelstijging en het verschil daarin over tijd geschat met behulp van GAM. Er is ook rekening gehouden met seizoensvariatie in windopzet. De conclusie is dat de zeespiegelstijging in de periode 2000-2019 (3.0[2.4 - 3.5] mm/jaar) significant hoger is dan in de periode 1940-1959 (1.5[1.1 - 1.8] mm/jaar).
 
@@ -39,8 +39,6 @@ In de Zeespiegelmonitor wordt windopzet tot vorig jaar geschat door een heranaly
 Meten we wel goed? Als we kijken naar de metingen dan zien we dat we, met 300 jaar ervaring, de dubbel uitgevoerde instrumenten en een groot aantal stations die ter validatie kunnen dienen, een solide basis hebben om de toestand van de zeespiegel aan de kust vast te stellen. De metingen zijn onderling consistent (figuur \@ref(fig:6stations) met uitzondering van Delfzijl over de laatste 15 jaar (zie ook figuur \@ref(fig:month-sea-level-surge)). De metingen van de Nederlandse getijstations zijn ook consistent met onze buren en tot op zekere hoogte met de satellietmetingen, zoals beschreven in \@ref(satelliet-results), [zie ook @Sterlini2017]. Er zijn dus geen redenen om aan te nemen dat we niet goed meten.
 
 <!-- Hebben we niet te veel ruis? In @ref(power) hebben we gezien dat als er een noemenswaardige versnelling plaats vindt, dat we deze ook snel zullen zien. We zien deze ook snel omdat de gegevens van Nederlandse getijstations dagelijks worden ontsloten. Onderliggend is vaak de vraag of we een wereldwijde versnelling wel in Nederland zien. De Nederlandse metingen zijn niet bedoeld en ook niet geschikt om iets te zeggen over de globale zeespiegelstijging. Omdat we van het massaverlies van Groenland weinig verwachten te zien in Nederland, zijn de Nederlandse gegevens niet representatief voor de rest van de wereld. Daarom kijken we in deze rapportage niet alleen naar de Nederlandse zeespiegel, maar ook naar de globale. Dit sluit aan bij de methodiek om indicatoren te kiezen op basis van verschillende kwaliteiten. Voorbeelden van kwaliteiten zijn te vinden in de literatuur, bijvoorbeeld de aansluiting bij strategische doelen [@Koningsveld2004], geloofwaardigheid, overtuigingskracht [@Haasnoot2018], scherpheid (zien we zeldzame gebeurtenissen), integriteit (is er niet met de data gerommeld) en reproduceerbaarheid (veranderen de resultaten als iemand anders ze analyseert) [@Baart2013]. -->
-
-
 
 De afwijking tussen de Nederlandse en de globale zeespiegelstijging hebben we verder uitgewerkt. Aan de ene kant verklaringen die het verschil nog groter maken (4.5cm/eeuw van onze relatieve zeespiegelstijging is bodemdaling). Maar ook hebben we in \@ref(gravitatie) gezien dat een groot deel van de wereldwijde zeespiegelstijging, ongeveer 9cm/eeuw, niet bij ons terecht komt. Een klein deel van onze zeespiegelstijging, 2cm voor het station Hoek van Holland, komt door de gaswinning. Een deel van de wereldwijde zeespiegelstijging (3cm/eeuw) kunnen we niet meten met de getijstations omdat het een correctie is voor de zakking van het oceaanbekken door de [GIA]{acronym-label="GIA" acronym-form="singular+short"}. De wereldwijde versnelling die geconstateerd wordt door @Nerem2018, binnen de periode 1993-2017, zien we ook niet terug. Om de versnelling te vinden was een correctie nodig voor de uitbarsting van de Pinatubo en [ENSO]{acronym-label="ENSO" acronym-form="singular+short"}. Deze correcties passen we in de zeespiegelmonitor niet toe.
 
@@ -69,9 +67,6 @@ Het probleem met het xx% van Nederland ligt onder zeeniveau is dat we het al jar
 We bevestigen dat eerder genoemde getallen als twee derde van Nederland ligt onder zeeniveau, de helft van Nederland ligt onder zeeniveau en een derde van Nederland ligt onder zeeniveau niet accuraat zijn. Soms wordt er een vorm gebruikt als xx% van Nederand ligt onder [NAP]{acronym-label="NAP" acronym-form="singular+short"} gelijk aan gemiddeld zeeniveau. Ook dat is niet meer accuraat sinds de jaren 80 van de vorige eeuw.
 
 Het percentage van Nederland (ten tijde van [AHN]{acronym-label="AHN" acronym-form="singular+short"}2) dat onder het huidige zeespiegel ligt is 27%. Het percentage van Nederland dat onder [NAP]{acronym-label="NAP" acronym-form="singular+short"} ligt is 26%. Voor de andere percentages geldt dat een derde van Nederland ligt onder een zeespiegelniveau van 60cm boven [NAP]{acronym-label="NAP" acronym-form="singular+short"}, de helft van Nederland ligt onder een zeespiegelniveau van 4m en twee derde van Nederland ligt onder een niveau van 11m. De berekening is beschikbaar via een reproduceerbare berekening op basis van [AHN]{acronym-label="AHN" acronym-form="singular+short"}2 en de TOP10 vector water.
-
-Omdat het percentage van Nederland onder de zeespiegel een populaire indicator is, rechtstreeks gekoppeld aan de huidige zeespiegelstand nemen we deze indicator voortaan op in deze rapportage.
-
 
 ## Verschillen binnen Nederland {#verschillen}
 

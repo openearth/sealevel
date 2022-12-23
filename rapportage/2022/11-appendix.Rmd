@@ -1,7 +1,7 @@
 
-# (APPENDIX) Appendix {-} 
+# Bijlagen
 
-# Aansluiting bij eerder onderzoek {#Aansluiting-bij-eerder-onderzoek}
+## Aansluiting bij eerder onderzoek {#Aansluiting-bij-eerder-onderzoek}
 
 Nederland kent een lange geschiedenis in het systematisch meten van de zeespiegel (uurlijks sinds 1700) en de zeebodem en kusttopografie (jaarlijks sinds 1964). Deze metingen hebben bijgedragen aan doelmatig [@Koningsveld2004] en 'evidence based' [@Begum2007; @Portman2012] kustbeheer. In die lijn passen ook de onderzoeken, waar dit een vervolg op is, van @Dillingh2010, @Ronde2014 en @Baart2015. De term 'evidence based' is overgewaaid uit het Verenigd Koninkrijk en de volksgezondheid [@Nutley2000; @Sanderson2002].
 
@@ -15,7 +15,7 @@ In @Dillingh2013 werden de huidige zeespiegelstand en de huidige zeespiegelstijg
 
 @Baart2018 hebben de invloed van wind, luchtdruk en nodaal getij verder onderzocht om een nauwkeuriger zeespiegel en -stijging te kunnen berekenen. Een versnelling van de zeespiegel werd getest met twee verschillende versnellingsmodellen, een kwadratische versnelling, en een knikpunt. Er werd geen significante versnelling geconstateerd. Verder werden de metingen langs de Nederlandse kust vergeleken met metingen door satellieten, en met de geprojecteerde zeespiegel tot 100 jaar vooruit. Er werd aanbevolen om de aansluitging van metingen en projecties extra aandacht ter geven. Er werd verder geadviseerd om de reproduceerbaarheid van kenmerkende waarden ter versterken.
 
-# Raakvlakken {#app-raakvlakken}
+## Raakvlakken {#app-raakvlakken}
 
 Er wordt in veel onderzoeksprogramma's en door verschillende instituten gerefereerd aan, of gebruikt gemaakt van de zeespiegel langs de Nederlandse kust zoals die in de Zeespiegelmonitor berekend wordt. We maken hier onderscheid onder:
 
@@ -25,34 +25,7 @@ Er wordt in veel onderzoeksprogramma's en door verschillende instituten gerefere
 
 Een actuele lijst met raakvlakken staat in appendix \@ref(app-raakvlakken).
 
-
 **Programma's**
-
-```{r programmas, eval=F, include=FALSE}
-
-# poging om tabel vanuit Excel in te lezen. Werkt niet goed met de links in de tabel in combinatie met het goed uitlijnen. 
-# 
-
-programmas <- read_excel("../../data/deltares/intern/raakvlakken.xlsx", sheet = "listProjects")
-
-if(knitr::is_html_output()){
-programmas %>% 
-  mutate(
-    programma = paste0("[", programma, "]", "(", URL, ")")
-    ) %>% replace(is.na(.), "") %>%
-  select(programma, relatie, indicator) %>%
-  knitr::kable(caption = "Onderzoeksprogramma's en projecten die raken aan de Zeespiegelmonitor.")
-}
-
-if(knitr::is_latex_output()){
-programmas %>%
-    mutate(test = paste0("\\href{http://", URL, "}{", programma, "}")) %>%
-    select(programma, relatie, indicator) %>%
-    knitr::kable("latex", escape = F, booktabs = T, caption = "Onderzoeksprogramma's en projecten die raken aan de Zeespiegelmonitor.")
-}
-
-
-```
 
 -   [Onderzoek bodemdaling](https://www.tno.nl/nl/aandachtsgebieden/energietransitie/expertisegroepen/geomodelling/bodemdaling-in-nederland/)
 -   [Onderzoeksprogramma Kustgenese](https://www.helpdeskwater.nl/onderwerpen/waterveiligheid/kust/kustgenese-2-0/)
@@ -88,50 +61,6 @@ programmas %>%
 -   European Environmental Agency (EEA) dashboard of [Global and European sea level rise](https://www.eea.europa.eu/ims/global-and-european-sea-level-rise)
 -   NASA Vital Signs of the Planet - [Sea Level](https://climate.nasa.gov/vital-signs/sea-level/)
 
-```{r, eval=F}
-DiagrammeR::grViz("digraph {
-
-  graph [overlap = true, fontsize = 10, layout = dot, rankdir = LR]
-  
-  node [shape = rectangle,
-      style = filled,
-      color = DarkSeaGreen2,
-      label = '']
-      
-  Huidig [label = 'huidige ZSS']
-  Zeespiegel [label = 'Zeespiegel']
-  Projectie [label = 'Projecties ~ 100 j']
-  Hoogwater [label = 'Hoogwaters']
-
-  node [shape = rectangle,
-      style = filled,
-      color = LightSteelBlue2,
-      label = '']
-  
-  ZSM [label =  'Zeespiegelmonitor']
-  Klimadash [label = 'Klimaatdashboard']
-  BOI [label = 'Programma BOI']
-  KennisZSSI [label = 'Kennisprogramma ZSS spoor I']
-  KennisZSSII [label = 'Kennisprogramma ZSS spoor II']
-  KennisZSSIII [label = 'Kennisprogramma ZSS spoor III']
-  KennisZSSIV [label = 'Kennisprogramma ZSS spoor IV']
-  
-
-  
-  # edge definitions with the node IDs
-  
-  ZSM->Huidig 
-  Huidig->Zeespiegel
-  Klimadash->Projectie
-  BOI->Hoogwater
-  KennisZSSI->
-  KennisZSSII->
-  KennisZSSIII->
-  KennisZSSIV->
-  
-  }",
-  width = 800)
-```
 
 <!-- ### Internationaal -->
 
@@ -139,12 +68,11 @@ DiagrammeR::grViz("digraph {
 
 <!-- *   [The Permanent Service for Mean Sea Level (PSMSL)](https://psmsl.org/data/) -->
 
-# Rapporten en memo's {#bijlagerapporten}
+## Rapporten en memo's {#bijlagerapporten}
 
-## Producten over de laatste periode (2019-2022)
+### Producten over de laatste periode (2019-2022)
 
-In het kader van de ontwikkeling van de Zeespiegelmonitor voor de komende jaren zijn in 2022 twee workshops gehouden met als doel om de methoden en onderzoeksvragen binnen de Zeespiegelmonitor voor de komende jaren op een breed gedragen manier vast te leggen. De uitkomsten zijn gebruikt in de rapportage, en komen voornamelijk terug in hoofdstukken \@ref(methoden) en \@ref(vervolgonderzoek). 
-
+In het kader van de ontwikkeling van de Zeespiegelmonitor voor de komende jaren zijn in 2022 twee workshops gehouden met als doel om de methoden en onderzoeksvragen binnen de Zeespiegelmonitor voor de komende jaren op een breed gedragen manier vast te leggen. De uitkomsten zijn gebruikt in de rapportage, en komen voornamelijk terug in hoofdstukken \@ref(methoden) en \@ref(vervolgonderzoek).
 
 **Aantekeningen workshop Zeespiegelmonitor methodiek**
 
@@ -163,9 +91,7 @@ if(knitr::is_html_output()){
 }
 ```
 
-
 **Aantekeningen workshop onderzoeksagenda 2023-2025**
-
 
 ```{r, results='asis'}
 
@@ -181,7 +107,6 @@ if(knitr::is_html_output()){
   )
 }
 ```
-
 
 [Zeespiegelstijging in ontwerpnormen stormvloedkeringen : inventarisatie van zeespiegelstijging in ontwerpnormen van de Oosterscheldekering en de Maeslantkering](https://kennisbank.deltares.nl/Details/fullCatalogue/1000020898){target="_blank"} [@Oerlemans2022]
 
@@ -215,7 +140,7 @@ Samenvatting: Op dit moment hebben slechts enkele experts het overzicht over wel
 
 Samenvatting: This memo describes a new method to visualize data using tiled videomaps. These provide a zoomable video of the current (last 5 years) of ice loss at the area that is most relevant for the Netherlands. This results in an easy-to-understand visualization of some of the processes (glacier flow, sea-ice loss, fracturing) that contribute to the current mass loss We hope that this can contribute to ongoing discussions on the current state sea-level rise inducing processes.
 
-## Oudere producten relevant voor deze Zeespiegelmonitor
+### Oudere producten relevant voor deze Zeespiegelmonitor
 
 [The effect of the 18.6-year lunar nodal cycle on regional sea-level rise estimates](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/200002977){target="_blank"} [@Baart2012e]
 
@@ -235,8 +160,7 @@ Samenvatting: Dit rapport beschrijft de methode om de huidige zeespiegel te besc
 
 [Frequently asked questions (FAQ)](https://www.deltares.nl/app/uploads/2019/03/FAQ-gemeten-en-geprojecteerde-zeespiegel-januari-2022.pdf){target="_blank"}
 
-
-# Ad hoc vragen
+## Ad hoc vragen
 
 Vanuit verschillende organisaties, het publieke debat en soms ook van geïnteresseerde burgers komen regelmatig vragen over de zeespiegel(stijging) bij Deltares terecht. Hieronder is een overzicht van deze vragen van de laatste 2 jaar, en het indertijd gegeven antwoord.
 
@@ -658,7 +582,7 @@ Context en duiding graag even afstemmen met Willem. Merk op dat PBL ook een dash
 
 [^11-appendix-41]: <https://www.clo.nl/indicatoren/nl0229-zeespiegelstand-nederland-en-mondiaal>
 
-# Datasets
+## Datasets
 
 De actuele versie van gegevens per station staat op Github (<https://github.com/openearth/sealevel/blob/master/data/deltares/results/dutch-sea-level-monitor-export-stations-2022-01-14.csv>).
 
@@ -720,13 +644,12 @@ knitr::kable(verklarendeTabel, caption = "Verklaring van tabel 'gegevens per sta
 
 ```
 
-#   Archivering {#archivering}
+## Archivering {#archivering}
 
-In de uitvoering van de methodiek van de Zeespiegelmonitor is in het verleden al aandacht besteed aan het archiveren van historische gegevens. Rijkswaterstaat is continu bezig om dit proces te verbeteren waar mogelijk. 
+In de uitvoering van de methodiek van de Zeespiegelmonitor is in het verleden al aandacht besteed aan het archiveren van historische gegevens. Rijkswaterstaat is continu bezig om dit proces te verbeteren waar mogelijk.
 
-in [NAPinfo](https://maps.rijkswaterstaat.nl/geoweb55/index.html?viewer=NAPinfo) wordt de actuele en historische posities van alle nulpalen vastgelegd. 
+in [NAPinfo](https://maps.rijkswaterstaat.nl/geoweb55/index.html?viewer=NAPinfo) wordt de actuele en historische posities van alle nulpalen vastgelegd.
 
 [Waterinfo-extra](https://waterinfo-extra.rws.nl/monitoring/waterkwantiteit/) is de omgeving van Rijkswaterstaat voor ontsluiting van watergerelateerde gegevens en informatie, voor zover deze niet in de primaire systemen beschikbaar wordt gemaakt. Rijkswaterstaat werkt aan het publiceren van de jaargemiddelde waterstanden voor de hoofdstations in deze omgeving, inclusief de informatie om deze gegevens te duiden.
 
 [Waterinfo]()
-
