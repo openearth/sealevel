@@ -451,7 +451,8 @@ predictions_all %>% ungroup() %>%
   xlab("jaar") +
   scale_x_continuous(breaks = scales::pretty_breaks(3)) +
   theme(axis.text.x.bottom = element_text(angle = 45)) +
-  coord_cartesian(xlim = c(2000, 2022))
+  coord_cartesian(xlim = c(2000, 2022)) +
+  theme_light()
   
 ```
  

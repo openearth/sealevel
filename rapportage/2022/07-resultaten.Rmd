@@ -410,15 +410,18 @@ De verhoogde stijging begint na 1993. De keuze voor dit jaar voor een versnelde 
 
 ## Nodaal getij
 
-```{r nodaalgetijNederlandGemiddeld, fig.cap="Het geschatte aandeel van het nodale getij op de zeespiegel voor de 5 hoofdstations gemiddeld. "}
+Het nodaal getij draagt bij aan het zeespiegelsignaal met plus of min 1.2 cm (figuur \@ref(fig:nodaalgetijNederlandGemiddeld)). Het nodaal getij wordt meegenomen in de regressie, en de invloed daarvan op de zeespiegel wordt dus geschat uit de gegevens in combinatie met het gebruikte model en windopzetcorrectie. Voor de 5 stations gemiddeld is de bijdrage van het nodaal getij niet afhankelijk van de gebruikte windopzetcorrectie (GTSM of NCEP1) en model (lineair of gebroken lineair). Voor de overige varianten wordt verwezen naar Appendix \@ref(varianten). 
+
+```{r nodaalgetijNederlandGemiddeld, fig.width = 8, fig.height = 3, fig.cap="Het geschatte aandeel van het nodale getij op de zeespiegel voor de 5 hoofdstations gemiddeld. "}
 predictions_all %>% ungroup() %>%
     filter(name_rws == "Netherlands (without Delfzijl)") %>%
     filter(correction_variant %in% c("NCEP1", "GTSM")) %>%
     filter(model_variant %in% c("linear", "broken_linear")) %>%
-  ggplot(aes(year, `nodal tide`)) +
+  ggplot(aes(year, `nodal tide`/10)) +
   geom_line(aes(color = interaction(correction_variant, model_variant)), size = 1) +
   # facet_grid(correction_variant ~ name_rws) +
-  coord_cartesian(xlim = c(2000, 2022))
+  coord_cartesian(xlim = c(2000, 2022)) +
+  theme_light()
   
 ```
 
@@ -515,7 +518,7 @@ De voorkeursvariant, Het model met een knik in 1993 (gebroken lineair) laat een 
 
 ## Verwachting voor komende jaren
 
-We zien dat de constante zeespiegelstijging niet meer de beste beschrijving oplevert voor de metingen tot nu toe. Wat betekent dit voor de komende jaren? Allereerst, onze analyse kan alleen worden toegepast op historische gegevens en is niet direct geschikt voor uitspraken over de komende jaren. In de vorige Zeespiegelmonitor, het advies van \acr{ENW} volgend, was het uitgangspunt dat de huidige zeespiegelstijging hooguit voor een periode van 15 jaar vooruit kan worden gebruikt. Uitgaande van het nu beste model is dit $2.9 \pm 0.4 mm/jaar$.
+We zien dat de constante zeespiegelstijging niet meer de beste beschrijving oplevert voor de metingen tot nu toe. Wat betekent dit voor de komende jaren? Allereerst, onze analyse kan alleen worden toegepast op historische gegevens en is niet direct geschikt voor uitspraken over de komende jaren. In de vorige Zeespiegelmonitor, het advies van \acr{ENW} volgend, was het uitgangspunt dat de huidige zeespiegelstijging hooguit voor een periode van 15 jaar vooruit kan worden gebruikt. Uitgaande van het nu beste model is dit $2.9 \pm 0.4 mm/jaar$. De huidige zeespiegelstijging is afhankelijk van het gebruikte model zoals te zien is in figuur \@ref(fig:stijgingModellen). Hier is duidelijk het verschil te zien in zeespiegelstijging voor het gebroken lineaire model voor en na 1993. Het gebroken kwadratische model, dat de variatie wel goed verklaart maar niet significant beter was dan het lineaire model, laat ongeveer dezelfde zeespiegelstijging zien als het gebroken lineaire model. Echter zal de zeespiegelstijging in het gebroken lineaire model gelijk blijven en die van het gebroken kwadratische model toenemen.   
 
 ```{r stijgingModellen, fig.cap="Het verloop van de snelheid van zeespiegelstijging in de tijd voor de vier verschillende geteste modellen. d. " }
 
