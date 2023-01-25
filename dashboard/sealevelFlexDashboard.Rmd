@@ -2,16 +2,16 @@
 title: "Dutch Sea Level change"
 output:
   flexdashboard::flex_dashboard:
-    navbar:
-    - title: About
-      href: ''
-    social: menu
+    # navbar:
+    # - title: About
+    #   href: ''
+    # social: menu
     theme: 
       version: 3
       fg: black
       bg: white
       primary: '#84D5D0'
-    source_code: embed
+    # source_code: embed
     orientation: columns
     includes:
       after_body: navbar/navbar.html
