@@ -509,6 +509,9 @@ ggsave("zeespiegelFit.pdf" , width = 10, height = 12)
 
 ## Vergelijking van de trends tussen stations, en tussen de verschillende methoden
 
+In figuur \@ref(fig:trends) is de trend (zeespiegelstijging) uitgezet tegen de tijd voor alle combinaties van modelvariant, windopzetvariant en voor alle stations. Het laat zien dat er grote verschillen zijn tussen de stations. Wat gemeenschappelijk is voor alle stations is dat zowel het gebroken lineaire als het gebroken kwadratische model op een vergelijkbare huidige zeespiegelstijging uitkomt voor 2021. De stijging die geschat wordt met het lineaire model en het kwadratische model komen lager uit. 
+
+
 ```{r trends, fig.height=8, fig.width=8, fig.cap="Vergelijking tussen de zeespiegelstijging vanaf 1979  voor alle stations, windopzetcorrecties en modelkeuzen.  "}
 
 startyear = 1978
@@ -532,30 +535,34 @@ predictions_all %>%
 ```
 
 
-tekst...
+In figuur \@ref(fig:trend-vergelijking) worden de trends voor gebroken lineaire fit voor de verschillende varianten van windopzet met elkaar vergeleken. Het patroon is voor alle windopzetverianten gelijk. Het kleinste verschil tussen de trend voor en na 1993 wordt gevonden bij station IJmuiden. Bij gebruik van NCEP1 is er zelfs geen zichtbare knik bij dat station. Het grootste verschil in trend voor en na 1993 wordt gevonden bij de stations in en in de buurt van de Waddenzee, Delfzijl, Harlingen, en in mindere mate Den Helder.
+
 
 ```{r trend-vergelijking, fig.height=5, fig.width=7, fig.show='hold', out.width="50%", fig.cap="Berekende trends voor het lineaire model (zwarte punten), en de pre- en post-1993 trend voor het broken linear model (kolommen). "}
 
-fits %>%
+
+timeseries %>%
   filter(model_variant == "broken_linear") %>%
-  filter(wind_variant == 'Combined') %>% 
-  filter(quantity == "height") %>%
-  select(model_variant, wind_variant, name, Trend, `+trend (1993)`) %>%
+  distinct(model_variant, correction_variant, name_rws, Trend, `+trend (1993)`) %>%
   rename(`trend vóór 1993` = Trend,
          `+ trend na 1993` = `+trend (1993)`) %>%
   pivot_longer(c(`trend vóór 1993`, `+ trend na 1993`), names_to = 'gebroken lineair', values_to = 'waarde') %>%
-  ggplot(aes(x = name)) +
+  ggplot(aes(x = name_rws)) +
   geom_col(aes(y = waarde, fill = `gebroken lineair`)) +
-  geom_point(data = fits %>%
+  geom_point(data = timeseries %>%
                filter(model_variant == "linear") %>%
-               filter(wind_variant == 'Combined') %>%
-               filter(quantity == "height"),
-             aes(x = name, y = Trend),
+               distinct(model_variant, correction_variant, name_rws, Trend),
+             aes(x = name_rws, y = Trend),
              shape = "_", size = 8
   ) +
 coord_cartesian(ylim = c(0,4)) +
-  labs(subtitle = "gebroken lineair model, trend voor en na 1993") +
-  fitstyle
+  labs(subtitle = "gebroken lineair model, trend voor en na 1993 en lineaire trend (zwart)") +
+  fitstyle +
+  facet_wrap(~ correction_variant)
+
+
+
+
 ```
 
 
