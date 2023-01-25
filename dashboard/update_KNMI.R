@@ -22,7 +22,9 @@ list.files(datadir)
   rm(scenarios)
   
   save(knmi_df, file =  file.path("data/knmi/knmi22", "knmi_df22.Rdata"))
-  write_csv(knmi_df, file = file.path("data/knmi/knmi22", "knmi_22.csv"))
+  knmi_df %>%
+    filter(percentiles %in% c(5, 50, 95)) %>%
+  write_csv(file = file.path("data/knmi/knmi22", "knmi_22_5_50_95.csv"))
 # }
 
 
