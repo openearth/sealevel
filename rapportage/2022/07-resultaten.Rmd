@@ -683,7 +683,7 @@ Daarmee komen we tot de uitsplitsing tussen de verschillende absolute bodemdalin
 
 ::: {#tab:bodemdaling-per-station}
 |                  |                       |           |        |          |          |
-|:-----------------|----------------------:|----------:|-------:|---------:|---------:|
+|:-----------|-----------:|-----------:|-----------:|-----------:|-----------:|
 | Station          | Tectoniek + Isostasie | Winningen |  Bodem | Relatief | Absoluut |
 |                  |                $$cm$$ |    $$cm$$ | $$mm$$ |   $$mm$$ |   $$mm$$ |
 | Vlissingen       |                  -2.4 |       0.0 |  -0.24 |      2.1 |      1.9 |
@@ -720,7 +720,7 @@ Natuurlijke variatie
 
 Marges
 
-:   De bandbreedte van zeespiegelprojecties neemt toe naar de toekomst. Dit komt doordat verder in de tijd, verandering minder nauwkeurig te berekenen zijn.
+:   De bandbreedte van zeespiegelprojecties neemt toe naar de toekomst. Dit komt doordat verder in de tijd veranderingen minder nauwkeurig te berekenen zijn.
 
 Versnelling
 
@@ -736,53 +736,36 @@ Versnelling
 
 <!-- width="1\\linewidth"} -->
 
-(ref:scenario-correction-caption) Toegepaste correcties om \acr{KNMI} 2021 zeespiegelscenario's [@KNMI2021] vergelijkbaar te maken met relatieve zeespiegelstijging van de getijdestations.
+In 2021 heeft KNMI in het klimaatsignaal '21 projecties uitgevoerd van de zeespiegel voor de Nederlandse kust. Deze projecties zijn uitgedrukt als zeespiegelveranderingen ten opzichte van de gemiddelde zeespiegel over de jaren 1986-2005. Om deze te vergelijken met de metingen is een correctie nodig zodat de projecties uitgedrukt worden t.o.v. NAP (\>2005). Deze correctie is op twee manieren uitgevoerd.
 
-```{r, fig.cap="(ref:scenario-correction-caption)"}
-
-htmltools::h2("nog toe te voegen")
-# knitr::include_graphics("figures/scenarios-with-correction.png")
+1.  De gemiddelde gemeten zeespiegel over 1986-2005 is opgeteld bij de zeespiegelverandering (t.o.v. die periode) in de projectie.
+2.  De referentieperiode van de knmi '21 predictie (1986-2005) is vervroegd naar de referentieperiode van het knmi '14 scenario (1986-2005). De [methodiek hiervan staat in een notebook](documents/BackwardExtentionKS21.html).
 
 
-```
+(ref:metingen-scenarios) Zeespiegelprojectie (laag) uit \acr{KNMI} klimaatsignaal 2021 [@KNMI2021] gecorrigeerd voor referentieperiode en omgerekend naar NAP (methode 1 boven, methode 2 onder) vergeleken met metingen gemiddeld over alle hoofdstations. (opmerking: lineair model wordt nog vervangen door gebroken lineair model)
 
-(ref:metingen-scenarios) Toegepaste correcties om \acr{KNMI} 2021 zeespiegelscenario's [@KNMI2021] vergelijkbaar te maken met relatieve zeespiegelstijging van de getijdestations.
+```{r, fig.cap="(ref:metingen-scenarios)", fig.show='hold'}
 
-```{r, fig.cap="(ref:metingen-scenarios)"}
-
+knitr::include_graphics("figures/knmi21correctie1.png")
 knitr::include_graphics("figures/combined_measurements_projection.png")
+
+# scenarioData <- read_csv("")
+
 
 ```
 
 <!-- Voor het gebruik van de informatie dat onze huidige zeespiegel zich nu aan de onder- of bovenkant van een scenario bevindt kan men denken aan toepassingen waarbij men enige vrijheid heeft om een optimistische keuze te maken. Bij optimistische keuzes kan men denken in de context van adaptieve ontwerpen, onderhoud met een flexibele begroting en ontwerpen met goede vervangingsstrategie. Hierbij moet wel steeds rekening gehouden worden met het voorzorgsprincipe. Het principe dat als er gevaar is en sprake is van een onzekerheid, dat men de veilige kant moet kiezen. Dat betekent echter niet altijd zo hoog mogelijk bouwen, het wordt ook geïnterpreteerd als beter monitoren en zoals in de Waddenzee nu gehanteerd wordt, [de hand aan de (gas en zout)kraan houden](https://www.sodm.nl/documenten/publicaties/2021/03/10/index){target="_blank"}. -->
 
-In paragraaf \@ref(fig:metingen-scenarios) zien we dat de metingen afhankelijk van de correctie aan de onderkant ligt van het laagste scenario (correctie via metinge) of ongeveer gelijk aan het laagste scenario (correctie via gemodelleerde zeespiegel). In beide scenarios is de huidige stijging hoger dan verwacht op grond van het gebroken lineire model. Hier is dus een discrepantie. Dit betekent niet dat de scenario's niet klopppen, het waren immers studies die mogelijke toekomstige condities berekenden (het zou kunnen dat, met de kennis van toen).
+In figuur \@ref(fig:metingen-scenarios) zien we dat de metingen afhankelijk van de correctie aan de onderkant ligt van de laagste projectie (correctie methode 1) of ongeveer gelijk aan de laagste projectie (correctie via gemodelleerde zeespiegel). In beide gevallen is de huidige  stijging in de predictie hoger dan verwacht op grond van het gebroken lineaire model. Hier is dus een discrepantie. Dit betekent niet dat de scenario's niet klopppen, het waren immers studies die mogelijke toekomstige condities berekenden (het zou kunnen dat, met de kennis van toen).
 
 Gegeven dat de poolkappen massa verliezen en de aarde opwarmt, verwachten we nog steeds een versnelde zeespiegel. De conclusie is wel dat we aan de Nederlandse kust achter liggen op de geprojecteerde waarden.
 
-We concluderen dat langs de Nederlandse kust het zeespiegelscenario behorende 'hoog' boven de daadwerkelijk opgetreden toename in zeeniveau zit. De projecties horende bij 'laag' komen in de buurt van de metingen maar overlappen niet meer met het betrouwbaarheidsinterval van de huidige trend. De variatie van de zeespiegel van jaar tot jaar ontbreekt in de zeespiegelprojecties.
+We concluderen dat langs de Nederlandse kust het zeespiegelscenario behorende 'hoog' boven de daadwerkelijk opgetreden toename in zeeniveau zit. De projecties horende bij 'laag' komen in de buurt van de metingen. De variatie van de zeespiegel van jaar tot jaar ontbreekt in de zeespiegelprojecties.
 
-<!-- ![Vergelijking tussen metingen en zeespiegelscenario's van [@Hurk2014], -->
-
-<!-- inclusief bodemdaling. De bandbreedte van de KNMI scenario's is -->
-
-<!-- gebaseerd op een polynome fit door de 90% percentielen van de ensemble -->
-
-<!-- members. De betrouwbaarheids (donkergroen) en predictieintervallen -->
-
-<!-- (lichtgroen) van de trend van de huidige zeespiegel zijn gebaseerd op de -->
-
-<!-- 95% percentielen van de verdeling van de standaardfout en -->
-
-<!-- standaardafwijking van het gebruikte model om de zeespiegelstijging te -->
-
-<!-- bepalen.](scenarios-with-ci){#fig:metingen-scenarios -->
-
-<!-- width="1\\linewidth"} -->
 
 ## Nederland versus buurlanden (wordt nog aangepast) {#nl-vs-northsea}
 
-Naast Nederland hebben ook de andere landen die aan de Noordzee liggen een historie van metingen van de zeespiegel. De stations laten een consistent beeld zien van een zeespiegelstijging in de orde van 15cm/eeuw [@Wahl2013]. In \@ref(fig:northsea-stations) zien we dat de stations grotendeels dezelfde variatie laten zien. De stations in Noorwegen komen omhoog, daarom is daar geen relatieve zeespiegelstijging maar is deze gelijk of daalt deze. Er zijn veel verschillen te zien tussen de stations voor de periode 1890, voor er goede hoogtereferentiestelsels waren.
+Naast Nederland hebben ook de andere landen die aan de Noordzee liggen een historie van metingen van de zeespiegel. De stations laten een consistent beeld zien van een zeespiegelstijging in de orde van 15cm/eeuw [@Wahl2013]. In figuur \@ref(fig:northsea-stations) zien we dat de stations grotendeels dezelfde variatie laten zien. De stations in Noorwegen komen omhoog, daarom is daar geen relatieve zeespiegelstijging maar is deze gelijk of daalt deze. Er zijn veel verschillen te zien tussen de stations voor de periode 1890, voor er goede hoogtereferentiestelsels waren.
 
 ```{r northsea-stations, fig.cap="Zeespiegelmetingen van diverse stations in Frankrijk, Belgïe, Denemarken, Noorwegen en het Verenigd Koninkrijk."}
 
