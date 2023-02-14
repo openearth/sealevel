@@ -13,8 +13,11 @@ file.remove("_main.md")
 # Fedors bibliography synchroniseren wanneer nodig.
 # download.file("https://raw.githubusercontent.com/SiggyF/bibliography/master/bibliography.bib", destfile = "bib/sealevel.bib")
 
+bibliographybib <- bibtex::read.bib("bib/bibliography.bib")
+bibtex::write.bib(bibliographybib, "bib/bibliography_mod.bib", verbose = F)
 sealevelbib <- bibtex::read.bib("bib/sealevel.bib")
 bibtex::write.bib(sealevelbib, "bib/sealevel.bib", )
+hijmabib <- bibtex::read.bib("bib/Hijma_refs.bib")
 # render to format specified in _output.yml
 
 make_book <- function(subdir) { 

@@ -4,6 +4,18 @@ require(mindr)
 
 filelist <- list.files(pattern = ".Rmd")
 
+filelist <- c("index.Rmd",
+              "01-inleiding.Rmd",
+              "06-methoden.Rmd",
+              "07-resultaten.Rmd",
+              "08-discussie.Rmd",
+              "09-conclusies.Rmd",
+              "10-references.Rmd",
+              "11-appendix.Rmd",
+              "04-toepassingen.Rmd",
+              "05-metingen.Rmd",
+              "03-oorzaken.Rmd")
+
 text <- unlist(lapply(filelist, readLines))
 writeLines(text = outline, con = "outline.md")
 outline <- mindr::outline(text)

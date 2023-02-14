@@ -8,7 +8,7 @@ require(readxl)
 
 Dit rapport beschrijft de ontwikkeling van de hoogte van de zeespiegel (de gemiddelde hoogte van het zeeoppervlak, zonder fluctuaties als windgolven, getij, windopzet etc.) langs de Nederlandse kust gebaseerd op metingen aan de zes hoofdstations. Dit gebeurt volgens een methodiek die is ontwikkeld in dienst van het Nederlandse kustbeleid. De hoeveelheid zandsuppleties die nodig is om de Nederlandse kust te handhaven is namelijk afhankelijk van de opgetreden relatieve zeespiegelstijging (de stijging ten opzichte van een land dat ook bodemdaling kent). Zie voor nadere uitwerking @Dillingh2010. In het [syntheserapport van Kustgenese 2.0](https://www.helpdeskwater.nl/publish/pages/188194/170065_m2_rapport_kustgenese-2_a4_v11_digitaal.pdf) is uitgebreid uiteengezet hoe het benodigde zandvolume wordt vastgesteld.
 
-Het zand is nodig om invulling te geven aan het kustonderhoudsdoel dat we meegroeien met de zeespiegel. Deze hoeveelheid wordt achteraf bepaald. Om die reden beschouwen we in deze rapportage de opgetreden zeespiegel tot nu toe. Voor budgetplanning en signalering is ook de zeespiegel in de nabije toekomst van belang. Hiervoor wordt in het Kennisprogramma Zeespiegelstijging gewerkt aan een signaleringsmethodiek.
+Het zand is nodig om invulling te geven aan het kustonderhoudsdoel dat we meegroeien met de zeespiegel. Omdat het gaan om een aanvulling wordt de hoeveelheid zand die hiervoor nodig is achteraf bepaald. Om die reden beschouwen we in deze rapportage de opgetreden zeespiegel tot nu toe. Voor budgetplanning en signalering is ook de zeespiegel in de nabije toekomst van belang. Binnen het Kennisprogramma Zeespiegelstijging wordt gewerkt aan een signaleringsmethodiek die hier mogelijk beter invulling aan kan geven.
 
 Behalve voor de bepaling van de jaarlijkse suppletiehoeveelheid is de opgetreden zeespiegelstijging van belang voor de vergunningen rondom zout- en gaswinning in het Waddengebied en ontwerpparameters van waterkeringen. Dit uiteraard naast algemenere doeleinden, waaronder het informeren van het publiek. Een overzicht van de indicatoren en toepassingen staat in hoofdstuk \@ref(toepassingen) . Voor een deel van deze indicatoren wordt gebruik gemaakt van zeespiegelprojecties.
 
@@ -46,7 +46,7 @@ Dit rapport heeft als doel om een overzicht te geven van het onderzoek dat in de
 
 *   Wat is de huidige stijging van de zeespiegel? Wat zijn de laatste ontwikkelingen op het gebied van de toestand van de globale en lokale zeespiegel?
 
-> Deze vraag wordt beantwoord in paragraaf \@ref(huidige)
+Deze vraag wordt beantwoord in paragraaf \@ref(huidige).
 
 **Uitsplitsing oorzaken voor zeespiegelstijging**
 
@@ -98,7 +98,7 @@ Een deel van het onderzoek binnen het Zeespiegelmonitorproject is gepubliceerd i
 
 Merk op dat de digitale versie van dit document voorzien van hyperlinks voor figuren, tabellen, en referenties. Hiermee kunt u klikken naar de juiste pagina voor meer informatie. Dit geldt ook voor verwijzingen naar acroniemen waarmee u bij het overzicht van afkortingen kunt komen, te vinden in \@ref{Lijst met afkortingen}.
 
-Citaten in de vorm an [@Author1954] verwijzen naar een onbekende auteur (Unknown Author), bijvoorbeeld bij krantenberichten en verwijzingen naar kamerstukken. In dit document wordt de internationale getalsnotatie met een punt (.) als decimaalscheidingsteken gebruikt. Figuren overgenomen uit internationale publicaties of bedoeld voor internationale publicaties hebben Engelse assenlabels.
+Citaten in de vorm van [@Author1954] verwijzen naar een onbekende auteur (Unknown Author), bijvoorbeeld bij krantenberichten en verwijzingen naar kamerstukken. In dit document wordt de internationale getalsnotatie met een punt (.) als decimaalscheidingsteken gebruikt. Figuren overgenomen uit internationale publicaties of bedoeld voor internationale publicaties hebben Engelse assenlabels.
 
 ## Review {#Review}
 
