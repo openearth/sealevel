@@ -3,9 +3,20 @@ import statsmodels.api as sm
 
 
 def quadratic_model(
-    df, with_wind=True, with_ar=True, with_nodal=True, quantity="height"
+    df,
+    with_wind=True,
+    with_ar=True,
+    with_nodal=True,
+    nodal_until=None,
+    quantity="height",
 ):
-    """This model computes a parabolic linear fit. This corresponds to the hypothesis that sea-level is accelerating."""
+    """This model computes a parabolic linear fit. This corresponds to the hypothesis that sea-level is accelerating.
+    with_wind: Include wind correlation based on u2, v2
+    with_ar: Include autoregression parameter
+    with_nodal: Include Nodal U, V
+    nodal_until: only include nodal tide until year "nodal_until"
+
+    """
 
     y = df[quantity]
 
@@ -29,6 +40,12 @@ def quadratic_model(
     if with_nodal:
         nodal_cos_term = np.cos(2 * np.pi * (df["year"] - epoch) / 18.613)
         nodal_sin_term = np.sin(2 * np.pi * (df["year"] - epoch) / 18.613)
+        if nodal_until is not None:
+            # mask out values  greater equal after nodal_until
+            nodal_filter = df["year"] < nodal_until
+            nodal_cos_term *= nodal_filter
+            nodal_sin_term *= nodal_filter
+
         X = np.c_[X, nodal_cos_term, nodal_sin_term]
         names.extend(["Nodal U", "Nodal V"])
 
@@ -54,6 +71,7 @@ def broken_quadratic_model(
     with_wind=True,
     with_ar=True,
     with_nodal=True,
+    nodal_until=None,
     start_acceleration=1960,
     quantity="height",
 ):
@@ -82,6 +100,14 @@ def broken_quadratic_model(
         # always relative to 1970
         nodal_cos_term = np.cos(2 * np.pi * (df["year"] - 1970) / 18.613)
         nodal_sin_term = np.sin(2 * np.pi * (df["year"] - 1970) / 18.613)
+
+        # nodal_fixed_phase = np.sin(2 * np.pi * (df['year'] - phase) / 18.613 )
+
+        if nodal_until is not None:
+            # mask out values  greater equal after nodal_until
+            nodal_filter = df["year"] < nodal_until
+            nodal_cos_term *= nodal_filter
+            nodal_sin_term *= nodal_filter
         X = np.c_[X, nodal_cos_term, nodal_sin_term]
         names.extend(["Nodal U", "Nodal V"])
 
@@ -104,7 +130,13 @@ def broken_quadratic_model(
 
 # define the statistical model
 def broken_linear_model(
-    df, with_wind=True, with_ar=True, quantity="height", start_acceleration=1993
+    df,
+    with_wind=True,
+    with_ar=True,
+    with_nodal=True,
+    nodal_until=None,
+    quantity="height",
+    start_acceleration=1993,
 ):
     """This model fits the sea-level rise has started to rise faster in epoch."""
     y = df[quantity]
@@ -112,13 +144,26 @@ def broken_linear_model(
         df["year"] - 1970,
         # 1991 -> 0, 1992 -> 0, 1993 -> 0, 1994 -> 1, 1995, 4, etc...,
         (df["year"] >= 1993) * (df["year"] - 1993),
-        np.cos(2 * np.pi * (df["year"] - 1970) / 18.613),
-        np.sin(2 * np.pi * (df["year"] - 1970) / 18.613),
     ]
-    names = ["Constant", "Trend", "+trend (1993)", "Nodal U", "Nodal V"]
+
+    names = ["Constant", "Trend", "+trend (1993)"]
+
+    if with_nodal:
+        # always relative to 1970
+        nodal_cos_term = np.cos(2 * np.pi * (df["year"] - 1970) / 18.613)
+        nodal_sin_term = np.sin(2 * np.pi * (df["year"] - 1970) / 18.613)
+        if nodal_until is not None:
+            # mask out values  greater equal after nodal_until
+            nodal_filter = df["year"] < nodal_until
+            nodal_cos_term *= nodal_filter
+            nodal_sin_term *= nodal_filter
+        X = np.c_[X, nodal_cos_term, nodal_sin_term]
+        names.extend(["Nodal U", "Nodal V"])
+
     if with_wind:
         X = np.c_[X, df["u2"], df["v2"]]
         names.extend(["Wind $u^2$", "Wind $v^2$"])
+
     X = sm.add_constant(X)
     if with_ar:
         model = sm.GLSAR(y, X, missing="drop", rho=1)
@@ -131,18 +176,34 @@ def broken_linear_model(
     return fit, names
 
 
-def linear_model(df, with_wind=True, with_ar=True, quantity="height"):
+def linear_model(
+    df,
+    with_wind=True,
+    with_ar=True,
+    with_nodal=True,
+    nodal_until=None,
+    quantity="height",
+):
     """Define the linear model with optional wind and autoregression.
     See the latest report for a detailed description.
     """
 
     y = df[quantity]
-    X = np.c_[
-        df["year"] - 1970,
-        np.cos(2 * np.pi * (df["year"] - 1970) / 18.613),
-        np.sin(2 * np.pi * (df["year"] - 1970) / 18.613),
-    ]
-    names = ["Constant", "Trend", "Nodal U", "Nodal V"]
+    X = np.c_[df["year"] - 1970]
+    names = ["Constant", "Trend"]
+
+    if with_nodal:
+        # always relative to 1970
+        nodal_cos_term = np.cos(2 * np.pi * (df["year"] - 1970) / 18.613)
+        nodal_sin_term = np.sin(2 * np.pi * (df["year"] - 1970) / 18.613)
+        if nodal_until is not None:
+            # mask out values  greater equal after nodal_until
+            nodal_filter = df["year"] < nodal_until
+            nodal_cos_term *= nodal_filter
+            nodal_sin_term *= nodal_filter
+        X = np.c_[X, nodal_cos_term, nodal_sin_term]
+        names.extend(["Nodal U", "Nodal V"])
+
     if with_wind:
         X = np.c_[X, df["u2"], df["v2"]]
         names.extend(["Wind $u^2$", "Wind $v^2$"])
