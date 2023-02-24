@@ -2,16 +2,16 @@
 title: "Dutch Sea Level change"
 output:
   flexdashboard::flex_dashboard:
-    navbar:
-    - title: About
-      href: ''
-    social: menu
+    # navbar:
+    # - title: About
+    #   href: ''
+    # social: menu
     theme: 
       version: 3
       fg: black
       bg: white
       primary: '#84D5D0'
-    source_code: embed
+    # source_code: embed
     orientation: columns
     includes:
       after_body: navbar/navbar.html
@@ -96,7 +96,7 @@ observed_components <- observed_components %>%
 # Read projected data
 # read knmi 2021 scenario data direct from netcdf files
 
-datadir <- "../data/knmi/knmi21"
+datadir <- "../data/knmi/knmi22"
 
 # run below code when updating data
 if (updateData) {
@@ -114,24 +114,26 @@ if (updateData) {
     mutate(perc_ts = 10*perc_ts)                        # everything in mm
   rm(scenarios)
   
-  save(knmi_df, file =  file.path(datadir, "knmi_df.Rdata"))
+  save(knmi_df, file =  file.path(datadir, "knmi_df22.Rdata"))
 }
 
-load(file.path(datadir, "knmi_df.Rdata"))
+load(file.path(datadir, "knmi_df22.Rdata"))
 
 # From correspondence with KNMI: "The dataset is sea level anomalies with respect to the period 1986-2005. So 0 is the mean observed sea level for this period."
-# FB: We will compute the mean observed anual sea level over  the period 1986-2005 and add that sea level with  respect to NAP (>2005) to the KNMI scenarios. This the conversion from "anomalies" to NAP. 
+# FB: We will compute the mean observed anual sea level over  the period 1986-2005 and add that sea level with  respect to NAP (>2005) to the KNMI scenarios. This is the conversion from "anomalies" to NAP. 
+# KNMI (2022) - new dataset containing model results with respect to period 1995-2014
 
-meanSL86_05 <- sealevel %>% 
-  filter(year %in% c(1986:2005)) %>% 
+sealevelcorrection <- sealevel %>% 
+  # filter(year %in% c(1986:2005)) %>% 
+  filter(year %in% c(1995:2014)) %>%  # for recalculated KNMI scenarios (22) 
   summarize(meanHeight = mean(height)) %>% 
   unlist() %>% unname()
 
-knmi_df[knmi_df$proc == "Total","perc_ts"] <- knmi_df[knmi_df$proc == "Total","perc_ts"] + meanSL86_05
+knmi_df[knmi_df$proc == "Total","perc_ts"] <- knmi_df[knmi_df$proc == "Total","perc_ts"] + sealevelcorrection
 
 # add/subtract subsidence
 # subsidence in mm calculated depending on year
-# subsidence in 2095 should be 45 mm. Marc Hijma & Kooij, 20018
+# subsidence in 2095 should be 45 mm. Marc Hijma & Kooij, 2018
 # NOT necessary when subsidence is also subtracted from observations (see below)
 # In discussion with RWS, it was decided to remove subsidence from both
 
@@ -144,7 +146,6 @@ subsidence <- sealevel %>%
 
 sealevel <- sealevel %>% left_join(subsidence, by = c(year = "year")) %>%
   mutate(height = height - subsidence)
-
 
 # merge 5, 50, and 95 percentiles
 knmi_perc_df <- knmi_df %>% 
@@ -170,7 +171,7 @@ observation_mapping <- list(
 
 projection_mapping <- list(
   `Global steric` = "other",  
-  `Local ocean` = "surge", #"steric",  # this is local steric and wind combined
+  `Local ocean` = "other", #"steric",  # this is local steric and wind combined
   `Inverse barometer` = "surge", # meenemen als surge
   `Glaciers` = "glaciers",
   `Greenland SMB` = "greenland",
@@ -969,9 +970,11 @@ h3("Projections")
 ```
 
 
->The projections in this version of the interactive tool are based on the [KNMI klimaatsignaal '21](https://www.knmi.nl/kennis-en-datacentrum/achtergrond/knmi-klimaatsignaal-21){target="_blank"}. More information on KNMI scenario's is available via [this link](https://www.knmi.nl/kennis-en-datacentrum/uitleg/knmi-klimaatscenario-s){target="_blank"}. 
+>The projections in this version of the interactive tool are based on the [KNMI klimaatsignaal '21](https://www.knmi.nl/kennis-en-datacentrum/achtergrond/knmi-klimaatsignaal-21){target="_blank"}. More information on KNMI scenario's is available via [this link](https://www.knmi.nl/kennis-en-datacentrum/uitleg/knmi-klimaatscenario-s){target="_blank"}.
 
->The scenario dataset represent sea level anomalies with respect to the period 1986-2005. To align these data with the observations, the mean observed anual sea level over  the period 1986-2005 was added (>2005) to the KNMI scenarios. This the conversion from "anomalies" to water level related to NAP ("Nieuw Amsterdams Peil", Dutch sea level reference).
+>Originally, the KNMI21 scenario dataset represent sea level anomalies with respect to the period 1986-2005. In a second step, the reference period was changed from 1986-2005 to 1995-2014 for all processes (see this [jupyter notebook](). To align these data with the observations which are related to NAP ("Nieuw Amsterdams Peil", Dutch sea level reference), the mean observed anual sea level (NAP >2005) over  the period 1995-2014 was added to the KNMI scenario sea levels. This converts "anomalies" to water level related to NAP.
+
+
 
 
 
