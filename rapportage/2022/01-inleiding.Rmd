@@ -6,100 +6,80 @@ require(tidyverse)
 require(readxl)
 ```
 
-Dit rapport beschrijft de ontwikkeling van de hoogte van de zeespiegel (de gemiddelde hoogte van het zeeoppervlak, zonder fluctuaties als windgolven, getij, windopzet etc.) langs de Nederlandse kust gebaseerd op metingen aan de zes hoofdstations. Dit gebeurt volgens een methodiek die is ontwikkeld in dienst van het Nederlandse kustbeleid. De hoeveelheid zandsuppleties die nodig is om de Nederlandse kust te handhaven is namelijk afhankelijk van de opgetreden relatieve zeespiegelstijging (de stijging ten opzichte van een land dat ook bodemdaling kent). Zie voor nadere uitwerking @Dillingh2010. In het [syntheserapport van Kustgenese 2.0](https://www.helpdeskwater.nl/publish/pages/188194/170065_m2_rapport_kustgenese-2_a4_v11_digitaal.pdf) is uitgebreid uiteengezet hoe het benodigde zandvolume wordt vastgesteld.
+Dit rapport beschrijft de lange-termijn ontwikkeling van de hoogte van de gemiddelde zeespiegel langs de Nederlandse kust gebaseerd op metingen op zes hoofdstations. Dit gebeurt volgens een methodiek die is ontwikkeld in dienst van het Nederlandse kustbeleid. De hoeveelheid zandsuppleties die nodig is om de Nederlandse kust te handhaven is namelijk afhankelijk van de opgetreden relatieve zeespiegelstijging (de stijging ten opzichte van een land dat ook bodemdaling kent) op een tijdschaal van ca 15 jaar. De ontwikkelde methodiek bepaalt de gemiddelde zeespiegelstijging door filtering van korte-termijn fluctuaties (veroorzaakt door golven, getij, windopzet etc.) uit historische data. De schatting van de recente gemiddelde zeespiegelstijging wordt als indicatie gebruikt voor de verwachte zeespiegelstijging in de nabije toekomst[^01-inleiding-1]. In het [syntheserapport van Kustgenese 2.0](https://www.helpdeskwater.nl/publish/pages/188194/170065_m2_rapport_kustgenese-2_a4_v11_digitaal.pdf) is uitgebreid uiteengezet hoe het benodigde zandvolume wordt vastgesteld.
 
-Het zand is nodig om invulling te geven aan het kustonderhoudsdoel dat we meegroeien met de zeespiegel. Omdat het gaan om een aanvulling wordt de hoeveelheid zand die hiervoor nodig is achteraf bepaald. Om die reden beschouwen we in deze rapportage de opgetreden zeespiegel tot nu toe. Voor budgetplanning en signalering is ook de zeespiegel in de nabije toekomst van belang. Binnen het Kennisprogramma Zeespiegelstijging wordt gewerkt aan een signaleringsmethodiek die hier mogelijk beter invulling aan kan geven.
+[^01-inleiding-1]: Zie voor nadere uitwerking \@Dillingh2010
 
-Behalve voor de bepaling van de jaarlijkse suppletiehoeveelheid is de opgetreden zeespiegelstijging van belang voor de vergunningen rondom zout- en gaswinning in het Waddengebied en ontwerpparameters van waterkeringen. Dit uiteraard naast algemenere doeleinden, waaronder het informeren van het publiek. Een overzicht van de indicatoren en toepassingen staat in hoofdstuk \@ref(toepassingen) . Voor een deel van deze indicatoren wordt gebruik gemaakt van zeespiegelprojecties.
+Het zand is nodig om invulling te geven aan het kustonderhoudsdoel dat we meegroeien met de zeespiegel. Omdat het gaan om een aanvulling wordt de hoeveelheid zand die hiervoor nodig is achteraf bepaald. Om die reden beschouwen we in deze rapportage de opgetreden zeespiegel tot nu toe. Voor budgetplanning en signalering is ook de zeespiegel in de nabije toekomst van belang.
 
-In de [rapportage 2018](https://www.deltares.nl/app/uploads/2019/03/Zeespiegelmonitor-2018-final.pdf) is een uitgebreid overzicht te vinden van eerder onderzoek en hoe deze tot keuzes in de methodiek leidden. De rapportage 2018 doet ook verslag van onderzoek om tot nauwkeuriger waarden voor de zeespiegel te komen. Het rapport geeft ook aanbevelingen aangaande de aansluitging van metingen en projecties en versterken van de reproduceerbaarheid.
+Behalve voor de bepaling van de jaarlijkse suppletiehoeveelheid is de opgetreden zeespiegelstijging van belang voor de vergunningen rondom zout- en gaswinning in het Waddengebied en voor ontwerpparameters van waterkeringen. Dit uiteraard naast algemenere doeleinden, waaronder het informeren van het publiek. Een overzicht van de indicatoren en toepassingen staat in bijlage \@ref(toepassingen) . Voor een deel van deze indicatoren wordt gebruik gemaakt van zeespiegelprojecties.
+
+In de [rapportage 2018](https://www.deltares.nl/app/uploads/2019/03/Zeespiegelmonitor-2018-final.pdf) is een uitgebreid overzicht te vinden van eerder onderzoek en hoe deze tot keuzes in de methodiek leidden. De rapportage 2018 doet ook verslag van onderzoek om tot nauwkeuriger waarden voor de zeespiegel te komen. Het rapport geeft ook aanbevelingen aangaande de aansluiting van metingen en projecties en versterken van de reproduceerbaarheid.
 
 De methode die is gebruikt voor de bepaling van de zeespiegel en stijging ervan staat in hoofdstuk \@ref(methoden). De waarden worden elk jaar geactualiseerd in de online zeespiegelmonitor.
 
-Voorliggend rapport heeft ook als doel een overzicht te geven van het onderzoek dat in de afgelopen jaren is gedaan. De keuzes in dat onderzoek volgen uit de vooraf opgestelde onderzoeksagenda. In appendix \@ref(app-onderzoeksvragen) staat een overzicht. Veel onderzoeken zijn ook als aparte memo's of rapporten gepresenteerd.
-
-<!-- In dit rapport wordt de actuele stand en stijging van de zeespiegel langs de Nederlandse kust beschreven. Deze huidige zeespiegel is belangrijk voor het Nederlandse kustbeleid. De Nederlandse kust is fundamenteel voor onze veiligheid, drinkwatervoorziening, ecologie en recreatie. -->
-
-<!-- Het handhaven van de kustlijn en het handhaven van het kustfundament zijn twee belangrijke pijlers van het landelijke kustbeleid. Het kustfundament is het deel van de kust dat van belang is als drager van functies in het kustgebied. Het landelijke kustbeleid is geformuleerd in de 3e Kustnota [@rws2000], Nota Ruimte[@rws2004], het Nationaal Waterplan [@rws2008], de Nationale Visie Kust en Beslissing Zand [@IenM2013; @IenM2014]. Er wordt gehandhaafd door morfologische interventies in de vorm van zandsuppleties. -->
-
-<!-- In de context van kustbeheer wordt onder de 'zeespiegel' verstaan de over langere tijd gemiddelde hoogte van het zeeoppervlak, waaruit de korte termijn fluctuaties (windgolven, getij, windopzet etc.) nagenoeg zijn verdwenen. Wat overblijft is de geleidelijke verandering van de hoogte van het zeeoppervlak. Dit wordt nader uitgewerkt in hoofdstuk \ref{#methoden}. -->
-
-<!-- Het benodigde zandvolume wordt in essentie bepaald door het oppervlak van een deel van het kustfundament maal de zeespiegelstijging. Voor elke millimeter per jaar zeespiegelstijging wordt 7 miljoen $m^3$ gesuppleerd [@Ronde2008]. Er wordt naar gestreefd het gehele kustfundament, inclusief de landzijde mee te laten groeien [@rws2008]. -->
-
-<!-- De directe koppeling tussen kustfundament, zeespiegelstijging en suppletievolume maken het doelmatig suppleren en de precieze bepaling van de zeespiegelstijging en het kustfundament tot relevante onderzoeksthema's. In het programma [Kustgenese 2.0](https://www.helpdeskwater.nl/onderwerpen/waterveiligheid/kust/kustgenese-2-0/) wordt toegewerkt naar een verdere uitwerking van deze aanpak met als doel *Het genereren van kennis om vanaf 2020 goed onderbouwd besluiten te kunnen nemen over beleid en beheer van het Nederlandse zandige kustsysteem*. De grenzen van het kustfundament worden opnieuw bepaald. De uitwisseling tussen het kustfundament en de bekkens (Waddenzee, Westerschelde) wordt geschat en er wordt gekeken naar uitwisselingen van sediment over de landsgrenzen. Daarnaast, en belangrijk voor dit onderzoek, wordt ook de relatieve zeespiegelstijging verder uitgesplitst in een schatting van absolute bodemdaling en absolute zeespiegelstijging. Relatieve zeespiegelstijging is de stijging van de zeespiegel ten opzichte van het land, de som van de absolute zeespiegelstijging en de daling van het landgebonden referentievlak, zie @ref(fig:relatievezeespiegel) en de nadere uitwerking in [@Dillingh2010]. -->
-
-<!-- ```{r relatievezeespiegel, fig.cap="Relatieve versus absolute zeespiegelstijging."} -->
-
-<!-- knitr::include_graphics("figures/relatievezeespiegel.png") -->
-
-<!-- ``` -->
-
-<!-- De 'huidige zeespiegel' is een kenmerkende waarde die wordt gebruikt voor de bepaling van de benodigde omvang van de zandsuppleties. Een kenmerkende waarde is een afgeleide statistiek, ook wel kengetal of indicator genoemd, die gekoppeld is aan een strategisch doel \@[Koningsveld2005]. De methode van het bepalen van deze waarde wordt in dit rapport beschreven. De jaarlijks bepaalde waarde wordt elk jaar geactualiseerd in de online [zeespiegelmonitor](https://github.com/openearth/sealevel/blob/master/notebooks/dutch-sea-level-monitor.ipynb). -->
-
-<!-- De zeespiegelstijging wordt niet alleen voor de kust gebruikt maar ook voor de beperking van gaswinning onder de Wadden, het ontwerp van dijken en om te bepalen waar je wel en niet mag bouwen in de buurt van de kust. In dit rapport geven we een overzicht van welke zeespiegelindicatoren in gebruik zijn voor de verschillende toepassingen. Voor een deel van deze indicatoren wordt gebruik gemaakt van zeespiegelprojecties. -->
+Voorliggend rapport heeft ook als doel een verslag te geven van het onderzoek dat in de afgelopen jaren is gedaan. De keuzes in dat onderzoek volgen uit de vooraf opgestelde onderzoeksagenda. In appendix \@ref(app-onderzoeksvragen) staat een overzicht. Veel onderzoeken zijn ook als aparte memo's of rapporten gepresenteerd.
 
 ## Onderzoeksvragen {#onderzoeksvragen}
 
-Dit rapport heeft als doel om een overzicht te geven van het onderzoek dat in de afgelopen jaren is gedaan in het kader van het onderzoek Kustbeleid. Vanaf 2018 is er richting gegeven aan dit onderzoek vanuit een met de opdrachtgevers afgestemde onderzoeksagenda. In dit rapport worden deze centrale vraagstellingen beantwoord. 
+Dit rapport heeft als doel om een overzicht te geven van het onderzoek dat in de afgelopen jaren is gedaan in het kader van het onderzoek Kustbeleid. Vanaf 2018 is er richting gegeven aan dit onderzoek vanuit een met de opdrachtgevers afgestemde onderzoeksagenda. In dit rapport worden deze centrale vraagstellingen beantwoord.
 
 **Jaarlijkse zeespiegelmonitor**
 
-*   Wat is de huidige stijging van de zeespiegel? Wat zijn de laatste ontwikkelingen op het gebied van de toestand van de globale en lokale zeespiegel?
+-   Wat is de huidige stijging van de zeespiegel? Wat zijn de laatste ontwikkelingen op het gebied van de toestand van de globale en lokale zeespiegel?
 
 Deze vraag wordt beantwoord in paragraaf \@ref(huidige).
 
-**Uitsplitsing oorzaken voor zeespiegelstijging**
+**Aansluiting metingen en projecties**
 
-*   Probeer afstemming te bereiken tussen de verschillende methoden van het gezamenlijk presenteren van projecties en zeespiegelmetingen
+-   Probeer afstemming te bereiken tussen de verschillende methoden van het gezamenlijk presenteren van projecties en zeespiegelmetingen
 
 Deze vraag wordt beantwoord in de memo [Methode voor visualisatie van tijdreeksen en scenario's voor zeespiegelstijging (concept versie voor discussie)](https://kennisbank.deltares.nl/Details/fullCatalogue/1000020941){target="_blank"}
 
-<!-- (ref:vraag-hycom) voeg het effect van temperatuur en dichtheidsstromingen toe op basis van het HYCOM model. -->
+**Uitsplitsing oorzaken voor zeespiegelstijging**
 
-*   Stap over op het GTSM model als basis voor wind en stormopzet effecten.
+-   Stap over op het GTSM model als basis voor wind en stormopzet effecten.
 
 Deze methode wordt verder uitgelegd in paragraaf \@ref(methoden-wind), de resultaten worden gepresenteerd in paragraaf \@ref(huidige).
 
-*   Er zijn een aantal mogelijke bronnen van afsmelten op Antarctica. Wat is hun individuele bijdrage aan de stijging van de zeespiegel aan de Nederlandse kust. Welke moeten we "in de gaten houden"? Is er een effect van de geometrie veranderingen bij Antarctica op het getij bij Nederland?
+-   Er zijn een aantal mogelijke bronnen van afsmelten op Antarctica. Wat is hun individuele bijdrage aan de stijging van de zeespiegel aan de Nederlandse kust. Welke moeten we "in de gaten houden"?
 
 De uitwerking hiervan staat in de memo ["Visualizing changes of the Antarctic Ice Sheet"](https://pub.kennisbank.deltares.nl/Details/fullCatalogue/1000020844){target="_blank"} [@Baart2020]
 
-<!-- *   Bij een globaal dekkend model moet ook de bodemdaling globaal meegenomen worden. Binnen Nederland vindt differentiele bodemdaling plaats langs de kust, zowel door geologische bodemdaling als door winning. Deze zou apart per hoofdgetijdenstation meegenomen moeten worden. -->
-
 **Verbetering meetmethoden**
 
-*   Hoe kunnen we het Landelijk Meetnet Water op het gebied van relatieve zeespiegelstijging optimaliseren
+-   Hoe kunnen we het Landelijk Meetnet Water op het gebied van relatieve zeespiegelstijging optimaliseren
 
-De uitvoering van deze vraag is uiteindelijk binnen een ander project opgepakt. Een aanbeveling was om de verticale nauwkeurigheid te verhogen door het plaatsen van \acr{GNSS}. Meer informatie over de verticale referentie van meetstations staat in hoofdstuk \@ref(metingen) en verder. 
+De uitvoering van deze vraag is uiteindelijk binnen een ander project opgepakt. Een aanbeveling was om de verticale nauwkeurigheid te verhogen door het plaatsen van \acr{GNSS}. Meer informatie over de verticale referentie van meetstations staat in bijlage \@ref(metingen).
 
 **Gezamenlijkheid**
 
-*   Probeer afstemming of aansluiting te bereiken tussen de verschillende zeespiegelindicatoren voor bepaling van huidige zeespiegelstijging en versnellingsdetectie tussen Deltaprogramma, TNO, PBL en Deltares.
+-   Probeer afstemming of aansluiting te bereiken tussen de verschillende zeespiegelindicatoren voor bepaling van huidige zeespiegelstijging en versnellingsdetectie tussen Deltaprogramma, TNO, PBL en Deltares.
 
 De resultaten hiervan worden gepresenteerd in de memo [Advies kenmerkende waarden kust : overzicht zeespiegelindicatoren](https://kennisbank.deltares.nl/Details/fullCatalogue/70785){target="_blank"} [@Nicolai2020a]
 
 **De boel onder controle?**
 
-*   Voor welke zeespiegelstijging zijn de huidige Deltawerken ontworpen? Welke resterende zeespiegel is er over ten opzichte van het oorspronkelijke ontwerp, rekening houdend met bijgestelde normen? In hoeverre zijn de Deltawerken adaptief?
+-   Voor welke zeespiegelstijging zijn de huidige Deltawerken ontworpen? Welke resterende zeespiegel is er over ten opzichte van het oorspronkelijke ontwerp, rekening houdend met bijgestelde normen? In hoeverre zijn de Deltawerken adaptief?
 
 Een uitwerking van deze vraag staat in de memo [Zeespiegelstijging in ontwerpnormen stormvloedkeringen : inventarisatie van zeespiegelstijging in ontwerpnormen van de Oosterscheldekering en de Maeslantkering](https://kennisbank.deltares.nl/Details/fullCatalogue/1000020898){target="_blank"} [@Oerlemans2022]
 
 **Archivering**
 
-*   Stel een archiveringsplan op om historische gegevens en documenten omtrent de zeespiegelmetingen beter te borgen. Voer archivering uit en beschrijf de resultaten van de archivering.
+-   Stel een archiveringsplan op om historische gegevens en documenten omtrent de zeespiegelmetingen beter te borgen. Voer archivering uit en beschrijf de resultaten van de archivering.
 
 Er lopen met Rijkswaterstaat verschillende trajecten om documentatie te verwerken over de zeespiegelmetingen, zie voor meer informatie paragraaf \@ref(archivering)
 
 ## Leeswijzer {#Leeswijzer}
 
-Dit rapport behandelt in detail de resultaten van de Zeespiegelmonitor. Actuele resultaten zijn te vinden in een jaarlijks bijgewerkt [rekendocument](https://github.com/openearth/sealevel/blob/master/notebooks/dutch-sea-level-monitor.ipynb). Dit rapport geeft uitleg bij de methodiek (hoofdstuk \@ref(methoden)), en vat de resultaten op een meer overkoepelend niveau weer (hoofdstuk \@ref(resultaten)).
+Dit rapport behandelt in detail de resultaten van de Zeespiegelmonitor. Actuele resultaten zijn te vinden in een jaarlijks bijgewerkt [rekendocument](https://github.com/openearth/sealevel/blob/master/notebooks/dutch-sea-level-monitor.ipynb). Dit rapport geeft uitleg bij de methodiek (hoofdstuk \@ref(methoden)), en vat de resultaten op een  overkoepelend niveau weer (hoofdstuk \@ref(resultaten)).
 
-Een deel van het onderzoek binnen het Zeespiegelmonitorproject is gepubliceerd in aparte memo's en rapporten. Samenvattingen en links naar de originele rapporten zijn te vinden in de Appendix \@ref(bijlagerapporten)
+Een deel van het onderzoek binnen het Zeespiegelmonitorproject is gepubliceerd in aparte memo's en rapporten. Samenvattingen en links naar de originele rapporten zijn te vinden in de bijlage \@ref(bijlagerapporten)
 
-Merk op dat de digitale versie van dit document voorzien van hyperlinks voor figuren, tabellen, en referenties. Hiermee kunt u klikken naar de juiste pagina voor meer informatie. Dit geldt ook voor verwijzingen naar acroniemen waarmee u bij het overzicht van afkortingen kunt komen, te vinden in \@ref{Lijst met afkortingen}.
+Merk op dat de digitale versie van dit document voorzien van hyperlinks voor figuren, tabellen, en referenties. Hiermee kunt u klikken naar de juiste pagina voor meer informatie. Dit geldt ook voor verwijzingen naar acroniemen waarmee u bij het overzicht van afkortingen kunt komen, te vinden in \@ref{lijst-met-afkortingen}.
 
 Citaten in de vorm van [@Author1954] verwijzen naar een onbekende auteur (Unknown Author), bijvoorbeeld bij krantenberichten en verwijzingen naar kamerstukken. In dit document wordt de internationale getalsnotatie met een punt (.) als decimaalscheidingsteken gebruikt. Figuren overgenomen uit internationale publicaties of bedoeld voor internationale publicaties hebben Engelse assenlabels.
 
 ## Review {#Review}
 
-Beschrijving van reviewprocedure.
+Dit rapport is extern en intern gereviewd.

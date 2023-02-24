@@ -32,7 +32,7 @@ fits <- fits %>%
          model_variant = factor(model_variant, levels = model_variants))
 
 fits_wind <- fits %>% 
-      filter(quantity == "height") %>%
+      filter(has_wind) %>%
       distinct(psmsl_id, `Wind $u^2$`, `Wind $v^2$`, wind_variant, model_variant, quantity, aic, Constant, `Constant (in year 1960)`, `Constant (in year 1970)`, Trend, `+trend (1993)`, Acceleration, `Acceleration from 1960`, `Nodal U` , `Nodal V` )
 
 timeseries_wind <- series %>%
@@ -59,7 +59,7 @@ timeseries_wind <- series %>%
   mutate(fit_height = `height - effect`)
 
 fits_surge <- fits %>%
-      filter(quantity == "height - surge anomaly") %>%
+      filter(!has_wind) %>%
       distinct(psmsl_id, model_variant, quantity,
                aic, Constant, `Constant (in year 1960)`, `Constant (in year 1970)` , Trend, `+trend (1993)`, 
                Acceleration, `Acceleration from 1960`, `Nodal U` , `Nodal V` ) %>%
@@ -101,13 +101,13 @@ timeseries <- bind_rows(timeseries_wind, timeseries_surge) %>%
 # met getij en wind voor windgedreven correcties
 
 predictions_wind<- predictions %>%
-  filter(quantity == "height") %>%
+  filter(has_wind) %>%
   rename(correction_variant = wind_variant)
 
 predictions_surge<- predictions %>%
-  filter(quantity != "height") %>%
-  filter(wind_variant == "Combined") %>%
-  mutate(wind_variant = "GTSM") %>%
+  filter(!has_wind) %>%
+  filter(wind_variant == "Combined") %>% # one of three versions needed
+  mutate(wind_variant = "GTSM") %>%      # rename variant to gtsm to be used with other variants
   rename(correction_variant = wind_variant)
 
 # prediction without wind, but with tide
@@ -137,7 +137,7 @@ predictions_all <-
     -quantity
   )) %>%
   mutate(
-    `nodal tide` = `Nodal U` * cos(2*pi*year/18.613) + `Nodal V`*sin(2*pi*year/18.613)
+    `nodal tide` = `Nodal U` * cos(2*pi*(year-1970)/18.613) + `Nodal V`*sin(2*pi*(year-1970)/18.613)
   )
 
 rm(predictions_surge, predictions_wind, predictions, predictions2, pred_series)
@@ -150,7 +150,7 @@ In hoofdstuk \@ref(methoden) hebben we vastgesteld hoe de 'huidige zeespiegel' w
 -   \acr{GTSM} wordt gebruikt voor correctie van windopzet op de zeespiegel. Deze methode zorgt voor een fysisch onderbouwde, onafhankelijke schatting van de windopzet. Nadeel is dat de beschikbare tijdreeks vrij kort is (vanaf 1979).
 -   Uit de verzameling modellen met en zonder versnelling is op grond van het \acr{AIC} criterium het *gebroken lineaire* model (met breekpunt in 1993) als hoofdvariant geselecteerd (zie paragraaf \@ref(versnelling-methods)). Dit model verklaart als enige significant beter de variatie (heeft een significant lagere \acr{AIC}) dan de lineaire variant, rekening houdend met het verschil in vrijheidsgraden. Voor details omtrent deze analyse verwijzen we naar de bijbehorende [rekendocument](https://github.com/openearth/sealevel/blob/report/notebooks/dutch-sea-level-monitor.ipynb).
 
-De andere varianten (stations, windcorrectie, versnellingstermen) worden in de Appendix getoond.
+De andere varianten (stations, windcorrectie, versnellingstermen) worden in bijlage \@ref(varianten) getoond.
 
 ## De huidige zeespiegel {#huidige}
 
@@ -202,8 +202,6 @@ plot_station <- function(stationi = "Netherlands (without Delfzijl)", prediction
     "betrouwbaarheids-interval" = pal[2]
   )
 
-  
-    
   predictions_all2 <- predictions_all %>%
     filter(name_rws == stationi) %>%
     filter(correction_variant == correctionVariant) %>%
@@ -212,19 +210,12 @@ plot_station <- function(stationi = "Netherlands (without Delfzijl)", prediction
   symboolgrootte = 1.5
   
   q <- ggplot() +
-    # geom_ribbon(data = predictions_all2 %>% filter(year >= startyear), 
-    #             aes(x = year, ymin = pred_int_lower, ymax = pred_int_upper, fill = "predictie-interval"), alpha = 0.1) +
-    #             aes(x = year, ymin = conf_int_lower, ymax = conf_int_upper, fill = "betrouwbaarheids-interval"), alpha = 0.2) +
-    # geom_ribbon(data = predictions_all2 %>% filter(year >= startyear), 
     geom_point(data = predictions_all2 %>% filter(year >= startyear), 
                aes(x = year, y = height/10, color = "metingen"), 
                size = symboolgrootte, alpha = 0.4) +
     geom_line(data = predictions_all2 %>% filter(year >= startyear),
                aes(x = year, y = (height - `nodal tide`)/10, color = "zeespiegel (- nodaal getij)"),
                size = symboolgrootte, alpha = 0.6) +
-    # geom_line(data = predictions_all2 %>% filter(year >= startyear), 
-    #            aes(x = year, y = `height - effect`, color = "zeespiegel (-opzet)"), 
-    #            size = symboolgrootte, alpha = 0.5) +
     geom_line(data = predictions_all2 %>% filter(year >= startyear), 
                aes(x = year, y = (`height - anomaly` - `nodal tide`)/10, color = "zeespiegel (-opzetanomalie -nodaal getij)"), 
                size = symboolgrootte, alpha = 0.5) +
@@ -261,14 +252,11 @@ plot_station <- function(stationi = "Netherlands (without Delfzijl)", prediction
                 aes(x = year, y = height/10, label = signif(height/10, 2), color = "metingen"), 
                 size = textsize, alpha = 0.5, nudge_x = nudge_xx, fontface = "bold") +
        geom_text(data = predictions_all2 %>% filter(year ==2021), 
-                aes(x = year, y = (height - `nodal tide`)/10, label = signif(height/10, 2), color = "zeespiegel (- nodaal getij)"), 
+                aes(x = year, y = (height - `nodal tide`)/10, label = signif((height - `nodal tide`)/10, 2), color = "zeespiegel (- nodaal getij)"), 
                 size = textsize, alpha = 0.5, nudge_x = nudge_xx, fontface = "bold") +
-      # geom_text(data = predictions_all2 %>% filter(year >= 2021),
-      #           aes(x = year, y = `height - effect`, label = signif(`height - effect`/10, 2), color = "zeespiegel (-opzet)"),
-                # size = textsize, alpha = 0.5, nudge_x = nudge_xx, fontface = "bold") +
       geom_text(data = predictions_all2 %>% filter(year >= 2021),
-                aes(x = year, y = (`height - anomaly` - `nodal tide`)/10, label = signif(`height - anomaly`/10, 2), color = "zeespiegel (-opzetanomalie -nodaal getij)"),
-                size = textsize, alpha = 0.5, nudge_x = nudge_xx, fontface = "bold") +
+                aes(x = year, y = (`height - anomaly` - `nodal tide`)/10, label = signif((`height - anomaly` - `nodal tide`)/10, 2), color = "zeespiegel (-opzetanomalie -nodaal getij)"),
+                size = textsize, alpha = 0.5, nudge_x = nudge_xx+1, fontface = "bold") +
       geom_text(data = predictions_all2 %>% filter(year >= 2021),
                 aes(x = year, y = prediction/10, label = signif(prediction/10, 2), color = "predictie (-opzetanomalie +getij)"),
                 size = textsize, alpha = 0.7, nudge_x = nudge_xx, nudge_y = 0.1, fontface = "bold") +
@@ -283,13 +271,13 @@ plot_station <- function(stationi = "Netherlands (without Delfzijl)", prediction
 
 ```
 
-In figuur \@ref(fig:huidige-zeespiegel) is de huidige zeespiegel uitgezet tegen de tijd. De gemeten zeespiegel is voor 2021 vastgesteld op 7.6 cm boven \acr{NAP}.
+In figuur \@ref(fig:huidige-zeespiegel) is de zeespiegel uitgezet tegen de tijd. De gemeten zeespiegel is voor 2021 vastgesteld op 7.6 cm boven \acr{NAP}.
 
-De huidige zeespiegel, dat is de zeespiegel die we verwacht hadden op basis van de opgetreden variatie in windopzet en getij, is 9.4 cm boven \acr{NAP} (predictie -opzetanomalie +getij in figuur \@ref(fig:huidige-zeespiegel)). De windopzet afwijking van gemiddeld was dit jaar -1.5 cm. Het berekende effect van nodaal getij was dit jaar +1.2 cm. Bij gemiddelde windopzet zou de zeespiegel 9.0 cm bedragen.
+De huidige zeespiegel, dat is de zeespiegel die we verwacht hadden op basis van de opgetreden variatie in windopzet en getij, is 9.4 cm boven \acr{NAP} (predictie -opzetanomalie +getij in figuur \@ref(fig:huidige-zeespiegel)). De windopzet afwijking van gemiddeld was dit jaar -3.1 cm. Het berekende effect van nodaal getij was dit jaar +1.2 cm. Bij gemiddelde windopzet zou de zeespiegel 7.8 cm bedragen.
 
 Voor het jaar 2021 bedraagt de relatieve zeespiegelstijging langs de Nederlandse kust $2.9 \pm 0.4\,mm/jaar$ oftewel $29 \pm 4\,cm/eeuw$. Deze trend is berekend over de periode 1993 tot en met 2021. Dit beantwoordt de vraag, hoe snel de zeespiegel op dit moment stijgt. De zeespiegel stijgt nu dus sneller dan in de periode van 1890 - 1993. In die periode was de zeespiegelstijging $1.8 \pm 0.1\,mm/jaar$ oftewel $18 \pm 1\,cm/eeuw$ (figuur \@ref(fig:huidige-zeespiegel) en tabel \@ref(tab:kengetallen-tabel)).
 
-(ref:huidige-zeespiegel-label) Tijdserie van de zeespiegel langs de Nederlandse kust op basis van het gemiddelde van de vijf hoofdstations, zie ook paragraaf \@ref(fig:metingen-scenarios). Opzet en opzetanomalie (afwijking van de gemiddelde opzet) zijn berekend met \acr{GTSM}, de predictie is op basis van een gebroken lineair model.
+(ref:huidige-zeespiegel-label) Tijdserie van de zeespiegel langs de Nederlandse kust op basis van het gemiddelde van de vijf hoofdstations, zie ook paragraaf \@ref(bronnen). Opzet en opzetanomalie (afwijking van de gemiddelde opzet) zijn berekend met \acr{GTSM}, de predictie is op basis van een gebroken lineair model.
 
 ```{r huidige-zeespiegel, fig.cap = "(ref:huidige-zeespiegel-label)"}
 
@@ -297,7 +285,7 @@ Voor het jaar 2021 bedraagt de relatieve zeespiegelstijging langs de Nederlandse
 p <- plot_station(predictions_all = predictions_all, correctionVariant = "GTSM", modelVariant = "broken_linear")
 
 q <- plot_station(predictions_all = predictions_all, correctionVariant = "GTSM", modelVariant = "broken_linear", printNumbers = T) +
-  coord_cartesian(xlim = c(2016, 2024), ylim = c(7,10)) +
+  coord_cartesian(xlim = c(2016, 2024), ylim = c(5,10)) +
   theme(rect = element_rect(color = "darkgrey", size = 1, fill = "transparent")) +
   labs(subtitle = "") + ylab("") + xlab("") +
   theme(legend.position = "none")
@@ -306,8 +294,6 @@ print(p + annotation_custom(ggplotGrob(q), xmin = 1970, xmax = 2025,
                        ymin = -28.5, ymax = -5)
 )
 ```
-
-De huidige zeespiegel, dat is de zeespiegel die we verwacht hadden op basis van de opgetreden variatie in windopzet en getij, is 9.4 cm boven \acr{NAP} (predictie -opzetanomalie +getij in figuur \@ref(fig:huidige-zeespiegel)). De windopzet afwijking van gemiddeld was dit jaar -1.5 cm. Het berekende effect van nodaal getij was dit jaar +1.2 cm. Bij gemiddelde windopzet zou de zeespiegel 9.0 cm bedragen.
 
 ```{r kengetallen-tabel}
 predictions_all %>%
@@ -331,6 +317,7 @@ predictions_all %>%
   mutate(across(is.numeric,as.character)) %>%
    pivot_longer(-correction_variant) %>% 
    pivot_wider(names_from=correction_variant, values_from=value) %>%
+  rename(variabele = name, `waarde in cm` = GTSM) %>%
   kableExtra::kable(caption = "Kengetallen voor de huidige zeespiegelstand (2021).")
   
 ```
@@ -343,9 +330,9 @@ De zeespiegel gecorrigeerd voor de variatie in windopzet was het hoogste in 2021
 
 ## Vergelijking met eerdere analyse
 
-Op basis van de mondiale gegevens betreffende zeespiegelmetingen en budgetten hadden we een versnelling verwacht van de zeespiegel in de twintigste eeuw. Het model met versnelling was echter tot de vorige Zeespiegelmonitor (t/m meetjaar 2017) niet significant beter dan het lineaire model met de methode van de Zeespiegelmonitor [@Baart2019]. Daarom was over de periode 1890 - 2017 de langjarig trend constant en had de waarde 1,9 mm/jaar. De totale zeespiegelstijging over de periode 1890 - 2017 was toen bepaald op 23 cm.
+De versnelling langs de Nederlandse kust is consistent met resultaten die zijn afgeleid van mondiale zeespiegelmetingen en budgetten. Het model met versnelling was echter tot de vorige Zeespiegelmonitor (t/m meetjaar 2017) niet significant beter dan het lineaire model met de methode van de Zeespiegelmonitor [@Baart2019]. Daarom was over de periode 1890 - 2017 de langjarig trend constant en had de waarde 1.9 mm/jaar. De totale zeespiegelstijging over de periode 1890 - 2017 was toen bepaald op 23 cm.
 
-```{r overgangLinearBrokenLinear, fig.cap="Tijdserie van gemiddelde zeespiegel (gemiddeld over hoofdstations minus Delfzijl) gecorrigeerd voor de variatie in windopzet (GTSM) en voor de variatie in nodaal getij. Trendlijnen voor het lineaire en het gebroken lineaire model zijn toegevoegd. In 2022 wordt geconstateerd dat vanaf nu het gebroken lineaire model een beter model is dan het lineaire."}
+```{r overgangLinearBrokenLinear, fig.cap="Tijdserie van gemiddelde zeespiegel (gemiddeld over hoofdstations minus Delfzijl) gecorrigeerd voor de variatie in windopzet (GTSM) en voor de variatie in nodaal getij. Trendlijnen voor het lineaire en het gebroken lineaire model zijn toegevoegd. De gegevens tot en met 2022 worden beter beschreven met het gebroken lineaire model dan met het lineaire model."}
 
 # moet grafiek worden die ook in de samenvatting past. 
 
@@ -404,38 +391,39 @@ Sinds 2017 zijn meer gegevens beschikbaar gekomen. De zeespiegelmetingen over de
 
 Door over te gaan op het gebroken lineaire model wordt de zeespiegelstijging nu het beste beschreven met twee verschillende trends in de tijd. Een iets verlaagde trend in de periode van vóór 1993, namelijk 1.8 mm/jaar, en een verhoogde trend na 1993, namelijk 2,9 mm/jaar. We constateren ook dat de zeespiegel in 2021 bijna 25 cm hoger staat dan in 1890.
 
-Het feit dat de geschatte zeespiegel in 2021 bijna 2 cm hoger wordt geschat dan in 2017 betekent niet dat de zeespiegel in deze 4 jaar zoveel gestegen is. Het verschil wordt verklaard door:
+Het feit dat de geschatte zeespiegel in 2021 bijna 2 cm hoger wordt geschat dan in 2017 wordt verklaard door:
 
 -   Een werkelijk hogere zeespiegel
 -   De aanname dat de zeespiegel na 1993 versneld is gaan stijgen
 -   Een betere correctie voor windopzet. Hierdoor wordt een iets kleiner deel van de gemeten stijging toegeschreven aan variatie in windopzet.
 
-De verhoogde stijging begint na 1993. De keuze voor dit jaar voor een versnelde stijging is gemotiveerd vanuit een \acr{MCMC} analyse [@Baart2019 sectie 6.3]. Wereldwijd wordt er ook een hogere zeespiegelstijging gevonden in de periode na 1993 in vergelijking met daarvoor [@IPCC2013]. De keuze voor dit jaartal ligt gedeeltelijk in het feit dat vanaf dat jaar een goede mondiale dekking werd bereikt door metingen met satellieten, ook zijn er sterke aanwijzingen dat vanaf die tijd de ijsmassa op Groenland versneld afnam. Tegelijkertijd is bekend dat de zeespiegel rond die tijd lager was dan normaal door uitbarsting van de Pinatubo en daaruitvolgende mondiale afkoeling [@Nerem2018]. De knik in 1993 kan gedeeltelijk verklaard worden door deze vertraagde zeespiegel. We constateren nu echter dat deze vertraging in zeespiegelstijging is ingehaald, en dat de hogere stijging doorzet.
+De verhoogde stijging begint in 1993. De keuze voor dit jaar voor een versnelde stijging is gemotiveerd vanuit een \acr{MCMC} analyse [@Baart2019 sectie 6.3]. Wereldwijd wordt er ook een versnelde zeespiegelstijging gevonden in de periode na 1993 in vergelijking met daarvoor [@IPCC2013]. De keuze voor dit jaartal ligt gedeeltelijk in het feit dat vanaf dat jaar een goede mondiale dekking werd bereikt door metingen met satellieten, ook zijn er sterke aanwijzingen dat vanaf die tijd de ijsmassa op Groenland versneld afnam. Tegelijkertijd is bekend dat de zeespiegel rond die tijd lager was dan normaal door uitbarsting van de Pinatubo en daaruitvolgende mondiale afkoeling [@Nerem2018]. De knik in 1993 kan gedeeltelijk verklaard worden door deze vertraagde zeespiegelstijging. We constateren nu echter dat deze vertraging in zeespiegelstijging is ingehaald, en dat de versnelde stijging nu ook aan de Nederlandse kust waarneembaar is geworden.
 
 ## Nodaal getij
 
-Het nodaal getij draagt bij aan het zeespiegelsignaal met plus of min 1.2 cm (figuur \@ref(fig:nodaalgetijNederlandGemiddeld)). Het nodaal getij wordt meegenomen in de regressie, en de invloed daarvan op de zeespiegel wordt dus geschat uit de gegevens in combinatie met het gebruikte model en windopzetcorrectie. Voor de 5 stations gemiddeld is de bijdrage van het nodaal getij niet afhankelijk van de gebruikte windopzetcorrectie (GTSM of NCEP1) en model (lineair of gebroken lineair). Voor de overige varianten wordt verwezen naar Appendix \@ref(varianten).
+Het nodaal getij draagt bij aan het zeespiegelsignaal met plus of min 1.2 cm (figuur \@ref(fig:nodaalgetijNederlandGemiddeld)). Het nodaal getij wordt meegenomen in de regressie, en de invloed daarvan op de zeespiegel wordt dus geschat uit de gegevens in combinatie met het gebruikte model en na aftrek van windopzet. Voor de 5 stations gemiddeld is de bijdrage van het nodaal getij niet afhankelijk van de gebruikte windopzetcorrectie (GTSM of NCEP1) en model (lineair of gebroken lineair). Voor de overige varianten wordt verwezen naar Appendix \@ref(varianten).
 
-```{r nodaalgetijNederlandGemiddeld, fig.width = 8, fig.height = 3, fig.cap="Het geschatte aandeel van het nodale getij op de zeespiegel voor de 5 hoofdstations gemiddeld. "}
+```{r nodaalgetijNederlandGemiddeld, fig.width = 6, fig.height = 2.5, out.width = "70%", fig.cap="Het geschatte aandeel van het nodale getij op de zeespiegel voor de 5 hoofdstations gemiddeld. "}
 predictions_all %>% ungroup() %>%
     filter(name_rws == "Netherlands (without Delfzijl)") %>%
     filter(correction_variant %in% c("NCEP1", "GTSM")) %>%
     filter(model_variant %in% c("linear", "broken_linear")) %>%
   ggplot(aes(year, `nodal tide`/10)) +
   geom_line(aes(color = interaction(correction_variant, model_variant)), size = 1) +
-  # facet_grid(correction_variant ~ name_rws) +
   coord_cartesian(xlim = c(2000, 2022)) +
-  theme_light()
+  xlab("jaar") + ylab("geschat nodaal getij in cm") +
+  theme_light() +
+  guides(color=guide_legend(title="windopzet- en modelvariant"))
   
 ```
 
 ## Windopzet
 
-De zeespiegel aan de Nederlandse kust is door windopzet gemiddeld zo'n 4.5 cm hoger dan het geval zou zijn zonder windopzet (figuur \@ref(fig:sea-level-wind)). De bijdrage van de windopzet varieert over de jaren en door het seizoen heen (zie ook paragraaf \@ref(seizoenen)).
+De zeespiegel aan de Nederlandse kust is door windopzet gemiddeld over de meetperiode zo'n 4.5 cm hoger dan het geval zou zijn zonder windopzet (figuur \@ref(fig:sea-level-wind)). De bijdrage van de windopzet varieert over de jaren.
 
-(ref:sea-level-wind-label) De gemiddelde gemeten zeespiegel voor de vijf hoofdstations (zwart), de zeespiegel waarbij gecorrigeerd is voor de variatie in opzet (predictie - opzetanomalie), en de zeespiegel waarbij de opzet is afgetrokken (predictie - opzet). Opzet is berekend met het GTSM model (zie paragraaf \@ref(methoden-wind)). in de onderste figuur is de variatie door opzet (GTSM) getoond waarbij de trend is verwijderd.
+(ref:sea-level-wind-label) De gemiddelde gemeten zeespiegel voor de vijf hoofdstations (zwart), de geschatte (predictie) zeespiegel (gebroken lineaire model) waarbij gecorrigeerd is voor de variatie in opzet (predictie - opzetanomalie), en de geschatte zeespiegel waarbij de windopzet is afgetrokken (predictie - opzet). Windopzet is berekend met het GTSM model (zie paragraaf \@ref(methoden-wind)).
 
-```{r sea-level-wind, fig.height=3, fig.width=7, fig.show='hold', out.width="100%", fig.cap="(ref:sea-level-wind-label)"}
+```{r sea-level-wind, fig.height=2.5, fig.width=6, out.width = "70%", fig.show='hold', out.width="100%", fig.cap="(ref:sea-level-wind-label)"}
 
 # knitr::include_graphics("figures/sea-level-wind.png")
 
@@ -475,53 +463,53 @@ p <- predictions_all %>%
   scale_y_continuous(minor_breaks = scales::pretty_breaks(n = 20)) +
   xlab("jaar") +
   ylab("zeespiegel in mm tov NAP") +
-    scale_color_manual(values = plotColors1) +
+    scale_color_manual(values = plotColors1, name = "") +
     scale_x_continuous(breaks = scales::pretty_breaks()) +
   fitstyle
 p 
 
 
-q <- predictions_all %>%
-  filter(name_rws == "Netherlands (without Delfzijl)") %>%
-  filter(year > startyear) %>%
-  filter(correction_variant == "GTSM") %>%
-  filter(model_variant %in% c("broken_linear")) %>%
-  left_join(timeseries %>% select(year, name_rws, model_variant, correction_variant, height, `height - effect`, `height - anomaly`, fit_height, effect, anomaly)) %>%
-  ggplot() +
-  geom_line(aes(x = year, y = `effect`, color = "opzet"), size = 1, alpha = 1) +
-  geom_line(aes(x = year, y = `anomaly`, color = "opzetanomalie"), size = 1, alpha = 1) +
-  coord_cartesian(xlim = c(NA, NA), ylim = c(NA, NA)) +
-  scale_x_continuous(breaks = scales::pretty_breaks(n = 3)) +
-  scale_y_continuous(minor_breaks = scales::pretty_breaks(n = 20)) +
-  xlab("jaar") +
-  ylab("opzet en opzetanomalie in mm") +
-    scale_color_manual(values = plotColors2) +
-    scale_x_continuous(breaks = scales::pretty_breaks()) +
-  fitstyle
-
-q
+# q <- predictions_all %>%
+#   filter(name_rws == "Netherlands (without Delfzijl)") %>%
+#   filter(year > startyear) %>%
+#   filter(correction_variant == "GTSM") %>%
+#   filter(model_variant %in% c("broken_linear")) %>%
+#   left_join(timeseries %>% select(year, name_rws, model_variant, correction_variant, height, `height - effect`, `height - anomaly`, fit_height, effect, anomaly)) %>%
+#   ggplot() +
+#   geom_line(aes(x = year, y = `effect`, color = "opzet"), size = 1, alpha = 1) +
+#   geom_line(aes(x = year, y = `anomaly`, color = "opzetanomalie"), size = 1, alpha = 1) +
+#   coord_cartesian(xlim = c(NA, NA), ylim = c(NA, NA)) +
+#   scale_x_continuous(breaks = scales::pretty_breaks(n = 3)) +
+#   scale_y_continuous(minor_breaks = scales::pretty_breaks(n = 20)) +
+#   xlab("jaar") +
+#   ylab("opzet en opzetanomalie in mm") +
+#     scale_color_manual(values = plotColors2, name = "") +
+#     scale_x_continuous(breaks = scales::pretty_breaks()) +
+#   fitstyle
+# 
+# q
 
 ```
 
 ## Stijgt de zeespiegel versneld? {#versnelling-results}
 
-Of er een versnelling is stellen we vast door de modellen met versnelling (met acceleratieterm en met knik en de combinatie daarvan) te vergelijken met het model zonder versnelling. Deze analyse is uitgevoerd voor het gemiddelde van alle hoofdstations minus Delfzijl. De reden hiervan is beschreven in paragraaf \ref(bronnen).
+Of er een versnelling is stellen we vast door de modellen met versnelling (met acceleratieterm en met knik en de combinatie daarvan) te vergelijken met het model zonder versnelling. Deze analyse is uitgevoerd voor het gemiddelde van alle hoofdstations minus Delfzijl. De reden hiervan is beschreven in paragraaf \@ref(bronnen).
 
 De versnellingsmodellen "gebroken lineair" en "gebroken kwadratisch" verklaren beide beter de zeespiegel dan het lineaire model. Echter, het "gebroken lineair" model is het enige model dat significant beter is dan het lineaire model.
 
-We lopen voor de volledigheid alle drie versnellingsmodellen af:
+We lopen voor de volledigheid alle drie versnellingsmodellen af (figuur \@ref(fig:stijgingModellen)):
 
 Het lineaire model laat een trend zien van $1.9 \pm 0.1\,mm/jaar$.
 
-Het model met een acceleratie term (kwadratisch) laat een versnelde zeespiegel zien ($0.003 \pm 0.002\,mm^{2}/jaar$). Dit model is niet significant beter dan het lineaire model.
+Het model met een acceleratie term (kwadratisch) laat een versnelde zeespiegel zien ($0.003 \pm 0.002\,mm/jaar^{2}$). Dit model is niet significant beter dan het lineaire model.
 
-Het model met een acceleratie vanaf 1960 (gebroken kwadratisch) laat een versnelde zeespiegel zien ($0.009 \pm 0.004\,mm^2/jaar$) vanaf 1960. De trend over de periode voor 1960 is $1.7 \pm 0.1\,mm/jaar$. Dit model is iets minder goed dan het gebroken lineaire model en is ook niet significant beter dan het lineaire model.
+Het model met een acceleratie vanaf 1960 (gebroken kwadratisch) laat een versnelde zeespiegel zien ($0.009 \pm 0.004\,mm/jaar^2$) vanaf 1960. De trend over de periode voor 1960 is $1.7 \pm 0.1\,mm/jaar$. Dit model is iets minder goed dan het gebroken lineaire model en is ook niet significant beter dan het lineaire model.
 
 De voorkeursvariant, Het model met een knik in 1993 (gebroken lineair) laat een hogere zeespiegelstijging zien ($2.9 \pm 0.4\,mm/jaar$) na 1993 dan ervoor ($1.8 \pm 0.1 mm/jaar$), een extra $1.1 \pm 0.3\,mm/jaar$.
 
 ## Verwachting voor komende jaren
 
-We zien dat de constante zeespiegelstijging niet meer de beste beschrijving oplevert voor de metingen tot nu toe. Wat betekent dit voor de komende jaren? Allereerst, onze analyse kan alleen worden toegepast op historische gegevens en is niet direct geschikt voor uitspraken over de komende jaren. In de vorige Zeespiegelmonitor, het advies van \acr{ENW} volgend, was het uitgangspunt dat de huidige zeespiegelstijging hooguit voor een periode van 15 jaar vooruit kan worden gebruikt. Uitgaande van het nu beste model is dit $2.9 \pm 0.4 mm/jaar$. De huidige zeespiegelstijging is afhankelijk van het gebruikte model zoals te zien is in figuur \@ref(fig:stijgingModellen). Hier is duidelijk het verschil te zien in zeespiegelstijging voor het gebroken lineaire model voor en na 1993. Het gebroken kwadratische model, dat de variatie wel goed verklaart maar niet significant beter was dan het lineaire model, laat ongeveer dezelfde zeespiegelstijging zien als het gebroken lineaire model. Echter zal de zeespiegelstijging in het gebroken lineaire model gelijk blijven en die van het gebroken kwadratische model toenemen. In het geval dat de gemeten stijging blijft toenemen zou het kunnen zijn dat het gebroken kwadratisch model in de toekomst een beter model wordt dan het gebroken lineaire.
+We zien dat een constante zeespiegelstijging niet meer de beste beschrijving oplevert voor de metingen tot nu toe. Wat betekent dit voor de komende jaren? Allereerst, onze analyse kan alleen worden toegepast op historische gegevens en is niet direct geschikt voor uitspraken over de komende jaren. In de vorige Zeespiegelmonitor, het advies van \acr{ENW} volgend, was het uitgangspunt dat de huidige zeespiegelstijging hooguit voor een periode van 15 jaar vooruit kan worden gebruikt. Uitgaande van het nu beste model is de huidige zeespiegelstijging $2.9 \pm 0.4 mm/jaar$. De huidige zeespiegelstijging is afhankelijk van het gebruikte model zoals te zien is in figuur \@ref(fig:stijgingModellen). Hier is duidelijk het verschil te zien in zeespiegelstijging voor het gebroken lineaire model voor en na 1993. Het gebroken kwadratische model, dat de variatie wel goed verklaart maar niet significant beter was dan het lineaire model, laat ongeveer dezelfde zeespiegelstijging zien als het gebroken lineaire model. De zeespiegelstijging in het gebroken lineaire model is over de periode sinds 2000 gelijk, terwijl die van het gebroken kwadratische model in die periode toenam. 
 
 ```{r stijgingModellen, fig.cap="Het verloop van de snelheid van zeespiegelstijging in de tijd voor de vier verschillende geteste modellen. d. " }
 
@@ -558,13 +546,17 @@ predictions_all %>%
 
 Figuur \@ref(fig:6stations) laat zien dat de zes hoofdstations zowel wat betreft gemiddelde stand als wat betreft trend van elkaar verschillen. In Delfzijl is de trend groter dan bij Harlingen en de trends bij Vlissingen en IJmuiden zijn groter dan de trend bij Den Helder. De zeespiegel stond altijd wat hoger in het noorden van Nederland (bij Harlingen en Delfzijl), maar de relatieve zeespiegel is in Hoek van Holland gestegen ten opzichte van de rest van het land. Op dit moment staat de gemiddelde zeespiegelstand het laagste in Vlissingen.
 
-Wat verder opvalt is dat de stations in het Waddengebied (Delfzijl, Harlingen, en in mindere mate Den Helder) een groter verschil zien in stijging voor en na 1993 dan de andere stations, vergelijk hiervoor het gebroken lineaire model met het lineaire model. Er is een tragere stijging voor 1993, en een snellere stijging na 1993 bij deze stations. De extra versnelling bij Delfzijl komt deels door een achterstallige verticale aanpassing.
+Wat verder opvalt is dat de stations in het Waddengebied (Delfzijl, Harlingen, en in mindere mate Den Helder) een groter verschil zien in stijging voor en na 1993 dan de andere stations, dit is af te leiden uit een vergelijking hiervoor tussen het gebroken lineaire model met en het lineaire model (figuur \@ref(fig:zeespiegeltrendsplot)). Er is een tragere stijging voor 1993, en een snellere stijging na 1993 bij deze stations. De extra versnelling bij Delfzijl kan deels verklaard worden doordat hier de verticale correcties iets achterlopen (paragraaf \@ref(bronnen)).
 
-(ref:6stations-caption) Zeespiegel en predictie volgens het gebroken lineaire model waarbij gecorrigeerd is voor windopzet (GTSM) en nodaal getij. De trend is voor de 6 getijdestations afzonderlijk weergeven. De zeespiegel is uitgedrukt ten opzichte van post-2005. \acr{NAP}.
+(ref:6stations-caption) Zeespiegel en predictie volgens het gebroken lineaire model waarbij gecorrigeerd is voor windopzet (GTSM) en nodaal getij. De trend is voor de 6 getijdestations afzonderlijk weergeven. De zeespiegel is uitgedrukt ten opzichte van post-2005 \acr{NAP}. In de periode voor 1979 is gecorrigeerd voor een gemiddelde windopzet.  
 
 ```{r 6stations, fig.cap="(ref:6stations-caption)"}
 
 # knitr::include_graphics("figures/stations_trends.png")
+
+startyear = 1900
+
+symboolgrootte = 1
 
 predictions_all3 <- predictions_all %>%
     filter(!grepl("Netherland", name_rws), year >= 1900) %>%
@@ -586,9 +578,9 @@ predictions_all3 <- predictions_all %>%
                size = symboolgrootte, alpha = 0.5) +
     geom_line(data = predictions_all3 %>% filter(year >= startyear),
               aes(x = year, y = prediction_recalc/10, color = "predictie (-opzetanomalie -nodaal getij)"),
-              size = 1, alpha = 0.7) +
+              size = 1.3, alpha = 0.7) +
     geom_vline(xintercept = 1993, linetype = 4) +
-    annotate("text", label = "1993", x = 1993, y = 13) +
+    annotate("text", label = "1993", x = 1993, y = 13, alpha = 0.7) +
     coord_cartesian(ylim = c(NA, NA)) +
     xlab("jaar") +
     ylab("zeespiegel in cm tov NAP") +
@@ -667,6 +659,7 @@ fits %>%
   ) +
 coord_cartesian(ylim = c(0,4)) +
   labs(subtitle = "gebroken lineair model, trend voor en na 1993 en lineaire trend (zwart)") +
+  ylab("zeespiegelverandering in mm/jaar") + xlab("station") +
   fitstyle
 
 ```
@@ -700,51 +693,43 @@ In Delfzijl is, sinds in 1963 Nederland aan het gas werd aangesloten, de bodem m
 
 ## Vergelijking van scenario's versus de huidige zeespiegel {#scenarios}
 
-Nog herschrijven. correcties voor scenarios uitleggen en laten zien.
-
-In de vorige zeespiegelmonitor [@Baart2019] is geconstateerd dat er geen goede aansluting was tussen metingen en projecties van de zeespiegel. In de tussentijd zijn door \acr{KNMI} nieuwe scenario's berekend [@KNMI2021] die de eerdere projecties [@Hurk2014] vervangen. Het zijn representaties van een plausibele toekomstige ontwikkeling, op basis van paden gedefinïeerd door \acr{IPCC} [@IPCC2013]. De paden zijn gebaseerd op een mogelijke toekomstige ontwikkeling van emissie gecombineerd met een verhaallijn [@Moss2010].
+In de vorige zeespiegelmonitor [@Baart2019] is geconstateerd dat er geen goede aansluiting was tussen metingen en projecties van de zeespiegel. In de tussentijd zijn door \acr{KNMI} nieuwe scenario's berekend [@KNMI2021] die de eerdere projecties [@Hurk2014] vervangen. Het zijn representaties van een plausibele toekomstige ontwikkeling, op basis van paden gedefinïeerd door \acr{IPCC} [@IPCC2013]. De paden zijn gebaseerd op een mogelijke toekomstige ontwikkeling van emissies gecombineerd met een verhaallijn [@Moss2010].
 
 Hier laten we zien hoe de zeespiegelscenario's aansluiten bij de metingen die sinds de doorrekening van de door klimaatverandering gedreven zeespiegelprojecties zijn uitgevoerd. Hierbij moet met een aantal aspecten rekening gehouden worden. Visueel weergegeven in figuur \@ref(fig:scenario-correction).
 
-Epoch
+Referentie-tijdvak
 
-:   De zeespiegelscenario's zijn relatief ten opzichte van de gemiddelde zeespiegelstand over de periode 1986 tot 2005. De zeespiegel was toen al 2 cm boven \acr{NAP}, dus de scenario's moeten, indien gepresenteerd samen met getijstations beginnen bij 2cm in 1990.
+:   De zeespiegelscenario’s zijn relatief ten opzichte van de gemiddelde zeespiegelstand over de periode 1986 tot 2005. De zeespiegel was toen al 2 cm boven \acr{NAP}, het referentiepunt voor de getijstations. Om de scenario’s te vergelijken met de metingen is een correctie uitgevoerd zodat de projecties uitgedrukt worden t.o.v. \acr{NAP} (>2005). Deze correctie is op twee manieren uitgevoerd.
+1.	De gemiddelde gemeten zeespiegel over 1986-2005 is opgeteld bij de zeespiegelverandering (t.o.v. die periode) in de projectie.
+2.	De referentieperiode van de knmi ’21 scenario’s (1986-2005) is vervroegd naar de referentieperiode van het knmi ’14 scenario (1980-2010). [methodiek hiervan staat in een rekendocument](documents/BackwardExtentionKS21.html)
 
 Absoluut
 
-:   De zeespiegelscenario's hebben betrekking op de absolute zeespiegel. Als we deze willen vergelijken met de getijdestations moeten we, of van de metingen de bodemdaling af halen, of bij de scenario's de bodemdaling optellen. In figuur \@ref(fig:metingen-scenarios) doen we het eerste.
+:   De zeespiegelscenario's hebben betrekking op de absolute zeespiegel. Als we deze willen vergelijken met de getijdestations moeten we van de metingen de bodemdaling af halen
 
 Natuurlijke variatie
 
-:   De zeespiegelscenario's gaan uit van veranderingen ten opzichte van de referentieperiode. Variaties binnen een klimaatperiode, denk aan verschillen van jaar tot jaar door luchtdruk en stormen, zijn niet opgenomen. De jaargemiddelde zeespiegel varieert met een bandbreedte van ongeveer 5cm om de huidige zeespiegel. In de scenario's wordt niet met een natuurlijke variatie rekening gehouden.
+:   De zeespiegelscenario’s representeren langjarige veranderingen ten opzichte van de referentieperiode. Variaties binnen een klimaatperiode, zoals verschillen van jaar tot jaar door luchtdruk en stormen en getij, zijn niet expliciet weergegeven. De jaargemiddelde zeespiegel varieert met een bandbreedte van ongeveer 5cm rondom de langjarige zeespiegeltrend. 
 
 Marges
 
-:   De bandbreedte van zeespiegelprojecties neemt toe naar de toekomst. Dit komt doordat verder in de tijd veranderingen minder nauwkeurig te berekenen zijn.
+:   De bandbreedte van zeespiegelprojecties neemt toe naar de toekomst. Deze marges omvatten een combinatie van natuurlijke fluctuaties die op klimatologische tijdschalen plaatsvinden (bijvoorbeeld door langzame fluctuaties in oceaanstromingen of lokale warmteopslag) en door modelonzekerheid in de mate van lokale zeespiegelstijging voor een gegeven emissiescenario. Met name deze modelonzekerheid neemt toe met de tijd.
 
 Versnelling
 
-:   De zeespiegelversnelling in sommige projecties is toe te schrijven is aan processen die nu niet grootschalig optreden (bijvoorbeeld ijsklifinstabiliteit).
+:   De zeespiegelversnelling in sommige projecties is toe te schrijven is aan processen die in een warmere toekomst een grotere rol kunnen spelen dan nu (zoals grootschalig massaverlies van de grote ijskappen).
 
-<!-- ![Toegepaste correcties om [KNMI]{acronym-label="KNMI" -->
+Modelkeuze
 
-<!-- acronym-form="singular+short"} 2014 zeespiegelscenario's [@Hurk2014] -->
-
-<!-- vergelijkbaar te maken met relatieve zeespiegelstijging van de -->
-
-<!-- getijdestations.](scenarios-with-correction){#fig:scenario-correction -->
-
-<!-- width="1\\linewidth"} -->
+:   In 2021 heeft KNMI in het klimaatsignaal ’21 zeespiegelprojecties voor de Nederlandse kust opgenomen. Deze projecties zijn het resultaat van voorlopige selectie en bewerking van beschikbare klimaatprojecties. Bij de publicatie van de officiele klimaatscenario’s in 2023 kunnen de daarin opgenomen zeespiegelscenario’s afwijken van de resultaten die in 2021 zijn gepubliceerd.
 
 In 2021 heeft KNMI in het klimaatsignaal '21 projecties uitgevoerd van de zeespiegel voor de Nederlandse kust. Deze projecties zijn uitgedrukt als zeespiegelveranderingen ten opzichte van de gemiddelde zeespiegel over de jaren 1986-2005. Om deze te vergelijken met de metingen is een correctie nodig zodat de projecties uitgedrukt worden t.o.v. NAP (\>2005). Deze correctie is op twee manieren uitgevoerd.
 
-1.  De gemiddelde gemeten zeespiegel over 1986-2005 is opgeteld bij de zeespiegelverandering (t.o.v. die periode) in de projectie.
-2.  De referentieperiode van de knmi '21 predictie (1986-2005) is vervroegd naar de referentieperiode van het knmi '14 scenario (1986-2005). De [methodiek hiervan staat in een notebook](documents/BackwardExtentionKS21.html).
+
+(ref:metingen-scenarios-label) Zeespiegelprojectie (mediaan laag scenario) met 5 en 95 percentiel uit \acr{KNMI} klimaatsignaal 2021 [@KNMI2021] gecorrigeerd voor referentieperiode en omgerekend naar NAP (methode 1 boven, methode 2 onder) vergeleken met metingen gemiddeld over alle hoofdstations. (deze figuur wordt nog verbeterd)
 
 
-(ref:metingen-scenarios) Zeespiegelprojectie (laag) uit \acr{KNMI} klimaatsignaal 2021 [@KNMI2021] gecorrigeerd voor referentieperiode en omgerekend naar NAP (methode 1 boven, methode 2 onder) vergeleken met metingen gemiddeld over alle hoofdstations. (opmerking: lineair model wordt nog vervangen door gebroken lineair model)
-
-```{r, fig.cap="(ref:metingen-scenarios)", fig.show='hold'}
+```{r metingen-scenarios, fig.cap="(ref:metingen-scenarios-label)", fig.show='hold'}
 
 knitr::include_graphics("figures/knmi21correctie1.png")
 knitr::include_graphics("figures/combined_measurements_projection.png")
@@ -756,48 +741,27 @@ knitr::include_graphics("figures/combined_measurements_projection.png")
 
 <!-- Voor het gebruik van de informatie dat onze huidige zeespiegel zich nu aan de onder- of bovenkant van een scenario bevindt kan men denken aan toepassingen waarbij men enige vrijheid heeft om een optimistische keuze te maken. Bij optimistische keuzes kan men denken in de context van adaptieve ontwerpen, onderhoud met een flexibele begroting en ontwerpen met goede vervangingsstrategie. Hierbij moet wel steeds rekening gehouden worden met het voorzorgsprincipe. Het principe dat als er gevaar is en sprake is van een onzekerheid, dat men de veilige kant moet kiezen. Dat betekent echter niet altijd zo hoog mogelijk bouwen, het wordt ook geïnterpreteerd als beter monitoren en zoals in de Waddenzee nu gehanteerd wordt, [de hand aan de (gas en zout)kraan houden](https://www.sodm.nl/documenten/publicaties/2021/03/10/index){target="_blank"}. -->
 
-In figuur \@ref(fig:metingen-scenarios) zien we dat de metingen afhankelijk van de correctie aan de onderkant ligt van de laagste projectie (correctie methode 1) of ongeveer gelijk aan de laagste projectie (correctie via gemodelleerde zeespiegel). In beide gevallen is de huidige  stijging in de predictie hoger dan verwacht op grond van het gebroken lineaire model. Hier is dus een discrepantie. Dit betekent niet dat de scenario's niet klopppen, het waren immers studies die mogelijke toekomstige condities berekenden (het zou kunnen dat, met de kennis van toen).
+In figuur \@ref(fig:metingen-scenarios) zien we dat de metingen afhankelijk van de correctie aan de onderkant ligt van de laagste projectie (correctie methode 1) of ongeveer gelijk aan de laagste projectie (correctie via gemodelleerde zeespiegel). In beide gevallen is de huidige  stijging in de predictie hoger dan verwacht op grond van het gebroken lineaire model. Hier is dus een discrepantie. De resultaten in Figuur \@ref(fig:metingen-scenarios) laten zien dat de NAP-correctie methode een beperkte invloed heeft op de match tussen de scenario’s en de langjarige trend in de metingen. De getoonde scenario’s impliceren een relatief steile toename van de snelheid waarmee de zeespiegel in de nabije toekomst stijgt.
 
-Gegeven dat de poolkappen massa verliezen en de aarde opwarmt, verwachten we nog steeds een versnelde zeespiegel. De conclusie is wel dat we aan de Nederlandse kust achter liggen op de geprojecteerde waarden.
+## Nederland versus buurlanden {#nl-vs-northsea}
 
-We concluderen dat langs de Nederlandse kust het zeespiegelscenario behorende 'hoog' boven de daadwerkelijk opgetreden toename in zeeniveau zit. De projecties horende bij 'laag' komen in de buurt van de metingen. De variatie van de zeespiegel van jaar tot jaar ontbreekt in de zeespiegelprojecties.
+Naast Nederland hebben ook de andere landen die aan de Noordzee liggen een historie van metingen van de zeespiegel. De stations laten een consistent beeld zien van een zeespiegelstijging in de orde van 15cm/eeuw in de laatste 2 eeuwen (Wahl et al. 2013). In figuur \@ref(fig:northsea-stations) zien we dat de stations na 1890 grotendeels vergelijkbare dezelfde variatie trends laten zien. De stations in Noorwegen (Hirshals tot Bergen) komen omhoog, en de relatieve zeespiegelstijging is daar zeer beperkt of zelfs negatief. In de periode voor 1890 ontbraken goede hoogtereferentiestelsels, wat de vergelijkbaarheid van de stations beperkt.
 
-
-## Nederland versus buurlanden (wordt nog aangepast) {#nl-vs-northsea}
-
-Naast Nederland hebben ook de andere landen die aan de Noordzee liggen een historie van metingen van de zeespiegel. De stations laten een consistent beeld zien van een zeespiegelstijging in de orde van 15cm/eeuw [@Wahl2013]. In figuur \@ref(fig:northsea-stations) zien we dat de stations grotendeels dezelfde variatie laten zien. De stations in Noorwegen komen omhoog, daarom is daar geen relatieve zeespiegelstijging maar is deze gelijk of daalt deze. Er zijn veel verschillen te zien tussen de stations voor de periode 1890, voor er goede hoogtereferentiestelsels waren.
+Naast Nederland hebben ook de andere landen die aan de Noordzee liggen een historie van metingen van de zeespiegel. De stations laten een consistent beeld zien van een zeespiegelstijging in de orde van 15cm/eeuw [@Wahl2013]. In figuur \@ref(fig:northsea-stations) zien we dat de stations grotendeels dezelfde variatie laten zien. De stations in Noorwegen (Hirshals tot Bergen) komen omhoog, daarom is daar geen relatieve zeespiegelstijging maar is deze gelijk of daalt deze. Er zijn veel verschillen te zien tussen de stations voor de periode 1890, voor er goede hoogtereferentiestelsels waren.
 
 ```{r northsea-stations, fig.cap="Zeespiegelmetingen van diverse stations in Frankrijk, Belgïe, Denemarken, Noorwegen en het Verenigd Koninkrijk."}
 
 knitr::include_graphics("figures/multiple-stations.png")
 
 ```
-
-## Nederland versus globaal (wordt nog aangepast) {#sec:nl-vs-globaal}
-
-Als we de Nederlandse zeespiegel vergelijken met de globale zeespiegel dan kunnen we kijken naar de globale zeespiegelstijging zoals deze aan de kust gemeten wordt, of naar de zeespiegelstijging zoals gemeten op de oceaan door satellieten. In dit geval kijken we vooral naar de zeespiegel zoals gemeten langs de kust.
-
-Het vergelijken van de Nederlandse kust met andere stations gaat niet zo maar. Getijstations worden niet geplaatst om de globaal gemiddelde zeespiegel te meten, maar omdat er ergens een haven ligt, of omdat er een probleem met zeespiegelstijging is. Daardoor liggen de getijstations, net als in Nederland, vooral in havens. Veel havens liggen op het noordelijk halfrond.
-
-Om met deze scheve ruimtelijke verdeling rekening te houden worden zogenaamde reconstructies gemaakt. Er is veel variatie in de methoden waarop deze reconstructies worden gemaakt. Recente voorbeelden van reconstructies zijn @Hay2015, en @Frederikse2018 en [@Jevrejeva2014].
-
-De meeste reconstructies komen er op uit dat de zeespiegel in de 20e eeuw gemiddeld steeg in het bereik 1.4&nbspmm--2.0&nbspmm. Er zijn ook reconstructies die een knikpunt leggen in de jaren 1990, bijvoorbeeld @Dangendorf2017 komen uit op 1.1mm over de periode 1900-1990. De hoogste snelheden ziet men in de jaren 30 en 40 van de 20ste eeuw en in de laatste 20 jaar. Ook @Jevrejeva2014 vinden een recente versnelling. ?ref? vonden de recente versnelling niet terug toen ze naar individuele stations keken.
-
-Een mogelijke verklaring voor de discrepantie tussen de resultaten van @Houston2011 en @Jevrejeva2014 zit in hoe omgegaan wordt met het aansluiten van periodes (volume-conservatieve trends versus niet volume conservatieve trends). Indien trends uitgerekend worden over een periode zonder deze aan te laten sluiten met de periode ervoor kan een gat ontstaan tussen twee curves. Zonder behoud van volume is de zeespiegelstijging over de periode 1993-2009 met 3.1mm gestegen. Met behoud van volume is de zeespiegelstijging over dezelfde periode gelijk aan ervoor, zie \@ref(fig:conservative). Volume conservatieve trends kunnen berekend worden door eerst de trend over de beginperiode uit te rekenen en door bij de volgende periode een vast nulpunt op te leggen of door een gebroken trendmethode toe te passen .
-
-(ref:conservative) De zeespiegelstijging op basis van de reconstructie van @Jevrejeva2014, met en zonder behoud van volume. De groene curve is berekend op basis van de volumebehoudende methode, waarbij het zwarte punt als beginpunt van de curve na 1993 is opgenomen. Bij de rode curve is in 1993 4644km^3^ verloren gegaan. De rode curve komt overeen met de trend uit @Jevrejeva2014.
-
-```{r conservative, fig.cap="()"}
-knitr::include_graphics("figures/conservative-jevrejeva.png")
-```
-
-Samengevat kunnen we stellen dat over de 20ste eeuw, de zeespiegelstijging langs de Nederlandse kust aan de onderkant ligt van de globale schattingen. De zeespiegelstijging ligt over de periode 1993-2017 ook lager dan globaal. Op basis van de knik aanpak komen we op een absolute zeespiegelstijging van $2.4 - 0.45 = 1.95$mm over de periode 1993-2017. De 0.45mm is de eerder genoemde bodemdalingcomponenten met uitzondering van de daling van Hoek van Holland door winning. De globale cijfers zijn in de orde van 3mm. Deze worden gevonden op basis van satellietmetingen [zie bijvoorbeeld @Watson2015] en in reconstructies van getijstations [@Jevrejeva2014].
+In detail zien we dat vooral Delfzijl en Harlingen de laatste jaren een zeespiegelstijging vertonen die duidelijk boven de getrokken lijn ligt (een lineaire fit met gefit nodaal getij). Dit is de reden dat (gemiddeld over de Nederlandse stations) een gebroken lineair model beter past dan een lineaire stijging. Deze versnelling is te zien bij sommige buitenlandse stations zoals Oostende, Borkum and Esbjerg, maar is lang niet zo duidelijk bij veel andere ons omringende stations.
 
 ## Vergelijking met satellietmetingen (wordt nog aangepast) {#satelliet-results}
 
-Net als voor de getijreeksen kijken we ook naar de satellietmetingen. Dit doen we vooral ter verificatie. In theorie zou de absolute zeespiegelstijging, zoals gemeten met satellieten, samen met de bodemdaling overeen moeten komen met de zeespiegelstand en zeespiegeltrend zoals gemeten met de getijstations.
+Satellietmetingen zijn gebruikt ter verificatie van de resultaten. In theorie komt de absolute zeespiegelstijging, zoals gemeten met satellieten, in combinatie met bodemdaling overeen met de zeespiegelstand en zeespiegeltrend zoals gemeten met de getijstations.
 
-Om de nauwkeurigheid van de aansluiting te bepalen zou men bij voorkeur naar de vergelijking van gemeten hoogtes ten opzichte van hetzelfde verticale referentie vlak kijken. Satellietgegevens worden ontsloten als anomaliteiten, berekend ten opzichte van een gemiddeld niveau over een bepaalde periode. Op basis van de anomaliteiten, kunnen we alleen trends met elkaar vergelijken.
+Voor een nauwkeurige vergelijking is het nodig om de gemeten hoogtes ten opzichte van hetzelfde verticale referentie vlak te bepalen. Satellietgegevens worden berekend ten opzichte van een gemiddeld niveau over een bepaalde periode (anomaliën), zonder informatie over het absolute referentieniveau. Op basis hiervan kunnen we alleen trends met elkaar vergelijken.
+
 
 ```{r satellite, fig.cap="Gemiddelde snelheid van de zeespiegelstijging voor de Nederlandse kust op basis van satellietmetingen. De snelheid is berekend door het lineaire model te fitten op de jaargemiddelde zeespiegels. De rode punten geven de zes Nederlands hoofd-getijdestations aan."}
 
@@ -815,6 +779,6 @@ Door het ontbreken van een absolute aansluiting aan het begin van de meting, de 
 
 Omdat de zeespiegel van vorig jaar informatie bevat die gebruikt kan worden om een goede voorspelling te doen van de zeespiegel dit jaar wordt een autocorrelatie term toegevoegd.
 
-De variantie van de residuen is afhankelijk van de verklarende variabelen (meer residu bij veel wind). Voor het herkennen van een trendbreuk is het belangrijk dat de trendparameter zo betrouwbaar mogelijk wordt geschat. De standaardfouten zijn daarom op robuuste wijze geschat via de zogenaamde [HAC]{acronym-label="HAC" acronym-form="singular+short"} estimator [@Zeileis2004] .
+De variantie van de residuen is afhankelijk van de verklarende variabelen (meer residu bij veel wind). Voor het herkennen van een trendbreuk is het belangrijk dat de trendparameter zo betrouwbaar mogelijk wordt geschat. De standaardfouten zijn daarom op robuuste wijze geschat via de zogenaamde \acr{HAC} estimator [@Zeileis2004] .
 
 Zowel het toevoegen van de autocorrelatieterm als de correctie voor heteroskedasticiteit heeft geen effect op de schattingen van de huidige zeespiegel, alleen op de standaardfouten.
