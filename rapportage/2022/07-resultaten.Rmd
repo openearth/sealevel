@@ -782,7 +782,22 @@ In 2021 heeft KNMI in het klimaatsignaal '21 projecties uitgevoerd van de zeespi
 
 (ref:metingen-scenarios-label) Zeespiegelprojectie (mediaan laag scenario) met 5 en 95 percentiel uit \acr{KNMI} klimaatsignaal 2021 [@KNMI2021] gecorrigeerd voor referentieperiode en omgerekend naar NAP (methode 1 boven, methode 2 onder) vergeleken met metingen gemiddeld over alle hoofdstations. (deze figuur wordt nog verbeterd)
 
-```{r, include=FALSE}
+```{r metingen-scenarios, fig.cap="(ref:metingen-scenarios-label)", fig.show='hold'}
+
+# read projection data
+
+load("../../data/knmi/knmi21/knmi_df.Rdata")
+knmi_df21 <- knmi_df %>%
+  filter(scenario == "ssp126", percentiles %in% c(5, 50, 95), proc == "Total") %>%
+  mutate(correction = "projectie (NAP)")
+
+load("../../data/knmi/knmi22/knmi_df22.Rdata")
+knmi_df22 <- knmi_df %>%
+  filter(scenario == "ssp126", percentiles %in% c(5, 50, 95), proc == "Total") %>%
+  mutate(correction = "projectie (NAP + referentieperiode)")
+
+knmi_df <- knmi_df21 %>% bind_rows(knmi_df22) %>%
+  mutate(perc_ts = perc_ts/10)
 
   startyear = 1900
   zoomyear = 2010
@@ -796,16 +811,16 @@ In 2021 heeft KNMI in het klimaatsignaal '21 projecties uitgevoerd van de zeespi
   pal <- hue_pal()(4)
   
   plotColors = c(
-    "zeespiegel" = "darkgrey",
-    "zeespiegel (- nodaal getij)" = pal[1],
+    # "zeespiegel" = "darkgrey",
+    "projectie (NAP)" = pal[1],
     # "zeespiegel (-opzet)" = pal[2],
     "zeespiegel (-opzetanomalie -nodaal getij)" = pal[2],
-    "predictie (-opzetanomalie +getij)" = pal[3],
+    "projectie (NAP + referentieperiode)" = pal[3],
     "predictie (-opzetanomalie -nodaal getij)" = pal[4]
   )
   plotFills = c(
-    "predictie-interval" = pal[1],
-    "betrouwbaarheids-interval" = pal[2]
+    "projectie (NAP)" = pal[1],
+    "projectie (NAP + referentieperiode)" = pal[3]
   )
 
   
@@ -824,12 +839,20 @@ predictions_all %>% ungroup() %>%
     geom_line(data = . %>% filter(model_variant == "broken_linear"), 
               aes(x = year, y = prediction_recalc/10, color = "predictie (-opzetanomalie -nodaal getij)"), 
               alpha = 0.75, size = symboolgrootte) +
-  
-  
-    coord_cartesian(ylim = c(NA, NA)) +
+    geom_line(data = knmi_df %>% filter(percentiles == 50),
+            aes(time, perc_ts, color = correction)
+            ) +
+  geom_ribbon(data = knmi_df %>% filter(percentiles != 50) %>%
+                pivot_wider(id_cols = c(scenario, time, correction, proc), names_from = percentiles, values_from = perc_ts),
+            aes(time, ymin = `5`, ymax = `95`, fill = correction),
+            alpha = 0.3
+            ) +
+    coord_cartesian(xlim = c(2000, 2040), ylim = c(-10, 40)) +
+     scale_color_manual(values = plotColors) +
+    scale_fill_manual(values = plotFills) +
     xlab("jaar") +
     ylab("zeespiegel in mm tov NAP") +
-    labs(subtitle = "Verandering van trendmodel in de tijd.") +
+    labs(subtitle = "Aansluiting gemeten zeespiegel en projecties") +
     fitstyle +
     theme(
       strip.text.y = element_text(angle = 0)) +
@@ -845,7 +868,7 @@ predictions_all %>% ungroup() %>%
 ```
 
 
-```{r metingen-scenarios, fig.cap="(ref:metingen-scenarios-label)", fig.show='hold'}
+```{r metingen-scenarios, include=FALSE, fig.cap="(ref:metingen-scenarios-label)", fig.show='hold'}
 
 knitr::include_graphics("figures/knmi21correctie1.png")
 knitr::include_graphics("figures/combined_measurements_projection.png")
