@@ -582,17 +582,12 @@ We zien vooral verschillen per station, en in mindere mate per
 ```{r}
 
 fits %>%
-  filter(quantity == "height", wind_variant == "Combined") %>%
+  filter(quantity == "height - surge anomaly", wind_variant == "Combined") %>%
   ggplot(aes(x = name, y = model_variant)) +
   geom_tile(aes(fill = Trend)) +
   geom_text(aes(label = round(Trend, 2)), color = "white") +
   fitstyle +
   scale_fill_viridis_b(direction = -1)
-
-predictions_all %>% distinct(
-  
-)
-
 
 ```
 

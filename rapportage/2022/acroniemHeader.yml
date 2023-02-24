@@ -57,6 +57,8 @@ acronyms:
       longname: European Terrestrial Reference System 1989
     - shortname: EZK
       longname: Ministerie van Economische Zaken en Klimaat
+    - shortname: GAM
+      longname: Generalized Additive Model
     - shortname: GIA
       longname: Glacial Isostatic Adjustment, postglaciale opheffing
     - shortname: GLM
@@ -164,6 +166,8 @@ acronyms:
     - shortname: NCAR
       longname: National Center for Atmospheric Research
     - shortname: NCEP
+      longname: National Centers for Environmental Prediction
+    - shortname: NCEP1
       longname: National Centers for Environmental Prediction
     - shortname: NCG
       longname: Nederlands Centrum voor Geodesie en Geo-informatica
