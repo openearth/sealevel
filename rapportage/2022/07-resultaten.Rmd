@@ -670,26 +670,24 @@ Er zijn verschillende oorzaken die deze verschillen tussen de stations kunnen ve
 
 ### Bodemdaling of zeespiegelstijging? {#bodemdaling-result}
 
-Op basis van de analyse in paragraaf \@ref(bodemdaling) en paragraaf \@ref(nulpaal) kwamen we tot de conclusie dat in alle stations de zeespiegelstijging deels bestaat uit de isostatische en tectonische bodemdalingscomponenten. Er zijn twee stations waaronder winningen voor bodemdaling hebben gezorgd. Dat zijn het station van Delfzijl en het station van Hoek van Holland. In Hoek van Holland gaan we er vanuit dat de winningen in de zeespiegelstijgingen zitten. In Delfzijl weten we vrij zeker dat de bodemdaling sinds 1973 niet in de gegevens zit. In de periode 1963 tot 1973 daalde de bodem met 7cm. Hier gaan we ervan uit dat deze hetzelfde behandeld is als de bodemdaling na 1973 op basis van [@Jong1973 punt 5].
-
-Daarmee komen we tot de uitsplitsing tussen de verschillende absolute bodemdaling- en zeespiegelcomponenten per station, zoals weegegeven in tabel \@ref(tab:bodemdaling-per-station).
+Op basis van de analyse in paragraaf \@ref(bodemdaling) en paragraaf \@ref(nulpaal) kwamen we tot de conclusie dat in alle stations de zeespiegelstijging deels bestaat uit de isostatische en tektonische bodemdalingscomponenten (geologische bodemdaling). Er zijn twee stations waar ook bodemdaling door gaswinning heeft plaatsgevonden, namelijk Delfzijl en Hoek van Holland. Voor Hoek van Holland gaan we er vanuit dat de daling door winning in het zeespiegelsignaal zit. Voor Delfzijl weten we vrij zeker dat de bodemdaling sinds 1973 niet in de zeespiegeldata zit [@Jong1973 punt 5]. Met andere woorden, de relatieve zeespiegelstijging bij Delfzijl gaat eigenlijk sneller dan de zeespiegeldata laat zien, omdat de daling door winning niet meegenomen wordt. Tussen de start van de gaswinning in Groningen in 1963 en 1973 daalde de bodem bij Delfzijl ongeveer 7 cm. Wij gaan er hier vanuit dat deze daling op dezelfde manier is behandeld als de daling na 1973, conform [@Jong1973 punt 5], en dus niet in het zeespiegelsignaal zit. Daarmee komen we tot de uitsplitsing tussen de verschillende absolute bodemdaling- en zeespiegelcomponenten per station, zoals weegegeven in tabel \@ref(tab:bodemdaling-per-station).
 
 ::: {#tab:bodemdaling-per-station}
 |                  |                       |           |        |          |          |
 |:-----------|-----------:|-----------:|-----------:|-----------:|-----------:|
-| Station          | Tectoniek + Isostasie | Winningen |  Bodem | Relatief | Absoluut |
-|                  |                $$cm$$ |    $$cm$$ | $$mm$$ |   $$mm$$ |   $$mm$$ |
-| Vlissingen       |                  -2.4 |       0.0 |  -0.24 |      2.1 |      1.9 |
-| Hoek van Holland |                  -3.7 |        -1 |  -0.47 |      2.3 |      1.8 |
-| IJmuiden         |                   5.0 |       0.0 |   -0.5 |      2.1 |      1.6 |
-| Den Helder       |                  -5.4 |         0 |  -0.54 |      1.4 |      0.9 |
-| Harlingen        |                  -6.0 |         0 |  -0.60 |      1.3 |      0.7 |
-| Delfzijl         |                  -4.8 |       -24 |  -0.48 |      1.9 |      1.4 |
+| Station          | Tectoniek + Isostasie | Winningen |       Bodem |      Relatief |      Absoluut |
+|                  |                $$cm$$ |    $$cm$$ | $$mm/jaar$$ |   $$mm/jaar$$ |   $$mm/jaar$$ |
+| Vlissingen       |                  -2.4 |       0.0 |       -0.24 |           2.1 |           1.9 |
+| Hoek van Holland |                  -3.7 |        -1 |       -0.47 |           2.3 |           1.8 |
+| IJmuiden         |                   5.0 |       0.0 |       -0.50 |           2.1 |           1.6 |
+| Den Helder       |                  -5.4 |         0 |       -0.54 |           1.4 |           0.9 |
+| Harlingen        |                  -6.0 |         0 |       -0.60 |           1.3 |           0.7 |
+| Delfzijl         |                  -4.8 |       -24 |       -0.48 |           1.9 |           1.4 |
 
-: Uitsplitsing bodemdaling en zeespiegelstijging per station [bodemdaling uit @Hijma2018]. Tectoniek + isostasie, Winningen en Bodemdaling zijn berekend over de periode 1917-2017. Boddemdaling is voor Delfzijl exclusief winning voor IJmuiden inclusief (zie tekst). Relatieve zeespiegelstijging is gemeten over de periode 1890-2017.
+: Uitsplitsing bodemdaling en zeespiegelstijging per station [bodemdaling uit @Hijma2018]. Tectoniek + isostasie, Winningen en Bodemdaling zijn berekend over de periode 1917-2017. Boddemdaling is voor Delfzijl exclusief winning voor Hoek van Holland inclusief (zie tekst). Gemiddelde relatieve zeespiegelstijging is gemeten over de periode 1890-2017.
 :::
 
-In Delfzijl is, sinds in 1963 Nederland aan het gas werd aangesloten, de bodem met 24cm gezakt. Hierdoor is een generatie lang de zeespiegel op het niveau van het hoogste zeespiegelscenario geweest (44cm/eeuw door de winning bovenop de gemeten cm/eeuw). Dit werd niet eerder opgemerkt doordat de peilbout bij het station was losgekoppeld van het \acr{NAP}. De bodemdaling door gaswinning bij Hoek van Holland is aanzienlijk lager, maar kan wel verklaren waarom de gemeten zeespiegelstijging daar altijd wat hoger is geweest. In totaal is de bijdrage van de bodemdaling ongeveer 0.45 mm [@Hijma2018].
+De tabel laat zien dat in Delfzijl de bodem tot 2017 met 24 cm is gezakt sinds in 1963 de gaswinning is gestart. Delfzijl ondergaat hiermee al 60 jaar het niveau van het hoogste zeespiegelscenario (44cm/eeuw door de winning bovenop de gemeten cm/eeuw). Dit werd niet eerder opgemerkt doordat de peilbout bij het station was losgekoppeld van het \acr{NAP}. De bodemdaling door gaswinning bij Hoek van Holland is aanzienlijk lager, maar kan mogelijk wel verklaren waarom de gemeten zeespiegelstijging daar altijd wat hoger dan gemiddeld is geweest. Gemiddeld over de zes hoofdgetijdenstations is de bijdrage van geologische bodemdaling 0.45 mm/jaar [@Hijma2018;@Hijma2022].
 
 ## Vergelijking van scenario's versus de huidige zeespiegel {#scenarios}
 
