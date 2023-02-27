@@ -126,9 +126,7 @@ In de huidige zeespiegelmonitor wordt de GTSM heranalyse gebruikt voor de opzetc
 
 ## Residu
 
-Een ander aspect is de autocovariantie tussen de achtereenvolgende jaargemiddelde zeespiegelstanden. Als wind niet in de vergelijking wordt meegenomen is de autocovariantie negeerbaar. Dit jaar voegen we aan de vergelijking toe dat we autocorrelatie meenemen als daar aanleiding voor is (Durbin Watson score ruim onder de 2). In de literatuur is dit beschreven door bijvoorbeeld @Bos2014. Zij adviseren om voor jaargemiddelden een \acr{AR} term mee te nemen, net name een \acr{AR}1 term, rekening houdend met 1 jaar terug. Zie ook @Visser2015 voor een nadere discussie.
-
-Het standaard lineaire regressiemodel heeft als aanname dat de residuen identieke en onafhankelijke normaal verdeelde kansvariabelen zijn met gemiddelde $0$ en (voor alle onafhankelijke variabelen gelijke) standaarddeviatie $\sigma$. Het toetsen van deze aannames valt onder de modeldiagnostiek. We voeren de gebruikelijke modeldiagnostiek uit en toetsen op normaliteit van de residuen, heteroskedasticiteit van de residuen (ongelijke standaarddeviatie) en auto- en seriecorrelatie van de residuen (afhankelijkheid). Tot slot zijn we nagegaan of er uitbijters (outliers) in de gegevens zitten. De uitwerking van deze analyses zijn terug te vinden in de reproduceerbare rekendocumenten.
+Als in een jaar de zeespiegel iets hoger staat dan verwacht (in relatie tot het regressiemodel, een positief residu), is het iets waarschijnlijker dat het residu het daaropvolgende jaar ook positief is. Dit noemt men autocorrelatie. In de literatuur is dit, in de context van zeespiegelmetingen, beschreven door bijvoorbeeld @Bos2014. Zij adviseren om voor jaargemiddelden een \acr{AR} term mee te nemen, net name een \acr{AR}1 term, rekening houdend met 1 jaar terug. Zie ook @Visser2015 voor een nadere discussie.
 
 ## Gedetailleerde vergelijking {#detail-vergelijking}
 

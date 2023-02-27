@@ -780,9 +780,9 @@ Modelkeuze
 
 In 2021 heeft KNMI in het klimaatsignaal '21 projecties uitgevoerd van de zeespiegel voor de Nederlandse kust. Deze projecties zijn uitgedrukt als zeespiegelveranderingen ten opzichte van de gemiddelde zeespiegel over de jaren 1986-2005. Om deze te vergelijken met de metingen is een correctie nodig zodat de projecties uitgedrukt worden t.o.v. NAP (\>2005). Deze correctie is op twee manieren uitgevoerd.
 
-(ref:metingen-scenarios-label) Zeespiegelprojectie (mediaan laag scenario) met 5 en 95 percentiel uit \acr{KNMI} klimaatsignaal 2021 [@KNMI2021] gecorrigeerd voor referentieperiode en omgerekend naar NAP (methode 1 boven, methode 2 onder) vergeleken met metingen gemiddeld over alle hoofdstations. (deze figuur wordt nog verbeterd)
+(ref:metingen-scenarios-label) Zeespiegelprojecties (mediaan laag scenario) met 5 en 95 percentiel uit \acr{KNMI} klimaatsignaal 2021 [@KNMI2021] gecorrigeerd voor referentieperiode en omgerekend naar NAP (methode 1 "NAP", methode 2 als "NAP + referentieperiode") vergeleken met metingen gemiddeld over de 5 hoofdstations en gecorrigeerd voor windopzet (\acr{GTSM}) en getij.
 
-```{r metingen-scenarios, fig.cap="(ref:metingen-scenarios-label)", fig.show='hold'}
+```{r metingen-scenarios, fig.cap="(ref:metingen-scenarios-label)"}
 
 # read projection data
 
@@ -826,28 +826,39 @@ knmi_df <- knmi_df21 %>% bind_rows(knmi_df22) %>%
   
   symboolgrootte = 2
 
-predictions_all %>% ungroup() %>%
+predictions_all2 <- predictions_all %>% ungroup() %>%
     filter(name_rws == "Netherlands (without Delfzijl)") %>%
     filter(correction_variant == "GTSM") %>%
-    filter(model_variant %in% c("linear", "broken_linear")) %>% 
-    select(year, model_variant, `height - anomaly`, prediction_recalc, `nodal tide`) %>% 
-    filter(year >= startyear) %>% 
-    arrange(year) %>% 
-    ggplot() +
+    filter(model_variant %in% c("broken_linear")) %>% 
+    select(year, model_variant, height, `height - anomaly`, prediction_recalc, `nodal tide`) %>% 
+  mutate(`height-anomaly-tide` = `height - anomaly` - `nodal tide`) %>%
+    filter(year >= startyear)
+
+height_1986_2005 <- predictions_all2 %>%
+  filter(year >= 1986 & year <= 2005) %>%
+  ungroup() %>%
+  summarize(mean = mean(`height`)/10) %>% unlist %>% unname
+
+# height_1986_2005 <- predictions_all2 %>%
+#   filter(year >= 1986 & year <= 2005) %>%
+#   ungroup() %>%
+#   summarize(mean = mean(`height-anomaly-tide`)) %>% unlist %>% unname
+
+    ggplot(predictions_all2) +
     # geom_jitter(aes(year, `nodal tide`/10, color = model_variant), alpha = 0.75) +
-    geom_point(aes(year, (`height - anomaly` - `nodal tide`)/10, color = "zeespiegel (-opzetanomalie -nodaal getij)"), alpha = 0.4, size = symboolgrootte) +
+    geom_point(aes(year, (`height`)/10, color = "zeespiegel (-opzetanomalie -nodaal getij)"), alpha = 0.4, size = symboolgrootte) +
     geom_line(data = . %>% filter(model_variant == "broken_linear"), 
               aes(x = year, y = prediction_recalc/10, color = "predictie (-opzetanomalie -nodaal getij)"), 
               alpha = 0.75, size = symboolgrootte) +
     geom_line(data = knmi_df %>% filter(percentiles == 50),
-            aes(time, perc_ts, color = correction)
+            aes(time, perc_ts + height_1986_2005, color = correction)
             ) +
   geom_ribbon(data = knmi_df %>% filter(percentiles != 50) %>%
                 pivot_wider(id_cols = c(scenario, time, correction, proc), names_from = percentiles, values_from = perc_ts),
-            aes(time, ymin = `5`, ymax = `95`, fill = correction),
-            alpha = 0.3
+            aes(time, ymin = `5` + height_1986_2005, ymax = `95` + height_1986_2005, fill = correction),
+            alpha = 0.2
             ) +
-    coord_cartesian(xlim = c(2000, 2040), ylim = c(-10, 40)) +
+    coord_cartesian(xlim = c(1980, 2050), ylim = c(-10, 40)) +
      scale_color_manual(values = plotColors) +
     scale_fill_manual(values = plotFills) +
     xlab("jaar") +
@@ -867,8 +878,9 @@ predictions_all %>% ungroup() %>%
 
 ```
 
+<!-- (ref:metingen-scenarios-oud-label) Zeespiegelprojectie (mediaan laag scenario) met 5 en 95 percentiel uit \acr{KNMI} klimaatsignaal 2021 [@KNMI2021] gecorrigeerd voor referentieperiode en omgerekend naar NAP (methode 1 boven, methode 2 onder) vergeleken met metingen gemiddeld over alle hoofdstations. (deze figuur wordt nog verbeterd) -->
 
-```{r metingen-scenarios, include=FALSE, fig.cap="(ref:metingen-scenarios-label)", fig.show='hold'}
+```{r metingen-scenarios-oud, eval=FALSE, fig.cap="(ref:metingen-scenarios-label)", fig.show='hold'}
 
 knitr::include_graphics("figures/knmi21correctie1.png")
 knitr::include_graphics("figures/combined_measurements_projection.png")
