@@ -6,7 +6,9 @@ require(scales)
 stations <- read_csv("../../data/deltares/results/variants/stations.csv")
 series <- read_csv("../../data/deltares/results/variants/series.csv")
 fits <- read_csv("../../data/deltares/results/variants/fits.csv")
-predictions <- read_csv("c:\\Users\\stolte\\Downloads\\dutch-sea-level-monitor-predictions-2022-12-8.csv")
+predictions_url <- "https://raw.githubusercontent.com/openearth/sealevel/feature/predictions-mean-tide/data/deltares/results/dutch-sea-level-monitor-predictions-2023-2-28.csv"
+# predictions_url <- "../../data/deltares/results/dutch-sea-level-monitor-predictions-2023-2-14.csv"
+predictions <- read_csv(predictions_url)
 
 fitstyle =   theme_light() %+replace%
     theme(
@@ -394,6 +396,14 @@ ggsave(filename = "figures/samenvatting_v2.png", width = 6, height = 4)
   startyear = 1900
   zoomyear = 2010
   
+  pal <- hue_pal()(4)
+
+  
+  plotColors <- c(
+    "lineair model" = pal[1],
+    "gebroken lineair model" = pal[2]  
+  )
+  
   plotShapes = c(
     "height" = 1,
     "height - anomaly" = 24#,
@@ -401,15 +411,19 @@ ggsave(filename = "figures/samenvatting_v2.png", width = 6, height = 4)
   )
   
   
-  symboolgrootte = 2
+  symboolgrootte = 1.5
   
+  plotAlpha = c(
+    "predictie-interval" = 0.1,
+    "betrouwbaarheids-interval" = 0.2
+  )
 
   
-predictions_all %>% ungroup() %>%
+  predictions_all %>% ungroup() %>%
     filter(name_rws == "Netherlands (without Delfzijl)") %>%
     filter(correction_variant == "GTSM") %>%
     filter(model_variant %in% c("linear", "broken_linear")) %>% 
-    select(year, model_variant, `height - anomaly`, prediction_recalc, `nodal tide`) %>% 
+    select(year, model_variant, `height - anomaly`, prediction_recalc, `nodal tide`, conf_int_mean_tide_lower, conf_int_mean_tide_upper, pred_int_mean_tide_lower, pred_int_mean_tide_upper) %>% 
     # pivot_wider(year, names_from = model_variant, values_from = prediction_recalc) %>%
     mutate(`na 1993` = ifelse(year >= 1993, "-","dashed")) %>%
     mutate(`voor 2018` = ifelse(year < 2018, "-","dashed")) %>%
@@ -417,13 +431,18 @@ predictions_all %>% ungroup() %>%
     arrange(year) %>% 
     ggplot() +
     # geom_jitter(aes(year, `nodal tide`/10, color = model_variant), alpha = 0.75) +
-    geom_point(aes(year, (`height - anomaly` - `nodal tide`)/10, color = model_variant), alpha = 0.4, size = symboolgrootte) +
+    geom_point(aes(year, (`height - anomaly` - `nodal tide`)/10, color = "grey"), alpha = 0.4, size = symboolgrootte) +
     geom_line(data = . %>% filter(model_variant == "linear"), 
-      aes(x = year, y = prediction_recalc/10, color = model_variant, linetype = `voor 2018`), 
-              alpha = 0.75, size = symboolgrootte) +
+              aes(x = year, y = prediction_recalc/10, color =  "lineair model", linetype = `voor 2018`), 
+              alpha = 0.5, size = symboolgrootte) +
     geom_line(data = . %>% filter(model_variant == "broken_linear"), 
-              aes(x = year, y = prediction_recalc/10, color = model_variant, linetype = `na 1993`), 
+              aes(x = year, y = prediction_recalc/10, color = "gebroken lineair model", linetype = `na 1993`), 
               alpha = 0.75, size = symboolgrootte) +
+    geom_ribbon(data = . %>% filter(model_variant == "broken_linear"), 
+                aes(x = year, ymin = pred_int_mean_tide_lower/10, ymax = pred_int_mean_tide_upper/10, alpha = "predictie-interval"), fill = pal[2]) +
+    geom_ribbon(data = . %>% filter(model_variant == "broken_linear"), 
+                aes(x = year, ymin = conf_int_mean_tide_lower/10, ymax = conf_int_mean_tide_upper/10, 
+                alpha = "betrouwbaarheids-interval"), fill = pal[2]) +
     coord_cartesian(ylim = c(NA, NA)) +
     xlab("jaar") +
     ylab("zeespiegel in mm tov NAP") +
@@ -433,12 +452,16 @@ predictions_all %>% ungroup() %>%
       strip.text.y = element_text(angle = 0)) +
     theme(legend.title = element_blank()) +
     scale_linetype_discrete(guide = "none") +
-    theme(legend.direction = "vertical",
-          legend.box = "horizontal",
-          legend.position = c(0.025,0.975),
-          legend.justification = c(0, 1),
-          legend.title = element_blank()) +
-    scale_x_continuous(breaks = scales::pretty_breaks())
+    theme(
+      legend.direction = "vertical",
+      legend.box = "horizontal",
+      legend.position = c(0.025,0.975),
+      legend.justification = c(0, 1),
+      legend.title = element_blank()
+    ) +
+    scale_x_continuous(breaks = scales::pretty_breaks()) +
+    scale_alpha_manual(values = plotAlpha) +
+    scale_color_manual(values = plotColors)
 
 ```
 
@@ -784,20 +807,40 @@ In 2021 heeft KNMI in het klimaatsignaal '21 projecties uitgevoerd van de zeespi
 
 ```{r metingen-scenarios, fig.cap="(ref:metingen-scenarios-label)"}
 
+
+predictions_all2 <- predictions_all %>% ungroup() %>%
+    filter(name_rws == "Netherlands (without Delfzijl)") %>%
+    filter(correction_variant == "GTSM") %>%
+    filter(model_variant %in% c("broken_linear")) %>% 
+    select(year, model_variant, height, `height - anomaly`, prediction_recalc, `nodal tide`) %>% 
+  mutate(`height-anomaly-tide` = `height - anomaly` - `nodal tide`) %>%
+    filter(year >= startyear)
+
+## SHOULD CORRECTION BE WITH MEASURED OR CORRECTED HEIGHT?
+
+height_1986_2005 <- predictions_all2 %>%
+  filter(year >= 1986 & year <= 2005) %>%
+  ungroup() %>%
+  summarize(mean = mean(`height`)/10) %>% unlist %>% unname
+
+height_1995_2014 <- predictions_all2 %>%
+  filter(year >= 1995 & year <= 2014) %>%
+  ungroup() %>%
+  summarize(mean = mean(`height`)/10) %>% unlist %>% unname
+
 # read projection data
 
-load("../../data/knmi/knmi21/knmi_df.Rdata")
-knmi_df21 <- knmi_df %>%
+knmi_df21 <- read_csv("../../data/knmi/knmi21/knmi_21_5_50_95.csv") %>%
   filter(scenario == "ssp126", percentiles %in% c(5, 50, 95), proc == "Total") %>%
-  mutate(correction = "projectie (NAP)")
+  mutate(correction = "knmi21") %>%
+  mutate(perc_ts_nap = perc_ts + height_1986_2005)
 
-load("../../data/knmi/knmi22/knmi_df22.Rdata")
-knmi_df22 <- knmi_df %>%
+knmi_df22 <- read_csv("../../data/knmi/knmi22/knmi_22_5_50_95.csv") %>%
   filter(scenario == "ssp126", percentiles %in% c(5, 50, 95), proc == "Total") %>%
-  mutate(correction = "projectie (NAP + referentieperiode)")
+  mutate(correction = "knmi22") %>%
+  mutate(perc_ts_nap = perc_ts + height_1995_2014)
 
-knmi_df <- knmi_df21 %>% bind_rows(knmi_df22) %>%
-  mutate(perc_ts = perc_ts/10)
+knmi_df <- knmi_df21 %>% bind_rows(knmi_df22)
 
   startyear = 1900
   zoomyear = 2010
@@ -823,26 +866,7 @@ knmi_df <- knmi_df21 %>% bind_rows(knmi_df22) %>%
     "projectie (NAP + referentieperiode)" = pal[3]
   )
 
-  
-  symboolgrootte = 2
-
-predictions_all2 <- predictions_all %>% ungroup() %>%
-    filter(name_rws == "Netherlands (without Delfzijl)") %>%
-    filter(correction_variant == "GTSM") %>%
-    filter(model_variant %in% c("broken_linear")) %>% 
-    select(year, model_variant, height, `height - anomaly`, prediction_recalc, `nodal tide`) %>% 
-  mutate(`height-anomaly-tide` = `height - anomaly` - `nodal tide`) %>%
-    filter(year >= startyear)
-
-height_1986_2005 <- predictions_all2 %>%
-  filter(year >= 1986 & year <= 2005) %>%
-  ungroup() %>%
-  summarize(mean = mean(`height`)/10) %>% unlist %>% unname
-
-# height_1986_2005 <- predictions_all2 %>%
-#   filter(year >= 1986 & year <= 2005) %>%
-#   ungroup() %>%
-#   summarize(mean = mean(`height-anomaly-tide`)) %>% unlist %>% unname
+  symboolgrootte = 1.5
 
     ggplot(predictions_all2) +
     # geom_jitter(aes(year, `nodal tide`/10, color = model_variant), alpha = 0.75) +
@@ -851,18 +875,18 @@ height_1986_2005 <- predictions_all2 %>%
               aes(x = year, y = prediction_recalc/10, color = "predictie (-opzetanomalie -nodaal getij)"), 
               alpha = 0.75, size = symboolgrootte) +
     geom_line(data = knmi_df %>% filter(percentiles == 50),
-            aes(time, perc_ts + height_1986_2005, color = correction)
+            aes(time, perc_ts_nap, color = correction)
             ) +
   geom_ribbon(data = knmi_df %>% filter(percentiles != 50) %>%
-                pivot_wider(id_cols = c(scenario, time, correction, proc), names_from = percentiles, values_from = perc_ts),
-            aes(time, ymin = `5` + height_1986_2005, ymax = `95` + height_1986_2005, fill = correction),
+                pivot_wider(id_cols = c(scenario, time, correction, proc), names_from = percentiles, values_from = perc_ts_nap),
+            aes(time, ymin = `5`, ymax = `95`, fill = correction),
             alpha = 0.2
             ) +
-    coord_cartesian(xlim = c(1980, 2050), ylim = c(-10, 40)) +
+    coord_cartesian(xlim = c(2000, 2040), ylim = c(0, 30)) +
      scale_color_manual(values = plotColors) +
     scale_fill_manual(values = plotFills) +
     xlab("jaar") +
-    ylab("zeespiegel in mm tov NAP") +
+    ylab("zeespiegel in cm tov NAP") +
     labs(subtitle = "Aansluiting gemeten zeespiegel en projecties") +
     fitstyle +
     theme(
