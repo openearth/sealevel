@@ -775,15 +775,7 @@ Hier laten we zien hoe de zeespiegelscenario's aansluiten bij de metingen die si
 
 Referentie-tijdvak
 
-:   De zeespiegelscenario's zijn relatief ten opzichte van de gemiddelde zeespiegelstand over de periode 1986 tot 2005. De zeespiegel was toen al 2 cm boven \acr{NAP}, het referentiepunt voor de getijstations. Om de scenario's te vergelijken met de metingen is een correctie uitgevoerd zodat de projecties uitgedrukt worden t.o.v. \acr{NAP} (\>2005). Deze correctie is op twee manieren uitgevoerd.
-
-    1\. De gemiddelde gemeten zeespiegel over 1986-2005 is opgeteld bij de zeespiegelverandering (t.o.v. die periode) in de projectie.
-
-    2\. De referentieperiode van de knmi '21 scenario's (1986-2005) is vervroegd naar de referentieperiode van het knmi '14 scenario (1980-2010). [methodiek hiervan staat in een rekendocument](documents/BackwardExtentionKS21.html)
-
-Absoluut
-
-:   De zeespiegelscenario's hebben betrekking op de absolute zeespiegel. Als we deze willen vergelijken met de getijdestations moeten we van de metingen de bodemdaling af halen
+:   De zeespiegelscenario's zijn relatief ten opzichte van de gemiddelde zeespiegelstand over de periode 1986 tot 2005. De zeespiegel was toen al 2 cm boven \acr{NAP}, het referentiepunt voor de getijstations. Om de scenario's te vergelijken met de metingen is een correctie uitgevoerd zodat de projecties uitgedrukt worden t.o.v. \acr{NAP} (\>2005). Hiertoe is de gemiddelde gemeten zeespiegel over 1986-2005 opgeteld bij de zeespiegelverandering (t.o.v. die periode) in de projectie.
 
 Natuurlijke variatie
 
@@ -812,7 +804,7 @@ predictions_all2 <- predictions_all %>% ungroup() %>%
     filter(name_rws == "Netherlands (without Delfzijl)") %>%
     filter(correction_variant == "GTSM") %>%
     filter(model_variant %in% c("broken_linear")) %>% 
-    select(year, model_variant, height, `height - anomaly`, prediction_recalc, `nodal tide`) %>% 
+    select(year, model_variant, height, `height - anomaly`, prediction_recalc, `nodal tide`, pred_int_mean_tide_lower, pred_int_mean_tide_upper) %>% 
   mutate(`height-anomaly-tide` = `height - anomaly` - `nodal tide`) %>%
     filter(year >= startyear)
 
@@ -821,26 +813,35 @@ predictions_all2 <- predictions_all %>% ungroup() %>%
 height_1986_2005 <- predictions_all2 %>%
   filter(year >= 1986 & year <= 2005) %>%
   ungroup() %>%
-  summarize(mean = mean(`height`)/10) %>% unlist %>% unname
+  summarize(mean = mean(`height-anomaly-tide`)/10) %>% unlist %>% unname
 
 height_1995_2014 <- predictions_all2 %>%
   filter(year >= 1995 & year <= 2014) %>%
   ungroup() %>%
-  summarize(mean = mean(`height`)/10) %>% unlist %>% unname
+  summarize(mean = mean(`height-anomaly-tide`)/10) %>% unlist %>% unname
 
 # read projection data
 
-knmi_df21 <- read_csv("../../data/knmi/knmi21/knmi_21_5_50_95.csv") %>%
-  filter(scenario == "ssp126", percentiles %in% c(5, 50, 95), proc == "Total") %>%
-  mutate(correction = "knmi21") %>%
-  mutate(perc_ts_nap = perc_ts + height_1986_2005)
+# add 0.4 mm 
 
-knmi_df22 <- read_csv("../../data/knmi/knmi22/knmi_22_5_50_95.csv") %>%
-  filter(scenario == "ssp126", percentiles %in% c(5, 50, 95), proc == "Total") %>%
-  mutate(correction = "knmi22") %>%
-  mutate(perc_ts_nap = perc_ts + height_1995_2014)
+## Change:
+## read from klimaatsignaal csv, only show that version. 
+## remove all text and lines from the knmi22
 
-knmi_df <- knmi_df21 %>% bind_rows(knmi_df22)
+knmi_klimaatsignaal <- read_csv("../../data/knmi/knmi21/DataKlimaatsignaal21_SeaLevel_2100_ref_period_1995_2014.csv") %>%
+  select(time, ssp126_5pc, ssp126_50pc, ssp126_95pc)
+
+# knmi_df21 <- read_csv("../../data/knmi/knmi21/knmi_21_5_50_95.csv") %>%
+#   filter(scenario == "ssp126", percentiles %in% c(5, 50, 95), proc == "Total") %>%
+#   mutate(correction = "knmi21") %>%
+#   mutate(perc_ts_nap = perc_ts + height_1986_2005)
+# 
+# knmi_df22 <- read_csv("../../data/knmi/knmi22/knmi_22_5_50_95.csv") %>%
+#   filter(scenario == "ssp126", percentiles %in% c(5, 50, 95), proc == "Total") %>%
+#   mutate(correction = "knmi22") %>%
+#   mutate(perc_ts_nap = perc_ts + height_1995_2014)
+# 
+# knmi_df <- knmi_df21 %>% bind_rows(knmi_df22)
 
   startyear = 1900
   zoomyear = 2010
@@ -855,35 +856,48 @@ knmi_df <- knmi_df21 %>% bind_rows(knmi_df22)
   
   plotColors = c(
     # "zeespiegel" = "darkgrey",
-    "projectie (NAP)" = pal[1],
+    "KNMI klimaatsignaal 21 laag" = pal[1],
     # "zeespiegel (-opzet)" = pal[2],
-    "zeespiegel (-opzetanomalie -nodaal getij)" = pal[2],
-    "projectie (NAP + referentieperiode)" = pal[3],
-    "predictie (-opzetanomalie -nodaal getij)" = pal[4]
+    "zeespiegel (-opzetanomalie -nodaal getij)" = pal[4],
+    "gebroken lineaire fit" = pal[2]
   )
   plotFills = c(
-    "projectie (NAP)" = pal[1],
-    "projectie (NAP + referentieperiode)" = pal[3]
+    "5 - 95 percentiel" = pal[1],
+    "predictie-interval" = pal[2]
   )
-
+  
   symboolgrootte = 1.5
-
-    ggplot(predictions_all2) +
-    # geom_jitter(aes(year, `nodal tide`/10, color = model_variant), alpha = 0.75) +
-    geom_point(aes(year, (`height`)/10, color = "zeespiegel (-opzetanomalie -nodaal getij)"), alpha = 0.4, size = symboolgrootte) +
+  
+  ggplot(predictions_all2) +
+    geom_point(aes(year, (`height-anomaly-tide`)/10, color = "zeespiegel (-opzetanomalie -nodaal getij)"), 
+               alpha = 0.4, size = symboolgrootte) +
     geom_line(data = . %>% filter(model_variant == "broken_linear"), 
-              aes(x = year, y = prediction_recalc/10, color = "predictie (-opzetanomalie -nodaal getij)"), 
+              aes(x = year, y = prediction_recalc/10, color = "gebroken lineaire fit"), 
               alpha = 0.75, size = symboolgrootte) +
-    geom_line(data = knmi_df %>% filter(percentiles == 50),
-            aes(time, perc_ts_nap, color = correction)
-            ) +
-  geom_ribbon(data = knmi_df %>% filter(percentiles != 50) %>%
-                pivot_wider(id_cols = c(scenario, time, correction, proc), names_from = percentiles, values_from = perc_ts_nap),
-            aes(time, ymin = `5`, ymax = `95`, fill = correction),
-            alpha = 0.2
-            ) +
-    coord_cartesian(xlim = c(2000, 2040), ylim = c(0, 30)) +
-     scale_color_manual(values = plotColors) +
+    # geom_line(data = knmi_df %>% filter(percentiles == 50),
+    #           aes(time, perc_ts_nap, color = correction)) +
+    # geom_ribbon(data = knmi_df %>% filter(percentiles != 50) %>%
+    #               pivot_wider(id_cols = c(scenario, time, correction, proc), names_from = percentiles, values_from = perc_ts_nap),
+    #             aes(time, ymin = `5`, ymax = `95`, fill = correction),
+    #             alpha = 0.2) +
+    geom_line(data = knmi_klimaatsignaal, aes(time, ssp126_50pc + (height_1995_2014), color = "KNMI klimaatsignaal 21 laag")) +
+        geom_ribbon(
+          data = . %>% filter(model_variant == "broken_linear"), 
+                aes(x = year, 
+                    ymin = pred_int_mean_tide_lower/10, 
+                    ymax = pred_int_mean_tide_upper/10, 
+                    fill = "predictie-interval"), 
+          alpha = 0.2) +
+    geom_ribbon(
+      data = knmi_klimaatsignaal,
+                aes(time, 
+                    ymin = ssp126_5pc + (height_1995_2014), 
+                    ymax = ssp126_95pc + (height_1995_2014),
+                    fill = "5 - 95 percentiel"
+                    ),
+                alpha = 0.2) +
+    coord_cartesian(xlim = c(1995, 2030), ylim = c(-5, 20)) +
+    scale_color_manual(values = plotColors) +
     scale_fill_manual(values = plotFills) +
     xlab("jaar") +
     ylab("zeespiegel in cm tov NAP") +
