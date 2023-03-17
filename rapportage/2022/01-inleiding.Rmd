@@ -10,7 +10,7 @@ Dit rapport beschrijft de lange-termijn ontwikkeling van de hoogte van de gemidd
 
 [^01-inleiding-1]: Zie voor nadere uitwerking \@Dillingh2010
 
-Het zand is nodig om invulling te geven aan het kustonderhoudsdoel dat we meegroeien met de zeespiegel. Omdat het gaan om een aanvulling wordt de hoeveelheid zand die hiervoor nodig is achteraf bepaald. Om die reden beschouwen we in deze rapportage de opgetreden zeespiegel tot nu toe. Voor budgetplanning en signalering is ook de zeespiegel in de nabije toekomst van belang.
+Het zand is nodig om invulling te geven aan het kustonderhoudsdoel dat we meegroeien met de zeespiegel. Omdat het gaat om een aanvulling wordt de hoeveelheid zand die hiervoor nodig is achteraf bepaald. Om die reden beschouwen we in deze rapportage de opgetreden zeespiegel tot nu toe. Voor budgetplanning en signalering is ook de zeespiegel in de nabije toekomst van belang.
 
 Behalve voor de bepaling van de jaarlijkse suppletiehoeveelheid is de opgetreden zeespiegelstijging van belang voor de vergunningen rondom zout- en gaswinning in het Waddengebied en voor ontwerpparameters van waterkeringen. Dit uiteraard naast algemenere doeleinden, waaronder het informeren van het publiek. Een overzicht van de indicatoren en toepassingen staat in bijlage \@ref(toepassingen) . Voor een deel van deze indicatoren wordt gebruik gemaakt van zeespiegelprojecties.
 
@@ -72,7 +72,7 @@ Er lopen met Rijkswaterstaat verschillende trajecten om documentatie te verwerke
 
 ## Leeswijzer {#Leeswijzer}
 
-Dit rapport behandelt in detail de resultaten van de Zeespiegelmonitor. Actuele resultaten zijn te vinden in een jaarlijks bijgewerkt [rekendocument](https://github.com/openearth/sealevel/blob/master/notebooks/dutch-sea-level-monitor.ipynb). Dit rapport geeft uitleg bij de methodiek (hoofdstuk \@ref(methoden)), en vat de resultaten op een  overkoepelend niveau weer (hoofdstuk \@ref(resultaten)).
+Dit rapport behandelt in detail de resultaten van de Zeespiegelmonitor. Actuele resultaten zijn te vinden in een jaarlijks bijgewerkt [rekendocument](https://github.com/openearth/sealevel/blob/master/notebooks/dutch-sea-level-monitor.ipynb). Dit rapport geeft uitleg bij de methodiek (hoofdstuk \@ref(methoden)), en geeft de resultaten op een  overkoepelend niveau weer (hoofdstuk \@ref(resultaten)).
 
 Een deel van het onderzoek binnen het Zeespiegelmonitorproject is gepubliceerd in aparte memo's en rapporten. Samenvattingen en links naar de originele rapporten zijn te vinden in de bijlage \@ref(bijlagerapporten)
 

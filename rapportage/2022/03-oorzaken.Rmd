@@ -198,7 +198,7 @@ Deze onderverdeling komt grotendeels overeen met de verwachte vingerafdrukken [z
 knitr::include_graphics("figures/self-gravitation.png")
 ```
 
-### Circulaties {#sec:circulaties}
+### Circulaties {#circulaties}
 
 Regionale verschillen in zeespiegel onstaan ook door redistributie of ocean water massa door oceaancirculaties. Oceaancirculatie,weergegeven in figuur \@ref(fig:ocean-current), wordt gedreven door verschillen in temperatuur, saliniteit, het corioliseffect en de kracht van de wind op het oppervlak van de oceaan.
 
@@ -293,7 +293,7 @@ knitr::include_graphics("figures/tidal-trends.png")
 
 De belangrijkste getijcomponenten, bijvoorbeeld bij Hoek van Holland: \acr{M2}, \acr{M4}, \acr{S2}, \acr{O1}, \acr{N2}, \acr{MS4}, \acr{MU2}, \acr{L2}, \acr{MN4}, \acr{K1}, hebben frequenties in de orde van dagen en maanden, welke in de jaargemiddelde zeestanden zijn uitgemiddeld. Van de langjarige getijcomponenten heeft vooral de nodale cyclus van 18.613 jaar een effect op de gemiddelde zeespiegel. Er is discussie over hoe het nodaal getij de zeespiegel precies beïnvloedt [bijvoorbeeld @Hansen2016] omdat de manifestatie van het getij in metingen niet altijd overeenkomt met de theorie.
 
-### Bodemdaling {#sec:bodemdaling}
+### Bodemdaling {#bodemdaling}
 
 Al sinds we begonnen zijn met waterstandsmetingen is de vraag welk deel van de veranderingen wordt veroorzaakt door bodemdaling en welk deel door absolute zeespiegelstijging. Om die vraag te beantwoorden moeten we weten welke daling heeft plaatsgevonden in de verschillende lagen van de bodem en ten opzichte van welke bodemlaag we de zeespiegel meten. De eerste vraag wordt in deze paragraaf beantwoord. De tweede vraag in paragraaf \@ref(verticale-referentie).
 

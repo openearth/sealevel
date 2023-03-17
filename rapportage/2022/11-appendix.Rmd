@@ -1,4 +1,5 @@
 
+\printacronyms
 
 # Aansluiting bij eerder onderzoek {#Aansluiting-bij-eerder-onderzoek}
 

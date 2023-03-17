@@ -12,12 +12,13 @@ require(scales)
 stations <- read_csv("../../data/deltares/results/variants/stations.csv")
 series <- read_csv("../../data/deltares/results/variants/series.csv")
 fits <- read_csv("../../data/deltares/results/variants/fits.csv")
-predictions <- read_csv("c:\\Users\\stolte\\Downloads\\dutch-sea-level-monitor-predictions-2022-12-8.csv")
+predictions_url <- "../../data/deltares/results/dutch-sea-level-monitor-predictions-2023-2-28.csv"
+predictions <- read_csv(predictions_url)
 
 fitstyle =   theme_light() %+replace%
     theme(
       axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),
-      legend.position = "top"
+      legend.position = "bottom"
       ) 
 
 ### predictions moeten ook van github gelezen worden, maar staan daar nu nog niet. 
@@ -38,10 +39,8 @@ fits <- fits %>%
          model_variant = factor(model_variant, levels = model_variants))
 
 fits_wind <- fits %>% 
-      filter(quantity == "height") %>%
-      distinct(psmsl_id, `Wind $u^2$`, `Wind $v^2$`, wind_variant, model_variant, quantity,
-               aic, Constant, `Constant (in year 1960)`, `Constant (in year 1970)`, Trend, `+trend (1993)`, 
-               Acceleration, `Acceleration from 1960`, `Nodal U` , `Nodal V` )
+      filter(has_wind) %>%
+      distinct(psmsl_id, `Wind $u^2$`, `Wind $v^2$`, wind_variant, model_variant, quantity, aic, Constant, `Constant (in year 1960)`, `Constant (in year 1970)`, Trend, `+trend (1993)`, Acceleration, `Acceleration from 1960`, `Nodal U` , `Nodal V` )
 
 timeseries_wind <- series %>%
   select(year, station, u2, v2, wind_variant, height) %>%
@@ -54,7 +53,7 @@ timeseries_wind <- series %>%
     wind_variant = "wind_variant"
   )) %>%
   mutate(effect = `Wind $u^2$`*u2 + `Wind $v^2$`*v2) %>%
-  group_by(station, wind_variant, name_rws, quantity) %>%
+  group_by(station, wind_variant, model_variant, name_rws, quantity) %>%
   mutate(anomaly = effect - mean(effect)) %>%
   ungroup() %>%
     mutate(
@@ -67,7 +66,7 @@ timeseries_wind <- series %>%
   mutate(fit_height = `height - effect`)
 
 fits_surge <- fits %>%
-      filter(quantity == "height - surge anomaly") %>%
+      filter(!has_wind) %>%
       distinct(psmsl_id, model_variant, quantity,
                aic, Constant, `Constant (in year 1960)`, `Constant (in year 1970)` , Trend, `+trend (1993)`, 
                Acceleration, `Acceleration from 1960`, `Nodal U` , `Nodal V` ) %>%
@@ -104,46 +103,7 @@ timeseries <- bind_rows(timeseries_wind, timeseries_surge) %>%
   mutate(model_variant = factor(model_variant, levels = model_variants)) %>%
   mutate(name_rws = factor(name_rws, levels = stationlevels))
 
-# predictions uit modelfit
-# met getij voor GTSM
-# met getij en wind voor windgedreven correcties
-
-predictions_wind<- predictions %>%
-  filter(quantity == "height") %>%
-  rename(correction_variant = wind_variant)
-
-predictions_surge<- predictions %>%
-  filter(quantity != "height") %>%
-  filter(wind_variant == "Combined") %>%
-  mutate(wind_variant = "GTSM") %>%
-  rename(correction_variant = wind_variant)
-
-# prediction without wind, but with tide
-predictions2 <- bind_rows(predictions_wind, predictions_surge) %>%
-  mutate(model_variant = factor(model_variant, levels = model_variants)) %>%
-  mutate(correction_variant = factor(correction_variant, levels = c("NCEP1","20CR","Combined", "GTSM" ))) %>%
-  rename(name_rws = name) %>%
-  mutate(name_rws = factor(name_rws, levels = stationlevels))
-
-# only sea level prediction without wind, surge or tide
-pred_series <- timeseries %>%
-    mutate(
-    prediction_recalc = case_when(
-      model_variant == "linear" ~         Constant + Trend * (year - 1970),
-      model_variant == "broken_linear" ~  Constant + Trend * (year - 1970) + 
-        ifelse(year > 1993, `+trend (1993)` * (year - 1993), 0),
-      model_variant == "quadratic" ~ `Constant (in year 1970)` + Trend * (year - 1970) +
-        Acceleration * (year - 1970) * (year - 1960),
-      model_variant == "broken_quadratic" ~ `Constant (in year 1960)` + Trend * (year - 1960) +
-        ifelse(year >= 1960, `Acceleration from 1960` * (year - 1960) * (year - 1960), 0)
-    )    
-  )
-
-predictions_all <-
-  predictions2 %>%
-  left_join(pred_series %>% select(
-    -quantity
-  ))
+predictions_all <- read_csv("../../data/deltares/results/predictions_all.csv")
 
 rm(predictions_surge, predictions_wind, predictions, predictions2, pred_series)
 
@@ -222,11 +182,12 @@ plot_all_stations <- function(predictions_all = predictions_all, correctionVaria
   pal <- hue_pal()(4)
   
   plotColors = c(
-    "gemeten zeespiegel" = "black",
-    "zeespiegel (-opzet)" = pal[2],
-    "zeespiegel (-opzetanomalie)" = pal[4],
-    "predictie (+getij)" = pal[1],
-    "predictie (-getij -opzetanomalie)" = pal[3]
+    "zeespiegel" = "darkgrey",
+    # "zeespiegel (- nodaal getij)" = pal[1],
+    # "zeespiegel (-opzet)" = pal[2],
+    "zeespiegel (-opzetanomalie -nodaal getij)" = pal[2],
+    # "predictie (-opzetanomalie +getij)" = pal[3],
+    "predictie (-opzetanomalie -nodaal getij)" = pal[4]
   )
   
   pred_series2 <- predictions_all %>%
@@ -238,24 +199,24 @@ plot_all_stations <- function(predictions_all = predictions_all, correctionVaria
   
   q <- ggplot() +
     geom_point(data = pred_series2 %>% filter(year >= startyear), 
-               aes(x = year, y = height, color = "gemeten zeespiegel"), 
+               aes(x = year, y = height/10, color = "metingen"), 
                size = symboolgrootte, alpha = 0.5) +
+    # geom_line(data = pred_series2 %>% filter(year >= startyear),
+    #            aes(x = year, y = (height - `nodal tide`)/10, color = "zeespiegel (- nodaal getij)"),
+    #            size = symboolgrootte, alpha = 0.6) +
     geom_line(data = pred_series2 %>% filter(year >= startyear), 
-               aes(x = year, y = `height - effect`, color = "zeespiegel (-opzet)"), 
+               aes(x = year, y = (`height - anomaly` - `nodal tide`)/10, color = "zeespiegel (-opzetanomalie -nodaal getij)"), 
                size = symboolgrootte, alpha = 0.5) +
-    geom_line(data = pred_series2 %>% filter(year >= startyear), 
-               aes(x = year, y = `height - anomaly`, color = "zeespiegel (-opzetanomalie)"), 
-               size = symboolgrootte, alpha = 0.5) +
+    # geom_line(data = pred_series2 %>% filter(year >= startyear),
+    #           aes(x = year, y = prediction/10, color = "predictie (-opzetanomalie +getij)"),
+    #           size = symboolgrootte, alpha = 0.7) +
     geom_line(data = pred_series2 %>% filter(year >= startyear),
-              aes(x = year, y = prediction, color = "predictie (+getij)"),
-              size = symboolgrootte, alpha = 0.7) +
-    geom_line(data = pred_series2 %>% filter(year >= startyear),
-              aes(x = year, y = prediction_recalc, color = "predictie (-getij -opzetanomalie)"),
+              aes(x = year, y = prediction_recalc/10, color = "predictie (-opzetanomalie -nodaal getij)"),
               size = symboolgrootte, alpha = 0.7) +
     facet_wrap( ~ name_rws) +
     coord_cartesian(ylim = c(NA, NA)) +
     xlab("jaar") +
-    ylab("zeespiegel in mm tov NAP") +
+    ylab("zeespiegel in cm tov NAP") +
     labs(subtitle = paste("Zeespiegel en componenten voor modelvariant", modelVariant, "en gecorrigeerd voor wind of opzet met", correctionVariant)) +
     fitstyle +
     theme(
@@ -420,7 +381,9 @@ plot_all_stations(predictions_all = predictions_all, correctionVariant = "Combin
 
 ### Alle windopzet varianten
 
-```{r, fig.height=10, fig.width=8, fig.cap="Windopzet berekend met GTSM en geschat met de verschillende wind heranalyses en modelvarianten."}
+De verschillende windopzetcorrecties varianten vertonen, behalve "combined", een kleine negatieve trend over de periode 1980 - nu (figuur \@ref(fig:windopzetvarianten)). Het verschil tussen de verschillende varianten (behalve combined) is echter nauwelijks waarneembaar. 
+
+```{r windopzetvarianten, fig.height=10, fig.width=8, fig.cap="Windopzet berekend met GTSM en geschat met de verschillende wind heranalyses en modelvarianten met predictieinterval."}
 
 timeseries %>%
   filter(year > 1978) %>%
@@ -437,7 +400,7 @@ timeseries %>%
 
 ### Nodaal getij
 
-De amplitude van het geschatte nodaal getij verschilt vooral per station (figuur \@ref(fig:nodaltide)), en iets minder per opzetcorrectievariant. Er is ook een klein verschil in fase tussen de GTSM en NCEP1 aan enerzijds, en 20CR en Combined anderszijds. Er lijkt nauwelijks verschil te zijn in nodaal getij tussen de verschillende modelvarianten. Op dit moment is het nodaal getij op weg naar een nieuw maximum. We verwachten dat door het nodaal getij de zeespiegel nog ongeveer 3 (Hoek van Holland) tot 17 (IJmuiden) $mm$ zal stijgen de komende jaren, waarna dit effect weer zal afnemen.
+De amplitude van het geschatte nodaal getij verschilt vooral per station (figuur \@ref(fig:nodaltide)), en iets minder per opzetcorrectievariant. Er is ook een klein verschil in fase tussen de windopzetcorrecties, GTSM en NCEP1 enerzijds, en 20CR en Combined anderszijds. Er lijkt nauwelijks verschil te zijn in nodaal getij tussen de verschillende modelvarianten. Op dit moment is het nodaal getij op weg naar een nieuw maximum. We verwachten dat door het nodaal getij de zeespiegel nog ongeveer 3 (Hoek van Holland) tot 17 (IJmuiden) $mm$ zal stijgen de komende jaren, waarna dit effect weer zal afnemen.
 
 ```{r nodaltide, fig.width=10, fig.height=6, fig.cap="Geschat nodaal getij voor alle varianten. Alleen de periode vanaf 2000 wordt getoond om de verschillen in fase beter te kunnen zien. De amplitude en fase zijn over de hele periode constant. " }
 predictions_all %>% ungroup() %>%
@@ -459,23 +422,24 @@ predictions_all %>% ungroup() %>%
 
 
 
-### Huidige zeespiegel
+<!-- ### Huidige zeespiegel -->
 
-Nog nakijken. GTSM zeespiegel (min de windopzet anomalie) wordt geschat met effect van wind, hiervoor moet nog gecorrigeerd worden in de onderstaande figuur. 
+<!-- De huidige zeespiegel gecorrigeerd voor de variatie in windopzet en nodaal getij. De voorkeursvariant  -->
 
-```{r zeespiegel2021, fig.cap = ""}
 
-yearOfInterest = 2021
+<!-- ```{r zeespiegel2021, fig.cap = ""} -->
 
-timeseries %>%
-  filter(name_rws == "Netherlands (without Delfzijl)") %>%
-  filter(year == yearOfInterest) %>% 
-  ggplot() +
-    geom_col(aes(interaction(correction_variant, model_variant), y = `height - anomaly`)) +
-    # facet_grid(correction_variant ~ model_variant) +
-  fitstyle +
-  ylab("Huidige zeespiegel geschat door ")
-```
+<!-- yearOfInterest = 2021 -->
+
+<!-- predictions_all %>% -->
+<!--   filter(name_rws == "Netherlands (without Delfzijl)") %>% -->
+<!--   filter(year == yearOfInterest) %>% -->
+<!--   ggplot() + -->
+<!--     geom_col(aes(interaction(correction_variant, model_variant), y = `height - anomaly` - `nodal tide`)) + -->
+<!--     # facet_grid(correction_variant ~ model_variant) + -->
+<!--   fitstyle + -->
+<!--   ylab("Huidige zeespiegel geschat door ") -->
+<!-- ``` -->
 
 
 
@@ -488,8 +452,8 @@ timeseries %>%
 startyear = 2000
 
 ggplot() +
-  geom_point(data = predictions_all %>% filter(model_variant == "linear", year > startyear), aes(x = year, y = fit_height ), size = 0.5, alpha = 0.2) +
-  geom_point(data = predictions_all %>% filter(model_variant == "linear", year > 2017), aes(x = year, y = fit_height), size = 1, alpha = 1, color = "blue") +
+  geom_point(data = predictions_all %>% filter(model_variant == "linear", year > startyear), aes(x = year, y = `height - anomaly` - `nodal tide`), size = 1, alpha = 0.5) +
+  geom_point(data = predictions_all %>% filter(model_variant == "linear", year > 2017), aes(x = year, y = `height - anomaly` - `nodal tide`), size = 2, alpha = 1, color = "blue") +
   geom_line(data = predictions_all %>% filter(year > startyear), aes(x = year, y = prediction_recalc, color = model_variant), size = 1) +
   facet_grid(name_rws ~ correction_variant, scales = "free") +
   coord_cartesian(xlim = c(2000, 2022), ylim = c(NA, NA)) +
@@ -568,28 +532,28 @@ coord_cartesian(ylim = c(0,4)) +
 
 
 
-## Lineaire trend schattingen in de 20e eeuw
+<!-- ## Lineaire trend schattingen in de 20e eeuw -->
 
-Onder het lineaire deel verstaan we dat deel van de verschillende trendberekeningen dat lineair in de tijd is en vóór een eventuele versnelling optreedt. Ruwweg is dat dus de trend over de 20e eeuw. Dit verschilt per model:
+<!-- Onder het lineaire deel verstaan we dat deel van de verschillende trendberekeningen dat lineair in de tijd is en vóór een eventuele versnelling optreedt. Ruwweg is dat dus de trend over de 20e eeuw. Dit verschilt per model: -->
 
-- lineaire model: de helling van de trend
-- gebroken lineaire model: de trend voor 1993
-- kwadratische model: de trend zonder de quadratische term
-- gebroken kwadratische model: de trend vóór 1960
+<!-- - lineaire model: de helling van de trend -->
+<!-- - gebroken lineaire model: de trend voor 1993 -->
+<!-- - kwadratische model: de trend zonder de quadratische term -->
+<!-- - gebroken kwadratische model: de trend vóór 1960 -->
 
-We zien vooral verschillen per station, en in mindere mate per 
+<!-- We zien vooral verschillen per station, en in mindere mate per  -->
 
-```{r}
+<!-- ```{r} -->
 
-fits %>%
-  filter(quantity == "height - surge anomaly", wind_variant == "Combined") %>%
-  ggplot(aes(x = name, y = model_variant)) +
-  geom_tile(aes(fill = Trend)) +
-  geom_text(aes(label = round(Trend, 2)), color = "white") +
-  fitstyle +
-  scale_fill_viridis_b(direction = -1)
+<!-- fits %>% -->
+<!--   filter(quantity == "height - surge anomaly", wind_variant == "Combined") %>% -->
+<!--   ggplot(aes(x = name, y = model_variant)) + -->
+<!--   geom_tile(aes(fill = Trend)) + -->
+<!--   geom_text(aes(label = round(Trend, 2)), color = "white") + -->
+<!--   fitstyle + -->
+<!--   scale_fill_viridis_b(direction = -1) -->
 
-```
+<!-- ``` -->
 
 
 ## AIC bij gebruik van wind correcties
@@ -624,30 +588,30 @@ fits %>%
 
 
 
-```{r}
+<!-- ```{r} -->
 
-# betrouwbaarheid toevoegen
-# zelfde voor zeespiegel 2021
-# voorkeursvariant markeren
-# 
+<!-- # betrouwbaarheid toevoegen -->
+<!-- # zelfde voor zeespiegel 2021 -->
+<!-- # voorkeursvariant markeren -->
+<!-- #  -->
 
-fits %>%
-  # filter(wind_variant == "NCEP1") %>%
-  # filter(quantity == "height") %>%
-  # filter(!has_wind) %>%
-  mutate(stijging_2021 = case_when(
-    model_variant == "linear" ~ Trend,
-    model_variant == "broken_linear" ~ Trend + `+trend (1993)`,
-    model_variant == "quadratic" ~ Trend + 2 * (2021-1970)*Acceleration,
-    model_variant == "broken_quadratic" ~ Trend + 2 * (2021-1960)*`Acceleration from 1960`
-  )) %>%
-  select(name, Trend, `+trend (1993)`, stijging_2021, quantity, model_variant, has_wind, wind_variant) %>%
-  ggplot(aes(name, stijging_2021)) +
-  geom_point(aes(color = model_variant, shape = wind_variant), size = 3, alpha = 0.5) +
-  fitstyle +
-  facet_wrap(~ quantity)
-  
-```
+<!-- fits %>% -->
+<!--   # filter(wind_variant == "NCEP1") %>% -->
+<!--   # filter(quantity == "height") %>% -->
+<!--   # filter(!has_wind) %>% -->
+<!--   mutate(stijging_2021 = case_when( -->
+<!--     model_variant == "linear" ~ Trend, -->
+<!--     model_variant == "broken_linear" ~ Trend + `+trend (1993)`, -->
+<!--     model_variant == "quadratic" ~ Trend + 2 * (2021-1970)*Acceleration, -->
+<!--     model_variant == "broken_quadratic" ~ Trend + 2 * (2021-1960)*`Acceleration from 1960` -->
+<!--   )) %>% -->
+<!--   select(name, Trend, `+trend (1993)`, stijging_2021, quantity, model_variant, has_wind, wind_variant) %>% -->
+<!--   ggplot(aes(name, stijging_2021)) + -->
+<!--   geom_point(aes(color = model_variant, shape = wind_variant), size = 3, alpha = 0.5) + -->
+<!--   fitstyle + -->
+<!--   facet_wrap(~ quantity) -->
+
+<!-- ``` -->
 
 
 

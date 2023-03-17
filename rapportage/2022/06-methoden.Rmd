@@ -11,7 +11,7 @@ In hoofdstuk \@ref(inleiding) wordt uitgelegd dat er een 'huidige zeespiegel' no
 
 Bij het selecteren van de methode worden er diverse afwegingen gemaakt, waarbij we gebruik maken van onderstaande criteria. Dit hoofdstuk geeft een overzicht van de belangrijkste modelkeuzes en de bijbehorende onderbouwing. Uitgangspunt voor de afwegingen is het bepalen van een goede maat voor de huidige zeespiegelstijging ten behoeve van het suppletieprogramma en de suppletiebehoefte.
 
-**Stabiliteit** - methode moet niet van jaar tot jaar te veel variëren.
+**Stabiliteit** - de gebruikt methodiek moet niet van jaar tot jaar te veel variëren.
 
 **Spaarzaamheid** - parcimonie: principe dat de eenvoudigste van twee ongeveer even plausibele verklaringen voor hetzelfde fenomeen de voorkeur heeft
 
@@ -25,9 +25,11 @@ Bij het selecteren van de methode worden er diverse afwegingen gemaakt, waarbij 
 
 **Power** - als er een verandering is moet de methode dat snel detecteren
 
+**Fysisch verklaarbaar** - de gekozen formulering moet verklaarbaar zijn vanuit fysisch oogpunt
+
 ## Algemene methodiek
 
-In dit onderzoek maken we gebruik van een \acr{GLM}, een gegeneralizeerde vorm van een lineair regressiemodel. Vooral omdat de variatie goed verklaard wordt [@Watson2016] en omdat er geen modellen zijn die zich, op basis van bovenstaande criteria, als betere hebben bewezen. We gaan er vanuit dat de zeespiegel sneller aan het stijgen is of binnenkort sneller gaat stijgen dan in het verleden (ruwweg de twintigste eeuw)[^06-methoden-1]. Dit heeft implicaties voor de verwachte zeespiegel en zeespiegelstijging. Daarom maken we gebruik van schattingen van de versnelling, zie \@ref(versnelling-methods). Merk op dat een lineair model niet impliceert dat de zeespiegelstijging een rechte lijn moet volgen. Ook polynome, sinusoïde, exponentiële en loglineaire modellen vallen onder de \acr{GLM} familie.
+In dit onderzoek maken we gebruik van een \acr{GLM}, een gegeneralizeerde vorm van een lineair regressiemodel. Vooral omdat de variatie goed verklaard wordt [@Watson2016]. We gaan er vanuit dat de zeespiegel sneller aan het stijgen is of binnenkort sneller gaat stijgen dan in het verleden (ruwweg de twintigste eeuw)[^06-methoden-1]. Dit heeft implicaties voor de verwachte zeespiegel en zeespiegelstijging. Daarom maken we gebruik van schattingen van de versnelling, zie \@ref(versnelling-methods). Merk op dat een lineair model niet impliceert dat de zeespiegelstijging een rechte lijn moet volgen. Ook polynome, sinusoïde, exponentiële en loglineaire modellen vallen onder de \acr{GLM} familie.
 
 [^06-methoden-1]: Zie ook laatste IPCC rapport: <https://www.ipcc.ch/report/ar6/wg1/chapter/chapter-9/>
 
@@ -35,7 +37,7 @@ In dit onderzoek maken we gebruik van een \acr{GLM}, een gegeneralizeerde vorm v
 
 In dit onderzoek maken we gebruik van gegevens voor de 6 zogenaamde hoofdstations Vlissingen, Hoek van Holland, IJmuiden, Den Helder, Harlingen en Delfzijl. Deze kuststations leveren sinds 1890, toen het \acr{NAP} overal was doorgevoerd, betrouwbare metingen. In De Ronde et al. (2013) is de methode Zeespiegelmonitor op de 6 hoofdstations toegepast. Gegevens worden betrokken uit de [\acr{PSMSL} database](https://psmsl.org/data/). Rijkswaterstaat draagt zorg voor de aanlevering van gegevens aan \acr{PSMSL}.
 
-```{r, out.width="100%", fig.cap= "Locatie van de 6 hoofdstations."}
+```{r, out.width="80%", fig.cap= "Locatie van de 6 hoofdstations."}
 stations <- read_delim("https://raw.githubusercontent.com/openearth/sealevel/master/data/psmsl/NLstations.csv", delim = ";")
 
 leaflet(stations) %>%
@@ -101,7 +103,7 @@ De laatste twee methoden hebben we in deze rapportage niet gebruikt vanwege de g
 
 ## Getij {#methode-getij}
 
-Het getij, met name de nodale cyclus, zoals beschreven in paragraaf \@ref(getij), wordt meegenomen als gelinearizeerde amplitude en fase, in de vorm van een $u$ en $v$ component (vergelijking \@ref(eq:gedetailleerdevergelijking)). Het is ook mogelijk om het equilibrium getij [@Baart2012e] op te leggen . In Nederland komt het nodaal getij in de buurt van het equilibrium, maar aan andere kusten komen metingen en het equilibrium getij vooralsnog niet overeen [@Cherniawsky2010; @Baart2012e]. Met het oog op de generieke toepasbaarheid en zolang er geen uitsluitsel is om het anders te doen gaan we voorlopig nog uit van het geobserveerde getij.
+Het getij, met name de nodale cyclus, zoals beschreven in paragraaf \@ref(getij), wordt meegenomen als gelinearizeerde amplitude en fase, in de vorm van een $u$ en $v$ component (vergelijking \@ref(eq:gedetailleerdevergelijking)). Het is ook mogelijk om het equilibrium getij [@Baart2012e] op te leggen. Het equilibrium getij is het getij dat zou optreden zonder invloed van land of ondiepte op de propagatie van de getijgolf. In Nederland komt het nodaal getij in de buurt van het equilibrium, maar aan andere kusten komen metingen en het equilibrium getij vooralsnog niet overeen [@Cherniawsky2010; @Baart2012e]. Met het oog op de generieke toepasbaarheid en zolang er geen uitsluitsel is om het anders te doen gaan we voorlopig nog uit van het geobserveerde getij.
 
 ## Wind {#methoden-wind}
 
