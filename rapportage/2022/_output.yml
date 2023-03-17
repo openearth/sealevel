@@ -27,6 +27,7 @@ bookdown::bs4_book:
   # css: ["navbar/navbar.css", "style/deltares.css", "style.css", "draft.css"]
   pandoc_args: !expr acronymsdown::add_filter()
 bookdown::pdf_book:
+  extra_dependencies: ["flafter"]
   includes:
     in_header: preamble.tex
   template: deltares-report-template.tex
