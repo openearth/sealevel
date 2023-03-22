@@ -4,7 +4,7 @@ author: "Deltares, KNMI met bijdragen van HKV"
 date: "`r Sys.Date()`"
 documentclass: book
 site: bookdown::bookdown_site
-bibliography: [bib/book.bib, bib/bibhkv.bib, bib/R.bib,  bib/willems.bib, bib/sealevel.bib, bib/hijma_refs.bib]
+bibliography: [bib/willems.bib, bib/additioneel.bib, bib/book.bib, bib/bibhkv.bib, bib/R.bib, bib/sealevel.bib, bib/hijma_refs.bib, bib/sealevel_sanne.bib]
 biblio-style: apalike
 link-citations: yes
 acronyms:

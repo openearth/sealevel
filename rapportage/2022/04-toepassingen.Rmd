@@ -269,7 +269,7 @@ Literatuur
 
 ## Toetsing/beoordeling
 
-In \acr{WBI} [@Infrastructuur-en-Milieu2016] zijn de toeslagen voor
+In \acr{WBI} ([weblink](https://www.helpdeskwater.nl/onderwerpen/waterveiligheid/primaire/beoordelen/beoordelingsinstrumentarium-wbi2017-0/)) zijn de toeslagen voor
 getijhoogwaterstijging (omschreven als "zeespiegelrijzing en lokale
 effecten") bepaald voor de periode 1985-2023 op basis van een
 statistische analyse van tijdreeksen van hoogwaterstanden tot en met

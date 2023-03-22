@@ -56,7 +56,7 @@ De uitvoering van deze vraag is uiteindelijk binnen een ander project opgepakt. 
 
 -   Probeer afstemming of aansluiting te bereiken tussen de verschillende zeespiegelindicatoren voor bepaling van huidige zeespiegelstijging en versnellingsdetectie tussen Deltaprogramma, TNO, PBL en Deltares.
 
-De resultaten hiervan worden gepresenteerd in de memo [Advies kenmerkende waarden kust : overzicht zeespiegelindicatoren](https://kennisbank.deltares.nl/Details/fullCatalogue/70785){target="_blank"} [@Nicolai2020a]
+De resultaten hiervan worden gepresenteerd in de memo [Advies kenmerkende waarden kust : overzicht zeespiegelindicatoren](https://kennisbank.deltares.nl/Details/fullCatalogue/70785){target="_blank"} [@Nicolai2020]
 
 **De boel onder controle?**
 
@@ -75,6 +75,8 @@ Er lopen met Rijkswaterstaat verschillende trajecten om documentatie te verwerke
 Dit rapport behandelt in detail de resultaten van de Zeespiegelmonitor. Actuele resultaten zijn te vinden in een jaarlijks bijgewerkt [rekendocument](https://github.com/openearth/sealevel/blob/master/notebooks/dutch-sea-level-monitor.ipynb). Dit rapport geeft uitleg bij de methodiek (hoofdstuk \@ref(methoden)), en geeft de resultaten op een  overkoepelend niveau weer (hoofdstuk \@ref(resultaten)).
 
 Een deel van het onderzoek binnen het Zeespiegelmonitorproject is gepubliceerd in aparte memo's en rapporten. Samenvattingen en links naar de originele rapporten zijn te vinden in de bijlage \@ref(bijlagerapporten)
+
+De hoofdstukken Oorzaken, Toepassingen, en Metingen uit 
 
 Merk op dat de digitale versie van dit document voorzien van hyperlinks voor figuren, tabellen, en referenties. Hiermee kunt u klikken naar de juiste pagina voor meer informatie. Dit geldt ook voor verwijzingen naar acroniemen waarmee u bij het overzicht van afkortingen kunt komen, te vinden in \@ref{lijst-met-afkortingen}.
 

@@ -9,9 +9,9 @@ rmd_files: [
   "10-references.Rmd",
   "varianten.Rmd",
   "11-appendix.Rmd",
+  "03-oorzaken.Rmd",
   "04-toepassingen.Rmd",
-  "05-metingen.Rmd",
-  "03-oorzaken.Rmd"
+  "05-metingen.Rmd"
   ]
 delete_merged_file: true
 before_chapter_script: _common.R
