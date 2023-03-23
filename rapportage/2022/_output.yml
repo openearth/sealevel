@@ -5,9 +5,9 @@ bookdown::gitbook:
       collapse: section
       before: |
         <li><a href="./">Zeespiegelmonitor</a></li>
-      after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    download: ["pdf", "epub"]
+      # after: |
+      #   <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    download: ["pdf"]
   includes:
     # before_body: navbar/navbar.html
     in_header: clickandzoom.html

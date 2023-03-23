@@ -14,9 +14,9 @@ Deze stations maken deel uit van het [LMW]{acronym-label="LMW" acronym-form="sin
 
 <!-- ![Overzicht van de beschikbare waterstandsmetingen van de stations die waterstanden meten langs de kust. Rood/groen: actief/niet actief, Stippel/doorgetrokken lijn: meting t.o.v \acr{NAP} (kust)/meting t.o.v. [MSL]{acronym-label="MSL" acronym-form="singular+short"} (buitengaats)](waterbase){#fig:waterbase width="\\textwidth"} -->
 
-(\ref:waterbase-label) Overzicht van de beschikbare waterstandsmetingen van de stations die waterstanden meten langs de kust. Rood/groen: actief/niet actief, Stippel/doorgetrokken lijn: meting t.o.v \acr{NAP} (kust)/meting t.o.v. \acr{MSL} (buitengaats).
+(ref:waterbase-label) Overzicht van de beschikbare waterstandsmetingen van de stations die waterstanden meten langs de kust. Rood/groen: actief/niet actief, Stippel/doorgetrokken lijn: meting t.o.v \acr{NAP} (kust)/meting t.o.v. \acr{MSL} (buitengaats).
 
-```{r waterbase, fig.cap= "(\ref:waterbase-label)"}
+```{r waterbase, fig.cap= "(ref:waterbase-label)"}
 
 knitr::include_graphics("figures/waterbase.png")
 ```

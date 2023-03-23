@@ -26,7 +26,7 @@ De zeespiegel aan de Nederlandse kust stijgt, en stijgt versneld, blijkt uit de 
 
 1.  Er zijn  metingen bijgekomen over de laatste jaren. Deze metingen liggen, na correctie voor wind en getij, zo hoog dat we moeten vaststellen dat er nu sprake is van een trendbreuk. Deze trendbreuk constateerden we al eerder maar was toen niet significant.
 
-2.  We zijn overgegaan op een windopzetcorrectie met het \acr{GTSM} model. Het voordeel hiervan is dat de correctie onafhankelijk geschat wordt. Het \acr{GTSM} model beschrijft ook beter de windopzet voor situaties met oostenwind dan de hiervoor gebruikte methode. Het nadeel is dat het \acr{GTSM} model voor een kortere periode beschikbaar is. Vóór 1979 nemen we aan dat de windopzet gemiddeld was.
+2.  We zijn overgegaan op een windopzetcorrectie met het \acr{GTSM} model. Het voordeel hiervan is dat de correctie onafhankelijk geschat wordt. Het \acr{GTSM} model beschrijft ook beter de windopzet voor situaties met oostenwind dan de hiervoor gebruikte methode. Het nadeel is dat het \acr{GTSM} model op dit moment voor een kortere periode beschikbaar is. Vóór 1979 nemen we aan dat de windopzet gemiddeld was.
 
 Een versnelde zeespiegel aan de Nederlandse kust is met andere methodieken aangetoond door @Steffelbauer2022 en @Keizer2022. 
 

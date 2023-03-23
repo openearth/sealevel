@@ -328,7 +328,8 @@ predictions_all %>%
    pivot_longer(-correction_variant) %>% 
    pivot_wider(names_from=correction_variant, values_from=value) %>%
   rename(variabele = name, `waarde in cm` = GTSM) %>%
-  kableExtra::kable(caption = "Kengetallen voor de huidige zeespiegelstand (2021).")
+  kableExtra::kable(caption = "Kengetallen voor de huidige zeespiegelstand (2021).") %>% 
+  kableExtra::kable_styling(latex_options="scale_down")
   
 ```
 
@@ -642,7 +643,7 @@ Wat verder opvalt is dat de stations in het Waddengebied (Delfzijl, Harlingen, e
 
 (ref:6stations-caption) Zeespiegel en predictie volgens het gebroken lineaire model waarbij gecorrigeerd is voor windopzet (GTSM) en nodaal getij. De trend is voor de 6 getijdestations afzonderlijk weergeven. De zeespiegel is uitgedrukt ten opzichte van post-2005 \acr{NAP}. In de periode voor 1979 is gecorrigeerd voor een gemiddelde windopzet.
 
-```{r 6stations, fig.cap="(ref:6stations-caption)"}
+```{r 6stations, fig.cap="(ref:6stations-caption)", fig.width=8, fig.height=6}
 
 # knitr::include_graphics("figures/stations_trends.png")
 

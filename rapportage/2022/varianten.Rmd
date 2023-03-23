@@ -1,14 +1,19 @@
-# (APPENDIX) Bijlagen {-} 
-
 
 # Varianten {#varianten}
 
 Voor de berekeningen van de zeespiegel zijn de volgende varianten doorgerekend:
 
-```{r prepareDataVarianten, eval=F}
 
+```{r}
 require(tidyverse)
 require(scales)
+```
+
+
+```{r prepareDataVarianten, eval=F}
+
+# run chapter "Resultaten.Rmd" first code block to prepare data
+
 stations <- read_csv("../../data/deltares/results/variants/stations.csv")
 series <- read_csv("../../data/deltares/results/variants/series.csv")
 fits <- read_csv("../../data/deltares/results/variants/fits.csv")
@@ -502,7 +507,7 @@ predictions_all %>%
 In figuur \@ref(fig:trend-vergelijking) worden de trends voor gebroken lineaire fit voor de verschillende varianten van windopzet met elkaar vergeleken. Het patroon is voor alle windopzetverianten gelijk. Het kleinste verschil tussen de trend voor en na 1993 wordt gevonden bij station IJmuiden. Bij gebruik van NCEP1 is er zelfs geen zichtbare knik bij dat station. Het grootste verschil in trend voor en na 1993 wordt gevonden bij de stations in en in de buurt van de Waddenzee, Delfzijl, Harlingen, en in mindere mate Den Helder.
 
 
-```{r trend-vergelijking, fig.height=5, fig.width=7, fig.show='hold', out.width="50%", fig.cap="Berekende trends voor het lineaire model (zwarte punten), en de pre- en post-1993 trend voor het broken linear model (kolommen). "}
+```{r trend-vergelijking, fig.height=5, fig.width=7, fig.show='hold', out.width="70%", fig.cap="Berekende trends voor het lineaire model (zwarte punten), en de pre- en post-1993 trend voor het broken linear model (kolommen). "}
 
 
 timeseries %>%

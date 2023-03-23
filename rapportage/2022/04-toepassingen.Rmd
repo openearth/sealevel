@@ -339,10 +339,7 @@ het percentage onder zeeniveau, maar onder \acr{NAP}.
 Wat misschien wel de belangrijkste conclusie van deze indicator is is
 dat afgezien van het gebruik in internationale profilering de indicator
 niet tot daadwerkelijke actie leidt. De indicator heeft vooral een
-symbolische en representatieve waarde. Zeker vanwege dat laatste is het
-wel belangrijk dat het cijfer correct en goed gedefinieerd is, nemen we
-deze indicator voortaan op in deze rapportage, in dit geval in paragraaf
-\@ref(nl-below-sl).
+symbolische en representatieve waarde. 
 
 Naam
 

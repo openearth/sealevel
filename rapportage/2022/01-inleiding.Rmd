@@ -18,7 +18,7 @@ In de [rapportage 2018](https://www.deltares.nl/app/uploads/2019/03/Zeespiegelmo
 
 De methode die is gebruikt voor de bepaling van de zeespiegel en stijging ervan staat in hoofdstuk \@ref(methoden). De waarden worden elk jaar geactualiseerd in de online zeespiegelmonitor.
 
-Voorliggend rapport heeft ook als doel een verslag te geven van het onderzoek dat in de afgelopen jaren is gedaan. De keuzes in dat onderzoek volgen uit de vooraf opgestelde onderzoeksagenda. In appendix \@ref(app-onderzoeksvragen) staat een overzicht. Veel onderzoeken zijn ook als aparte memo's of rapporten gepresenteerd.
+Voorliggend rapport heeft ook als doel een verslag te geven van het onderzoek dat in de afgelopen jaren is gedaan. De keuzes in dat onderzoek volgen uit de vooraf opgestelde onderzoeksagenda. In paragraaf \@ref(onderzoeksvragen) staat een overzicht. Een aantal onderzoeken zijn ook als aparte memo's of rapporten gepresenteerd. Dit staat aangegeven in het overzicht.
 
 ## Onderzoeksvragen {#onderzoeksvragen}
 
@@ -76,7 +76,11 @@ Dit rapport behandelt in detail de resultaten van de Zeespiegelmonitor. Actuele 
 
 Een deel van het onderzoek binnen het Zeespiegelmonitorproject is gepubliceerd in aparte memo's en rapporten. Samenvattingen en links naar de originele rapporten zijn te vinden in de bijlage \@ref(bijlagerapporten)
 
-De hoofdstukken Oorzaken, Toepassingen, en Metingen uit 
+In bijlage \@ref(bijlagen-zsm) is achtergrondinformatie en rapporten te vinden die in de afgelopen periode (2019-2022) in het kader van de Zeespiegelmonitor zijn verzameld. 
+
+De hoofdstukken Oorzaken (bijlage \@ref(oorzaken)), Toepassingen (bijlage \@ref(toepassingen)), en Metingen (bijlage \@ref(metingen)) in de appendix zijn geactualiseerde versies van de gelijknamige hoofdstukken uit @Baart2019. 
+
+In bijlage \@ref(varianten) worden resultaten gepresenteerd voor de verschillende varianten die zijn doorgerekend.
 
 Merk op dat de digitale versie van dit document voorzien van hyperlinks voor figuren, tabellen, en referenties. Hiermee kunt u klikken naar de juiste pagina voor meer informatie. Dit geldt ook voor verwijzingen naar acroniemen waarmee u bij het overzicht van afkortingen kunt komen, te vinden in \@ref{lijst-met-afkortingen}.
 
