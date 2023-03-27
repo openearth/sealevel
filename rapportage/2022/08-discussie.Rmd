@@ -38,32 +38,9 @@ De huidige stijging in de zeespiegelmonitor ($2.9 \pm 0.4\,mm/jaar$) is dus cons
 
 In de Zeespiegelmonitor werd windopzet tot vorig jaar geschat door een wind-heranalyse (\acr{NCEP}) als covariabele mee te nemen in het verklaren van de trend. Dit was nodig, omdat op voorhand niet het exacte effect van wind op de windopzet bekend is. Dit jaar is deze analyse uitgevoerd met \acr{NCEP} en \acr{20CR} heranalyses en een combinatie van deze twee. Tevens is een analyse toegevoegd waarbij met windopzet uit het \acr{GTSM} model direct is gebruikt als correctievariabele. Hierbij is de mate van windopzet onafhankelijk geschat van de trendbepalingsmethode. We concluderen dat deze laatste methodiek beter geschikt is voor correctie van landelijke opzet, het nadeel is dat het \acr{GTSM} model voor een kortere periode (1979 - nu) beschikbaar is dan de wind heranalyses. We bevelen daarom aan om het GTSM model uit te breiden naar jaren voor 1979. Het GTSM model is een mondiaal dekkend model. Het verdient aanbeveling om de geschiktheid van deze manier van opzet berekenen voor de individuele stations te bepalen.
 
-<!-- Een deel van de globale zeespiegelstijging kan niet verklaard worden door de onderliggende processen [@Cazenave2018]. Een recente reconstructie vindt een lagere zeespiegelstijging over de periode 1900-1990 van 12 $\pm$ 2 cm/eeuw, dat komt ongeveer overeen met onze absolute zeespiegeltrend over dezelfde periode. Ze vinden een zeespiegelstijging van 30 $\pm$ 7 cm/eeuw over de periode 1993 tot en met 2010. Deze versnelling zien we maar in zeer beperkte mate terug (19cm/eeuw absolute zeespiegelstijging over 1993 tot en met 2017 op basis van het breekpuntmodel. -->
-
 <Onderstaand moet nog gecontroleerd worden>
 Sommerend komen we op de volgende balans van de wereldwijde versus de Nederlandse zeespiegelstijging over de periode 1993-2021. De zeespiegelstijging over deze periode is in Nederlands hoger dan over de periode voor 1993, zoals besproken in paragraaf \@ref(versnelling-results). Eigenlijk zou de zeespiegelstijging hoger moeten zijn dan globaal, omdat in Nederland naast de zeespiegelstijging ook nog bodemdaling is. Maar omdat 3cm van de globale zeespiegelstijging een correctie is die niet aan de kust gemeten wordt en omdat we op een gunstige plek liggen wat betreft de bijdrage van Groenlands massaverlies aan de zeespiegelstijging (9cm) zien we aan de kust van Nederland toch een lagere zeespiegelstijging dan globaal. Andere effecten, zoals veranderingen in dichtheid, zijn hier buiten beschouwing gelaten.
 
-<!-- ![Verschillen tussen de Nederlandse en de globale zeespiegelstijging over de periode 1993-2017. Links globaal: zeespiegelstijging op basis van satellietmetingen vertaald naar regionale absolute zeespiegelstijging. Rechts Nederland: zeespiegelstijging over de periode 1993-2017 vertaald naar absolute zeespiegelstijging. Om de Nederlandse gegevens absoluut te maken moet de bodemdaling verwijderd worden. Om de globale gegevens naar Nederland te vertalen moet voor het gravitatie effect worden gecorrigeerd en moeten gegevens van volumes naar absolute stijging worden vertaald door de [GIA]{acronym-label="GIA" acronym-form="singular+short"} correctie ongedaan te maken.](balans){#fig:nl-global width="1\\linewidth"} -->
-
-<!-- Concluderend zien we een recent verschil tussen wat we meten langs de Nederlandse kust en wat we globaal meten. We moeten wel enig voorbehoud maken bij de praktijk van het sluitend maken van budgetten, waar we hierbij aansluiten. Het is een confirmatieve analyse, in de zin dat er wordt gezocht naar 'sluiting' in plaats van dat de theorie op de proef gesteld wordt. Vergelijk de stelling "Confirming evidence should not count except when it is the result of a genuine test of the theory" die door @Popper2014 gebruikt wordt om onderscheid te maken tussen wetenschap en pseudo-wetenschap. -->
-
-<!-- Dat het optelt wil, net als bij een echte boekhouding, daarom ook niet zeggen dat het klopt. Op basis van @ref(fig:conservative) kunnen we ook tot de conclusie komen dat de 3.2mm/ gebaseerd is op een statistisch artefact en dat er geen globale zeespiegelversnelling is. Hebben we nu een globale versnelling gezien of hebben we alleen de achterstand ingehaald? Hoe gaan we om met perioden van een vertraagde zeespiegel? Genoeg vragen voor verder onderzoek. -->
-
-<!-- Dit beantwoordt [$$question:verschil$$](#question:verschil){reference-type="ref" reference="question:verschil"}, waarom de Nederlandse zeespiegelstijging afwijkt van de globale zeespiegelstijging. $$answer:verschil$$ -->
-
-<!-- De vraag of er nog ergens zeespiegelstijging verstopt zit is vooral relevant voor de toekomst. Het hele oppervlak van de oceaan wordt gemeten. Van de variatie van de zeespiegel is, achteraf, het grootste deel verklaarbaar. Naar de toekomst toe zijn er wel veel openstaande vragen. Welk deel van het ijs van Antarctica smelt als eerste? Zal de bodem onder Antarctica snel genoeg terugveren om de zeespiegelstijging te stoppen? Hoe lang gaat de bodemdaling nog door nadat we stoppen met de gaswinning? Als de [AMO]{acronym-label="AMO" acronym-form="singular+short"} verandert, welk effect heeft dat op onze zeespiegeltrend? Dat zijn echter onderwerpen die we in de Zeespiegelmonitor niet behandelen. -->
-
-<!-- ## Nederland onder zeespiegel {#nl-below-sl} -->
-
-<!-- Zoals we gezien hebben in @ref(perc-below-sl), vertellen we aan buitenlandse bezoekers vaak trots welk deel van Nederland onder de zeespiegel ligt. Daarnaast gebruiken we dit getal graag als makkelijke intro, Nederland ligt voor xx% onder zeeniveau, dus zeespiegelstijging is belangrijk, dus we gaan onderzoek doen naar zeespiegelstijging. Vergelijkbare opvulkengetallen zijn welk deel van de wereld bij de kust ligt, welk deel van de wereld in een delta ligt en welk deel overstromingsgevoelig is. Het zijn getallen die we noemen maar niet tot een concrete actie leiden. -->
-
-<!-- Het probleem met het xx% van Nederland ligt onder zeeniveau is dat we het al jaren verkeerd gebruiken. Sinds het verkeerd in het [IPCC]{acronym-label="IPCC" acronym-form="singular+short"} rapport stond hebben we een ruwe schatting [@PBL2010]. Maar we gebruiken het nog steeds vaak verkeerd [@Rutte2016] of we formuleren het in vage termen als 'a lot of land below sea level' [@Rutte2017]. -->
-
-<!-- We bevestigen dat eerder genoemde getallen als twee derde van Nederland ligt onder zeeniveau, de helft van Nederland ligt onder zeeniveau en een derde van Nederland ligt onder zeeniveau niet accuraat zijn. Soms wordt er een vorm gebruikt als xx% van Nederand ligt onder [NAP]{acronym-label="NAP" acronym-form="singular+short"} gelijk aan gemiddeld zeeniveau. Ook dat is niet meer accuraat sinds de jaren 80 van de vorige eeuw. -->
-
-<!-- Het percentage van Nederland (ten tijde van [AHN]{acronym-label="AHN" acronym-form="singular+short"}2) dat onder het huidige zeespiegel ligt is 27%. Het percentage van Nederland dat onder [NAP]{acronym-label="NAP" acronym-form="singular+short"} ligt is 26%. Voor de andere percentages geldt dat een derde van Nederland ligt onder een zeespiegelniveau van 60cm boven [NAP]{acronym-label="NAP" acronym-form="singular+short"}, de helft van Nederland ligt onder een zeespiegelniveau van 4m en twee derde van Nederland ligt onder een niveau van 11m. De berekening is beschikbaar via een reproduceerbare berekening op basis van [AHN]{acronym-label="AHN" acronym-form="singular+short"}2 en de TOP10 vector water. -->
-
-<!-- Hier moet nog opgemerkt worden dat "het aandeel van Nederland dat onder de zeespiegel ligt" niet gelijk staat aan "het aandeel dat overstromingsgevoeligis". -->
 
 ## Verschillen binnen Nederland {#verschillen}
 
@@ -71,21 +48,10 @@ Zowel de zeespiegelstand (hoe hoog ligt de lijn) als de zeespiegelstijging (hoe 
 
 Daarvoor zijn verschillende mogelijke oorzaken. In [@Baart2019] worden verschillen in bodemdaling
 
-Bodemdaling
-
-:   Het ten opzichte van elkaar verzakken van de nulpalen (paragraaf \@ref(bodemdaling-result))
-
-Absolute zeespiegel
-
-:   De absolute zeespiegelstijging is niet uniform verdeeld door bijvoorbeeld dichtheidsvariaties, stromingvariaties, gravitatieeffect en interacties tussen bijvoorbeeld zeespiegelstijging en getij (paragraaf \@ref(satelliet-results))
-
-Meettechnieken
-
-:   er kunnen verschillen zijn in de manier van meten (hoofdstuk \@ref(metingen))
-
-Overige
-
-:   daarnaast kunnen lokale ingrepen en onbekende oorzaken veranderingen veroorzaken (paragraaf \@ref(verschillen))
+*   Bodemdaling - Het ten opzichte van elkaar verzakken van de nulpalen (paragraaf \@ref(bodemdaling-result))
+Absolute zeespiegel - De absolute zeespiegelstijging is niet uniform verdeeld door bijvoorbeeld dichtheidsvariaties, stromingvariaties, gravitatieeffect en interacties tussen bijvoorbeeld zeespiegelstijging en getij (paragraaf \@ref(satelliet-results))
+*   Meettechnieken - er kunnen verschillen zijn in de manier van meten (hoofdstuk \@ref(metingen))
+*   Overige - daarnaast kunnen lokale ingrepen en onbekende oorzaken veranderingen veroorzaken (paragraaf \@ref(verschillen))
 
 De verschillen van de stand tussen de stations kan doordat we meten ten opzichte van lokale nulpalen. De hoogte van deze nulpalen is vastgesteld met waterpassing. De standaardafwijking van de hoogtes ligt in de orde van 4mm [@Brand2004]. Tijdens het aanleggen van de peilmerken lag deze nauwkeurigheid in de orde van 10mm [@Bruijne2005] (voor een afstand van 200m). De variatie tussen de stations ligt in de orde van 25millim. De variatie tussen de stations kan voor een deel verklaard worden door de nauwkeurigheid van de waterpassingen, maar een deel blijft onverklaard.
 

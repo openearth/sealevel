@@ -787,25 +787,11 @@ In de vorige zeespiegelmonitor [@Baart2019] is geconstateerd dat er geen goede a
 
 Hier laten we zien hoe de zeespiegelscenario's aansluiten bij de metingen die sinds de doorrekening van de door klimaatverandering gedreven zeespiegelprojecties zijn uitgevoerd. Hierbij moet met een aantal aspecten rekening gehouden worden.
 
-Referentie-tijdvak
-
-:   De zeespiegelscenario's zijn relatief ten opzichte van de gemiddelde zeespiegelstand over de periode 1995 tot 2014. De zeespiegel was toen al 3 cm boven \acr{NAP}, het referentiepunt voor de getijstations. Om de scenario's te vergelijken met de metingen is een correctie uitgevoerd zodat de projecties uitgedrukt worden t.o.v. \acr{NAP} (\>2005). Hiertoe is de gemiddelde gemeten zeespiegel over 1995-2014 opgeteld bij de zeespiegelverandering (t.o.v. die periode) in de projectie.
-
-Natuurlijke variatie
-
-:   De zeespiegelscenario's representeren langjarige veranderingen ten opzichte van de referentieperiode. Variaties binnen een klimaatperiode, zoals verschillen van jaar tot jaar door luchtdruk en stormen en getij, zijn niet expliciet weergegeven. De jaargemiddelde zeespiegel varieert met een bandbreedte van ongeveer 5cm rondom de langjarige zeespiegeltrend.
-
-Marges
-
-:   De bandbreedte van zeespiegelprojecties neemt toe naar de toekomst. Deze marges omvatten een combinatie van natuurlijke fluctuaties die op klimatologische tijdschalen plaatsvinden (bijvoorbeeld door langzame fluctuaties in oceaanstromingen of lokale warmteopslag) en door modelonzekerheid in de mate van lokale zeespiegelstijging voor een gegeven emissiescenario. Met name deze modelonzekerheid neemt toe met de tijd.
-
-Versnelling
-
-:   De zeespiegelversnelling in sommige projecties is toe te schrijven is aan processen die in een warmere toekomst een grotere rol kunnen spelen dan nu (zoals grootschalig massaverlies van de grote ijskappen).
-
-Modelkeuze
-
-:   In 2021 heeft KNMI in het klimaatsignaal '21 zeespiegelprojecties voor de Nederlandse kust opgenomen. Deze projecties zijn het resultaat van voorlopige selectie en bewerking van beschikbare klimaatprojecties. Bij de publicatie van de officiele klimaatscenario's in 2023 kunnen de daarin opgenomen zeespiegelscenario's afwijken van de resultaten die in 2021 zijn gepubliceerd.
+*   Referentie-tijdvak - De zeespiegelscenario's zijn relatief ten opzichte van de gemiddelde zeespiegelstand over de periode 1995 tot 2014. De zeespiegel was toen al 3 cm boven \acr{NAP}, het referentiepunt voor de getijstations. Om de scenario's te vergelijken met de metingen is een correctie uitgevoerd zodat de projecties uitgedrukt worden t.o.v. \acr{NAP} (\>2005). Hiertoe is de gemiddelde gemeten zeespiegel over 1995-2014 opgeteld bij de zeespiegelverandering (t.o.v. die periode) in de projectie.
+*   Natuurlijke variatie - De zeespiegelscenario's representeren langjarige veranderingen ten opzichte van de referentieperiode. Variaties binnen een klimaatperiode, zoals verschillen van jaar tot jaar door luchtdruk en stormen en getij, zijn niet expliciet weergegeven. De jaargemiddelde zeespiegel varieert met een bandbreedte van ongeveer 5cm rondom de langjarige zeespiegeltrend.
+*   Marges - De bandbreedte van zeespiegelprojecties neemt toe naar de toekomst. Deze marges omvatten een combinatie van natuurlijke fluctuaties die op klimatologische tijdschalen plaatsvinden (bijvoorbeeld door langzame fluctuaties in oceaanstromingen of lokale warmteopslag) en door modelonzekerheid in de mate van lokale zeespiegelstijging voor een gegeven emissiescenario. Met name deze modelonzekerheid neemt toe met de tijd.
+*   Versnelling - De zeespiegelversnelling in sommige projecties is toe te schrijven is aan processen die in een warmere toekomst een grotere rol kunnen spelen dan nu (zoals grootschalig massaverlies van de grote ijskappen).
+Modelkeuze - In 2021 heeft KNMI in het klimaatsignaal '21 zeespiegelprojecties voor de Nederlandse kust opgenomen. Deze projecties zijn het resultaat van voorlopige selectie en bewerking van beschikbare klimaatprojecties. Bij de publicatie van de officiele klimaatscenario's in 2023 kunnen de daarin opgenomen zeespiegelscenario's afwijken van de resultaten die in 2021 zijn gepubliceerd.
 
 (ref:metingen-scenarios-label) Zeespiegelprojecties (mediaan midden scenario SSP245) met 5 en 95 percentiel uit \acr{KNMI} klimaatsignaal 2021 [@KNMI2021] gecorrigeerd voor referentieperiode en omgerekend naar NAP vergeleken met metingen gemiddeld over de 5 hoofdstations en gecorrigeerd voor windopzet (\acr{GTSM}) en getij.
 

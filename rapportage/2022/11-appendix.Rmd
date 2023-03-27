@@ -82,7 +82,7 @@ Een actuele lijst met raakvlakken staat in appendix \@ref(app-raakvlakken).
 
 In het kader van de ontwikkeling van de Zeespiegelmonitor voor de komende jaren zijn in 2022 twee workshops gehouden met als doel om de methoden en onderzoeksvragen binnen de Zeespiegelmonitor voor de komende jaren op een breed gedragen manier vast te leggen. De uitkomsten zijn gebruikt in de rapportage, en komen terug in hoofdstuk \@ref(methoden).
 
-**Aantekeningen workshop Zeespiegelmonitor methodiek**
+**Samenvatting workshop Zeespiegelmonitor methodiek**
 
 ```{r, results='asis'}
 
@@ -94,7 +94,7 @@ if(knitr::is_html_output()){
 </object>'
 } else {
   cat(
-    "\\includepdf[pages=-]{documents/11208038-000-ZKS-0004_v0.1-Workshop Zeespiegelmethodiek verslag final.pdf}"
+    "\\includepdf[pages=-,pagecommand={},width=\\textwidth]{documents/11208038-000-ZKS-0004_v0.1-Workshop Zeespiegelmethodiek verslag final.pdf}"
   )
 }
 ```
@@ -111,7 +111,7 @@ if(knitr::is_html_output()){
 </object>'
 } else {
   cat(
-    "\\includepdf[pages=-]{documents/11208038-000-ZKS-0002_v0.1-Workshop Onderzoeksagenda ZSM verslag final.pdf}"
+    "\\includepdf[pages=-,pagecommand={},width=\\textwidth]{documents/11208038-000-ZKS-0002_v0.1-Workshop Onderzoeksagenda ZSM verslag final.pdf}"
   )
 }
 ```
