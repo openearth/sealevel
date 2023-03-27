@@ -283,12 +283,6 @@ plot_station <- function(stationi = "Netherlands (without Delfzijl)", prediction
 
 In figuur \@ref(fig:huidige-zeespiegel) is de zeespiegel uitgezet tegen de tijd. De gemeten zeespiegel is voor 2021 vastgesteld op 7.6 cm boven \acr{NAP}.
 
-De huidige zeespiegel, dat is de zeespiegel die we verwacht hadden op basis van de opgetreden variatie in windopzet en getij, is 9.4 cm boven \acr{NAP} (predictie -opzetanomalie +getij in figuur \@ref(fig:huidige-zeespiegel)). De windopzet afwijking van gemiddeld was dit jaar -3.1 cm. Het berekende effect van nodaal getij was dit jaar +1.2 cm. Bij gemiddelde windopzet zou de zeespiegel 7.8 cm bedragen.
-
-Voor het jaar 2021 bedraagt de relatieve zeespiegelstijging langs de Nederlandse kust 2.9 ± 0.4 mm/jaar oftewel 29 ± 4,cm/eeuw. Deze trend is berekend over de periode 1993 tot en met 2021. Dit beantwoordt de vraag, hoe snel de zeespiegel op dit moment stijgt. De zeespiegel stijgt nu dus sneller dan in de periode van 1890 - 1993. In die periode was de zeespiegelstijging 1.8 ± 0.1 mm/jaar oftewel 18 ± 1,cm/eeuw (figuur \@ref(fig:huidige-zeespiegel) en tabel \@ref(tab:kengetallen-tabel)).
-
-(ref:huidige-zeespiegel-label) Tijdserie van de zeespiegel langs de Nederlandse kust op basis van het gemiddelde van de vijf hoofdstations, zie ook paragraaf \@ref(bronnen). Opzet en opzetanomalie (afwijking van de gemiddelde opzet) zijn berekend met \acr{GTSM}, de predictie is op basis van een gebroken lineair model.
-
 ```{r huidige-zeespiegel, fig.cap = "(ref:huidige-zeespiegel-label)"}
 
 
@@ -332,6 +326,13 @@ predictions_all %>%
   kableExtra::kable_styling(latex_options="scale_down")
   
 ```
+
+
+De huidige zeespiegel, dat is de zeespiegel die we verwacht hadden op basis van de opgetreden variatie in windopzet en getij, is 9.4 cm boven \acr{NAP} (predictie -opzetanomalie +getij in figuur \@ref(fig:huidige-zeespiegel)). De windopzet afwijking van gemiddeld was dit jaar -3.1 cm. Het berekende effect van nodaal getij was dit jaar +1.2 cm. Bij gemiddelde windopzet zou de zeespiegel 7.8 cm bedragen.
+
+Voor het jaar 2021 bedraagt de relatieve zeespiegelstijging langs de Nederlandse kust 2.9 ± 0.4 mm/jaar oftewel 29 ± 4,cm/eeuw. Deze trend is berekend over de periode 1993 tot en met 2021. Dit beantwoordt de vraag, hoe snel de zeespiegel op dit moment stijgt. De zeespiegel stijgt nu dus sneller dan in de periode van 1890 - 1993. In die periode was de zeespiegelstijging 1.8 ± 0.1 mm/jaar oftewel 18 ± 1,cm/eeuw (figuur \@ref(fig:huidige-zeespiegel) en tabel \@ref(tab:kengetallen-tabel)).
+
+(ref:huidige-zeespiegel-label) Tijdserie van de zeespiegel langs de Nederlandse kust op basis van het gemiddelde van de vijf hoofdstations, zie ook paragraaf \@ref(bronnen). Opzet en opzetanomalie (afwijking van de gemiddelde opzet) zijn berekend met \acr{GTSM}, de predictie is op basis van een gebroken lineair model.
 
 De gemeten zeespiegel aan de Nederlandse kust heeft in 2020 zijn hoogste stand ooit gemeten bereikt. Kort gezegd komt dit doordat het dat jaar flink heeft gestormd in combinatie met een opgaand nodaal getij en de gestegen zeespiegel.
 
