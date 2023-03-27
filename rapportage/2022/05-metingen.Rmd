@@ -27,7 +27,7 @@ De bekende eigenschappen van de constructie van de stations worden in onderstaan
 
 ### Vlissingen
 
-```{r}
+```{r vlissgn, fig.caption="Meetstation Vlissingen. Bron: napinfo. "}
 knitr::include_graphics("figures/VLISSGN.jpg")
 ```
 
@@ -35,7 +35,7 @@ Dit station ligt aan de kade in Vlissingen (51.44210°N, 3.59610°O), nabij de b
 
 ### Hoek van Holland
 
-```{r}
+```{r hoekvhld, fig.cap="Meetstation Hoek van Holland. Bron: napinfo. "}
 knitr::include_graphics("figures/HOEKVHLD.jpg")
 ```
 
@@ -43,7 +43,7 @@ Het station in Hoek van Holland ligt naast de Nieuwe Waterweg bij de monding van
 
 ### IJmuiden
 
-```{r}
+```{r ijmdbthvn, fig.cap="Meetstation IJmuiden. Bron: napinfo. "}
 knitr::include_graphics("figures/IJMDBTHVN.jpg")
 ```
 
@@ -51,7 +51,7 @@ IJmuiden ligt aan de noordkant van de jachthaven in IJmuiden, in de buurt van ee
 
 ### Den Helder
 
-```{r}
+```{r denhdr, fig.cap="Meetstation Den Helder. Bron: napinfo. "}
 knitr::include_graphics("figures/DENHDR.jpg")
 ```
 
@@ -59,7 +59,7 @@ Dit station bevindt zich in de dijk van Den Helder. Het station heeft een pijp d
 
 ### Harlingen
 
-```{r}
+```{r harlgn, fig.cap="Meetstation Harlingen. Bron: napinfo. "}
 knitr::include_graphics("figures/HARLGN.jpg")
 ```
 
@@ -67,7 +67,7 @@ Het getijstation in Harlingen bevindt zich in de haven op de boulevard. Op een d
 
 ### Delfzijl
 
-```{r}
+```{r delfzl, fig.cap="Meetstation Delfzijl. Bron: napinfo. "}
 knitr::include_graphics("figures/DELFZL.jpg")
 ```
 
@@ -115,7 +115,7 @@ Vanuit de historie van \acr{NAP} merken hebben we een overzicht gemaakt van de h
 
 In [3](#fig:nap-history){reference-type="ref" reference="fig:nap-history"} zien we dat de peilmerken in de buurt van de nulpaal van Hoek van Holland van hoogte veranderen. Dit laat zien dat niet alle peilmerken een vaste hoogte hebben gehad. We zien dat de punten dalen. Dit zou logischerwijs bodemdaling tussen de hoogte van de nulpaal en de hoogte van de peilmerken moeten zijn.
 
-(ref:nulpalen-label) Overzicht van de historie van de \acr{NAP} merken in de buurt van de meetstations. Relatief ten opzichte van de eerste meting. (nulpalen)
+(ref:nulpalen-label) Overzicht van de historie van de \acr{NAP} merken in de buurt van de meetstations. Relatief ten opzichte van de eerste meting. (nulpalen). bron: nap-info
 
 ```{r nulpalen, fig.cap="(ref:nulpalen-label)" }
 knitr::include_graphics("figures/nap-history.png")

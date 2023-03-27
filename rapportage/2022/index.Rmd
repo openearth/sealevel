@@ -27,7 +27,7 @@ acronyms:
   fromfile: acroniemHeader.yml
 always_allow_html: yes
 description: 'Dit is de Zeespiegelmonitor. De Zeespiegelmonitor wordt gemaakt door
-  Deltares met bijdragen van HKV en KNMI in opdracht van Rijkswaterstaat. '
+in opdracht van het Ministerie van Infrastructuur en Waterstaat/DG Water en Bodem. '
 documentclass: book
 ---
 
@@ -39,12 +39,12 @@ Sinds 2014 onderhoudt Deltares in opdracht van Ministerie van I&W de Zeespiegelm
 
 De Zeespiegelmonitor stelt jaarlijks de stand van de zeespiegel vast van de zes Nederlandse hoofdgetijdenstations (Delfzijl, Harlingen, Den Helder, IJmuiden, Hoek van Holland en Vlissingen), die continu de waterstand vastleggen/meten. De methodiek voor de Zeespiegelmonitor is in 2014 vastgesteld en berekent de langjarige trend. Bij deze berekening wordt rekening gehouden met de verschillende factoren die de fluctuaties in waterstanden beïnvloeden. Wind en getij zijn daarvan de belangrijkste. Het resultaat van de zeespiegelmonitor wordt representatief geacht voor de gemiddelde zeespiegelstijging in de komende ca 15 jaar. Iedere vier jaar wordt gerapporteerd over de waarnemingen en de onderzoeksresultaten. Dit is de derde rapportage.
 
- In de vorige twee rapportages is geconcludeerd dat, cf. de methodiek, een constante trend, sinds 1900, de beste beschrijving geeft van de trend. In deze rapportage wordt een andere conclusie onderbouwd/getrokken. De stijging van de zeespiegel langs de Nederlandse kust kan nu het best beschreven worden door een trend tot circa 1990 van $1.8 \pm 0.1\,mm/jaar$, met een toename van de gemiddelde jaarlijkse stijging over de laatste 30 jaar van $2.9 \pm 0.4\,mm/jaar$. Deze toename past bij de verwachting, op basis van de kennis over de wereldwijde stand van de zeespiegel, van een langzaam opbouwende versnelling van de zeespiegelstijging.
+ In de vorige twee rapportages is geconcludeerd dat, cf. de methodiek, een constante trend, sinds 1900, de beste beschrijving geeft van de trend. In deze rapportage wordt een andere conclusie onderbouwd/getrokken. De stijging van de zeespiegel langs de Nederlandse kust kan nu het best beschreven worden door een trend tot circa 1990 van 1.8 ± 0.1 mm/jaar, met een toename van de gemiddelde jaarlijkse stijging over de laatste 30 jaar van 2.9 ± 0.4 mm/jaar. Deze toename past bij de verwachting, op basis van de kennis over de wereldwijde stand van de zeespiegel, van een langzaam opbouwende versnelling van de zeespiegelstijging.
  
 Voor de komende ca 15 jaar is een trend van 2.9 mm/jaar een verantwoorde benadering. De methodiek toegepast in de zeespiegelmonitor, is niet geschikt voor een berekening van de trend over de periode daarna.
 ```
 
-```{r, include=knitr::is_html_output(), out.width="70%", fig.cap="De verandering van de zeespiegeltrend in de tijd."}
+```{r, include=knitr::is_html_output(), out.width="80%", fig.cap="De verandering van de zeespiegeltrend in de tijd."}
 knitr::include_graphics("figures/samenvatting_v2.png")
 ```
 
@@ -53,8 +53,7 @@ Uit bovenstaande figuur zijn drie belangrijke boodschappen te halen:
 
 -   In Nederland is een versnelling van de zeespiegelstijging waarneembaar. De stijging is in de komende decennia naar verwachting hoger dan de trend in de vorige eeuw.
 -   De gegevens vanaf 1979 vertonen een kleinere onzekerheid dan daarvoor. Dit komt door een meer nauwkeurige correctie voor windopzet. Dat verhoogt de nauwkeurigheid van de beschrijving van de lokale zeespiegelstijging in recente tijdvakken.
--   De jaar op jaar variatie van de zeespiegel (ca. $\pm$ 10 cm) is veel groter dan de onzekerheid in de langjarige trend  (ca. $\pm$ 0.4 mm/jaar).
+-   De jaar op jaar variatie van de zeespiegel (ca. ± 10 cm) is veel groter dan de onzekerheid in de langjarige trend  (ca. ± 0.4 mm/jaar).
 
 In deze zeespiegelmonitor zijn de gegevens van vijf van de zes Nederlandse stations gebruikt. Er is namelijk reden om aan te nemen dat de gegevens van het station Delfzijl nu niet betrouwbaar genoeg zijn, met name veroorzaakt door de snelle bodemdaling. De overige stations vertonen onderling vergelijkbare trends in de stijging sinds 1993, namelijk tussen 2.3 en 3.3 mm per jaar.
 ```
-
