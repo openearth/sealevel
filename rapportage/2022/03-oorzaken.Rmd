@@ -306,6 +306,8 @@ In deze paragraaf, uitgewerkt op basis van [@Hijma2017; @Hijma2018], onderscheid
 knitr::include_graphics("figures/isometric-beach2.png")
 ```
 
+(ref:bodemdaling-label) Oorzaken van bodemdaling, naar [@Hijma2017].
+
 ```{r bodemdaling}
 knitr::kable(
   tibble::tibble(
@@ -322,9 +324,9 @@ knitr::kable(
       "Extra gewicht dat op het maaiveld (of waterbodem) wordt aangebracht drukt de lagen in de ondergrond worden samen."
     )
   ),
-  caption = "Oorzaken van bodemdaling, naar [@Hijma2017]."
-  
-)
+  caption = "(ref:bodemdaling-label)"
+) %>%
+  kableExtra::kable_styling(latex_options="scale_down")
 ```
 
 De invloed van autocompactie en tektoniek, langs de Nederlandse kust, worden door @Hijma2017 geschat op minder dan 0.1mm/jaar. De bijdrage van isostasie is groter in Noord Nederland (0.3 mm/jaar--0.7 mm/jaar) dan in Zuid Nederland (0.2 mm/jaar--0.5 mm/jaar), zoals te zien in figuur \@ref(fig:bodemdaling-isostasie). De gevolgen van zout en gaswinning staan weergegeven in figuur \@ref(fig:bodemdaling-winningen). Tot nu toe zijn het vooral de gaswinningen die voor een aanzienlijke bodemdaling hebben gezorgd.

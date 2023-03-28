@@ -371,7 +371,8 @@ De versnelling langs de Nederlandse kust is consistent met resultaten die zijn a
     mutate(`voor 2018` = ifelse(year < 2018, "-","dashed")) %>%
     filter(year >= startyear) %>% 
     arrange(year) %>% 
-    mutate(`correctie beschikbaar` = ifelse(year >= 1979, "jaarlijkse windopzetcorrectie", "gemiddelde windopzetcorrectie")) %>%
+    mutate(`correctie beschikbaar` = ifelse(year >= 1979, "jaarlijkse windopzetcorrectie", "gemiddelde windopzetcorrectie")) %T>%
+    write_csv("dataGrafiekSamenvatting.csv") %>%
     ggplot() +
     geom_vline(xintercept = 1993, linetype = 4, alpha = 0.5, color = pal[3]) +
     geom_point(aes(year, (`height - anomaly` - `nodal tide`)/10, color = `correctie beschikbaar`), alpha = 0.6, size = symboolgrootte) +
@@ -989,4 +990,4 @@ Omdat de zeespiegel van vorig jaar informatie bevat die gebruikt kan worden om e
 
 De variantie van de residuen is afhankelijk van de verklarende variabelen (meer residu bij veel wind). Voor het herkennen van een trendbreuk is het belangrijk dat de trendparameter zo betrouwbaar mogelijk wordt geschat. De standaardfouten zijn daarom op robuuste wijze geschat via de zogenaamde \acr{HAC} estimator [@Zeileis2004] .
 
-Zowel het toevoegen van de autocorrelatieterm als de correctie voor heteroskedasticiteit heeft geen effect op de schattingen van de huidige zeespiegel, alleen op de standaardfouten.
+Zowel het toevoegen van de autocorrelatieterm als de correctie voor heteroskedasticiteit (ongelijke verdeling van varianties) heeft geen effect op de schattingen van de huidige zeespiegel, alleen op de standaardfouten.

@@ -76,7 +76,7 @@ Dit rapport behandelt in detail de resultaten van de Zeespiegelmonitor. Actuele 
 
 Een deel van het onderzoek binnen het Zeespiegelmonitorproject is gepubliceerd in aparte memo's en rapporten. Samenvattingen en links naar de originele rapporten zijn te vinden in de bijlage \@ref(bijlagerapporten)
 
-In bijlage \@ref(bijlagen-zsm) is achtergrondinformatie en rapporten te vinden die in de afgelopen periode (2019-2022) in het kader van de Zeespiegelmonitor zijn verzameld. 
+In bijlage \@ref(bijlagerapporten) is achtergrondinformatie en rapporten te vinden die in de afgelopen periode (2019-2022) in het kader van de Zeespiegelmonitor zijn verzameld. 
 
 De hoofdstukken Oorzaken (bijlage \@ref(oorzaken)), Toepassingen (bijlage \@ref(toepassingen)), en Metingen (bijlage \@ref(metingen)) in de appendix zijn geactualiseerde versies van de gelijknamige hoofdstukken uit @Baart2019. 
 
