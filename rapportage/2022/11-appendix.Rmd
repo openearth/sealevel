@@ -560,9 +560,13 @@ veldnaam == "u2"  ~ "gemiddelde windsnelheid in de gemiddelde windrichting in m/
 veldnaam == "v2"  ~ "gemiddelde windsnelheid haaks op de gemiddelde windrichting in m/s",
 veldnaam == "surge_mm" ~ "windopzet of scheve opzet in mm",
 veldnaam == "height - surge" ~ "gemiddelde gemeten waterhoogte minus windopzet in mm",
-veldnaam == "height - surge anomaly" ~ "gemiddelde gemeten waterhoogte minus de variatie in windopzet in mm",
-veldnaam == "predicted_linear_with_wind"  ~ "lineair voorspelde waterhoogte in cm zonder nodaal getij en met wind"
-))
+veldnaam == "height - surge anomaly" ~ "gemiddelde gemeten waterhoogte minus  de variatie in windopzet in mm",
+veldnaam == "predicted_linear_with_wind"  ~ "lineair voorspelde waterhoogte  in cm zonder nodaal getij en met wind",
+veldnaam == "predicted_linear_without_wind" ~ "lineair voorspelde waterhoogte in cm zonder wind",
+veldnaam == "predicted_linear_mean_wind" ~ "lineair voorspelde waterhoogte in cm met gemiddelde wind",
+veldnaam == "sea_surface_height_due_to_tide" ~ "lineair voorspelde waterhoogte  afwijking door nodaal geij in cm"
+)) %>% 
+  drop_na(betekenis)
 
 knitr::kable(verklarendeTabel, caption = "Verklaring van tabel 'gegevens per station'") %>%
   kableExtra::kable_styling(latex_options="scale_down")
@@ -591,9 +595,11 @@ veldnaam == "predicted_linear_mean_wind_pi_025"  ~ "",
 veldnaam == "predicted_linear_mean_wind_pi_975"  ~ "",
 veldnaam == "sea_surface_height_due_to_tide"  ~ "lineair voorspelde waterhoogte in cm zonder nodaal getij en met wind",
 veldnaam == "date"  ~ "datum"
-))
+)) %>%
+  drop_na(betekenis)
 
-knitr::kable(verklarendeTabel, caption = "Verklaring van tabel 'gegevens per station'")
+knitr::kable(verklarendeTabel, caption = "Verklaring van tabel dutch-sea-level-monitor-export") %>%
+  kableExtra::kable_styling(latex_options = "scale_down")
 
 ```
 
@@ -604,4 +610,4 @@ in [NAPinfo](https://maps.rijkswaterstaat.nl/geoweb55/index.html?viewer=NAPinfo)
 
 [Waterinfo-extra](https://waterinfo-extra.rws.nl/monitoring/waterkwantiteit/) is de omgeving van Rijkswaterstaat voor ontsluiting van watergerelateerde gegevens en informatie, voor zover deze niet in de primaire systemen beschikbaar wordt gemaakt. Rijkswaterstaat werkt aan het publiceren van de jaargemiddelde waterstanden voor de hoofdstations in deze omgeving, inclusief de informatie om deze gegevens te duiden.
 
-[Waterinfo]()
+

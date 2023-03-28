@@ -74,17 +74,9 @@ Gebaseerd op de zeespiegelstanden kan een zeespiegelstijging worden bepaald. Een
 
 Er zijn verschillende methoden om indicatoren voor de zeespiegelstijging te kwantificeren.
 
-Boekhouden
-
-:   In deze methode worden op grote schaal een balansen opgesteld van bekende componenten die bijdragen aan een fenomeen. Ook voor zeespiegelstijging worden er budgetten opgesteld. Met deze aanpak worden antwoorden gegeven op vragen als, waar komt de meeste zeespiegelstijging vandaan, van Antarctica of van Groenland? Met een gegeven lijstje oorzaken, kan de grootte van de verschillende bijdragen geschat worden. Men maakt gebruik van beschrijvende statistiek en bij voorkeur van gemeten gegevens.
-
-Data science
-
-:   De methode op basis van data science richt zich meer op het detecteren en inschatten van veranderingen en het vergelijken van verschillende theorieën. Is er een versnelling zichtbaar in het afkalven en smelten van ijs op Antarctica? Welk deel van de trend is lange en welk deel is korte termijn? Men maakt gebruik van exploratieve, lerende en generatieve modellen. Dit gebeurt op basis van gemeten en gesimuleerde gegevens.
-
-Simuleren
-
-:   Als processen goed begrepen worden kunnen ze ook in een numeriek model gevat worden. Hiermee worden processen gesimuleerd. Dit wordt gebruikt voor het creëren van heranalyses (bijgestuurd door metingen) en bij het doorrekenen van scenario's naar projecties.
+*   Boekhouden - In deze methode worden op grote schaal een balansen opgesteld van bekende componenten die bijdragen aan een fenomeen. Ook voor zeespiegelstijging worden er budgetten opgesteld. Met deze aanpak worden antwoorden gegeven op vragen als, waar komt de meeste zeespiegelstijging vandaan, van Antarctica of van Groenland? Met een gegeven lijstje oorzaken, kan de grootte van de verschillende bijdragen geschat worden. Men maakt gebruik van beschrijvende statistiek en bij voorkeur van gemeten gegevens.
+*   Data science - De methode op basis van data science richt zich meer op het detecteren en inschatten van veranderingen en het vergelijken van verschillende theorieën. Is er een versnelling zichtbaar in het afkalven en smelten van ijs op Antarctica? Welk deel van de trend is lange en welk deel is korte termijn? Men maakt gebruik van exploratieve, lerende en generatieve modellen. Dit gebeurt op basis van gemeten en gesimuleerde gegevens.
+*   Simuleren - Als processen goed begrepen worden kunnen ze ook in een numeriek model gevat worden. Hiermee worden processen gesimuleerd. Dit wordt gebruikt voor het creëren van heranalyses (bijgestuurd door metingen) en bij het doorrekenen van scenario's naar projecties.
 
 De uitdaging in het kwantificeren van de zeespiegel is om spaarzaam een verzameling van processen te kiezen waar rekening mee gehouden wordt. Alle processen tegelijk beschouwen is niet behapbaar, conceptueel, qua data beschikbaarheid en rekentechnisch.
 
@@ -94,11 +86,8 @@ Dit rapport maakt gebruikt van alle drie de methoden. In de beschrijving van de 
 
 Absolute zeespiegelstijging wordt grotendeels veroorzaakt door twee componenten [Zie bijvoorbeeld @Chambers2017]: de totale hoeveelheid water in de oceaan (toename van massa) of in de dichtheid van het water (toename van volume). Beide componenten zorgen ervoor dat het oceaanvolume toeneemt.
 
-Dichtheid
-
-:   Het oceaanwater wordt warmer doordat de oppervlaktetemperatuur stijgt. Hierdoor neemt de dichtheid van het oceaanwater af en is er een toename in oceaanvolume. Massa
-
-:   De massa van de oceaanwater neemt toe door een toename van de totale hoeveelheid water in de oceaan. De massa kan toenemen door bijvoorbeeld het smelten van gletsjers en ijskappen (landijs) en veranderingen in opslag van land-water.
+*   Dichtheid - Het oceaanwater wordt warmer doordat de oppervlaktetemperatuur stijgt. Hierdoor neemt de dichtheid van het oceaanwater af en is er een toename in oceaanvolume. 
+*    Massa - De massa van de oceaanwater neemt toe door een toename van de totale hoeveelheid water in de oceaan. De massa kan toenemen door bijvoorbeeld het smelten van gletsjers en ijskappen (landijs) en veranderingen in opslag van land-water.
 
 Een overzicht van de uitsplitsing van de globale zeespiegelstijging, over de periode 1990-2017 is te vinden in figuur \@ref(fig:global-budget). Deze uitsplitsing wordt gebruikt om de betrouwbaarheid van de schattingen te bepalen. In dit geval zijn de zeespiegelmetingen op basis van de verschillende altimetrie satellieten (TOPEX/Poseidon, \acr{JASON} 1,2,3) vergeleken [@Zlotnicki2016] met de oceaan massa op basis van de \acr{GRACE}-missie [@Watkins2015] en de sterische informatie op basis van de \acr{Argo} dataset [@Llovel2014]. Sterisch slaat op de verandering in dichtheid door temperatuursverandering (thermosterisch) of veranderingen in het zoutgehalte in water (halosterische effect). Om de grafieken op elkaar aan te laten sluiten worden diverse correcties en filters toegepast. In figuur \@ref(fig:global-budget) zijn bijvoorbeeld de seizoenseffecten verwijderd, de data is gefilterd met een lopend gemiddelde, zodat deze er wat minder grillig uitzien. Er is een correctie doorgevoerd voor de \acr{GIA}. De oceaanbodem zakt waardoor het oceaanvolume toeneemt. Bij een constant zeeniveau stijgt na het toepassen van deze correctie de globale zeespiegel met 0.3mm/. Er zijn goede metingen van ijsmassaveranderingen beschikbaar sinds de start van de \acr{GRACE} missie in 2002. De globale dekking van sterische effecten, op basis van het \acr{Argo} programma begint in 2004.
 
@@ -254,7 +243,9 @@ getijFreq <- tibble(
   )
 )
 
-knitr::kable(getijFreq, align = "rcl", caption = "Frequenties van het getij [@Doodson1921]")
+knitr::kable(getijFreq, align = "rcl", caption = "Frequenties van het getij [@Doodson1921]") %>%
+   kableExtra::kable_styling(latex_options="scale_down")
+  
 ```
 
 <!-- Ik stel voor om onderstaand te vervangen door bovenstaande code  -->
@@ -324,9 +315,12 @@ knitr::kable(
       "Extra gewicht dat op het maaiveld (of waterbodem) wordt aangebracht drukt de lagen in de ondergrond worden samen."
     )
   ),
-  caption = "(ref:bodemdaling-label)"
-) %>%
+  caption = "(ref:bodemdaling-label)",
+  booktabs = TRUE
+) %>% 
+  kableExtra::column_spec(3, width = "6cm") %>%
   kableExtra::kable_styling(latex_options="scale_down")
+ 
 ```
 
 De invloed van autocompactie en tektoniek, langs de Nederlandse kust, worden door @Hijma2017 geschat op minder dan 0.1mm/jaar. De bijdrage van isostasie is groter in Noord Nederland (0.3 mm/jaar--0.7 mm/jaar) dan in Zuid Nederland (0.2 mm/jaar--0.5 mm/jaar), zoals te zien in figuur \@ref(fig:bodemdaling-isostasie). De gevolgen van zout en gaswinning staan weergegeven in figuur \@ref(fig:bodemdaling-winningen). Tot nu toe zijn het vooral de gaswinningen die voor een aanzienlijke bodemdaling hebben gezorgd.

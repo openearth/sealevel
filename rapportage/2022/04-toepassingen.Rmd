@@ -6,10 +6,6 @@ editor_options:
 
 # Toepassingen {#toepassingen}
 
-<!-- Dit hoofdstuk is een update en ingekorte versie van het rapport in de -->
-
-<!-- bijlage. -->
-
 Traditioneel worden de waterstandsmetingen vooral toegepast in de
 scheepvaart. Met name de tijdstippen van het getij zijn belangrijk om te
 bepalen of er genoeg ruimte onder de kiel (laagwater) en onder een brug
@@ -108,7 +104,7 @@ kustsysteem.
 | Oorsprong  | 3e Kustnota (2000)                                                            |
 | Producent  | Deltares                                                                      |
 | Gebruiker  | Rijkswaterstaat                                                               |
-| Literatuur | Mulder (2000), [@Dillingh2010], [@Ronde2014], [@Baart2015]                                                              |
+| Literatuur | Mulder (2000), [@Dillingh2010], [@Ronde2014], [@Baart2015]       |
 
 <!-- Naam -->
 

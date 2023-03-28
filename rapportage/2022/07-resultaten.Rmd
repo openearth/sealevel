@@ -322,7 +322,7 @@ predictions_all %>%
    pivot_longer(-correction_variant) %>% 
    pivot_wider(names_from=correction_variant, values_from=value) %>%
   rename(variabele = name, `waarde in cm` = GTSM) %>%
-  kableExtra::kable(caption = "Kengetallen voor de huidige zeespiegelstand (2021).") %>% 
+  kableExtra::kable(caption = "Kengetallen voor de huidige zeespiegelstand (2021).") %>%
   kableExtra::kable_styling(latex_options="scale_down")
   
 ```
@@ -729,7 +729,8 @@ fits %>%
      `trend na 1993` = total_trend,
     `se2` = `se_total_trend`
   ) %>%
-knitr::kable(align = "lrrrrr", caption = "(ref:zeespiegeltrends-label)", digits = 1)
+knitr::kable(align = "lrrrrr", caption = "(ref:zeespiegeltrends-label)", digits = 1) %>%
+  kableExtra::kable_styling(latex_options="scale_down")
 
 ```
 
@@ -770,7 +771,7 @@ Op basis van de analyse in paragraaf \@ref(bodemdaling) en paragraaf \@ref(nulpa
 |                  |                       |           |             |                 |                 |
 |:-----------|-----------:|-----------:|-----------:|-----------:|-----------:|
 | Station          | Tectoniek + Isostasie | Winningen |       Bodem | Huidig relatief | Huidig absoluut |
-|                  |                $$cm$$ |    $$cm$$ | $$mm/jaar$$ |     $$mm/jaar$$ |     $$mm/jaar$$ |
+|                  |                cm |    cm | mm/jaar |     mm/jaar |     mm/jaar |
 | Vlissingen       |                  -2.4 |       0.0 |       -0.24 |             2.8 |             2.6 |
 | Hoek van Holland |                  -3.7 |        -1 |       -0.47 |             3.1 |             2.6 |
 | IJmuiden         |                  -5.0 |       0.0 |       -0.50 |             2.3 |             1.8 |
