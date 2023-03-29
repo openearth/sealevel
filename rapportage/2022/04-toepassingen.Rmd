@@ -23,46 +23,26 @@ basis van dat overzicht is onderstaand overzicht gemaakt van enkele
 toepassingen waarbij indicatoren van de zeespiegel gebruikt worden. Per
 toepassing wordt een overzicht gegeven van de volgende aspecten.
 
-Definitie
-
-:   de wijze waarop de toepassing is opgeschreven en de interpretatie
-
-Grootheid
-
-:   bijvoorbeeld hoogwater, laagwater, gemiddelde waterstand
-
-Categorie
-
-:   beheer en onderhoud, beoordeling van veiligheid, ontwerp of
-    planvorming (ruimtelijke ordening)
-
-Toepassing
-
-:   waar wordt de indicator voor gebruikt
-
-Oorsprong
-
-:   waar komt de indicator voor het eerst voor, in beleidsstukken,
-    uitgangsdocumenten en wetten
-
-Producent
-
-:   organisatie die verantwoordelijk is voor het vaststellen van de
-    indicator
-
-Gebruiker
-
-:   organisatie die het beleid uitvoert waarop het getal is gebaseerd
-
-Verantwoording
-
-:   hoe het getal tot stand is gekomen, referentie naar het document
-    waarin dit is beschreven.
+-   Definitie - de wijze waarop de toepassing is opgeschreven en de
+    interpretatie
+-   Grootheid - bijvoorbeeld hoogwater, laagwater, gemiddelde waterstand
+-   Categorie - beheer en onderhoud, beoordeling van veiligheid, ontwerp
+    of planvorming (ruimtelijke ordening)
+-   Toepassing - waar wordt de indicator voor gebruikt
+-   Oorsprong - waar komt de indicator voor het eerst voor, in
+    beleidsstukken, uitgangsdocumenten en wetten
+-   Producent - organisatie die verantwoordelijk is voor het vaststellen
+    van de indicator
+-   Gebruiker - organisatie die het beleid uitvoert waarop het getal is
+    gebaseerd
+-   Verantwoording - hoe het getal tot stand is gekomen, referentie naar
+    het document waarin dit is beschreven.
 
 ## Kustbeheer
 
-De overheid heeft zich als taak gesteld om de
-kustlijn en het kustfundament dynamisch te handhaven. We werken hier de verschillende aspecten verder uit.
+De overheid heeft zich als taak gesteld om de kustlijn en het
+kustfundament dynamisch te handhaven. We werken hier de verschillende
+aspecten verder uit.
 
 Het handhaven gebeurt in de vorm van zandsuppleties. Het
 beleidsuitgangspunt is dat geen structurele erosie van de kustlijn
@@ -74,8 +54,8 @@ Visie Kust, 2013; Beslissing Zand, 2014; Suppletieprogramma
 Kustlijnzorg; 2015). Het benodigde zandvolume om mee te groeien wordt
 voor een belangrijk deel bepaald als het product van 'het oppervlak van
 het kustfundament' en 'de actuele zeespiegelstijging'. De trend in de
-actuele zeespiegel is dus de indicator die voor het beheer en
-onderhoud van de kust wordt gebruikt.
+actuele zeespiegel is dus de indicator die voor het beheer en onderhoud
+van de kust wordt gebruikt.
 
 Sinds 2001 wordt jaarlijks gemiddeld 12 Mm^3^ zand gesuppleerd langs de
 Nederlandse kust. Dit is de richtwaarde uit de 3e Kustnota die in de
@@ -104,7 +84,7 @@ kustsysteem.
 | Oorsprong  | 3e Kustnota (2000)                                                            |
 | Producent  | Deltares                                                                      |
 | Gebruiker  | Rijkswaterstaat                                                               |
-| Literatuur | Mulder (2000), [@Dillingh2010], [@Ronde2014], [@Baart2015]       |
+| Literatuur | Mulder (2000), [@Dillingh2010], [@Ronde2014], [@Baart2015]                    |
 
 <!-- Naam -->
 
@@ -113,6 +93,7 @@ kustsysteem.
 <!-- Definitie -->
 
 <!-- :   De langjarige trend in de jaargemiddelde zeespiegel voor de zes -->
+
 <!--     hoofdstations. -->
 
 <!-- Grootheid -->
@@ -149,7 +130,10 @@ tientallen jaren, waarbij tussentijds ingrijpen mogelijk is, als dit
 nodig zou blijken te zijn. De ruimte voor winning wordt mede bepaald
 door de snelheid van de zeespiegelstijging. Het betreffende
 beleidsscenario wordt elke 5 jaar geactualiseerd op basis van recente
-inzichten. Er is tevens een door \{EZK} een uitwerking gemaakt voor het eventueel aanpassen van de winning in geval van crisis, [het bescherm- en herstelplan gas](https://open.overheid.nl/repository/ronl-c696bb3e-b8a9-411f-aabd-f539bc0ebed2/1/pdf/Bescherm%20en%20Herstelplan%20Gas.pdf). 
+inzichten. Er is tevens een door {EZK} een uitwerking gemaakt voor het
+eventueel aanpassen van de winning in geval van crisis, [het bescherm-
+en herstelplan
+gas](https://open.overheid.nl/repository/ronl-c696bb3e-b8a9-411f-aabd-f539bc0ebed2/1/pdf/Bescherm%20en%20Herstelplan%20Gas.pdf).
 
 Het \acr{TNO} heeft dit uitgewerkt in een advies [@Kroon2016] om
 rekening te houden met zowel een trend als een versnelling in de
@@ -157,39 +141,16 @@ relatieve zeespiegelstijging. \acr{EZK} hanteert bij haar besluitvorming
 een gebruiksruimte (meegroeivermogen minus het deel hiervan dat dient
 ter compensatie van de stijgende zeespiegel) van 5mm/.
 
-Naam
-
-:   Beleidsscenario zeespiegelstijging
-
-Definitie
-
-:   Geobserveerde zeespiegelstijging van de stations in het Nederlandse
-    deel van de Wadden plus een versnelling op basis van de wereldwijde
-    acceleratie.
-
-Grootheid
-
-:   Stijging van de zeespiegel
-
-Toepassing
-
-:   Hand aan de kraan
-
-Oorsprong
-
-:   Mijnbouwwet, Natura2000
-
-Producent
-
-:   TNO
-
-Gebruiker
-
-:   Ministerie van Economische Zaken
-
-Literatuur
-
-:   @Kroon2016
+|            |                                                                                                                                                      |
+|-------------------------------------|-----------------------------------|
+| Naam       | Beleidsscenario zeespiegelstijging                                                                                                                   |
+| Definitie  | Geobserveerde zeespiegelstijging van de stations in het Nederlandse deel van de Wadden plus een versnelling op basis van de wereldwijde acceleratie. |
+| Grootheid  | Stijging van de zeespiegel                                                                                                                           |
+| Toepassing | Hand aan de kraan                                                                                                                                    |
+| Oorsprong  | Mijnbouwwet, Natura2000                                                                                                                              |
+| Producent  | TNO                                                                                                                                                  |
+| Gebruiker  | Ministerie van Economische Zaken                                                                                                                     |
+| Literatuur | @Kroon2016                                                                                                                                           |
 
 ## Ontwerp
 
@@ -225,94 +186,48 @@ gebruik van gemaakt (RWS, 2014). Zo is uitgegaan van een
 zeespiegelstijging van 1.20m in 2100 ten opzichte van 2000. Voor de
 jaren na 2100 wordt lineair geëxtrapoleerd.
 
-Naam
-
-:   Ontwerphoogte Maasvlakte 2
-
-Definitie
-
-:   Hoogwaterstand (inclusief golven) met een overschrijdingsfrequentie
-    van $10^{-4}$/ plus een scenario van zeespiegelstijging 50 jaar
-    vooruit.
-
-Grootheid
-
-:   Hoogwaterstand
-
-Categorie
-
-:   Ontwerp
-
-Toepassing
-
-:   Ontwerphoogte/levensduur
-
-Oorsprong
-
-:   @Samenwerkingsverband-Maasvlakte-21998
-
-Producent
-
-:   Deltares (hoogwaterstand) + KNMI (scenario's)
-
-Gebruiker
-
-:   Haven van Rotterdam
-
-Literatuur
-
-:   @Samenwerkingsverband-Maasvlakte-21998
+|            |                                                                                                                                          |
+|-------------------------------------|-----------------------------------|
+| Naam       | Ontwerphoogte Maasvlakte 2                                                                                                               |
+| Definitie  | Hoogwaterstand (inclusief golven) met een overschrijdingsfrequentie van 10^-4^ plus een scenario van zeespiegelstijging 50 jaar vooruit. |
+| Grootheid  | Hoogwaterstand                                                                                                                           |
+| Categorie  | Ontwerp                                                                                                                                  |
+| Toepassing | Ontwerphoogte/levensduur                                                                                                                 |
+| Oorsprong  | @Samenwerkingsverband-Maasvlakte-21998                                                                                                   |
+| Producent  | Deltares (hoogwaterstand) + KNMI (scenario's)                                                                                            |
+| Gebruiker  | Haven van Rotterdam                                                                                                                      |
+| Literatuur | @Samenwerkingsverband-Maasvlakte-21998                                                                                                   |
 
 ## Toetsing/beoordeling
 
-In \acr{WBI} ([weblink](https://www.helpdeskwater.nl/onderwerpen/waterveiligheid/primaire/beoordelen/beoordelingsinstrumentarium-wbi2017-0/)) zijn de toeslagen voor
-getijhoogwaterstijging (omschreven als "zeespiegelrijzing en lokale
-effecten") bepaald voor de periode 1985-2023 op basis van een
-statistische analyse van tijdreeksen van hoogwaterstanden tot en met
-2012 voor 23 stations. Aanname hierbij is dat de gemiddelde trend (in de
-stijging) tussen 1985 en 2012 zich voortzet tot 2023. De gemiddelde
-toeslagen langs de Nederlandse kust, Westerschelde en Waddenzee zijn
-voor de periode 1985-2023 gelijk aan de toeslagen voor de periode
-1985-2017 (met uitzondering van Hoek van Holland en Petten Zuid).
+In \acr{WBI}
+([weblink](https://www.helpdeskwater.nl/onderwerpen/waterveiligheid/primaire/beoordelen/beoordelingsinstrumentarium-wbi2017-0/))
+zijn de toeslagen voor getijhoogwaterstijging (omschreven als
+"zeespiegelrijzing en lokale effecten") bepaald voor de periode
+1985-2023 op basis van een statistische analyse van tijdreeksen van
+hoogwaterstanden tot en met 2012 voor 23 stations. Aanname hierbij is
+dat de gemiddelde trend (in de stijging) tussen 1985 en 2012 zich
+voortzet tot 2023. De gemiddelde toeslagen langs de Nederlandse kust,
+Westerschelde en Waddenzee zijn voor de periode 1985-2023 gelijk aan de
+toeslagen voor de periode 1985-2017 (met uitzondering van Hoek van
+Holland en Petten Zuid).
 
-Naam
+|                   |                                                                   |
+|-------------------------------------|-----------------------------------|
+| Naam              | Toeslag getijhoogwaterstijging                                    |
+| Definitie         | Regionaal variërende toeslag getijhoogwaterstijging in 2011 ten opzichte van 1985                                                                 |
+| Grootheid         | Hoogwater                                                         |
+| Categorie         | Toetsing                                                          |
+| Toepassing        | Wettelijke beoordeling veiligheid primaire waterkeringen          |
+| Oorsprong         | Hydraulische Randvoorwaarden (HR2006)                             |
+| Producent         | Deltares                                                          |
+| Gebruiker         | Rijkswaterstaat, Waterschappen                                    |
+| Verantwoording    | Derde toetsronde: achtergrondrapportages HR2006, documenten Douwe |
 
-:   Toeslag getijhoogwaterstijging
-
-Definitie
-
-:   Regionaal variërende toeslag getijhoogwaterstijging in 2011 ten
-    opzichte van 1985
-
-Grootheid
-
-:   Hoogwater
-
-Categorie
-
-:   Toetsing
-
-Toepassing
-
-:   Wettelijke beoordeling veiligheid primaire waterkeringen
-
-Oorsprong
-
-:   Hydraulische Randvoorwaarden (HR2006)
-
-Producent
-
-:   Deltares
-
-Gebruiker
-
-:   Rijkswaterstaat, Waterschappen
-
-Verantwoording
-
-:   Derde toetsronde: achtergrondrapportages HR2006, documenten Douwe
-    Dillingh (teruggaand tot vaststelling basispeilen in 1985) WBI2017:
-    Chbab (2015)
+```         
+Dillingh (teruggaand tot vaststelling basispeilen in 1985) WBI2017:
+Chbab (2015) |
+```
 
 ## Percentage onder zeeniveau {#perc-below-sl}
 
@@ -335,49 +250,20 @@ het percentage onder zeeniveau, maar onder \acr{NAP}.
 Wat misschien wel de belangrijkste conclusie van deze indicator is is
 dat afgezien van het gebruik in internationale profilering de indicator
 niet tot daadwerkelijke actie leidt. De indicator heeft vooral een
-symbolische en representatieve waarde. 
+symbolische en representatieve waarde.
 
-Naam
-
-:   Percentage Nederland onder zeeniveau
-
-Definitie
-
-:   Onbepaald
-
-Grootheid
-
-:   Topografie $>$ zeeniveau
-
-Type
-
-:   Planvorming
-
-Toepassing
-
-:   Toespraken en inleiding wetenschappelijke artikelen
-
-Oorsprong
-
-:   Onbekend
-
-Context
-
-:   Dit cijfer wordt in veel toespraken gebruikt, bijvoorbeeld
-    [@Rutte2016].
-
-Producent
-
-:   Onbekend, correctie door \acr{PBL}
-
-Gebruiker
-
-:   Ministers, wetenschappers, Rijkswaterstaat
-
-Verantwoording
-
-:   Er is geen publicatie waar het getal wordt uitgerekend. Er is geen
-    methode beschreven.
+|                     |                                                                    |
+|-------------------------------------|-----------------------------------|
+| Naam                | Percentage Nederland onder zeeniveau                               |
+| Definitie           | Onbepaald                                                          |
+| Grootheid           | Topografie $>$ zeeniveau                                           |
+| Type                | Planvorming                                                        |
+| Toepassing          | Toespraken en inleiding wetenschappelijke artikelen                |
+| Oorsprong           | Onbekend                                                           |
+| Context             | Dit cijfer wordt in veel toespraken gebruikt, bijvoorbeeld [@Rutte2016].       |  | Producent           | Onbekend, correctie door \acr{PBL}                                 |
+| Gebruiker           | Ministers, wetenschappers, Rijkswaterstaat                         |
+| Verantwoording      | Er is geen publicatie waar het getal wordt uitgerekend. Er is geen |
+| methode beschreven. |                                                                    |
 
 ## Zeespiegel over 200 jaar {#200jaar}
 
@@ -393,15 +279,14 @@ Kustnota stelt verder strenge voorwaarden aan bebouwing langs de kust.
 Zo moet rekening worden gehouden met de planologische reservering, zijn
 harde elementen in de afslagzone en reserveringsstrook die het wezen van
 de flexibele kust aantasten niet toegestaan en mag nieuwe bebouwing geen
-belemmering vormen voor het proces van afslag. Dit is
-bekrachtigd in het voorlopige Kustpact. De waterschappen hebben het
-begrip reserveringszone (ook wel vrijwaringszone genoemd) hernoemd naar
-"profiel van vrije ruimte" en gesteld dat het het deel van de zone is
-dat "naar het oordeel van de beheerder nodig is voor toekomstige
-verbeteringen". Hierbij is expliciet de definitie van de
-zeespiegelstijging losgelaten (Unie van Waterschappen, 2013).
-Waterschappen leggen in de Keur en in de Legger vast wat de specifieke
-invulling is.
+belemmering vormen voor het proces van afslag. Dit is bekrachtigd in het
+voorlopige Kustpact. De waterschappen hebben het begrip reserveringszone
+(ook wel vrijwaringszone genoemd) hernoemd naar "profiel van vrije
+ruimte" en gesteld dat het het deel van de zone is dat "naar het oordeel
+van de beheerder nodig is voor toekomstige verbeteringen". Hierbij is
+expliciet de definitie van de zeespiegelstijging losgelaten (Unie van
+Waterschappen, 2013). Waterschappen leggen in de Keur en in de Legger
+vast wat de specifieke invulling is.
 
 Voor een voorbeeld van de implementatie hiervan beschouwen we de
 beschermingszones bij Callantsoog in \acr{HHNK}. Er zijn twee
@@ -414,43 +299,17 @@ knitr::include_graphics("figures/callantsoog.png")
 knitr::include_graphics("figures/callantsoog-legenda.png")
 ```
 
-Naam
-
-:   Zeespiegel over 200 jaar
-
-Definitie
-
-:   Zeespiegel uit scenario maal twee + 10% wind. Gecombineerd met
-    \acr{MorphAn} berekening.
-
-Toepassing
-
-:   Bepaling keur en legger
-
-Oorsprong
-
-:   [@Author2012]
-
-Type
-
-:   Planvorming
-
-Context
-
-:   ECLI:NL:RBSGR:2006:AZ5796
-
-Instituut
-
-:   Unie van Waterschappen (Keur/Legger), Deltares (\acr{MorphAn}),
-    \acr{KNMI} scenario's
-
-Gebruiker
-
-:   Waterschappen
-
-verantwoording
-
-:   [@Author2012]
+|                           |                                                                 |
+|-------------------------------------|-----------------------------------|
+| Naam                      | Zeespiegel over 200 jaar                                        |
+| Definitie                 | Zeespiegel uit scenario maal twee + 10% wind. Gecombineerd met \acr{MorphAn} berekening. |                                                    
+| Toepassing                | Bepaling keur en legger                                         |
+| Oorsprong                 | [@Author2012]                                                   |
+| Type                      | Planvorming                                                     |
+| Context                   | ECLI:NL:RBSGR:2006:AZ5796                                       |
+| Instituut                 | Unie van Waterschappen (Keur/Legger), Deltares (\acr{MorphAn}), \acr{KNMI} scenario's     |                                   
+| Gebruiker                 | Waterschappen                                                   |
+| verantwoording            | [@Author2012]                                                   |
 
 ## Signalering {#signalering}
 
@@ -463,46 +322,18 @@ afgegegeven worden. Elke zes jaar worden de indicatoren en de doelen
 opnieuw vastgesteld. De methodiek voor de signalering van versnelde
 zeespiegel moet nog ontwikkeld worden.
 
-Naam
-
-:   Signalering zeespiegelversnelling
-
-Definitie
-
-:   Onbepaald
-
-Grootheid
-
-:   Zeespiegelversnelling
-
-Type
-
-:   Planvorming
-
-Toepassing
-
-:   Adaptatief deltamanagement
-
-Oorsprong
-
-:   Deltaprogramma
-
-Context
-
-:   Deze indicator wordt beschreven in de
-    [@Infrastructuur-en-Waterstaat2018].
-
-Producent
-
-:   Kennisprogramma zeespiegelstijging
-
-Gebruiker
-
-:   Deltacommisaris
-
-Verantwoording
-
-:   Er is nog geen vastgelegde methodiek.
+|                                      |                                       |
+|-------------------------------------|-----------------------------------|
+| Naam                                 | Signalering zeespiegelversnelling     |
+| Definitie                            | Onbepaald                             |
+| Grootheid                            | Zeespiegelversnelling                 |
+| Type                                 | Planvorming                           |
+| Toepassing                           | Adaptatief deltamanagement            |
+| Oorsprong                            | Deltaprogramma                        |
+| Context                               | Deze indicator wordt beschreven in de [@Infrastructuur-en-Waterstaat2018]. |                                     
+| Producent                            | Kennisprogramma zeespiegelstijging    |
+| Gebruiker                            | Deltacommisaris                       |
+| Verantwoording                       | Er is nog geen vastgelegde methodiek. |
 
 ## Trends in toepassingen van de zeespiegel {#toepassing-trends}
 
