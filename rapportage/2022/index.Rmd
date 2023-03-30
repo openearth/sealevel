@@ -1,8 +1,8 @@
 ---
 title: "Zeespiegelmonitor"
 author: "Deltares, KNMI met bijdragen van HKV"
-date: "`r Sys.Date()`"
-output: pdf_document
+date: "28 maart 2023" #"`r Sys.Date()`"
+# output: pdf_document
 site: bookdown::bookdown_site
 bibliography:
 - bib/willems.bib
