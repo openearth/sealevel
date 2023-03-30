@@ -171,11 +171,11 @@ De andere varianten (stations, windcorrectie, versnellingstermen) worden in bijl
 predictions_all %>%
     filter(name_rws == "Netherlands (without Delfzijl)") %>%
     filter(correction_variant %in% c("NCEP1", "GTSM")) %>%
-    filter(model_variant == "linear") %>%
+    filter(model_variant == "linear") %>% 
   rename(`windopzet correctie` = correction_variant) %>%
 ggplot() +
     geom_point(aes(x = year, y = height), size = 1, alpha = 0.4) +
-    geom_line(data = . %>% filter(`windopzet correctie` == "NCEP1"), aes(year, prediction_recalc + effect, color = `windopzet correctie`), size = 1, alpha = 0.6) +
+    geom_line(data = . %>% filter(`windopzet correctie` == "NCEP1"), aes(year, prediction_recalc + anomaly, color = `windopzet correctie`), size = 1, alpha = 0.6) +
     geom_line(data = . %>% filter(`windopzet correctie` == "GTSM"), aes(year, prediction_recalc + anomaly, color = `windopzet correctie`), size = 1, alpha = 0.6) +
   ylab("zeespiegel in mm") + xlab("jaar") +
   scale_x_continuous(breaks = scales::pretty_breaks(6)) +
