@@ -1,13 +1,13 @@
 bookdown::gitbook:
-  css: ["style.css", "draft.css"]
+  css: ["style.css"]
   config:
     toc:
       collapse: section
       before: |
         <li><a href="./">Zeespiegelmonitor</a></li>
-      after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    download: ["pdf", "epub"]
+      # after: |
+      #   <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    download: ["pdf"]
   includes:
     # before_body: navbar/navbar.html
     in_header: clickandzoom.html
@@ -17,6 +17,10 @@ bookdown::gitbook:
     -   --top-level-division=chapter
 bookdown::word_document2: default 
 bookdown::bs4_book:
+  includes:
+    before_body: navbar/navbar.html
+    in_header: clickandzoom_bs4.html
+  css: ["navbar/navbar.css", "style/deltares.css"]
   theme:
     primary: "#982a31"
     fg: "#2b2121"
@@ -27,6 +31,7 @@ bookdown::bs4_book:
   # css: ["navbar/navbar.css", "style/deltares.css", "style.css", "draft.css"]
   pandoc_args: !expr acronymsdown::add_filter()
 bookdown::pdf_book:
+  extra_dependencies: ["flafter"]
   includes:
     in_header: preamble.tex
   template: deltares-report-template.tex

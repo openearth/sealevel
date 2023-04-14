@@ -5,13 +5,12 @@ rmd_files: [
   "06-methoden.Rmd",
   "07-resultaten.Rmd",
   "08-discussie.Rmd",
-  # "09-conclusies.Rmd",
   "10-references.Rmd",
-  "varianten.Rmd",
   "11-appendix.Rmd",
+  "03-oorzaken.Rmd",
   "04-toepassingen.Rmd",
   "05-metingen.Rmd",
-  "03-oorzaken.Rmd"
+  "varianten.Rmd"
   ]
 delete_merged_file: true
 before_chapter_script: _common.R

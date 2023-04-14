@@ -1,7 +1,5 @@
 \def\tightlist{}
-\documentclass[biblatex,ddraft]{deltares_report}
-% \usepackage{booktabs}
-% \usepackage{tabu}
+\documentclass[dutch, biblatex]{deltares_report}
 $if(highlighting-macros)$
 $highlighting-macros$
 $endif$
@@ -36,56 +34,69 @@ $if(csl-refs)$
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\renewcommand{\FrontCover}{\includegraphics[width=182mm,height=182mm]
+{figures/IJMDBTHVN.jpg}}
+\coverPhoto{Meetstation IJmuiden, foto van nap-info. }
 $endif$
 \begin{document}
 \title{Zeespiegelmonitor}
 \subtitle{2022}
-\author{Deltares}
-% \partner{Partners}
+\author{Willem Stolte, Fedor Baart, Sanne Muis, Marc Hijma, Marcel Taal (Deltares)
+Dewi Le Bars, Sybren Drijfhout (KNMI) met bijdragen van HKV.}
+\partner{}
 
-\client{Rijkswaterstaat WVL}
-\contact{Saskia van Gool}
-% \reference{Reference}
+\client{Ministerie van Infrastructuur en Waterstaat/DG Water en Bodem}
+\contact{}
+\reference{}
 \keywords{Zeespiegel, Zeespiegelstijging, Bodemdaling}
 
-\version{0.5}
-\date{15-09-2022}
-% \projectnumber{11208038}
-% \documentid{Id}
-\status{concept}
-% \disclaimer{Disclaimer}
-%\references{References}
+\version{1.0}
+\date{27-03-2023}
+\projectnumber{11208038}
+\documentid{11209266-000-ZKS-0001}
+\status{definitief}
+\disclaimer{}
+%\references{}
 
-\authori{Willem Stolte}
+\authori{Willem Stolte, Fedor Baart, Sanne Muis, Marc Hijma, Marcel Taal (Deltares), Dewi Le Bars, Sybren Drijfhout (KNMI)}
+\datei{03-27-2023}
 \organisationi{Deltares}
-\authorii{Fedor Baart}
-\organisationii{Deltares}
-\authoriii{Sanne Muis}
-\organisationiii{Deltares}
-\versioni{0.5}
+\versioni{1.0}
 \revieweri{Bart van den Hurk}
-\approvali{Paul Saager}
+\approvali{Toon Segeren}
 \publisheri{Deltares}
 
 \summary{
-Sinds 2014 onderhoudt Deltares in opdracht van Ministerie van I\&W de Zeespiegelmonitor. Doel is om, op basis van de waterstandsdata van de zes Nederlandse hoofdkuststations, de stand en ontwikkeling van de zeespiegel vast te stellen. Deze worden gebruikt om de uitvoering van het waterveiligheidsbeleid te ondersteunen. Het gaat in het bijzonder om de gemiddelde hoeveelheid jaarlijks te suppleren zand en toetsingen en ontwerpen van keringen. De gegevens van de Zeespiegelmonitor worden ook gebruikt in het opvolgen van vergunningen van gas- en zoutwinning onder de Waddenzee.
+Sinds 2014 onderhoudt Deltares in opdracht van Ministerie van I\&W de Zeespiegelmonitor. Doel is de stand en ontwikkeling van de zeespiegel vast te stellen, ter ondersteuning van het waterveiligheidsbeleid. Het gaat met name om de gemiddelde hoeveelheid jaarlijks te suppleren zand en het toetsen en ontwerpen van de primaire waterkeringen.
 
-De stand van de zeespiegel wordt elk jaar vastgesteld. Ze is het resultaat van daadwerkelijke (absolute) stijging van de zeespiegel en bodemdaling. Hierom wordt gesproken over relatieve zeespiegelstijging. Iedere drie jaar is er een rapportage die ingaat op de waarnemingen, de conclusies daaruit en de resultaten van onderzoek ten behoeve van de Zeespiegelmonitor. Dit is de derde rapportage.
+De Zeespiegelmonitor stelt jaarlijks de stand van de zeespiegel vast van de zes Nederlandse hoofdgetijdenstations (Delfzijl, Harlingen, Den Helder, IJmuiden, Hoek van Holland en Vlissingen), die continu de waterstand vastleggen/meten. De methodiek voor de Zeespiegelmonitor is in 2014 vastgesteld en berekent de langjarige trend. Bij deze berekening wordt rekening gehouden met de verschillende factoren die de fluctuaties in waterstanden beïnvloeden. Wind en getij zijn daarvan de belangrijkste. Het resultaat van de zeespiegelmonitor wordt representatief geacht voor de gemiddelde zeespiegelstijging in de komende ca 15 jaar. Iedere vier jaar wordt gerapporteerd over de waarnemingen en de onderzoeksresultaten. Dit is de derde rapportage.
 
-Voor het bepalen van de stand en trend van de zeespiegel is in 2014 een methodiek vastgesteld om zo objectief mogelijk de waarden ervan vast te stellen. Dit vaststellen is geen triviale zaak omdat waterstandsdata veel meer informatie bevatten dan alleen veranderingen van de middenwaterstand op zee. Jaarlijkse variatie in wind en getij zijn daar de belangrijkste van. De analyse van de data (cf. de afgesproken methodiek) leidde tot vorig jaar tot de conclusie dat een constante trend de beste beschrijving geeft, gegeven de doelen van de Zeespiegelmonitor. Vanaf dit jaar is dit niet meer zo. De zeespiegel langs de Nederlandse kust kan nu het best beschreven worden door een combinatie van twee lijnen. De eerste lijn loopt tot 1993 met een gemiddelde jaarlijkse stijging van 1,8 mm/jaar. De tweede lijn loopt vanaf 1993 met een gemiddelde jaarlijkse stijging van 2,9 mm/jaar.
+In de vorige twee rapportages is geconcludeerd dat, cf.~de methodiek, een constante trend, sinds 1900, de beste beschrijving geeft van de trend. In deze rapportage wordt een andere conclusie onderbouwd/getrokken. De stijging van de zeespiegel langs de Nederlandse kust kan nu het best beschreven worden door een trend tot circa 1990 van 1.8 ± 0.1 mm/jaar, met een toename van de gemiddelde jaarlijkse stijging over de laatste 30 jaar van 2.9 ± 0.4 mm/jaar. Deze toename past bij de verwachting, op basis van de kennis over de wereldwijde stand van de zeespiegel, van een langzaam opbouwende versnelling van de zeespiegelstijging.
 
-Bovenstaande figuur illustreert meerdere belangrijke boodschappen van dit rapport:
+Voor de komende ca 15 jaar is een trend van 2.9 mm/jaar een verantwoorde benadering. De methodiek toegepast in de zeespiegelmonitor, is niet geschikt voor een berekening van de trend over de periode daarna.
 
--   Ook in Nederland moeten we nu rekening houden met een zeespiegelstijging in de komende decennia die hoger is dan de trend die er vorige eeuw was.
--   De nieuwe datapunten, van de laatste drie, vier jaar, maakten het doorslaggevende verschil. Ze liggen allemaal boven de historische trendlijn uit de vorige rapportage.
--   De data vertonen tot 1979 meer variatie (afwijkingen van het gemiddelde). Voor de waterstanden vanaf 1979 is het goed mogelijk om de invloed van de variatie door wind- en stormopzet weg te filteren. Dit ligt ten grond aan de lagere spreiding vanaf 1979 en verkleint de onzekerheid in de schatting van de zeespiegel en -trend.
--	De stand van de zeespiegel (hetgeen verwacht wordt gegeven de opgetreden variatie in windopzet en getij) was in 2021 hoger dan ooit geweest: 9.4 cm boven NAP.
-(- ? De onzekerheid in de vastgestelde trend is kleiner dan de jaar op jaar variaties in de stand van de zeespiegel. ?)
+\begin{figure}[h]
 
-figuur invoegen
+{\centering \includegraphics[width=0.7\linewidth]{figures/samenvatting_v2} 
 
-De representatie van de zeespiegel door twee lijnen betekent niet er een lineaire stijging optreedt na een knik in het begin van de jaren negentig. Op basis van de meest plausibele denkmodellen over de wereldwijde stand van de zeespiegel is een langzaam opbouwende versnelling aannemelijker. Voor een bevestiging daarvan is nu nog te weinig data. Het doel van de Zeespiegelmonitor is een beeld te geven van de recente verandering en een vooruitblik van ca. 15 jaar. Hiervoor is een trend van 2,9 mm/jaar op dit moment de beste aanname. Voor een langere periode vooruit (of in de toekomst) kan deze trend niet gebruikt worden. In de stand en trend van de zeespiegel zijn dit jaar de gegevens van vijf van de zes Nederlandse stations gebruikt. Er is reden om aan te nemen dat de gegevens van/voor het station Delfzijl op dit moment niet betrouwbaar genoeg zijn door de snelle bodemdaling aldaar. De overige stations (Harlingen, Den Helder, IJmuiden, Hoek van Holland, Vlissingen) vertonen vergelijkbare trends in stijging sinds 1993, van tussen 2,3 en 3,3 mm per jaar. Dit is een veel coherenter beeld dan op basis van de data voor 1993. De verschillen tussen de Nederlandse stations lijken weinig tot geen implicaties te hebben voor de inschatting van de zeespiegelstijging op lange termijn. Het is aannemelijk dat hiervoor de mondiale zeespiegelstijging het dominante signaal is.
+}
 
+\caption{De verandering van de zeespiegeltrend in de tijd.}\label{fig:unnamed-chunk-2}
+\end{figure}
+
+Uit bovenstaande figuur zijn drie belangrijke boodschappen te halen:
+
+\begin{itemize}
+\tightlist
+\item
+  In Nederland is een versnelling van de zeespiegelstijging waarneembaar. De stijging is in de komende decennia naar verwachting hoger dan de trend in de vorige eeuw.
+\item
+  De gegevens vanaf 1979 vertonen een kleinere onzekerheid dan daarvoor. Dit komt door een meer nauwkeurige correctie voor windopzet. Dat verhoogt de nauwkeurigheid van de beschrijving van de lokale zeespiegelstijging in recente tijdvakken.
+\item
+  De jaar op jaar variatie van de zeespiegel (ca. ± 10 cm) is veel groter dan de onzekerheid in de langjarige trend (ca. ± 0.4 mm/jaar).
+\end{itemize}
+
+In deze zeespiegelmonitor zijn de gegevens van vijf van de zes Nederlandse stations gebruikt. Er is namelijk reden om aan te nemen dat de gegevens van het station Delfzijl nu niet betrouwbaar genoeg zijn, met name veroorzaakt door de snelle bodemdaling. De overige stations vertonen onderling vergelijkbare trends in de stijging sinds 1993, namelijk tussen 2.3 en 3.3 mm per jaar.
 }
 \deltarestitle
 %------------------------------------------------------------------------------

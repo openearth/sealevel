@@ -1,0 +1,17 @@
+,year,psmsl_id,name,wind_variant,model_variant,quantity,has_tide,has_wind,prediction_mean_tide,pred_int_mean_tide_lower,pred_int_mean_tide_upper,conf_int_mean_tide_lower,conf_int_mean_tide_upper
+0,2021,10001,Netherlands (without Delfzijl),Combined,broken_linear,height - surge anomaly,True,False,81.95614671955008,35.42304817074783,128.4892452683523,73.71200111890391,90.20029232019624
+1,2022,10001,Netherlands (without Delfzijl),Combined,broken_linear,height - surge anomaly,True,False,84.81676546462857,38.19826165411513,131.43526927514202,76.10346679747799,93.53006413177916
+2,2023,10001,Netherlands (without Delfzijl),Combined,broken_linear,height - surge anomaly,True,False,87.67738420970707,40.96727941148518,134.38748900792896,78.48659717088479,96.86817124852935
+3,2024,10001,Netherlands (without Delfzijl),Combined,broken_linear,height - surge anomaly,True,False,90.53800295478558,43.73013781715526,137.3458680924159,80.86262622440965,100.21337968516151
+4,2025,10001,Netherlands (without Delfzijl),Combined,broken_linear,height - surge anomaly,True,False,93.3986216998641,46.48687537790327,140.31036802182493,83.23256941256412,103.56467398716407
+5,2026,10001,Netherlands (without Delfzijl),Combined,broken_linear,height - surge anomaly,True,False,96.25924044494259,49.23753266054663,143.28094822933855,85.59726693657016,106.92121395331502
+6,2027,10001,Netherlands (without Delfzijl),Combined,broken_linear,height - surge anomaly,True,False,99.11985919002109,51.982152216750286,146.2575661632919,87.95741793239047,110.2823004476517
+7,2028,10001,Netherlands (without Delfzijl),Combined,broken_linear,height - surge anomaly,True,False,101.9804779350996,54.72077850539033,149.24017736480886,90.31360747560728,113.64734839459192
+8,2029,10001,Netherlands (without Delfzijl),Combined,broken_linear,height - surge anomaly,True,False,104.8410966801781,57.4534578127827,152.22873554757348,92.66632795306073,117.01586540729546
+9,2030,10001,Netherlands (without Delfzijl),Combined,broken_linear,height - surge anomaly,True,False,107.7017154252566,60.18023817108651,155.2231926794267,95.01599603096457,120.38743481954862
+10,2031,10001,Netherlands (without Delfzijl),Combined,broken_linear,height - surge anomaly,True,False,110.56233417033509,62.90116927518983,158.22349906548035,97.36296618189189,123.76170215877829
+11,2032,10001,Netherlands (without Delfzijl),Combined,broken_linear,height - surge anomaly,True,False,113.4229529154136,65.61630239838249,161.22960343244472,99.7075415183879,127.13836431243931
+12,2033,10001,Netherlands (without Delfzijl),Combined,broken_linear,height - surge anomaly,True,False,116.2835716604921,68.32569030711521,164.24145301386898,102.04998251239994,130.51716080858426
+13,2034,10001,Netherlands (without Delfzijl),Combined,broken_linear,height - surge anomaly,True,False,119.14419040557061,71.02938717513746,167.25899363600377,104.39051404896674,133.8978667621745
+14,2035,10001,Netherlands (without Delfzijl),Combined,broken_linear,height - surge anomaly,True,False,122.00480915064911,73.72744849729807,170.28216980400015,106.72933116186466,137.28028713943357
+15,2036,10001,Netherlands (without Delfzijl),Combined,broken_linear,height - surge anomaly,True,False,124.8654278957276,76.41993100328307,173.31092478817214,109.06660372150613,140.6642520699491

@@ -10,7 +10,7 @@ Dit rapport beschrijft de lange-termijn ontwikkeling van de hoogte van de gemidd
 
 [^01-inleiding-1]: Zie voor nadere uitwerking \@Dillingh2010
 
-Het zand is nodig om invulling te geven aan het kustonderhoudsdoel dat we meegroeien met de zeespiegel. Omdat het gaan om een aanvulling wordt de hoeveelheid zand die hiervoor nodig is achteraf bepaald. Om die reden beschouwen we in deze rapportage de opgetreden zeespiegel tot nu toe. Voor budgetplanning en signalering is ook de zeespiegel in de nabije toekomst van belang.
+Het zand is nodig om invulling te geven aan het kustonderhoudsdoel dat we meegroeien met de zeespiegel. Omdat het gaat om een aanvulling wordt de hoeveelheid zand die hiervoor nodig is achteraf bepaald. Om die reden beschouwen we in deze rapportage de opgetreden zeespiegel tot nu toe. Voor budgetplanning en signalering is ook de zeespiegel in de nabije toekomst van belang.
 
 Behalve voor de bepaling van de jaarlijkse suppletiehoeveelheid is de opgetreden zeespiegelstijging van belang voor de vergunningen rondom zout- en gaswinning in het Waddengebied en voor ontwerpparameters van waterkeringen. Dit uiteraard naast algemenere doeleinden, waaronder het informeren van het publiek. Een overzicht van de indicatoren en toepassingen staat in bijlage \@ref(toepassingen) . Voor een deel van deze indicatoren wordt gebruik gemaakt van zeespiegelprojecties.
 
@@ -18,7 +18,7 @@ In de [rapportage 2018](https://www.deltares.nl/app/uploads/2019/03/Zeespiegelmo
 
 De methode die is gebruikt voor de bepaling van de zeespiegel en stijging ervan staat in hoofdstuk \@ref(methoden). De waarden worden elk jaar geactualiseerd in de online zeespiegelmonitor.
 
-Voorliggend rapport heeft ook als doel een verslag te geven van het onderzoek dat in de afgelopen jaren is gedaan. De keuzes in dat onderzoek volgen uit de vooraf opgestelde onderzoeksagenda. In appendix \@ref(app-onderzoeksvragen) staat een overzicht. Veel onderzoeken zijn ook als aparte memo's of rapporten gepresenteerd.
+Voorliggend rapport heeft ook als doel een verslag te geven van het onderzoek dat in de afgelopen jaren is gedaan. De keuzes in dat onderzoek volgen uit de vooraf opgestelde onderzoeksagenda. In paragraaf \@ref(onderzoeksvragen) staat een overzicht. Een aantal onderzoeken zijn ook als aparte memo's of rapporten gepresenteerd. Dit staat aangegeven in het overzicht.
 
 ## Onderzoeksvragen {#onderzoeksvragen}
 
@@ -56,7 +56,7 @@ De uitvoering van deze vraag is uiteindelijk binnen een ander project opgepakt. 
 
 -   Probeer afstemming of aansluiting te bereiken tussen de verschillende zeespiegelindicatoren voor bepaling van huidige zeespiegelstijging en versnellingsdetectie tussen Deltaprogramma, TNO, PBL en Deltares.
 
-De resultaten hiervan worden gepresenteerd in de memo [Advies kenmerkende waarden kust : overzicht zeespiegelindicatoren](https://kennisbank.deltares.nl/Details/fullCatalogue/70785){target="_blank"} [@Nicolai2020a]
+De resultaten hiervan worden gepresenteerd in de memo [Advies kenmerkende waarden kust : overzicht zeespiegelindicatoren](https://kennisbank.deltares.nl/Details/fullCatalogue/70785){target="_blank"} [@Nicolai2020]
 
 **De boel onder controle?**
 
@@ -72,9 +72,15 @@ Er lopen met Rijkswaterstaat verschillende trajecten om documentatie te verwerke
 
 ## Leeswijzer {#Leeswijzer}
 
-Dit rapport behandelt in detail de resultaten van de Zeespiegelmonitor. Actuele resultaten zijn te vinden in een jaarlijks bijgewerkt [rekendocument](https://github.com/openearth/sealevel/blob/master/notebooks/dutch-sea-level-monitor.ipynb). Dit rapport geeft uitleg bij de methodiek (hoofdstuk \@ref(methoden)), en vat de resultaten op een  overkoepelend niveau weer (hoofdstuk \@ref(resultaten)).
+Dit rapport behandelt in detail de resultaten van de Zeespiegelmonitor. Actuele resultaten zijn te vinden in een jaarlijks bijgewerkt [rekendocument](https://github.com/openearth/sealevel/blob/master/notebooks/dutch-sea-level-monitor.ipynb). Dit rapport geeft uitleg bij de methodiek (hoofdstuk \@ref(methoden)), en geeft de resultaten op een  overkoepelend niveau weer (hoofdstuk \@ref(resultaten)).
 
 Een deel van het onderzoek binnen het Zeespiegelmonitorproject is gepubliceerd in aparte memo's en rapporten. Samenvattingen en links naar de originele rapporten zijn te vinden in de bijlage \@ref(bijlagerapporten)
+
+In bijlage \@ref(bijlagerapporten) is achtergrondinformatie en rapporten te vinden die in de afgelopen periode (2019-2022) in het kader van de Zeespiegelmonitor zijn verzameld. 
+
+De hoofdstukken Oorzaken (bijlage \@ref(oorzaken)), Toepassingen (bijlage \@ref(toepassingen)), en Metingen (bijlage \@ref(metingen)) in de appendix zijn geactualiseerde versies van de gelijknamige hoofdstukken uit @Baart2019. 
+
+In bijlage \@ref(varianten) worden resultaten gepresenteerd voor de verschillende varianten die zijn doorgerekend.
 
 Merk op dat de digitale versie van dit document voorzien van hyperlinks voor figuren, tabellen, en referenties. Hiermee kunt u klikken naar de juiste pagina voor meer informatie. Dit geldt ook voor verwijzingen naar acroniemen waarmee u bij het overzicht van afkortingen kunt komen, te vinden in \@ref{lijst-met-afkortingen}.
 

@@ -16,8 +16,9 @@ output: html_notebook
 Gerefereerde scenarios - voor klimaatsignaal. The data that we use and publish is only the total sea level, this is given in the csv file. It includes vertical land motion of 0.45 mm/yr and is given with a reference period of 1995-2014. Like the IPCC AR6 report.
 
 ```{r, eval=F, echo = F}
+require(tidyverse)
 datadir = "../data/knmi/knmi21"
-# list.files(datadir)
+list.files(datadir)
 ref_scenario <- read_csv(file.path(datadir, "DataKlimaatsignaal21_SeaLevel_2100_ref_period_1995_2014.csv"))
 
 ggplot(ref_scenario, aes(x = time)) +

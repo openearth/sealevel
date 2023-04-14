@@ -7,11 +7,13 @@ require(leaflet)
 
 In hoofdstuk \@ref(inleiding) wordt uitgelegd dat er een 'huidige zeespiegel' nodig is, onder andere om de suppletiebehoefte te bepalen. Huidig is in de context van deze toepassing eigenlijk geen tijdspunt, maar een tijdsspanne. Het gaat niet om de zeespiegel vandaag, maar om de zeespiegel van enkele jaren terug tot nu.
 
+In de bijlage \@ref(metingen) wordt uitgelegd hoe de metingen tot stand komen. 
+
 ## Afwegingen {#afwegingen}
 
 Bij het selecteren van de methode worden er diverse afwegingen gemaakt, waarbij we gebruik maken van onderstaande criteria. Dit hoofdstuk geeft een overzicht van de belangrijkste modelkeuzes en de bijbehorende onderbouwing. Uitgangspunt voor de afwegingen is het bepalen van een goede maat voor de huidige zeespiegelstijging ten behoeve van het suppletieprogramma en de suppletiebehoefte.
 
-**Stabiliteit** - methode moet niet van jaar tot jaar te veel variëren.
+**Stabiliteit** - de gebruikt methodiek moet niet van jaar tot jaar te veel variëren.
 
 **Spaarzaamheid** - parcimonie: principe dat de eenvoudigste van twee ongeveer even plausibele verklaringen voor hetzelfde fenomeen de voorkeur heeft
 
@@ -25,25 +27,30 @@ Bij het selecteren van de methode worden er diverse afwegingen gemaakt, waarbij 
 
 **Power** - als er een verandering is moet de methode dat snel detecteren
 
+**Fysisch verklaarbaar** - de gekozen formulering moet verklaarbaar zijn vanuit fysisch oogpunt
+
 ## Algemene methodiek
 
-In dit onderzoek maken we gebruik van een \acr{GLM}, een gegeneralizeerde vorm van een lineair regressiemodel. Vooral omdat de variatie goed verklaard wordt [@Watson2016] en omdat er geen modellen zijn die zich, op basis van bovenstaande criteria, als betere hebben bewezen. We gaan er vanuit dat de zeespiegel sneller aan het stijgen is of binnenkort sneller gaat stijgen dan in het verleden (ruwweg de twintigste eeuw)[^06-methoden-1]. Dit heeft implicaties voor de verwachte zeespiegel en zeespiegelstijging. Daarom maken we gebruik van schattingen van de versnelling, zie \@ref(versnelling-methods). Merk op dat een lineair model niet impliceert dat de zeespiegelstijging een rechte lijn moet volgen. Ook polynome, sinusoïde, exponentiële en loglineaire modellen vallen onder de \acr{GLM} familie.
+In dit onderzoek maken we gebruik van een \acr{GLM}, een gegeneralizeerde vorm van een lineair regressiemodel. Vooral omdat de variatie goed verklaard wordt [@Watson2016]. We gaan er vanuit dat de zeespiegel sneller aan het stijgen is of binnenkort sneller gaat stijgen dan in het verleden (ruwweg de twintigste eeuw)[^06-methoden-1]. Dit heeft implicaties voor de verwachte zeespiegel en zeespiegelstijging. Daarom maken we gebruik van schattingen van de versnelling, zie \@ref(versnelling-methods). Merk op dat een lineair model niet impliceert dat de zeespiegelstijging een rechte lijn moet volgen. Ook polynome, sinusoïde, exponentiële en loglineaire modellen vallen onder de \acr{GLM} familie.
 
 [^06-methoden-1]: Zie ook laatste IPCC rapport: <https://www.ipcc.ch/report/ar6/wg1/chapter/chapter-9/>
 
 ## (Meet)gegevens {#bronnen}
 
-In dit onderzoek maken we gebruik van gegevens voor de 6 zogenaamde hoofdstations Vlissingen, Hoek van Holland, IJmuiden, Den Helder, Harlingen en Delfzijl. Deze kuststations leveren sinds 1890, toen het \acr{NAP} overal was doorgevoerd, betrouwbare metingen. In De Ronde et al. (2013) is de methode Zeespiegelmonitor op de 6 hoofdstations toegepast. Gegevens worden betrokken uit de [\acr{PSMSL} database](https://psmsl.org/data/). Rijkswaterstaat draagt zorg voor de aanlevering van gegevens aan \acr{PSMSL}.
+```{r, out.width="80%", fig.cap= "Locatie van de 6 hoofdstations."}
 
-```{r, out.width="100%", fig.cap= "Locatie van de 6 hoofdstations."}
+if(knitr::is_html_output()){
 stations <- read_delim("https://raw.githubusercontent.com/openearth/sealevel/master/data/psmsl/NLstations.csv", delim = ";")
-
 leaflet(stations) %>%
   addTiles() %>%
   addCircleMarkers(lat = ~Lat, lng = ~Lon, label = ~StationName, labelOptions = labelOptions(noHide = T))
+} else
+  knitr::include_graphics("figures/station-map.png")
 ```
 
-De overige stations waarvan gegevens in PSMSL opvraagbaar zijn worden niet gebruikt. Het station van West-Terschelling (1921) wordt buiten beschouwing gelaten omdat het in de buurt ligt van Den Helder en Harlingen. Het station van Maassluis (1848) ligt kustinwaarts ten opzichte van Hoek van Holland en kan afgesloten worden door de Maeslantkering. Daardoor is de waterstand niet meer gelijk aan die van de open zee. Het station Roompot Buiten heeft een relatief korte historie (jaargemiddelden beschikbaar sinds 1982) en overlapt met Vlissingen. Roompot Buiten heeft wel een belangrijke functie in de operationele toepassing, waarin Roompot Buiten wel en IJmuiden niet als een hoofdstation wordt gezien. Roompot Buiten is in de Zeespiegelmonitor niet meegenomen als hoofdstation.
+In dit onderzoek maken we gebruik van gegevens voor de 6 zogenaamde hoofdstations Vlissingen, Hoek van Holland, IJmuiden, Den Helder, Harlingen en Delfzijl. Deze kuststations leveren sinds 1890, toen het \acr{NAP} overal was doorgevoerd, betrouwbare metingen. In De Ronde et al. (2013) is de methode Zeespiegelmonitor op de 6 hoofdstations toegepast. Gegevens worden betrokken uit de [\acr{PSMSL} database](https://psmsl.org/data/). Rijkswaterstaat draagt zorg voor de aanlevering van gegevens aan \acr{PSMSL}.
+
+De overige stations waarvan gegevens in \acr{PSMSL} opvraagbaar zijn worden niet gebruikt. Het station van West-Terschelling (1921) wordt buiten beschouwing gelaten omdat het in de buurt ligt van Den Helder en Harlingen. Het station van Maassluis (1848) ligt kustinwaarts ten opzichte van Hoek van Holland en kan afgesloten worden door de Maeslantkering. Daardoor is de waterstand niet meer gelijk aan die van de open zee. Het station Roompot Buiten heeft een relatief korte historie (jaargemiddelden beschikbaar sinds 1982) en overlapt met Vlissingen. Roompot Buiten heeft wel een belangrijke functie in de operationele toepassing, waarin Roompot Buiten wel en IJmuiden niet als een hoofdstation wordt gezien. Roompot Buiten is in de Zeespiegelmonitor niet meegenomen als hoofdstation.
 
 We maken geen onderscheid naar in welke mate de stations zijn beïnvloed door de diverse ingrepen aan de Nederlandse kust. Er hebben diverse kleinere en grotere ingrepen plaatsgevonden die invloed hebben op de metingen. Denk hierbij aan de aanleg van de Afsluitdijk, de aanleg van de Deltawerken, sinds de jaren 1990 het dynamisch kustbeheer en vooral de diverse lokale aanpassingen binnen de havens. Deze effecten onderscheiden we niet.
 
@@ -61,7 +68,7 @@ Voor de huidige zeespiegel wordt het gemiddelde van de hoofdstations Vlissingen,
 
 ## Tijdschaal {#tijdsschaal}
 
-De gegevens van de getijstations zijn beschikbaar in verschillende temporele resoluties, variërend van jaarlijks tot gegevens per minuut. Voor het bepalen van de gemiddelde zeespiegel wordt de jaarlijks gemiddelde zeewaterstand per kuststation gebruikt. De belangrijkste cyclus in de waterstanden is de 18.613 jarige nodale cyclus. Seizoenseffecten worden veroorzaakt door seizoensgedrag in zowel wind, luchtdruk als temperatuur/dichtheid. PSMSL stelt ook reeksen van de maandgemiddelde zeewaterstanden beschikbaar. Deze reeksen vertonen meer variatie en leveren voor de statistische analyse van de trend in de actuele zeespiegelstijging geen additionele inzichten op. Zie ook de gedetailleerde uitsplitsing per station in het [rekendocument]().
+De gegevens van de getijstations zijn beschikbaar in verschillende temporele resoluties, variërend van jaarlijks tot gegevens per minuut. Voor het bepalen van de gemiddelde zeespiegel wordt de jaarlijks gemiddelde zeewaterstand per kuststation gebruikt. De belangrijkste cyclus in de waterstanden is de 18.613 jarige nodale cyclus. Seizoenseffecten worden veroorzaakt door seizoensgedrag in zowel wind, luchtdruk als temperatuur/dichtheid. \acr{PSMSL} stelt ook reeksen van de maandgemiddelde zeewaterstanden beschikbaar. Deze reeksen vertonen meer variatie en leveren voor de statistische analyse van de trend in de actuele zeespiegelstijging geen additionele inzichten op. Zie ook de gedetailleerde uitsplitsing per station in het [rekendocument]().
 
 ## Welke termen?
 
@@ -95,13 +102,13 @@ knitr::include_graphics("figures/accelerations.png")
 De keuze van het model heeft implicaties voor de huidige zeespiegel, immers het bepaalt deels hoeveel zeespiegel er wordt toegekend aan veranderingen in getij of windopzet. Het is dus belangrijk om het model te kiezen dat met de grootst mogelijke waarschijnlijkheid de huidige zeespiegelstijging beschrijft. Tegelijkertijd houden we vast aan de uitgangspunten in paragraaf \@ref(afwegingen). De uiteindelijke modelkeuze (welk model is beter dan het simpelste, dus lineaire, model) vindt plaats op twee criteria. Er moet sprake zijn van een significante acceleratie of deceleratie en er moet sprake zijn van een beter model. Dat laatste wordt vastgesteld met behulp van het \acr{AIC}, waarbij een afweging wordt gemaakt tussen de complexiteit en de toegevoegde waarde. Het \acr{AIC} criterium is een afweging op basis van de statische eigenschappen van de verschillende modellen. Het doet geen uitspraak over de juistheid van onderliggende fysische processen.
 
 5.  Een andere methode is om een *discontinue lineaire* trend te berekenen. Door over aparte perioden trends uit te rekenen krijg je trends waarvan de intercepts niet aansluit op de vorige periode. Dit is de methode zoals gebruikt in het laatste [IPCC rapport](https://www.ipcc.ch/report/ar6/wg1/chapter/chapter-9/). Hierbij worden trends over verschillende perioden apart uitgerekend.
-6.  *Lokaal polynoom* is een methode met meer vrijheidsgraden en wat exploratiever van aard. De parameters worden gebaseerd op "expert judgement" en "trial en error" @Cleveland1994. Het voordeel van deze methode is dat deze de mogelijkheid open laat van een meer variërende trend over tijd. Het nadeel is dat deze methode door het grotere aantal vrijheidsgraden ook wat meer kan "wapperen", vooral aan het uiteinde. Dat wil zeggen dat de trend aan het eind van de reeks, met nieuwe data, snel van richtingscoefficient kan veranderen.
+6.  *Lokaal polynoom* is een methode met meer vrijheidsgraden en wat exploratiever van aard. De parameters worden gebaseerd op "expert judgement" en "trial en error" [@Cleveland1994]. Het voordeel van deze methode is dat deze de mogelijkheid open laat van een meer variërende trend over tijd. Het nadeel is dat deze methode door het grotere aantal vrijheidsgraden ook wat meer kan "wapperen", vooral aan het uiteinde. Dat wil zeggen dat de trend aan het eind van de reeks, met nieuwe data, snel van richtingscoefficient kan veranderen.
 
 De laatste twee methoden hebben we in deze rapportage niet gebruikt vanwege de genoemde nadelen.
 
 ## Getij {#methode-getij}
 
-Het getij, met name de nodale cyclus, zoals beschreven in paragraaf \@ref(getij), wordt meegenomen als gelinearizeerde amplitude en fase, in de vorm van een $u$ en $v$ component (vergelijking \@ref(eq:gedetailleerdevergelijking)). Het is ook mogelijk om het equilibrium getij [@Baart2012e] op te leggen . In Nederland komt het nodaal getij in de buurt van het equilibrium, maar aan andere kusten komen metingen en het equilibrium getij vooralsnog niet overeen [@Cherniawsky2010; @Baart2012e]. Met het oog op de generieke toepasbaarheid en zolang er geen uitsluitsel is om het anders te doen gaan we voorlopig nog uit van het geobserveerde getij.
+Het getij, met name de nodale cyclus, zoals beschreven in paragraaf \@ref(getij), wordt meegenomen als gelinearizeerde amplitude en fase, in de vorm van een $u$ en $v$ component (vergelijking \@ref(eq:gedetailleerdevergelijking)). Het is ook mogelijk om het equilibrium getij [@Baart2012e] op te leggen. Het equilibrium getij is het getij dat zou optreden zonder invloed van land of ondiepte op de propagatie van de getijgolf. In Nederland komt het nodaal getij in de buurt van het equilibrium, maar aan andere kusten komen metingen en het equilibrium getij vooralsnog niet overeen [@Cherniawsky2010; @Baart2012e]. Met het oog op de generieke toepasbaarheid en zolang er geen uitsluitsel is om het anders te doen gaan we voorlopig nog uit van het geobserveerde getij.
 
 ## Wind {#methoden-wind}
 
