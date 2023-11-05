@@ -195,26 +195,26 @@ def get_wind_products(reference_point_wind=None):
     return monthly_wind_products, annual_wind_products
 
 
-def get_gtsm_dfs():
+def get_gtsm_dfs(with_m=False, version="2022"):
     """get the monthly and annual gtsm surge estimates per station"""
+    if version == "2022":
+        annual_file_name = "gtsm_surge_annual_mean_main_stations.csv"
+        monthly_file_name = "gtsm_surge_monthly_mean_main_stations.csv"
+    # temporary fix to compare twe datasets
+    elif version == "2023":
+        annual_file_name = "gtsm_surge_annual_mean_main_stations_2023.csv"
+        monthly_file_name = "gtsm_surge_monthly_mean_main_stations_2023.csv"
+
     src_dir = slr.get_src_dir()
     annual_gtsm_df = pd.read_csv(
-        src_dir
-        / "data"
-        / "deltares"
-        / "gtsm"
-        / "gtsm_surge_annual_mean_main_stations.csv",
+        src_dir / "data" / "deltares" / "gtsm" / annual_file_name,
         converters={"t": pd.to_datetime},
     )
     annual_gtsm_df = annual_gtsm_df.drop(columns=["Unnamed: 0"])
     annual_gtsm_df["year"] = annual_gtsm_df.t.dt.year
 
     monthly_gtsm_df = pd.read_csv(
-        src_dir
-        / "data"
-        / "deltares"
-        / "gtsm"
-        / "gtsm_surge_monthly_mean_main_stations.csv",
+        src_dir / "data" / "deltares" / "gtsm" / monthly_file_name,
         converters={"t": pd.to_datetime},
     )
     monthly_gtsm_df = monthly_gtsm_df.drop(columns=["Unnamed: 0"])
@@ -224,21 +224,31 @@ def get_gtsm_dfs():
     ]
 
     # add unit suffix (m -> mm * 1000)
-    annual_gtsm_df['surge_mm'] = annual_gtsm_df['surge'] * 1000
+    annual_gtsm_df["surge_mm"] = annual_gtsm_df["surge"] * 1000
 
-    monthly_gtsm_df['surge_mm'] = monthly_gtsm_df['surge'] * 1000
+    monthly_gtsm_df["surge_mm"] = monthly_gtsm_df["surge"] * 1000
 
     # explicit use mm
-    annual_gtsm_df = annual_gtsm_df.drop(columns=["surge"])
-    monthly_gtsm_df = monthly_gtsm_df.drop(columns=["surge"])
+    if not with_m:
+        annual_gtsm_df = annual_gtsm_df.drop(columns=["surge"])
+        monthly_gtsm_df = monthly_gtsm_df.drop(columns=["surge"])
+
+    if version == "2023":
+        # drop date from 1950, due to unexplainable high surge
+        monthly_gtsm_df = monthly_gtsm_df[
+            monthly_gtsm_df["t"] >= datetime.datetime(1951, 1, 1)
+        ]
+        annual_gtsm_df = annual_gtsm_df[
+            annual_gtsm_df["t"] >= datetime.datetime(1951, 1, 1)
+        ]
 
     return monthly_gtsm_df, annual_gtsm_df
 
 
 def compute_wind_effect_and_anomaly(fit, names):
     """compute the wind and anomaly effect for the model"""
-    u2_index = names.index('Wind $u^2$')
-    v2_index = names.index('Wind $v^2$')
+    u2_index = names.index("Wind $u^2$")
+    v2_index = names.index("Wind $v^2$")
     u2_name = fit.model.exog_names[u2_index]
     v2_name = fit.model.exog_names[v2_index]
     u2 = fit.model.exog[:, u2_index]
