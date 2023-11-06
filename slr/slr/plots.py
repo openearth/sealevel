@@ -226,7 +226,7 @@ def surge_vs_waterlevel(selected_stations):
             monthly_df["height"] - (monthly_df["surge_mm"]),
             label=station["name"],
         )
-    axes[0].set_xlim(datetime.datetime(1950, 1, 1), datetime.datetime(2022, 1, 1))
+    axes[0].set_xlim(datetime.datetime(1940, 1, 1), datetime.datetime(2022, 1, 1))
     axes[0].legend(loc="lower left")
     axes[0].set_title("Water level")
     axes[1].set_title("Water level - surge")
