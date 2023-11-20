@@ -12,3 +12,7 @@ ipython
 xarray
 dask
 cmcrameri
+jupyter
+notebook
+nbdime
+windrose
