@@ -1,0 +1,236 @@
+# Resultaten voor het actuele jaar {#resultaten}
+
+```{r setup2023}
+require(tidyverse)
+require(scales)
+
+resultaatjaar = 2023
+```
+
+Dit hoofdstuk beschrijft de resultaten van `r resultaatjaar`. In de resultaten zijn zeespiegelmetingen tot en meet `r resultaatjaar - 1` meegenomen. De berekeningen die hieraan ten grondslag liggen zijn vastgelegd in een [rekendocument](https://github.com/openearth/sealevel/blob/report/notebooks/dutch-sea-level-monitor.ipynb).
+
+## Windopzetcorrectie
+
+Dit jaar zijn de GTSM berekeningen uitgebreid voor het jaar 2022, en de periode 1950-1978. Hierdoor is er nu een ruim 70 jaar lange correctie nodig voor windopzet berekend met GTSM.
+
+```{r}
+results2023 <- read_csv("https://raw.githubusercontent.com/openearth/sealevel/feature/validation-gtsm-2023/data/deltares/results/dutch-sea-level-monitor-export-2023-11-21.csv", comment = "#") %>%
+mutate(across(c(where(is.numeric), -station, -year), 
+              function(x) x/10)) %>%
+  rename(surge_cm = surge_mm)
+```
+Voor de correctie van de zeespiegel voor windopzet wordt nu een gemiddelde opzet gebruikt voor de periode voor 1950, en een jaarlijks gemiddelde voor de periode vanaf 1950 (figuur \@ref(fig:gtsm-opzet)). 
+
+
+```{r gtsm-opzet, fig.cap="Windopzet zoals gebruikt in de Zeespiegelmonitor. Vanaf 1950 is een jaarlijks gemiddelde opzet berekend met GTSM, in de periode daarvoor wordt een gemiddelde opzet gebruikt."}
+results2023 %>%
+  filter(lubridate::year(date) > 1950) %>%
+  mutate(decennium = trunc(year/10)*10) %>%
+  ggplot(aes(x = year)) +
+  geom_point(aes(y = surge_cm)) +
+  geom_smooth(
+    aes(y = surge_cm),
+    method = "lm",
+    span = 0.6
+  ) +
+  geom_boxplot(
+    aes(y = surge_cm, group = decennium), 
+    fill = "transparent", 
+    color = "darkgrey")
+
+```
+De windopzet vertoont over de periode 1950-nu geen duidelijke trend. Wel lijkt de laatste jaren een windopzet op te treden die iets lager is dan gemiddeld over de hele periode. De gemiddelde opzet is ongeveer 4.5 cm.  
+
+
+
+## Zeespiegel
+
+De zeespiegel 
+
+```{r}
+talen = c('engels', 'nederlands')
+taal = talen[1]
+```
+
+
+(ref:trend-actueel-label-nl) Gemeten zeespiegel en de zeespiegel gecorrigeerd voor de variatie door windopzet en getij. Tevens is de trend ingevoegd zoals berekend met het voorkeursmodel, een gebroken lineair model. De correctie voor windopzet is gedaan aan de hand van het Global Tide and Surge Model (GTSM). Dit model is beschikbaar voor de periode 1950-nu. De meetpunten van vóór 1950 zijn hierdoor alleen gecorrigeerd voor de gemiddelde windopzet.  
+
+(ref:trend-actueel-label-en) Measured sea level and sea level corrected for variation due to surge and tide. The visualized trend is calculated using the preferred model, a broken-linear model. The correction for surge has been done using the Global Tide and Surge Model (GTSM). This model is now available for the period 1950-now. The points before 1950 are therefore only corrected for the mean surge. 
+
+
+
+
+
+```{r trend-actueel, fig.cap="(ref:trend-actueel-label-nl)"}
+
+library(svgparser)
+library(grid)
+path = "navbar\\images\\Deltares_logo_D-blauw_RGB\\Deltares_logo_D-blauw_RGB.svg"
+rlogo     <- svgparser::read_svg(path)
+
+
+startyear = 1900
+zoomyear = 2010
+
+fitstyle =   theme_light() #%+replace%
+# theme(
+#   axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),
+#   legend.position = "bottom"
+#   ) 
+
+plotShapes = if(taal == "nederlands"){ 
+  c("zeespiegel" = 21,
+    "gecorrigeerde zeespiegel" = 24)
+} else{
+  c("sea level" = 21,
+    "corrected sea level" = 24)
+}
+
+
+# The colorblind adapted palette with grey:
+
+pal <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+# alternative standard palette
+# pal <- hue_pal()(3)
+
+plotColors <- if(taal == "nederlands"){
+                    c("gemeten zeespiegel" = pal[1],
+                      "gecorrigeerde zeespiegel" = pal[2],
+                      # "zeespiegel (-opzet)" = pal[2],
+                      "gecorrigeerde zeespiegel (gemiddelde windopzet)" = pal[3],
+                      # "predictie (-opzetanomalie +getij)" = pal[3],
+                      "gecorrigeerde trend" = pal[4]
+                    )
+  
+} else {
+                    c("measured sea level" = pal[1],
+                      "corrected sea level" = pal[2],
+                      # "zeespiegel (-opzet)" = pal[2],
+                      "corrected sea level (mean surge)" = pal[3],
+                      # "predictie (-opzetanomalie +getij)" = pal[3],
+                      "corrected trend" = pal[4]
+                    )
+}
+
+symboolgrootte = 2
+
+results2023 %>%
+  mutate(`na 1993` = ifelse(year >= 1993, "-","dashed")) %>%
+  # mutate(`voor 2018` = ifelse(year < 2018, "-","dashed")) %>%
+  mutate(`windcorrectie beschikbaar` = 
+           ifelse(year >= 1950, ifelse(
+             taal == "nederlands",
+             "jaarlijkse windopzetcorrectie",
+             "yearly surge correction"),
+             ifelse(
+               taal == "nederlands",
+               "gemiddelde windopzetcorrectie",
+               "mean surge correction")
+           )
+  ) %>%
+  ggplot(aes(x = year)) +
+  geom_point(aes(
+    y = `height`,
+    color = ifelse(taal == "nederlands", "gemeten zeespiegel", "measured sea level")
+  ),
+  size = symboolgrootte,
+  alpha = 0.4
+  ) +
+  geom_point(
+    data = . %>% filter(year < 1950),
+    aes(
+      x = year,
+      y = `height - surge anomaly` - sea_surface_height_due_to_tide_broken_linear,
+      # shape = `windcorrectie beschikbaar`,
+      color = ifelse(taal == "nederlands", "gecorrigeerde zeespiegel (gemiddelde windopzet)", "corrected sea level (mean surge)")
+    ),
+    size = symboolgrootte,
+  ) +
+  geom_point(
+    data = . %>% filter(year >= 1950),
+    aes(
+      x = year,
+      y = `height - surge anomaly` - sea_surface_height_due_to_tide_broken_linear,
+      color = ifelse(taal == "nederlands", "gecorrigeerde zeespiegel", "corrected sea level")
+    ),
+    size = symboolgrootte,
+  ) +
+  # geom_line(aes(
+  #   y = predicted_broken_linear,
+  #   color = "predictie (-opzetanomalie +getij)",
+  # ),
+  # size = symboolgrootte) +
+  geom_line(aes(
+    y = predicted_broken_linear - sea_surface_height_due_to_tide_broken_linear,
+    linetype = `na 1993`,
+    color = ifelse(taal == 'nederlands', "gecorrigeerde trend", "corrected trend")
+  ),
+  size = 1.5, 
+  alpha = 0.7
+  ) +
+  # geom_ribbon(aes(
+  #   ymin = predicted_broken_linear_pi_025 - sea_surface_height_due_to_tide_broken_linear, 
+  #   ymax = predicted_broken_linear_pi_975 - sea_surface_height_due_to_tide_broken_linear
+  # ), 
+  # alpha = 0.1, 
+  # fill = pal[2]) +
+  # geom_ribbon(aes(
+  #   ymin = predicted_broken_linear_ci_025 - sea_surface_height_due_to_tide_broken_linear, 
+  #   ymax = predicted_broken_linear_ci_975 - sea_surface_height_due_to_tide_broken_linear
+  # ), 
+  # alpha = 0.1, 
+# fill = pal[2]) +
+# geom_vline(xintercept = 1993, linetype = 5) +
+# annotate("text", label = "1993", x = 1989, y = -10.0, ) +
+annotation_custom(rlogo, xmin = 1993, xmax = 2015, ymin = -25, ymax = -20) +
+  coord_cartesian(ylim = c(NA, NA)) +
+  xlab(ifelse(taal == "nederlands", "jaar", "year")) +
+  ylab(ifelse(taal == "nederlands", "zeespiegel in cm tov NAP", "sea level in cm relative to NAP")) +
+  labs(subtitle = ifelse(taal == "nederlands", "Gecorrigeerde zeespiegel (GTSM) en trends", "Corrected sea level (GTSM) and trends")) +
+  fitstyle +
+  theme(legend.title = element_blank()) +
+  theme(legend.direction = "vertical",
+        legend.box = "vertical",
+        legend.position = c(0.025,0.975),
+        legend.justification = c(0, 1),
+        legend.title = element_blank(),
+        legend.background = element_rect(fill = "transparent")) +
+  scale_linetype_discrete(guide = "none") +
+  scale_color_manual(values = plotColors) +
+  # scale_shape_manual(values = plotShapes) +
+  scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 10)) +
+  guides(fill = guide_legend(override.aes = list(linetype = 0)),
+         color = guide_legend(override.aes = list(linetype = c(0,0,0,1),
+                                                  shape = c(16,16,16,NA),
+                                                  size = c(3,3,3,1.5), 
+                                                  alpha = 1)))
+
+ggsave(filename = ifelse(
+  taal == "nederlands", 
+  "figures/summary-plot-2023-nl.png",
+  "figures/summary-plot-2023-en.png"), 
+  width = 8, height = 5, units = "in")
+ggsave(filename = ifelse(
+  taal == "nederlands", 
+  "figures/summary-plot-2023-nl.pdf",
+  "figures/summary-plot-2023-en.pdf"), 
+  width = 8, height = 5, units = "in")
+
+
+```
+  
+
+De resultaten van dit jaar zijn consistent met die van vorig jaar. In het kort:
+
+-   De zeespiegel is nog steeds aan het stijgen
+-   Gecorrigeerd voor wind en getij is de zeespiegel in 2022 de hoogste die ooit bereikt is aan de Nederlandse kust
+-   De zeespiegel over de jaren is het best te beschrijven met een gebroken lijn
+-   Eerdere analyses laten zien dat het knikpunt van de lijn rond begin jaren '90 van de vorige eeuw ligt. In overeenstemming met andere studies is 1993 gekozen als het breekpuntjaar. 
+-   Het verlengen van de periode met GTSM windcorrectie verkleint de variatie in gecorrigeerde zeespiegel. De resultaten veranderen hierdoor niet. 
+
+
+
+
+
