@@ -16,7 +16,6 @@ output: html_notebook
 Gerefereerde scenarios - voor klimaatsignaal. The data that we use and publish is only the total sea level, this is given in the csv file. It includes vertical land motion of 0.45 mm/yr and is given with a reference period of 1995-2014. Like the IPCC AR6 report.
 
 ```{r, eval=F, echo = F}
-
 require(tidyverse)
 datadir = "../data/knmi/knmi21"
 list.files(datadir)
@@ -55,7 +54,13 @@ for(scen in scen){
 df.scenarios <- data.table::rbindlist(scenarios, use.names = TRUE, idcol = "scenario")
 rm(scenarios)
 
-# TODO: this is still in cm
+# save(df.scenarios, file =  file.path("data/knmi/knmi21", "knmi_df.Rdata"))
+df.scenarios %>%
+  filter(percentiles %in% c(5, 50, 95)) %>%
+  write_csv(file = file.path("../data/knmi/knmi21", "knmi_21_5_50_95.csv"))
+
+
+# NOTE: this is still in cm
 # divide by 10 for use in dashboard in mm
 ```
 
@@ -83,7 +88,7 @@ df.scenarios %>%
   mutate(percentiles = as.factor(percentiles)) %>%
 ggplot(aes(time, perc_ts)) +
   geom_path(aes(color = percentiles)) +
-  facet_grid(proc ~ scenario) +
+  facet_wrap(~proc) +
   theme(strip.text.y = element_text(angle = 0))
 ```
 

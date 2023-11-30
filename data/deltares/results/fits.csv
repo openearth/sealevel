@@ -1,7 +1,7 @@
 ,name,names,aic,F,df_model,has_tide,has_wind
-1,linear_with_wind,"['Constant', 'Trend', 'Nodal U', 'Nodal V', 'Wind $u^2$', 'Wind $v^2$']",1188.440027213373,247.03851849818338,5.0,True,True
-3,broken_linear,"['Constant', 'Trend', '+trend (1993)', 'Nodal U', 'Nodal V']",1202.3024905323377,412.3946807311293,4.0,True,False
-5,broken_quadratic,"['Constant (in year 1960)', 'Trend', 'Acceleration from 1960', 'Nodal U', 'Nodal V']",1202.94067174857,373.7287922429484,4.0,True,False
-0,linear,"['Constant', 'Trend', 'Nodal U', 'Nodal V']",1205.1718888190426,317.6154419034362,3.0,True,False
-2,linear_without_wind,"['Constant', 'Trend', 'Nodal U', 'Nodal V']",1205.1718888190426,317.6154419034362,3.0,True,False
-4,quadratic,"['Constant (in year 1970)', 'Trend', 'Acceleration', 'Nodal U', 'Nodal V']",1205.251503266482,307.1057180793713,4.0,True,False
+3,broken_linear,"['Constant', 'Trend', '+trend (1993)', 'Nodal U', 'Nodal V']",1166.0367190104325,450.4624571021632,4.0,True,False
+5,broken_quadratic,"['Constant (in year 1960)', 'Trend', 'Acceleration from 1960', 'Nodal U', 'Nodal V']",1167.1756593739779,411.0986355938239,4.0,True,False
+4,quadratic,"['Constant (in year 1970)', 'Trend', 'Acceleration', 'Nodal U', 'Nodal V']",1170.4328067540084,303.52886814308664,4.0,True,False
+0,linear,"['Constant', 'Trend', 'Nodal U', 'Nodal V']",1171.2241077932058,308.69678584767576,3.0,True,False
+2,linear_without_wind,"['Constant', 'Trend', 'Nodal U', 'Nodal V']",1171.2241077932058,308.69678584767576,3.0,True,False
+1,linear_with_wind,"['Constant', 'Trend', 'Nodal U', 'Nodal V', 'Wind $u^2$', 'Wind $v^2$']",1196.460855961682,259.1118152635184,5.0,True,True
