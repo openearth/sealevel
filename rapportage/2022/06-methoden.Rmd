@@ -13,7 +13,7 @@ In de bijlage \@ref(metingen) wordt uitgelegd hoe de metingen tot stand komen.
 
 Bij het selecteren van de methode worden er diverse afwegingen gemaakt, waarbij we gebruik maken van onderstaande criteria. Dit hoofdstuk geeft een overzicht van de belangrijkste modelkeuzes en de bijbehorende onderbouwing. Uitgangspunt voor de afwegingen is het bepalen van een goede maat voor de huidige zeespiegelstijging ten behoeve van het suppletieprogramma en de suppletiebehoefte.
 
-**Stabiliteit** - de gebruikt methodiek moet niet van jaar tot jaar te veel variëren.
+**Stabiliteit** - de gebruikte methodiek moet niet van jaar tot jaar te veel variëren.
 
 **Spaarzaamheid** - parcimonie: principe dat de eenvoudigste van twee ongeveer even plausibele verklaringen voor hetzelfde fenomeen de voorkeur heeft
 
@@ -37,6 +37,10 @@ In dit onderzoek maken we gebruik van een \acr{GLM}, een gegeneralizeerde vorm v
 
 ## (Meet)gegevens {#bronnen}
 
+In dit onderzoek maken we gebruik van gegevens voor de 6 zogenaamde hoofdstations Vlissingen, Hoek van Holland, IJmuiden, Den Helder, Harlingen en Delfzijl. Deze kuststations leveren sinds 1890, toen het \acr{NAP} overal was doorgevoerd, betrouwbare metingen. In De Ronde et al. (2013) is de methode Zeespiegelmonitor op de 6 hoofdstations toegepast. Gegevens worden betrokken uit de [\acr{PSMSL} database](https://psmsl.org/data/). Rijkswaterstaat draagt zorg voor de aanlevering van gegevens aan \acr{PSMSL}.
+
+De overige stations waarvan gegevens in \acr{PSMSL} opvraagbaar zijn worden niet gebruikt. Het station van West-Terschelling (1921) wordt buiten beschouwing gelaten omdat het in de buurt ligt van Den Helder en Harlingen. Het station van Maassluis (1848) ligt kustinwaarts ten opzichte van Hoek van Holland en kan afgesloten worden door de Maeslantkering. Daardoor is de waterstand niet meer gelijk aan die van de open zee. Het station Roompot Buiten heeft een relatief korte historie (jaargemiddelden beschikbaar sinds 1982) en overlapt met Vlissingen. Roompot Buiten heeft wel een belangrijke functie in de operationele toepassing, waarin Roompot Buiten wel en IJmuiden niet als een hoofdstation wordt gezien. Roompot Buiten is in de Zeespiegelmonitor niet meegenomen als hoofdstation.
+
 ```{r, out.width="80%", fig.cap= "Locatie van de 6 hoofdstations."}
 
 if(knitr::is_html_output()){
@@ -47,10 +51,6 @@ leaflet(stations) %>%
 } else
   knitr::include_graphics("figures/station-map.png")
 ```
-
-In dit onderzoek maken we gebruik van gegevens voor de 6 zogenaamde hoofdstations Vlissingen, Hoek van Holland, IJmuiden, Den Helder, Harlingen en Delfzijl. Deze kuststations leveren sinds 1890, toen het \acr{NAP} overal was doorgevoerd, betrouwbare metingen. In De Ronde et al. (2013) is de methode Zeespiegelmonitor op de 6 hoofdstations toegepast. Gegevens worden betrokken uit de [\acr{PSMSL} database](https://psmsl.org/data/). Rijkswaterstaat draagt zorg voor de aanlevering van gegevens aan \acr{PSMSL}.
-
-De overige stations waarvan gegevens in \acr{PSMSL} opvraagbaar zijn worden niet gebruikt. Het station van West-Terschelling (1921) wordt buiten beschouwing gelaten omdat het in de buurt ligt van Den Helder en Harlingen. Het station van Maassluis (1848) ligt kustinwaarts ten opzichte van Hoek van Holland en kan afgesloten worden door de Maeslantkering. Daardoor is de waterstand niet meer gelijk aan die van de open zee. Het station Roompot Buiten heeft een relatief korte historie (jaargemiddelden beschikbaar sinds 1982) en overlapt met Vlissingen. Roompot Buiten heeft wel een belangrijke functie in de operationele toepassing, waarin Roompot Buiten wel en IJmuiden niet als een hoofdstation wordt gezien. Roompot Buiten is in de Zeespiegelmonitor niet meegenomen als hoofdstation.
 
 We maken geen onderscheid naar in welke mate de stations zijn beïnvloed door de diverse ingrepen aan de Nederlandse kust. Er hebben diverse kleinere en grotere ingrepen plaatsgevonden die invloed hebben op de metingen. Denk hierbij aan de aanleg van de Afsluitdijk, de aanleg van de Deltawerken, sinds de jaren 1990 het dynamisch kustbeheer en vooral de diverse lokale aanpassingen binnen de havens. Deze effecten onderscheiden we niet.
 
@@ -116,7 +116,15 @@ Omdat de Nederlandse kust aan een continentaal plat ligt, waar de wind voor een 
 
 1.  Door gebruik te maken van windgegevens. De heranalyses (een combinatie van modellen en historische gegevens) van de \acr{NCEP} [@Kalnay1996], op basis van een punt op de Noordzee (lat: 52.38, lon: 3.75), worden gebruikt als basis voor de schatting van de windopzet. De maandgemiddelde Noord-Zuid en Oost-West component worden gebruikt. Ten opzichte van @Baart2015, waar deze methode in detail beschreven staat, worden de gegevens ongeroteerd gebruikt om de gegevens generiek toepasbaar te maken. De \acr{NCEP} windanalyse is beschikbaar vanaf 1949. De zeespiegelberekening is ook uitgevoerd met een alternatieve windcorrectie ([20CR heranalyse](https://psl.noaa.gov/data/20thC_Rean/)). Het voordeel van deze versie is dat er heranalyses beschikbaar zijn vanaf 1836 - 2015, een veel langere periode dan de \acr{NCEP}. Omdat de \acr{20CR} serie niet na 2015 beschikbaar is, is er ook een gecomineerde heranalyse gemaakt, met gegevens van \acr{20CR} (t/m 2015) aangevuld met \acr{NCEP1}.
 
-2.  In (referentie ontbreekt, Frederikse?) is onderzocht of het gebruik van stormopzetten uit \acr{GTSM} [@Muis2020; @Muis2016] van toegevoegde waarde is voor het bepalen van de zeespiegelstijging. Het doorrekenen van wind naar de kust met een hydrodynamisch model heeft als voordeel dat getij-stromingsinteractie, het inverse barometer effect en stormopzet onderscheiden kunnen worden. Als test zijn de stormopzetten, berekend per station en over de stations gemiddeld, aan het model toegevoegd. Deze beogen dezelfde fysica te beschrijven als de wind op de Noordzee. Beide aanpakken laten goede resultaten zien over de periode (1979-2014) (figuur \@ref(fig:wind-versus-surge)). De windreeksen die als invoer in \acr{GTSM} worden gebruikt zijn beschikbaar vanaf het jaar 1949. De \acr{GTSM} aanpak is iets beter in het beschrijven van de extreemste jaren, en jaren met veel oostenwind zoals 1996 (figuur \@ref(fig:wind-versus-surge)). Een deel van de GTSM resultaten is te vinden via de [Copernicus site](https://cds.climate.copernicus.eu/cdsapp#!/dataset/10.24381/cds.a6d42d60?tab=overview). Voor de huidige zeespiegelmonitor is GTSM met ERA5 wind forcing aangevuld tot en met 2021 voor gebruik in de zeespiegelmonitor en bestrijkt nu de periode 1979 - 2021.
+2.  In [@Nicolai2017] is onderzocht of het gebruik van stormopzetten uit \acr{GTSM} [@Muis2020; @Muis2016] van toegevoegde waarde is voor het bepalen van de zeespiegelstijging. Het doorrekenen van wind naar de kust met een hydrodynamisch model heeft als voordeel dat getij-stromingsinteractie, het inverse barometer effect en stormopzet onderscheiden kunnen worden. Als test zijn de stormopzetten, berekend per station en over de stations gemiddeld, aan het model toegevoegd. Deze beogen dezelfde fysica te beschrijven als de wind op de Noordzee. Beide aanpakken laten goede resultaten zien over de periode (1979-2014) (figuur \@ref(fig:wind-versus-surge)). De windreeksen die als invoer in \acr{GTSM} worden gebruikt zijn beschikbaar vanaf het jaar 1949. De \acr{GTSM} aanpak is iets beter in het beschrijven van de extreemste jaren, en jaren met veel oostenwind zoals 1996 (figuur \@ref(fig:wind-versus-surge)). Een deel van de GTSM resultaten is te vinden via de [Copernicus site](https://cds.climate.copernicus.eu/cdsapp#!/dataset/10.24381/cds.a6d42d60?tab=overview). Voor de huidige zeespiegelmonitor is GTSM met ERA5 wind forcing aangevuld tot en met 2021 voor gebruik in de zeespiegelmonitor en bestrijkt nu de periode 1979 - 2021.
+
+
+
+::: rmdnote
+Welke correctie voor windopzet gebruiken we?
+
+In de huidige zeespiegelmonitor wordt de GTSM heranalyse gebruikt voor de opzetcorrectie. Het voordeel van deze correctie is dat de wind en stormopzet hierbij onafhankelijk van de trend wordt berekend. De resultaten met de beide andere windcorrecties (NCEP, CR20 en gecombineerd) worden hiernaast gepresenteerd in bijlage \@ref(varianten).
+:::
 
 (ref:wind-versus-surge-caption) Huidige zeespiegelstijging volgens het lineaire model met verschillende correcties voor windopzet: \acr{GTSM} en met geobserveerde wind (\acr{NCEP1}) . De trend is gefit op de jaargemiddelde waarden voor de 5 stations.
 
@@ -125,11 +133,6 @@ Omdat de Nederlandse kust aan een continentaal plat ligt, waar de wind voor een 
 knitr::include_graphics("figures/slr_mean_surge.png")
 ```
 
-::: rmdnote
-Welke correctie voor windopzet gebruiken we?
-
-In de huidige zeespiegelmonitor wordt de GTSM heranalyse gebruikt voor de opzetcorrectie. Het voordeel van deze correctie is dat de wind en stormopzet hierbij onafhankelijk van de trend wordt berekend. De resultaten met de beide andere windcorrecties (NCEP, CR20 en gecombineerd) worden hiernaast gepresenteerd in bijlage \@ref(varianten).
-:::
 
 ## Residu
 

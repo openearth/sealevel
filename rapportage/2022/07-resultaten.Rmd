@@ -330,7 +330,7 @@ predictions_all %>%
 
 De huidige zeespiegel, dat is de zeespiegel die we verwacht hadden op basis van de opgetreden variatie in windopzet en getij, is 9.4 cm boven \acr{NAP} (predictie -opzetanomalie +getij in figuur \@ref(fig:huidige-zeespiegel)). De windopzet afwijking van gemiddeld was dit jaar -3.1 cm. Het berekende effect van nodaal getij was dit jaar +1.2 cm. Bij gemiddelde windopzet zou de zeespiegel 7.8 cm bedragen.
 
-Voor het jaar 2021 bedraagt de relatieve zeespiegelstijging langs de Nederlandse kust 2.9 ± 0.4 mm/jaar oftewel 29 ± 4,cm/eeuw. Deze trend is berekend over de periode 1993 tot en met 2021. Dit beantwoordt de vraag, hoe snel de zeespiegel op dit moment stijgt. De zeespiegel stijgt nu dus sneller dan in de periode van 1890 - 1993. In die periode was de zeespiegelstijging 1.8 ± 0.1 mm/jaar oftewel 18 ± 1,cm/eeuw (figuur \@ref(fig:huidige-zeespiegel) en tabel \@ref(tab:kengetallen-tabel)).
+Voor het jaar 2021 bedraagt de relatieve zeespiegelstijging langs de Nederlandse kust 2.9 ± 0.4 mm/jaar oftewel 29 ± 4 cm/eeuw. Deze trend is berekend over de periode 1993 tot en met 2021. Dit beantwoordt de vraag, hoe snel de zeespiegel op dit moment stijgt. De zeespiegel stijgt nu dus sneller dan in de periode van 1890 - 1993. In die periode was de zeespiegelstijging 1.8 ± 0.1 mm/jaar oftewel 18 ± 1 cm/eeuw (figuur \@ref(fig:huidige-zeespiegel) en tabel \@ref(tab:kengetallen-tabel)).
 
 (ref:huidige-zeespiegel-label) Tijdserie van de zeespiegel langs de Nederlandse kust op basis van het gemiddelde van de vijf hoofdstations, zie ook paragraaf \@ref(bronnen). Opzet en opzetanomalie (afwijking van de gemiddelde opzet) zijn berekend met \acr{GTSM}, de predictie is op basis van een gebroken lineair model.
 
@@ -343,6 +343,9 @@ De zeespiegel gecorrigeerd voor de variatie in windopzet was het hoogste in 2021
 De versnelling langs de Nederlandse kust is consistent met resultaten die zijn afgeleid van mondiale zeespiegelmetingen en budgetten. Het model met versnelling was echter tot de vorige Zeespiegelmonitor (t/m meetjaar 2017) niet significant beter dan het lineaire model met de methode van de Zeespiegelmonitor [@Baart2019]. Daarom was over de periode 1890 - 2017 de langjarig trend constant en had de waarde 1.9 mm/jaar. De totale zeespiegelstijging over de periode 1890 - 2017 was toen bepaald op 23 cm.
 
 ```{r, include=FALSE}
+
+# generate plot for summary
+
   startyear = 1900
   zoomyear = 2010
   
@@ -388,7 +391,7 @@ De versnelling langs de Nederlandse kust is consistent met resultaten die zijn a
     coord_cartesian(ylim = c(NA, NA)) +
     xlab("jaar") +
     ylab("zeespiegel in cm t.o.v. NAP") +
-    labs(subtitle = "Zeespiegel (gecorrigeerd voor windopzet en nodaal getij) met gebroken lineair model") +
+    labs(subtitle = "Zeespiegel, gecorrigeerd voor windopzet en nodaal getij \n gebroken lineair model") +
     fitstyle +
     theme(
       strip.text.y = element_text(angle = 0)) +
@@ -403,7 +406,7 @@ De versnelling langs de Nederlandse kust is consistent met resultaten die zijn a
           ) +
     scale_x_continuous(breaks = scales::pretty_breaks())
 
-ggsave(filename = "figures/samenvatting_v2.png", width = 7, height = 5)
+ggsave(filename = "figures/samenvatting_v2.png", width = 5, height = 3.5, units = "in")
 ```
 
 ```{r overgangLinearBrokenLinear, fig.cap="Tijdserie van gemiddelde zeespiegel (gemiddeld over hoofdstations minus Delfzijl) gecorrigeerd voor de variatie in windopzet (GTSM) en voor de variatie in nodaal getij. Trendlijnen voor het lineaire en het gebroken lineaire model zijn toegevoegd. De gegevens tot en met 2022 worden beter beschreven met het gebroken lineaire model dan met het lineaire model."}
@@ -793,7 +796,7 @@ Hier laten we zien hoe de zeespiegelscenario's aansluiten bij de metingen die si
 *   Natuurlijke variatie - De zeespiegelscenario's representeren langjarige veranderingen ten opzichte van de referentieperiode. Variaties binnen een klimaatperiode, zoals verschillen van jaar tot jaar door luchtdruk en stormen en getij, zijn niet expliciet weergegeven. De jaargemiddelde zeespiegel varieert met een bandbreedte van ongeveer 5cm rondom de langjarige zeespiegeltrend.
 *   Marges - De bandbreedte van zeespiegelprojecties neemt toe naar de toekomst. Deze marges omvatten een combinatie van natuurlijke fluctuaties die op klimatologische tijdschalen plaatsvinden (bijvoorbeeld door langzame fluctuaties in oceaanstromingen of lokale warmteopslag) en door modelonzekerheid in de mate van lokale zeespiegelstijging voor een gegeven emissiescenario. Met name deze modelonzekerheid neemt toe met de tijd.
 *   Versnelling - De zeespiegelversnelling in sommige projecties is toe te schrijven is aan processen die in een warmere toekomst een grotere rol kunnen spelen dan nu (zoals grootschalig massaverlies van de grote ijskappen).
-Modelkeuze - In 2021 heeft KNMI in het klimaatsignaal '21 zeespiegelprojecties voor de Nederlandse kust opgenomen. Deze projecties zijn het resultaat van voorlopige selectie en bewerking van beschikbare klimaatprojecties. Bij de publicatie van de officiele klimaatscenario's in 2023 kunnen de daarin opgenomen zeespiegelscenario's afwijken van de resultaten die in 2021 zijn gepubliceerd.
+*   Modelkeuze - In 2021 heeft KNMI in het klimaatsignaal '21 zeespiegelprojecties voor de Nederlandse kust opgenomen. Deze projecties zijn het resultaat van voorlopige selectie en bewerking van beschikbare klimaatprojecties. Bij de publicatie van de officiele klimaatscenario's in 2023 kunnen de daarin opgenomen zeespiegelscenario's afwijken van de resultaten die in 2021 zijn gepubliceerd.
 
 (ref:metingen-scenarios-label) Zeespiegelprojecties (mediaan midden scenario SSP245) met 5 en 95 percentiel uit \acr{KNMI} klimaatsignaal 2021 [@KNMI2021] gecorrigeerd voor referentieperiode en omgerekend naar NAP vergeleken met metingen gemiddeld over de 5 hoofdstations en gecorrigeerd voor windopzet (\acr{GTSM}) en getij.
 
@@ -992,3 +995,67 @@ Omdat de zeespiegel van vorig jaar informatie bevat die gebruikt kan worden om e
 De variantie van de residuen is afhankelijk van de verklarende variabelen (meer residu bij veel wind). Voor het herkennen van een trendbreuk is het belangrijk dat de trendparameter zo betrouwbaar mogelijk wordt geschat. De standaardfouten zijn daarom op robuuste wijze geschat via de zogenaamde \acr{HAC} estimator [@Zeileis2004] .
 
 Zowel het toevoegen van de autocorrelatieterm als de correctie voor heteroskedasticiteit (ongelijke verdeling van varianties) heeft geen effect op de schattingen van de huidige zeespiegel, alleen op de standaardfouten.
+
+
+```{r, eval=FALSE}
+  startyear = 1900
+  zoomyear = 2010
+  
+  plotShapes = c(
+    "height" = 1,
+    "height - anomaly" = 24#,
+    # "heigt - effect" = 22
+  )
+  
+  pal = hue_pal()(3)
+  
+  symboolgrootte = 2
+  
+  correctionColors = c(
+    "yearly surge correction" = "black",
+    "average surge correction" = "darkgrey"
+  )
+  
+  predictions_all %>% ungroup() %>%
+    filter(name_rws == "Netherlands (without Delfzijl)") %>%
+    filter(correction_variant == "GTSM") %>%
+    filter(model_variant %in% c("linear", "broken_linear")) %>% 
+    select(year, model_variant, `height - anomaly`, prediction_recalc, `nodal tide`) %>% 
+    # pivot_wider(year, names_from = model_variant, values_from = prediction_recalc) %>%
+    mutate(`na 1993` = ifelse(year >= 1993, "-","dashed")) %>%
+    mutate(`voor 2018` = ifelse(year < 2018, "-","dashed")) %>%
+    filter(year >= startyear) %>% 
+    arrange(year) %>% 
+    mutate(`correctie beschikbaar` = ifelse(year >= 1979, "yearly surge correction", "average surge correction")) %>%
+    ggplot() +
+    geom_vline(xintercept = 1993, linetype = 4, alpha = 0.5, color = pal[3]) +
+    geom_point(aes(year, (`height - anomaly` - `nodal tide`)/10, color = `correctie beschikbaar`), alpha = 0.6, size = symboolgrootte) +
+    # geom_line(data = . %>% filter(model_variant == "linear"), 
+    #   aes(x = year, y = prediction_recalc/10, color = model_variant, linetype = `voor 2018`), 
+    #           alpha = 0.75, size = symboolgrootte) +
+    geom_line(data = . %>% filter(model_variant == "broken_linear"), 
+              aes(x = year, y = prediction_recalc/10, linetype = `na 1993`), 
+              alpha = 0.75, size = symboolgrootte - 0.5, color = pal[2]) +
+  annotate(geom = "text", x = 1960, y = -15 , label = "1.8 mm/year", color = pal[2]) +
+  annotate(geom = "text", x = 2003, y = 10, label = "2.9 mm/year", color = pal[2]) +
+    annotate("text", label = "breakpoint", x = 1993, y = -20, color = pal[3], alpha = 0.7) +
+    coord_cartesian(ylim = c(NA, NA)) +
+    xlab("year") +
+    ylab("sea level in cm related to NAP") +
+    labs(subtitle = "Sea level (corrected for storm surge and nodal tide) \n broken linear model") +
+    fitstyle +
+    theme(
+      strip.text.y = element_text(angle = 0)) +
+    theme(legend.title = element_blank()) +
+    scale_linetype_discrete(guide = "none") +
+    scale_color_manual(values = correctionColors) +
+    theme(legend.direction = "vertical",
+          legend.box = "horizontal",
+          legend.position = c(0.025,0.975),
+          legend.justification = c(0, 1),
+          legend.title = element_blank()
+          ) +
+    scale_x_continuous(breaks = scales::pretty_breaks())
+
+ggsave(filename = "figures/summary-plot.png", width = 6, height = 4, units = "in")
+```

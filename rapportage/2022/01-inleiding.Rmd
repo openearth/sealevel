@@ -82,9 +82,34 @@ De hoofdstukken Oorzaken (bijlage \@ref(oorzaken)), Toepassingen (bijlage \@ref(
 
 In bijlage \@ref(varianten) worden resultaten gepresenteerd voor de verschillende varianten die zijn doorgerekend.
 
-Merk op dat de digitale versie van dit document voorzien van hyperlinks voor figuren, tabellen, en referenties. Hiermee kunt u klikken naar de juiste pagina voor meer informatie. Dit geldt ook voor verwijzingen naar acroniemen waarmee u bij het overzicht van afkortingen kunt komen, te vinden in \@ref{lijst-met-afkortingen}.
+Merk op dat de digitale versie van dit document voorzien van hyperlinks voor figuren, tabellen, en referenties. Hiermee kunt u klikken naar de juiste pagina voor meer informatie. Dit geldt ook voor verwijzingen naar acroniemen waarmee u bij het overzicht van afkortingen kunt komen, te vinden in \@ref(lijst-met-afkortingen).
 
 Citaten in de vorm van [@Author1954] verwijzen naar een onbekende auteur (Unknown Author), bijvoorbeeld bij krantenberichten en verwijzingen naar kamerstukken. In dit document wordt de internationale getalsnotatie met een punt (.) als decimaalscheidingsteken gebruikt. Figuren overgenomen uit internationale publicaties of bedoeld voor internationale publicaties hebben Engelse assenlabels.
+
+## Versies van dit rapport
+
+Versie: 1.0:
+datum: 27-03-2023
+status: definitief
+
+
+Versie 1.1
+datum:
+status: herziene versie, definitief
+
+Erratum:
+
+- figuur \@ref(fig:wind-versus-surge) is aangepast. In de eerdere versie werd een foutieve tijdreeks getoond.
+- figuurplacering in de pdf versie is verbeterd ter voorkoming van losse regels tekst aan begin of eind van een paragraaf.
+- Enkele foutief gecodeerde cross-references naar figuren en paragrafen zijn opgelost. 
+- Auteurs HKV toegevoegd omdat zij hebben bijgedragen aan de eerdere versie (2018), waarvan nu grote stukken in de bijlage zijn opgenomen. 
+- Namen van Rijkswaterstaat medewerkers toegevoegd om hun bijdrage beter zichtbaar te maken. 
+
+
+
+
+
+
 
 ## Review {#Review}
 

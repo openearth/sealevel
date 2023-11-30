@@ -474,6 +474,30 @@ ggsave("zeespiegelFit.pdf" , width = 10, height = 12)
 
 
 
+### Effect van modelkeuze op de schatting van windcorrectie.
+
+
+```{r, fig.height=5, fig.width=7, fig.cap = "Schatting van de invloed van modelkeuze op de invloed van wind op de zeespiegelstand  voor alle stations, windopzetcorrecties. "}
+
+startyear = 1990
+
+ggplot() +
+  geom_line(data = predictions_all %>% filter(name_rws == "Netherlands (without Delfzijl)"), aes(x = year, y = anomaly, color = model_variant), alpha = 1) +
+  # geom_line(data = predictions_all %>% filter(year > startyear), aes(x = year, y = prediction_recalc, color = model_variant), size = 1) +
+  facet_wrap(correction_variant ~., scales = "free") +
+  coord_cartesian(xlim = c(startyear, 2022), ylim = c(NA, NA)) +
+  xlab("jaar") +
+  ylab("windopzetcorrectie anomalie in mm") +
+  labs(title = "Windopzet geschat met verschillende methodieken en modellen. ") +
+  fitstyle +
+  theme(strip.text.y = element_text(angle = 0))
+
+ggsave("modelkeuze_wind_effect.pdf" , width = 10, height = 12)
+
+```
+
+
+
 
 
 ## Vergelijking van de trends tussen stations, en tussen de verschillende methoden
