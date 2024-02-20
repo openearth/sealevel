@@ -1,10 +1,14 @@
-# Resultaten voor het actuele jaar {#resultaten}
+# Resultaten voor het actuele jaar {#resultaten-actueel}
 
 ```{r setup2023}
 require(tidyverse)
 require(scales)
 
 resultaatjaar = 2023
+
+talen = c('engels', 'nederlands')
+taal = talen[2]
+
 ```
 
 Dit hoofdstuk beschrijft de resultaten van `r resultaatjaar`. In de resultaten zijn zeespiegelmetingen tot en meet `r resultaatjaar - 1` meegenomen. De berekeningen die hieraan ten grondslag liggen zijn vastgelegd in een [rekendocument](https://github.com/openearth/sealevel/blob/report/notebooks/dutch-sea-level-monitor.ipynb).
@@ -13,7 +17,7 @@ Dit hoofdstuk beschrijft de resultaten van `r resultaatjaar`. In de resultaten z
 
 Dit jaar zijn de GTSM berekeningen uitgebreid voor het jaar 2022, en de periode 1950-1978. Hierdoor is er nu een ruim 70 jaar lange correctie nodig voor windopzet berekend met GTSM.
 
-```{r}
+```{r readData2023}
 results2023 <- read_csv("https://raw.githubusercontent.com/openearth/sealevel/feature/validation-gtsm-2023/data/deltares/results/dutch-sea-level-monitor-export-2023-11-21.csv", comment = "#") %>%
 mutate(across(c(where(is.numeric), -station, -year), 
               function(x) x/10)) %>%
@@ -22,7 +26,7 @@ mutate(across(c(where(is.numeric), -station, -year),
 Voor de correctie van de zeespiegel voor windopzet wordt nu een gemiddelde opzet gebruikt voor de periode voor 1950, en een jaarlijks gemiddelde voor de periode vanaf 1950 (figuur \@ref(fig:gtsm-opzet)). 
 
 
-```{r gtsm-opzet, fig.cap="Windopzet zoals gebruikt in de Zeespiegelmonitor. Vanaf 1950 is een jaarlijks gemiddelde opzet berekend met GTSM, in de periode daarvoor wordt een gemiddelde opzet gebruikt."}
+```{r gtsm-opzet-2023, fig.cap="Windopzet zoals gebruikt in de Zeespiegelmonitor. Vanaf 1950 is een jaarlijks gemiddelde opzet berekend met GTSM, in de periode daarvoor wordt een gemiddelde opzet gebruikt."}
 results2023 %>%
   filter(lubridate::year(date) > 1950) %>%
   mutate(decennium = trunc(year/10)*10) %>%
@@ -48,8 +52,6 @@ De windopzet vertoont over de periode 1950-nu geen duidelijke trend. Wel lijkt d
 De zeespiegel 
 
 ```{r}
-talen = c('engels', 'nederlands')
-taal = talen[1]
 ```
 
 
