@@ -1,0 +1,54 @@
+
+# This is the TOML configuration file for Sea Level Monitor
+
+[constants]
+
+title = "Sea Level Monitor"
+
+epoch = 1970
+
+modeltypes = [
+  "linear", 
+  "broken_linear", 
+#  "squared",  
+  "broken_squared"
+]
+
+stations = [
+  "Delfzijl", 
+  "Harlingen", 
+  "Den Helder", 
+  "IJmuiden", 
+  "Hoek van Holland", 
+  "Vlissingen", 
+  "Netherlands", 
+  "Netherlands (without Delfzijl)"
+  ]
+
+wind_or_surge_types = [
+"NCEP",
+"CR20",
+"CR20_NCEP",
+"GTSM",
+]
+
+dataExtUrl = "https://raw.githubusercontent.com/openearth/sealevel/report/data/deltares/results/dutch-sea-level-monitor-export-stations-2023-11-20.csv"
+
+dataUrl = "../data/deltares/results/dutch-sea-level-monitor-export-stations-2023-11-20.csv"
+
+[model_terms]
+response_term =               "height"
+surge_anomaly =               "offset(`surge anomaly`)"
+autocorrelation_term =        "previousYearHeight"
+nodal_term =                  "I(cos(2 * pi * (year - epoch) / (18.613))) + I(sin(2 * pi * (year - epoch) / (18.613)))"
+
+linear_time_term =            "I(year - epoch)"
+squared_time_term =           "I((year - epoch)^2)"
+broken_linear_time_term =     "from1993"
+broken_quadratic_time_term =  "from1960_square"
+# broken_polynom_time_term =    "I(year^2) * (from1960) + I(year^3) * (from1960)"
+
+
+
+
+

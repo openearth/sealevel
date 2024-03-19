@@ -1,0 +1,139 @@
+---
+title: "sealevelmonitor"
+author: "Willem Stolte, Fedor Baart"
+date: "2024-03-12"
+output: html_document
+---
+
+
+#! check if year and epoch is handled correctly in all formula terms
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+config <- RcppTOML::parseToml("configuration.TOML")
+source("functions.R")
+epoch = config$constants$epoch
+```
+
+## Read data
+
+
+```{r readData}
+df <- readSeaLevelData(config$constants$dataUrl) %>%
+  addPreviousYearHeight() %>%
+  addSurgeAnomaly() %>%
+  addBreakPoints() %>%
+  selectCols() %>%
+  dplyr::mutate(station = as.factor(station))
+
+byStation <- df %>%
+  dplyr::group_by(station) %>%
+  tidyr::nest() %>%
+  dplyr::ungroup()
+```
+
+
+
+```{r}
+
+model_functions_list <- map(paste(config$constants$modeltypes, "model", sep = "_"), get)
+
+models <- byStation %>%
+    expand_grid(modeltype = config$constants$modeltypes) %>%
+  mutate(modelfunctions = map(
+    paste(modeltype, "model", sep = "_"), 
+    get)
+  ) %>%
+  mutate(model = pmap(
+    list(
+      data,
+      modelfunctions
+    ),
+    \(.d, .f) .f(.d)
+  )) %>% 
+  mutate(
+    resids = map2(data, model, add_residuals)
+  ) %>%
+  mutate(
+    preds = map2(data, model, add_predictions)
+  ) %>%
+  # add some model characteristics and skill terms
+  mutate(
+    glance = map(model, broom::glance),
+    rsq    = glance %>% map_dbl("r.squared"),
+    adj.rsq = glance %>% map_dbl("adj.r.squared"),
+    AIC    = glance %>% map_dbl("AIC"),
+    tidy   = map(model, broom::tidy),
+    h      = map(tidy, ~ filter(., term == "I(year - epoch)")) %>% map_dbl("estimate"),
+    b      = map(tidy, ~ filter(., term == "(Intercept)")) %>% map_dbl("estimate"),
+    augment = map(model, broom::augment),
+    equation = map(model, function(x) equatiomatic::extract_eq(x))
+  ) %>%
+  mutate(modeltype = factor(modeltype, levels = config$constants$modeltypes)) %>%
+  mutate(station = factor(station, levels = config$constants$station))
+
+```
+
+## Autocorrelation
+
+Autocorrellation
+
+```{r}
+models %>%
+  mutate(
+    ACF = map(augment, function(x) fortify(acf(x$.resid, plot = F)))
+  ) %>%
+  unnest(ACF) %>%
+  ggplot(aes(Lag, ACF)) +
+  geom_line() +
+  geom_vline(xintercept = 8.9, linetype = 3) +
+  geom_vline(xintercept = 18.6, linetype = 3) +
+  facet_grid(station ~ modeltype) +
+  theme(strip.text.y = element_text(angle = 0))
+
+```
+
+
+```{r}
+models %>%
+  # unite("modeltype", station, modeltype) %>%
+  ggplot(aes(x = station, y = adj.rsq)) +
+  geom_jitter(aes(color = modeltype), width = 0.4) +
+  coord_flip()
+```
+
+## Sea level rise
+
+```{r, fig.width=12, fig.height=6}
+models %>%
+  filter(!grepl("Netherlands", station)) %>%
+  filter(station == "Den Helder") %>%
+  unnest(c(data, augment), names_sep = "_") %>% #str(max.level = 2)
+  # mutate(
+  #   xx = min(data_year + epoch), 
+  #   yy = max(`data_height - surge anomaly`)
+  #   ) %>%
+ggplot(aes(data_year + epoch, data_height)) +
+  geom_point(alpha = 0.4) +
+  geom_line(aes(`augment_I(year - epoch)` + 2*epoch, augment_.fitted, color = modeltype), size = 1) +
+  # geom_text(aes(x = xx, y = yy, hjust = "inward", vjust = "inward", label = equation), parse = TRUE, size = 2.5) +
+  facet_wrap(~ station) #+
+  # coord_cartesian(
+  #   xlim = c(1980, NA),
+  #   ylim = c(-100, NA)
+  #   )
+
+```
+
+
+## Parameters
+
+
+
+```{r}
+
+```
+
+
