@@ -8,7 +8,11 @@ output: html_document
 
 ```{r setup, include=FALSE}
 
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(
+  echo = TRUE,
+  comment=FALSE,
+  message=FALSE
+)
 
 config <- RcppTOML::parseToml("_common/configuration.TOML")
 source("_common/functions.R")
@@ -17,7 +21,7 @@ epoch = config$constants$epoch
 
 ## Read data
 
-```{r readData}
+```{r readData, comment=F, message=F}
 df <- readSeaLevelData(config$constants$dataUrl) %>%
   addPreviousYearHeight() %>%
   addSurgeAnomaly() %>%
@@ -103,7 +107,46 @@ models %>%
   theme(strip.text.y = element_text(angle = 0))
 
 ```
+## Heteroskedasticity
 
+### Residuals
+
+```{r, fig.width=8, fig.height=4}
+models %>%
+  filter(!grepl("Netherlands", station)) %>%
+  # filter(station == "IJmuiden") %>%
+  unnest(c(data, resids), names_sep = "_") %>% #str(max.level = 2)
+ggplot(aes(x = resids_resid)) +
+  geom_histogram(bins = 20, aes(fill = (`resids_surge anomaly` > 0))) +
+  facet_grid(modeltype ~ station) #+
+
+```
+
+
+
+```{r}
+models %>%
+  filter(!grepl("Netherlands", station)) %>%
+  # filter(station == "IJmuiden") %>%
+  unnest(c(data, resids), names_sep = "_") %>% #str(max.level = 2)
+ggplot(aes(data_year, resids_resid)) +
+  geom_point(alpha = 0.4) +
+  facet_grid(modeltype ~ station) #+
+```
+
+
+```{r}
+models %>%
+  filter(!grepl("Netherlands", station)) %>%
+  # filter(station == "IJmuiden") %>%
+  unnest(c(data, resids), names_sep = "_") %>% #str(max.level = 2)
+ggplot(aes(`resids_surge anomaly`, resids_resid, color = (resids_from1993 > 0))) +
+  geom_point(alpha = 0.4) +
+  facet_grid(modeltype ~ station) #+
+```
+
+
+##
 
 ```{r}
 models %>%
@@ -118,7 +161,7 @@ models %>%
 ```{r, fig.width=12, fig.height=6}
 models %>%
   filter(!grepl("Netherlands", station)) %>%
-  filter(station == "IJmuiden") %>%
+  # filter(station == "IJmuiden") %>%
   # filter(modeltype == "linear") %>%
   unnest(c(data, preds), names_sep = "_") %>% #str(max.level = 2)
   # mutate(
@@ -153,7 +196,7 @@ ggplot(aes(data_year, data_height + `data_surge anomaly`)) +
 
 ```{r, fig.height=10}
 
-models %>% select(station, modeltype, tidy) %>% unnest(tidy) %>% View()
+models %>% select(station, modeltype, tidy) %>% unnest(tidy) %>% knitr::kable(caption = "Coefficients for all models and stations.")
 ```
 
 
