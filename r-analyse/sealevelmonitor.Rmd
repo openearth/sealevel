@@ -6,19 +6,16 @@ output: html_document
 ---
 
 
-#! check if year and epoch is handled correctly in all formula terms
-
-
-
 ```{r setup, include=FALSE}
+
 knitr::opts_chunk$set(echo = TRUE)
+
 config <- RcppTOML::parseToml("configuration.TOML")
 source("functions.R")
 epoch = config$constants$epoch
 ```
 
 ## Read data
-
 
 ```{r readData}
 df <- readSeaLevelData(config$constants$dataUrl) %>%
@@ -34,6 +31,18 @@ byStation <- df %>%
   dplyr::ungroup()
 ```
 
+To Do
+
+-   read NCEP and other wind reanalysis data
+-   make possibility to loop over all wind/surge correction options
+
+```{r}
+wind_or_surge_type = "GTSM"
+```
+
+```{r check-workflow}
+check_workflow_wind(wind_or_surge_type = wind_or_surge_type)
+```
 
 
 ```{r}
@@ -100,7 +109,7 @@ models %>%
 models %>%
   # unite("modeltype", station, modeltype) %>%
   ggplot(aes(x = station, y = adj.rsq)) +
-  geom_jitter(aes(color = modeltype), width = 0.4) +
+  geom_jitter(aes(color = modeltype), width = 0.2) +
   coord_flip()
 ```
 
@@ -109,15 +118,25 @@ models %>%
 ```{r, fig.width=12, fig.height=6}
 models %>%
   filter(!grepl("Netherlands", station)) %>%
-  filter(station == "Den Helder") %>%
-  unnest(c(data, augment), names_sep = "_") %>% #str(max.level = 2)
+  filter(station == "IJmuiden") %>%
+  # filter(modeltype == "linear") %>%
+  unnest(c(data, preds), names_sep = "_") %>% #str(max.level = 2)
   # mutate(
   #   xx = min(data_year + epoch), 
   #   yy = max(`data_height - surge anomaly`)
   #   ) %>%
-ggplot(aes(data_year + epoch, data_height)) +
+ggplot(aes(data_year, data_height + `data_surge anomaly`)) +
   geom_point(alpha = 0.4) +
-  geom_line(aes(`augment_I(year - epoch)` + 2*epoch, augment_.fitted, color = modeltype), size = 1) +
+  geom_line(aes(
+    x = preds_year, 
+    y = preds_pred - (`preds_surge anomaly`), 
+    color = modeltype
+  ),
+  linewidth = 1) +
+  # geom_line(
+  #   aes(`augment_I(year - epoch)` + epoch, 
+  #       augment_.fitted,
+  #       color = modeltype), size = 1) +
   # geom_text(aes(x = xx, y = yy, hjust = "inward", vjust = "inward", label = equation), parse = TRUE, size = 2.5) +
   facet_wrap(~ station) #+
   # coord_cartesian(
@@ -132,8 +151,9 @@ ggplot(aes(data_year + epoch, data_height)) +
 
 
 
-```{r}
+```{r, fig.height=10}
 
+models %>% select(station, modeltype, tidy) %>% unnest(tidy) %>% View()
 ```
 
 
