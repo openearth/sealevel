@@ -10,8 +10,8 @@ output: html_document
 
 knitr::opts_chunk$set(echo = TRUE)
 
-config <- RcppTOML::parseToml("configuration.TOML")
-source("functions.R")
+config <- RcppTOML::parseToml("_common/configuration.TOML")
+source("_common/functions.R")
 epoch = config$constants$epoch
 ```
 
@@ -89,7 +89,7 @@ models <- byStation %>%
 
 Autocorrellation
 
-```{r}
+```{r, fig.width=8, fig.height=6}
 models %>%
   mutate(
     ACF = map(augment, function(x) fortify(acf(x$.resid, plot = F)))

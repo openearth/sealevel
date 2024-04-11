@@ -1,0 +1,14 @@
+---
+title: "SWOT level 3 products"
+format: html
+editor: source
+---
+
+## About
+
+SWOT level 3 product is an easy to use ocean topography dataset derived from SWOT level 2 products (the reference product). More information in https://www.aviso.altimetry.fr/fileadmin/documents/data/tools/swot_l3_faqL3alphav0_3_rev1.pdf
+
+
+
+
+

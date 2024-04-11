@@ -1,0 +1,177 @@
+require(tidyverse)
+require(modelr)
+require(ggfortify)
+config <- RcppTOML::parseToml("_common/configuration.TOML")
+
+#== Read and prepare data ===================================================
+
+readSeaLevelData <- function(url){
+  read_csv(url, comment = "#")
+}
+
+addPreviousYearHeight <- function(df){
+  df %>%
+    group_by(station) %>%
+    mutate(previousYearHeight = height[match(year - 1, year)]) %>%
+    filter(year > min(year)) %>%
+    ungroup()
+}
+
+addSurgeAnomaly = function(df){
+  df %>%
+    mutate(`surge anomaly` = `height - surge anomaly` - height)
+}
+
+addBreakPoints = function(df){
+  df %>%
+    mutate(from1993 = (year >= 1993) * (year - 1993)) %>%
+    mutate(from1960_square = (year >= 1960) * (year - 1960) * (year - 1960))
+}
+
+selectCols <- function(df){
+  df %>%
+    drop_na(station) %>%
+    select(
+      year, 
+      from1960_square,
+      from1993,
+      previousYearHeight,
+      height,
+      station = name_rws,
+      `surge anomaly`
+    )
+}
+
+read_gtsm_nc <- function(nc = "c:\\Temp\\era5_reanalysis_surge_2023_v1_monthly_mean.nc", stations_selected){
+  require(RNetCDF)
+  ncf <- RNetCDF::open.nc(nc)
+  
+  data <- RNetCDF::read.nc(ncf)
+
+  stations <- tibble(
+    gtsmid = data$stations, 
+    stationname = data$station_name,
+    station_x_coordinate = data$station_x_coordinate,
+    station_y_coordinate = data$station_y_coordinate
+  )
+  
+  df <- reshape2::melt(data$surge, value.name = "surge_m") %>%
+    mutate(
+      gtsmid = data$stations[Var2],
+      month      = data$month[Var1]
+    ) %>%
+    left_join(stations) %>%
+    select(-Var1, -Var2) %>%
+    filter(gtsmid %in% stations_selected)
+  
+  df
+}
+
+
+read_tidal_components_csv <- function(filesdir = "p:/11202493--systeemrap-grevelingen/1_data/Wadden/ddl/calculated/TA_filtersurge") {
+  
+filelist <- list.files(filesdir, pattern = "csv", full.names = T)
+# get names of stations and year from filenames in filelistShort
+filelistShort <- list.files(filesdir, pattern = "csv", full.names = F)
+
+df <- lapply(filelist, function(x) read_csv(x))
+dfs <- bind_rows(df)
+
+names <- tibble(name = str_replace(filelistShort, pattern = "_UTC\\+1.csv", replacement = "")) %>%
+  separate(name, c("station", "jaar", "component"), sep = "_") %>%
+  select(-component) %>%
+  left_join(mainstations_df[,c("ddl_id", "name")], by = c(station = "ddl_id"))
+
+names %>% 
+  mutate(jaar = as.integer(jaar)) %>%
+  mutate(data = df)
+  
+}
+
+
+#==== NOT TESTED AT THE MOMENT, THIS IS A CONCEPT ==============
+
+use_gtsm <- function(){
+    wind_or_surge_type == "GTSM"
+}
+
+
+check_workflow_wind <- function(wind_or_surge_type){
+  if(!wind_or_surge_type %in% config$constants$wind_or_surge_types) {
+    cat("incorrect wind or surge specification")
+  } else
+  {
+    if(use_gtsm()) {
+      cat("Surge correction by GTSM is used")
+    } else{
+      cat("Wind correction ", wind_or_surge_type, " is used")
+    }
+  }
+}
+
+#==== Model functions ============================================
+
+linear_model <- function(df){
+    lm(
+      reformulate(
+        c(
+          ifelse(use_gtsm(), config$model_terms$surge_anomaly, config$model_terms$wind_anomaly),
+          config$model_terms$linear_time_term,
+          config$model_terms$autocorrelation_term,
+          config$model_terms$nodal_term
+        ),
+        config$model_terms$response_term
+      ),
+      data = df
+    )
+}
+
+
+broken_linear_model <- function(df){
+  lm(
+    reformulate(
+      c(
+        ifelse(use_gtsm(), config$model_terms$surge_anomaly, config$model_terms$wind_anomaly),
+        config$model_terms$linear_time_term,
+        config$model_terms$broken_linear_time_term,
+        config$model_terms$autocorrelation_term,
+        config$model_terms$nodal_term
+      ),
+      config$model_terms$ response_term
+    ),
+    data = df
+  )
+}
+
+squared_model <- function(df){
+  lm(
+    reformulate(
+      c(
+        ifelse(use_gtsm(), config$model_terms$surge_anomaly, config$model_terms$wind_anomaly),
+        config$model_terms$squared_time_term,
+        config$model_terms$autocorrelation_term,
+        config$model_terms$nodal_term
+      ),
+      config$model_terms$response_term
+    ),
+    data = df
+  )
+}
+
+broken_squared_model <- function(df){
+  lm(
+    reformulate(
+      c(
+        ifelse(use_gtsm(), config$model_terms$surge_anomaly, config$model_terms$wind_anomaly),
+        config$model_terms$linear_time_term,
+        config$model_terms$broken_quadratic_time_term,
+        config$model_terms$autocorrelation_term,
+        config$model_terms$nodal_term
+      ),
+      config$model_terms$response_term
+    ),
+    data = df
+  )
+}
+
+
