@@ -2,7 +2,9 @@
 title: "sealevelmonitor"
 author: "Willem Stolte, Fedor Baart"
 date: "2024-03-12"
-output: html_document
+output:
+  html_notebook:
+    code_folding: hide
 ---
 
 
@@ -17,28 +19,49 @@ knitr::opts_chunk$set(
 config <- RcppTOML::parseToml("_common/configuration.TOML")
 source("_common/functions.R")
 epoch = config$constants$epoch
+mainstations_df <- readMainStationInfo()
+
 ```
 
 ## Read data
 
+Monthly and yearly mean sea level is loaded from [PSMSL](https://psmsl.org/data/obtaining/) for the main tide gauge stations in the Netherlands. 
+
+
 ```{r readData, comment=F, message=F}
+
 df <- readSeaLevelData(config$constants$dataUrl) %>%
   addPreviousYearHeight() %>%
   addSurgeAnomaly() %>%
   addBreakPoints() %>%
-  selectCols() %>%
-  dplyr::mutate(station = as.factor(station))
+  selectCols()
+```
 
+
+
+```{r}
+df %>%
+  # left_join(mainstations_df, by = c(station = "name")) %>%
+  dplyr::group_by(station) %>%
+  dplyr::summarise(start = min(year), end = max(year))
+```
+
+
+
+To do
+
+-   read NCEP and other wind reanalysis data
+-   make possibility to loop over all wind/surge correction options
+
+
+```{r nest-per-station}
 byStation <- df %>%
   dplyr::group_by(station) %>%
   tidyr::nest() %>%
   dplyr::ungroup()
 ```
 
-To Do
 
--   read NCEP and other wind reanalysis data
--   make possibility to loop over all wind/surge correction options
 
 ```{r}
 wind_or_surge_type = "GTSM"
@@ -91,7 +114,7 @@ models <- byStation %>%
 
 ## Autocorrelation
 
-Autocorrellation
+Autocorrelation
 
 ```{r, fig.width=8, fig.height=6}
 models %>%
@@ -153,7 +176,8 @@ models %>%
   # unite("modeltype", station, modeltype) %>%
   ggplot(aes(x = station, y = adj.rsq)) +
   geom_jitter(aes(color = modeltype), width = 0.2) +
-  coord_flip()
+  coord_flip() +
+  scale_y_continuous(limits = c(0,1))
 ```
 
 ## Sea level rise
@@ -196,7 +220,11 @@ ggplot(aes(data_year, data_height + `data_surge anomaly`)) +
 
 ```{r, fig.height=10}
 
-models %>% select(station, modeltype, tidy) %>% unnest(tidy) %>% knitr::kable(caption = "Coefficients for all models and stations.")
+models %>% 
+  select(station, modeltype, tidy) %>% 
+  unnest(tidy) %>% 
+  kableExtra::kable(caption = "Coefficients for all models and stations.") %>%
+  kableExtra::scroll_box(height = "500px")
 ```
 
 

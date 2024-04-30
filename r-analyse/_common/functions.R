@@ -1,37 +1,43 @@
 require(tidyverse)
 require(modelr)
 require(ggfortify)
+require(jsonlite)
 config <- RcppTOML::parseToml("_common/configuration.TOML")
 
 #== Read and prepare data ===================================================
 
 readSeaLevelData <- function(url){
-  read_csv(url, comment = "#")
+  readr::read_csv(url, comment = "#")
+}
+
+readMainStationInfo <- function() {
+  jsonlite::read_json("..\\data\\deltares\\main_stations.json") %>%
+  purrr::map_df(~ unlist(.[1:15]))
 }
 
 addPreviousYearHeight <- function(df){
   df %>%
-    group_by(station) %>%
-    mutate(previousYearHeight = height[match(year - 1, year)]) %>%
-    filter(year > min(year)) %>%
-    ungroup()
+    dplyr::group_by(station) %>%
+    dplyr::mutate(previousYearHeight = height[match(year - 1, year)]) %>%
+    dplyr::filter(year > min(year)) %>%
+    dplyr::ungroup()
 }
 
 addSurgeAnomaly = function(df){
   df %>%
-    mutate(`surge anomaly` = `height - surge anomaly` - height)
+    dplyr::mutate(`surge anomaly` = `height - surge anomaly` - height)
 }
 
 addBreakPoints = function(df){
   df %>%
-    mutate(from1993 = (year >= 1993) * (year - 1993)) %>%
-    mutate(from1960_square = (year >= 1960) * (year - 1960) * (year - 1960))
+    dplyr::mutate(from1993 = (year >= 1993) * (year - 1993)) %>%
+    dplyr::mutate(from1960_square = (year >= 1960) * (year - 1960) * (year - 1960))
 }
 
 selectCols <- function(df){
   df %>%
-    drop_na(station) %>%
-    select(
+    tidyr::drop_na(station) %>%
+    dplyr::select(
       year, 
       from1960_square,
       from1993,
@@ -39,7 +45,8 @@ selectCols <- function(df){
       height,
       station = name_rws,
       `surge anomaly`
-    )
+    ) %>%
+    dplyr::mutate(station = factor(station, levels = config$constants$station))
 }
 
 read_gtsm_nc <- function(nc = "c:\\Temp\\era5_reanalysis_surge_2023_v1_monthly_mean.nc", stations_selected){
@@ -48,7 +55,7 @@ read_gtsm_nc <- function(nc = "c:\\Temp\\era5_reanalysis_surge_2023_v1_monthly_m
   
   data <- RNetCDF::read.nc(ncf)
 
-  stations <- tibble(
+  stations <- tibble::tibble(
     gtsmid = data$stations, 
     stationname = data$station_name,
     station_x_coordinate = data$station_x_coordinate,
@@ -56,13 +63,13 @@ read_gtsm_nc <- function(nc = "c:\\Temp\\era5_reanalysis_surge_2023_v1_monthly_m
   )
   
   df <- reshape2::melt(data$surge, value.name = "surge_m") %>%
-    mutate(
+    dplyr::mutate(
       gtsmid = data$stations[Var2],
       month      = data$month[Var1]
     ) %>%
-    left_join(stations) %>%
-    select(-Var1, -Var2) %>%
-    filter(gtsmid %in% stations_selected)
+    dplyr::left_join(stations) %>%
+    dplyr::select(-Var1, -Var2) %>%
+    dplyr::filter(gtsmid %in% stations_selected)
   
   df
 }
@@ -74,17 +81,17 @@ filelist <- list.files(filesdir, pattern = "csv", full.names = T)
 # get names of stations and year from filenames in filelistShort
 filelistShort <- list.files(filesdir, pattern = "csv", full.names = F)
 
-df <- lapply(filelist, function(x) read_csv(x))
-dfs <- bind_rows(df)
+df <- lapply(filelist, function(x) read_csv(x, col_types = cols(), progress = FALSE))
+dfs <- dplyr::bind_rows(df)
 
 names <- tibble(name = str_replace(filelistShort, pattern = "_UTC\\+1.csv", replacement = "")) %>%
-  separate(name, c("station", "jaar", "component"), sep = "_") %>%
-  select(-component) %>%
-  left_join(mainstations_df[,c("ddl_id", "name")], by = c(station = "ddl_id"))
+  tidyr::separate(name, c("station", "jaar", "component"), sep = "_") %>%
+  dplyr::select(-component) %>%
+  dplyr::left_join(mainstations_df[,c("ddl_id", "name")], by = c(station = "ddl_id"))
 
 names %>% 
-  mutate(jaar = as.integer(jaar)) %>%
-  mutate(data = df)
+  dplyr::mutate(jaar = as.integer(jaar)) %>%
+  dplyr::mutate(data = df)
   
 }
 

@@ -3,17 +3,15 @@ require(tidyverse)
 require(stringr)
 source("_common/functions.R")
 
-mainstations_df <- jsonlite::read_json("..\\data\\deltares\\main_stations.json") %>%
-  map_df(~ unlist(.[1:15]))
+mainstations_df <- readMainStationInfo()
 
-#=== read sea level data =================================================
+#=== read sea level data - takes time ======================================
 
 df_sealevel <- readSeaLevelData(config$constants$dataUrl) %>%
   addPreviousYearHeight() %>%
   addSurgeAnomaly() %>%
   addBreakPoints() %>%
-  selectCols() %>%
-  dplyr::mutate(station = as.factor(station))
+  selectCols()
 
 #=== read tidal components data =================================================
 
@@ -57,7 +55,7 @@ ggsave("results/tidal_analysis/M4_M2_wadden.png", height = 5, width = 10)
 
 # genormaliseerde componenten in de tijd
 
-df_tidal %>%
+p <- df_tidal %>%
   unnest(data) %>%
   filter(comp %in% c("M2", "M4")) %>%
   filter(station %in% c("DELFZL", "DENHDR", "EEMSHVN", "HARLGN", "HOLWD", "HUIBGT")) %>% 
@@ -71,8 +69,8 @@ df_tidal %>%
   # geom_vline(xintercept = 1993) +
   coord_cartesian(ylim = c(NA,NA)) +
   facet_grid(comp ~ ., scales = "free_y")
-
-
+ggsave("results/tidal_analysis/normalized_A_wadden.png", height = 5, width = 10)
+plotly::ggplotly(p)
 colors = colorRamps::magenta2green(2)
 
 # relation M4:M2 with sea level rise
@@ -107,5 +105,7 @@ df_tidal %>%
   # geom_boxplot(aes(group = wanneer), fill = "transparent") +
   # geom_vline(xintercept = 1993) +
   coord_cartesian(ylim = c(NA,NA)) +
+  coord_flip() +
   facet_wrap(vars(variable, name), scales = "free", nrow = 2)
+ggsave("results/tidal_analysis/tide_height_wadden.png", height = 5, width = 10)
 
