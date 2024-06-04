@@ -25,7 +25,7 @@ addPreviousYearHeight <- function(df){
 
 addSurgeAnomaly = function(df){
   df %>%
-    dplyr::mutate(`surge anomaly` = `height - surge anomaly` - height)
+    dplyr::mutate(`surge anomaly` = - (`height - surge anomaly` - height))
 }
 
 addBreakPoints = function(df){

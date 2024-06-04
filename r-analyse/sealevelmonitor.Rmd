@@ -5,6 +5,10 @@ date: "2024-03-12"
 output:
   html_notebook:
     code_folding: hide
+params:
+  wind_or_surge_type: GTSM
+  station: [Delfzijl, Netherlands (without Delfzijl)]
+  modeltype: [linear, broken_linear]
 ---
 
 
@@ -27,6 +31,11 @@ mainstations_df <- readMainStationInfo()
 
 Monthly and yearly mean sea level is loaded from [PSMSL](https://psmsl.org/data/obtaining/) for the main tide gauge stations in the Netherlands. 
 
+!!!!! Onderstaand vervangen door inlezen van origineel gedownloade data 
+- psmsl
+- gtsm
+- wind heranalyses
+
 
 ```{r readData, comment=F, message=F}
 
@@ -34,7 +43,10 @@ df <- readSeaLevelData(config$constants$dataUrl) %>%
   addPreviousYearHeight() %>%
   addSurgeAnomaly() %>%
   addBreakPoints() %>%
-  selectCols()
+  selectCols() %>%
+  filter(
+    station %in% params$station
+         )
 ```
 
 
@@ -62,33 +74,33 @@ byStation <- df %>%
 ```
 
 
-
-```{r}
-wind_or_surge_type = "GTSM"
-```
-
 ```{r check-workflow}
+wind_or_surge_type = params$wind_or_surge_type
 check_workflow_wind(wind_or_surge_type = wind_or_surge_type)
 ```
 
 
 ```{r}
 
-model_functions_list <- map(paste(config$constants$modeltypes, "model", sep = "_"), get)
+selectedmodel <- config$constants$modeltypes[config$constants$modeltypes %in% params$modeltype]
+# model_functions_list <- map(paste(selectedmodel, "model", sep = "_"), get)
 
 models <- byStation %>%
-    expand_grid(modeltype = config$constants$modeltypes) %>%
+  # grid extended with model types
+  expand_grid(modeltype = selectedmodel) %>%
+  # add functions for model calculation
   mutate(modelfunctions = map(
     paste(modeltype, "model", sep = "_"), 
     get)
   ) %>%
+  # add models based on data and functions
   mutate(model = pmap(
     list(
       data,
       modelfunctions
     ),
     \(.d, .f) .f(.d)
-  )) %>% 
+  )) %>%
   mutate(
     resids = map2(data, model, add_residuals)
   ) %>%
@@ -102,13 +114,9 @@ models <- byStation %>%
     adj.rsq = glance %>% map_dbl("adj.r.squared"),
     AIC    = glance %>% map_dbl("AIC"),
     tidy   = map(model, broom::tidy),
-    h      = map(tidy, ~ filter(., term == "I(year - epoch)")) %>% map_dbl("estimate"),
-    b      = map(tidy, ~ filter(., term == "(Intercept)")) %>% map_dbl("estimate"),
     augment = map(model, broom::augment),
     equation = map(model, function(x) equatiomatic::extract_eq(x))
-  ) %>%
-  mutate(modeltype = factor(modeltype, levels = config$constants$modeltypes)) %>%
-  mutate(station = factor(station, levels = config$constants$station))
+  )
 
 ```
 
@@ -116,7 +124,7 @@ models <- byStation %>%
 
 Autocorrelation
 
-```{r, fig.width=8, fig.height=6}
+```{r, fig.width=6, fig.height=3}
 models %>%
   mutate(
     ACF = map(augment, function(x) fortify(acf(x$.resid, plot = F)))
@@ -136,11 +144,11 @@ models %>%
 
 ```{r, fig.width=8, fig.height=4}
 models %>%
-  filter(!grepl("Netherlands", station)) %>%
+  # filter(!grepl("Netherlands", station)) %>%
   # filter(station == "IJmuiden") %>%
   unnest(c(data, resids), names_sep = "_") %>% #str(max.level = 2)
 ggplot(aes(x = resids_resid)) +
-  geom_histogram(bins = 20, aes(fill = (`resids_surge anomaly` > 0))) +
+  geom_histogram(bins = 20, aes()) +
   facet_grid(modeltype ~ station) #+
 
 ```
@@ -149,7 +157,7 @@ ggplot(aes(x = resids_resid)) +
 
 ```{r}
 models %>%
-  filter(!grepl("Netherlands", station)) %>%
+  # filter(!grepl("Netherlands", station)) %>%
   # filter(station == "IJmuiden") %>%
   unnest(c(data, resids), names_sep = "_") %>% #str(max.level = 2)
 ggplot(aes(data_year, resids_resid)) +
@@ -160,31 +168,20 @@ ggplot(aes(data_year, resids_resid)) +
 
 ```{r}
 models %>%
-  filter(!grepl("Netherlands", station)) %>%
+  # filter(!grepl("Netherlands", station)) %>%
   # filter(station == "IJmuiden") %>%
   unnest(c(data, resids), names_sep = "_") %>% #str(max.level = 2)
-ggplot(aes(`resids_surge anomaly`, resids_resid, color = (resids_from1993 > 0))) +
+ggplot(aes(`resids_surge anomaly`, resids_resid)) +
   geom_point(alpha = 0.4) +
   facet_grid(modeltype ~ station) #+
 ```
 
 
-##
-
-```{r}
-models %>%
-  # unite("modeltype", station, modeltype) %>%
-  ggplot(aes(x = station, y = adj.rsq)) +
-  geom_jitter(aes(color = modeltype), width = 0.2) +
-  coord_flip() +
-  scale_y_continuous(limits = c(0,1))
-```
-
 ## Sea level rise
 
 ```{r, fig.width=12, fig.height=6}
 models %>%
-  filter(!grepl("Netherlands", station)) %>%
+  # filter(grepl("Netherlands", station)) %>%
   # filter(station == "IJmuiden") %>%
   # filter(modeltype == "linear") %>%
   unnest(c(data, preds), names_sep = "_") %>% #str(max.level = 2)
@@ -192,7 +189,7 @@ models %>%
   #   xx = min(data_year + epoch), 
   #   yy = max(`data_height - surge anomaly`)
   #   ) %>%
-ggplot(aes(data_year, data_height + `data_surge anomaly`)) +
+ggplot(aes(data_year, data_height - `data_surge anomaly`)) +
   geom_point(alpha = 0.4) +
   geom_line(aes(
     x = preds_year, 
