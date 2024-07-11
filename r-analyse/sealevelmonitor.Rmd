@@ -3,12 +3,27 @@ title: "sealevelmonitor"
 author: "Willem Stolte, Fedor Baart"
 date: "2024-03-12"
 output:
+  html_document:
+    df_print: paged
+    code_folding: hide
   html_notebook:
     code_folding: hide
 params:
   wind_or_surge_type: GTSM
-  station: [Delfzijl, Netherlands (without Delfzijl)]
-  modeltype: [linear, broken_linear]
+  station:
+  - Delfzijl
+  - Harlingen
+  - Den Helder
+  - IJmuiden
+  - Hoek van Holland
+  - Vlissingen
+  - Netherlands
+  - Netherlands (without Delfzijl)
+  modeltype:
+  - linear
+  - broken_linear
+#  - broken_linear
+#  - broken_squared
 ---
 
 
@@ -20,16 +35,25 @@ knitr::opts_chunk$set(
   message=FALSE
 )
 
+require(leaflet)
+require(plotly)
+require(nlme)
+
 config <- RcppTOML::parseToml("_common/configuration.TOML")
 source("_common/functions.R")
+source("_common/plotfunctions.R")
 epoch = config$constants$epoch
 mainstations_df <- readMainStationInfo()
+mainstations_locs <- readMainStationLocations()
+nstations = length(params$station)
+nmodels  = length(params$modeltype)
+nsurge  = length(params$wind_or_surge_type)
 
 ```
 
-## Read data
+## Gegevens inlezen
 
-Monthly and yearly mean sea level is loaded from [PSMSL](https://psmsl.org/data/obtaining/) for the main tide gauge stations in the Netherlands. 
+Maandelijks en jaarlijks gemiddelde waterhoogtegegevens zijn beschikbaar via [PSMSL](https://psmsl.org/data/obtaining/). Deze gegevens worden ingelezen. 
 
 !!!!! Onderstaand vervangen door inlezen van origineel gedownloade data 
 - psmsl
@@ -40,22 +64,40 @@ Monthly and yearly mean sea level is loaded from [PSMSL](https://psmsl.org/data/
 ```{r readData, comment=F, message=F}
 
 df <- readSeaLevelData(config$constants$dataUrl) %>%
-  addPreviousYearHeight() %>%
+  mutate(epoch = epoch) %>%
   addSurgeAnomaly() %>%
   addBreakPoints() %>%
   selectCols() %>%
   filter(
     station %in% params$station
-         )
+  ) %>%
+  filter(year<= 2021)
+
 ```
 
+## Locaties van de Nederlandse hoofdstations
 
+Dit document rapporteert over een selectie van de Nederlandse getijstations. Er is een keuze gemaakt op basis van geografissche spreiding en lengte van de beschikbare tijdseries. 
 
-```{r}
+```{r selected-stations, fig.cap="Hoofdgetijstations in Nederland. Er is aangegeven welke stations zijn meegenomen in dit rekendocument. "}
+
+factpal <- colorFactor(c("red", "darkgreen"), c("selected", "not selected"))
+
 df %>%
-  # left_join(mainstations_df, by = c(station = "name")) %>%
-  dplyr::group_by(station) %>%
-  dplyr::summarise(start = min(year), end = max(year))
+  dplyr::distinct(station) %>%
+  dplyr::left_join(mainstations_df, by = c(station = "name")) %>%
+  dplyr::right_join(mainstations_locs %>% mutate(ID = as.character(ID)), by = c(id = "ID")) %>%
+  mutate(`selected stations` = ifelse(!is.na(location), "selected", "not selected")) %>%
+  leaflet::leaflet() %>%
+  leaflet::addTiles() %>%
+  leaflet::addCircleMarkers(
+    lat = ~Lat, 
+    lng = ~Lon, 
+    color = ~ factpal(`selected stations`),
+    label = ~ location,
+    labelOptions = labelOptions(noHide = T)) %>%
+  leaflet::setView(lng = mean(mainstations_locs$Lon), lat = mean(mainstations_locs$Lat), zoom = 6) %>%
+  leaflet::addLegend("topleft", pal = factpal, values = ~`selected stations`)
 ```
 
 
@@ -63,7 +105,7 @@ df %>%
 To do
 
 -   read NCEP and other wind reanalysis data
--   make possibility to loop over all wind/surge correction options
+-   loop over all wind/surge correction options (?)
 
 
 ```{r nest-per-station}
@@ -82,17 +124,18 @@ check_workflow_wind(wind_or_surge_type = wind_or_surge_type)
 
 ```{r}
 
-selectedmodel <- config$constants$modeltypes[config$constants$modeltypes %in% params$modeltype]
+selectedmodel <- params$modeltype
 # model_functions_list <- map(paste(selectedmodel, "model", sep = "_"), get)
-
+ 
 models <- byStation %>%
   # grid extended with model types
   expand_grid(modeltype = selectedmodel) %>%
+  
+  
+  
+  mutate(modelfunctionname = paste(modeltype, "model", sep = "_")) %>%
   # add functions for model calculation
-  mutate(modelfunctions = map(
-    paste(modeltype, "model", sep = "_"), 
-    get)
-  ) %>%
+  mutate(modelfunctions = map(modelfunctionname, get)) %>%
   # add models based on data and functions
   mutate(model = pmap(
     list(
@@ -101,12 +144,12 @@ models <- byStation %>%
     ),
     \(.d, .f) .f(.d)
   )) %>%
-  mutate(
-    resids = map2(data, model, add_residuals)
-  ) %>%
-  mutate(
-    preds = map2(data, model, add_predictions)
-  ) %>%
+  # mutate(
+  #   resids = map2(data, model, add_residuals)
+  # ) %>%
+  # mutate(
+  #   preds = map2(data, model, add_predictions)
+  # ) %>%
   # add some model characteristics and skill terms
   mutate(
     glance = map(model, broom::glance),
@@ -117,111 +160,296 @@ models <- byStation %>%
     augment = map(model, broom::augment),
     equation = map(model, function(x) equatiomatic::extract_eq(x))
   )
-
 ```
 
 ## Autocorrelation
 
 Autocorrelation
 
-```{r, fig.width=6, fig.height=3}
+```{r acf-plot, fig.height=nstations*2+1, fig.width=nmodels*3+1, fig.cap="Autocorrelation plot for selected stations and models. "}
 models %>%
   mutate(
     ACF = map(augment, function(x) fortify(acf(x$.resid, plot = F)))
   ) %>%
   unnest(ACF) %>%
+  mutate(ACF_pass = (ACF >= lower & ACF <= upper)) %>%
+  filter(Lag >= 1) %>%
   ggplot(aes(Lag, ACF)) +
-  geom_line() +
+  geom_col(width = 0.4, aes(fill = ACF_pass)) +
   geom_vline(xintercept = 8.9, linetype = 3) +
   geom_vline(xintercept = 18.6, linetype = 3) +
+  geom_line(aes(y = lower), linetype = "dotdash", linewidth = 0.5) +
+  geom_line(aes(y = upper), linetype = "dotdash", linewidth = 0.5) +
+  scale_x_continuous(
+    breaks = scales::breaks_pretty(10)
+    )+
   facet_grid(station ~ modeltype) +
-  theme(strip.text.y = element_text(angle = 0))
+  theme_minimal() +
+  theme(
+    strip.text.y = element_text(angle = 0),
+    legend.position = "bottom"
+        )
+```
+
+Add Newey West autocorrelation term for calculating standard errors 
+
+https://search.r-project.org/CRAN/refmans/sandwich/html/NeweyWest.html
+
+```{r add-HAC}
+# Using NeweyWest():
+require(sandwich)
+
+broom::tidy(sqrt(diag(sandwich::NeweyWest(models$model[[1]]))))
+
+models <- models %>%
+  mutate(
+    tidy.HAC = map(
+      model, 
+      function(x) broom::tidy(
+        sqrt(
+          diag(
+            NeweyWest(
+              x, 
+              lag = 1, 
+              prewhite = F, 
+              adjust = T
+            )
+          )
+        )
+      )
+    )
+  )
+    
+  models$tidy.HAC <- lapply(models$tidy.HAC,
+       function(x) {
+         x %>%
+           rename(
+             term.HAC = names,
+             st.err.HAC = x
+           )
+       }
+)
 
 ```
+
+
 ## Heteroskedasticity
 
-### Residuals
+### Residuals distribution
 
-```{r, fig.width=8, fig.height=4}
+```{r, fig.height=nstations*1.5+1, fig.width=nmodels*2+1 }
 models %>%
   # filter(!grepl("Netherlands", station)) %>%
   # filter(station == "IJmuiden") %>%
-  unnest(c(data, resids), names_sep = "_") %>% #str(max.level = 2)
-ggplot(aes(x = resids_resid)) +
-  geom_histogram(bins = 20, aes()) +
-  facet_grid(modeltype ~ station) #+
+  unnest(c(data, augment), names_sep = "_") %>%
+  # str(max.level = 2)
+ggplot(aes(x = augment_.resid)) +
+  geom_histogram(bins = 20, stat = ) +
+  stat_function(fun = dnorm, 
+                geom = "line",
+                args = list(
+                  mean = mean(
+                    unnest(models, cols = c(augment), names_sep = "_")$augment_.resid
+                    ),
+                    sd = sd(
+                      unnest(models, cols = c(data, augment), names_sep = "_")$augment_.resid
+                    )
+                )
+  ) +
+                  facet_grid(station ~ modeltype) #+
 
 ```
 
 
+## Variation of residuals over time
 
-```{r}
+```{r, fig.height=nstations*1.5+1, fig.width=nmodels*2+1}
 models %>%
   # filter(!grepl("Netherlands", station)) %>%
   # filter(station == "IJmuiden") %>%
-  unnest(c(data, resids), names_sep = "_") %>% #str(max.level = 2)
-ggplot(aes(data_year, resids_resid)) +
+  unnest(c(data, augment), names_sep = "_") %>% #str(max.level = 2)
+ggplot(aes(data_year, augment_.resid)) +
   geom_point(alpha = 0.4) +
   facet_grid(modeltype ~ station) #+
 ```
 
+## Metingen
 
-```{r}
-models %>%
+```{r, fig.width=8, fig.height=3}
+p <- models %>%
   # filter(!grepl("Netherlands", station)) %>%
   # filter(station == "IJmuiden") %>%
-  unnest(c(data, resids), names_sep = "_") %>% #str(max.level = 2)
-ggplot(aes(`resids_surge anomaly`, resids_resid)) +
-  geom_point(alpha = 0.4) +
-  facet_grid(modeltype ~ station) #+
+  unnest(c(data), names_sep = "_") %>% #str(max.level = 2)
+ggplot(aes(data_year, data_height)) +
+  geom_point(alpha = 1, aes(color = station), shape = 21, fill = "white", size = 2) +
+  geom_line(alpha = 0.5, aes(color = station), linewidth = 0.75) +
+  xlab("jaar") + ylab("gemeten zeespiegel in mm") +
+  theme_linedraw()
+
+# ggplotly(p) %>% layout(legend = list(x = 0.05, y = 0.95))
+p
 ```
 
 
 ## Sea level rise
 
-```{r, fig.width=12, fig.height=6}
-models %>%
-  # filter(grepl("Netherlands", station)) %>%
-  # filter(station == "IJmuiden") %>%
-  # filter(modeltype == "linear") %>%
-  unnest(c(data, preds), names_sep = "_") %>% #str(max.level = 2)
-  # mutate(
-  #   xx = min(data_year + epoch), 
-  #   yy = max(`data_height - surge anomaly`)
-  #   ) %>%
-ggplot(aes(data_year, data_height - `data_surge anomaly`)) +
-  geom_point(alpha = 0.4) +
-  geom_line(aes(
-    x = preds_year, 
-    y = preds_pred - (`preds_surge anomaly`), 
-    color = modeltype
-  ),
-  linewidth = 1) +
-  # geom_line(
-  #   aes(`augment_I(year - epoch)` + epoch, 
-  #       augment_.fitted,
-  #       color = modeltype), size = 1) +
-  # geom_text(aes(x = xx, y = yy, hjust = "inward", vjust = "inward", label = equation), parse = TRUE, size = 2.5) +
-  facet_wrap(~ station) #+
-  # coord_cartesian(
-  #   xlim = c(1980, NA),
-  #   ylim = c(-100, NA)
-  #   )
+
+```{r}
+
+
+
+lookup <- c(
+   Constant = "(Intercept)",
+    Trend = "I(year - epoch)",
+    u_nodal = "I(cos(2 * pi * (year - epoch)/(18.613)))",
+    v_nodal = "I(sin(2 * pi * (year - epoch)/(18.613)))",
+    `+ trend 1993` = "from1993",
+    `+ square_trend 1960` = "from1960_square",
+    AR_term = "previousYearHeight"
+  )
+
+
+# data wrangling. move to functions.R
+
+all_predictions <- models %>%
+  mutate(
+    preds = map2(data, model, add_predictions)
+  ) %>%
+  dplyr::select(
+    station,
+    modeltype, 
+    data, 
+    tidy, 
+    preds) %>%
+  tidyr::unnest(c(data, preds), names_sep = "_") %>% 
+  tidyr::unnest(tidy) %>%
+    # str(max.level = 2)
+
+  dplyr::select(-std.error, -statistic, -p.value) %>% # clean up
+  tidyr::pivot_wider(
+    names_from = term, 
+    values_from = estimate
+  ) %>%
+  mutate(`preds_height-surge_anomaly` = preds_pred - `preds_surge_anomaly`) %>%
+  rename(any_of(lookup)) %>%
+  # str(max.level = 2)
+  mutate(
+    nodal_tide = 
+      u_nodal * cos(2*pi*(data_year-epoch)/18.613) + 
+      v_nodal * sin(2*pi*(data_year-epoch)/18.613),
+    prediction_recalc = case_when(
+      if("linear" %in% params$modeltype){
+        modeltype == "linear" ~ 
+          Constant + 
+          Trend * (data_year - epoch)# + 
+          # AR_term * data_previousYearHeight
+      },
+      if("broken_linear" %in% params$modeltype){
+        modeltype == "broken_linear" ~ 
+          Constant + 
+          Trend * (data_year - epoch) +
+          # AR_term * data_previousYearHeight +
+          (data_year >= 1993) * `+ trend 1993` * (data_year - 1993)
+      },
+      # if("broken_quadratic" %in% params$modeltype){
+      #   modeltype == "broken_quadratic" ~ Constant + Trend * (data_year - epoch) +
+      #     ifelse(data_year >= 1960, from1960_square * (data_year - 1960) * (data_year - 1960), 0)
+      # }
+    )
+    ) %>%
+  select(
+    station,
+    modeltype,
+    data_year,
+    data_height,
+    preds_year,
+    prediction_recalc,
+    `preds_height-surge_anomaly`,
+    nodal_tide
+  )
 
 ```
+
+
+
+```{r prediction-plot, fig.height=nstations*3+1, fig.width=nmodels*3+1, fig.cap= "Observed and predicted sea level for selected stations and models. "}
+
+ggplot(
+  all_predictions,
+  aes(x = data_year)
+) +
+  geom_point(aes(y = data_height)) +
+  geom_line(aes(y = prediction_recalc)) +
+  facet_grid(station ~ modeltype)
+
+```
+
+
+
+```{r, eval=FALSE}
+
+if("Netherlands (without Delfzijl)" %in% params$station & "broken_linear" %in% params$modeltype)
+  {
+  p <- plot_station( 
+    predictions_all = all_predictions %>% 
+      filter(station == "Netherlands (without Delfzijl)") %>%
+      filter(modeltype == "broken_linear"), 
+    correctionVariant = "GTSM", 
+    modelVariant = "broken_linear", 
+    printNumbers = F)
+  
+  # ggplotly(p) %>% layout(legend = list(x = 0.05, y = 0.95))
+  p
+}
+```
+
+
 
 
 ## Parameters
 
 
 
-```{r, fig.height=10}
+```{r}
 
-models %>% 
+## gebruik DT in plaats van kableextra
+
+lookup.df <- data.frame(long_term = unname(lookup),
+                        short_term = names(lookup))
+
+library(DT)
+
+models %>%
   select(station, modeltype, tidy) %>% 
-  unnest(tidy) %>% 
-  kableExtra::kable(caption = "Coefficients for all models and stations.") %>%
-  kableExtra::scroll_box(height = "500px")
+  unnest(tidy) %>%
+  left_join(models %>%
+              select(station, modeltype, tidy.HAC) %>%
+              unnest(tidy.HAC),
+            by = c(
+              station = "station",
+              modeltype = "modeltype",
+              term = "term.HAC"
+            )
+              ) %>%
+  mutate(across(where(is.numeric), round, 3)) %>%
+  left_join(lookup.df, by = c(term = "long_term")) %>%
+  DT::datatable(
+  options = list(
+      "digits" = 3
+    )
+  )
+
+  # kableExtra::kable(
+  #   caption = "Coefficients for all models and stations.",digits = 2
+  #   ) %>% 
+  # kableExtra::scroll_box(height = "500px")
+
+
+
+
 ```
+
+
+
 
 

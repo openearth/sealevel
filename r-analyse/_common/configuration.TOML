@@ -1,17 +1,13 @@
 
 # This is the TOML configuration file for Sea Level Monitor
 
-[constants]
-
-title = "Sea Level Monitor"
-
-epoch = 1970
+[runparameters]
 
 modeltypes = [
   "linear", 
   "broken_linear", 
 #  "squared",  
-  "broken_squared"
+#  "broken_squared"
 ]
 
 stations = [
@@ -26,11 +22,17 @@ stations = [
   ]
 
 wind_or_surge_types = [
-"NCEP",
-"CR20",
-"CR20_NCEP",
+#"NCEP",
+#"CR20",
+#"CR20_NCEP",
 "GTSM",
 ]
+
+[constants]
+
+title = "Sea Level Monitor"
+
+epoch = 1970
 
 dataExtUrl = "https://raw.githubusercontent.com/openearth/sealevel/report/data/deltares/results/dutch-sea-level-monitor-export-stations-2023-11-20.csv"
 
